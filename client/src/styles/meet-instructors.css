@@ -1026,6 +1026,36 @@
   }
 }
 
+/* Compact touch layout: keep the full card within the mobile/tablet frame. */
+@media (min-width: 521px) and (max-width: 1100px) {
+  .behar-faculty__gallery {
+    height: clamp(330px, 52vw, 390px);
+  }
+
+  .behar-faculty__card-info {
+    bottom: 18px;
+  }
+
+  .behar-faculty__card-name {
+    font-size: clamp(17px, 2.4vw, 24px);
+  }
+}
+
+@media (max-width: 520px) {
+  .behar-faculty__gallery {
+    height: clamp(285px, 78vw, 330px);
+  }
+
+  .behar-faculty__card-skills,
+  .behar-faculty__card:hover .behar-faculty__card-skills,
+  .behar-faculty__card:focus-visible .behar-faculty__card-skills,
+  .behar-faculty__card-skills.is-skills-visible {
+    display: none !important;
+    max-height: 0;
+    margin: 0;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .behar-faculty *,
   .behar-faculty-modal * {
