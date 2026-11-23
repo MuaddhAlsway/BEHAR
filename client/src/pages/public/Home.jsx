@@ -4,7 +4,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger"
 
 import ExploreCategories from "../../components/home/ExploreCategories"
 import FeaturedCourses from "../../components/home/FeaturedCourses"
-import Hero from "../../components/home/hero"
+import Hero from "../../components/home/Hero"
 import HowBeharWorks from "../../components/home/HowBeharWorks"
 import WhyBehar from "../../components/home/WhyBehar"
 import MeetInstructors from "../../components/home/MeetInstructors"
