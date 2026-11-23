@@ -1,0 +1,522 @@
+
+/* ==========================================
+   BEHAR P12.2 — THE DISCIPLINE ATLAS
+   Experimental Category Directory
+========================================== */
+
+.behar-atlas {
+  --atlas-forest: #102c2b;
+  --atlas-emerald: #176e62;
+  --atlas-lime: #d9ef74;
+  --atlas-cream: #f4f1e9;
+  --atlas-muted: #a8c0b5;
+  --atlas-line: rgba(217, 239, 116, .2);
+
+  position: relative;
+  z-index: 5;
+  overflow: visible;
+  padding: 100px 0 45px;
+  background: var(--atlas-forest);
+  color: #fff;
+  isolation: isolate;
+}
+
+.behar-atlas,
+.behar-atlas * {
+  box-sizing: border-box;
+}
+
+.behar-atlas__container {
+  position: relative;
+  z-index: 2;
+  width: min(1500px, calc(100% - 96px));
+  margin-inline: auto;
+}
+
+.behar-atlas__topline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--atlas-line);
+  color: var(--atlas-lime);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .12em;
+}
+
+/* INTRO */
+
+.behar-atlas__intro {
+  padding: 90px 0 110px;
+}
+
+.behar-atlas__eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 45px;
+  color: var(--atlas-lime);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .12em;
+}
+
+.behar-atlas__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--atlas-lime);
+}
+
+.behar-atlas__heading {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  font-family: "Outfit", sans-serif;
+  font-size: clamp(75px, 11vw, 175px);
+  font-weight: 600;
+  line-height: .86;
+  letter-spacing: -.085em;
+}
+
+.behar-atlas__heading-line {
+  display: block;
+  overflow: hidden;
+  padding: .1em 0;
+}
+
+.behar-atlas__heading-line > span {
+  display: block;
+}
+
+.behar-atlas__heading-line--accent {
+  color: var(--atlas-lime);
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 400;
+  font-style: italic;
+  letter-spacing: -.06em;
+}
+
+.behar-atlas__intro-bottom {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 30px;
+  margin-top: 45px;
+  padding-top: 25px;
+  border-top: 1px solid var(--atlas-line);
+}
+
+.behar-atlas__intro-bottom p {
+  max-width: 430px;
+  margin: 0;
+  color: var(--atlas-muted);
+  font-size: 16px;
+  line-height: 1.9;
+}
+
+.behar-atlas__intro-bottom > span {
+  color: var(--atlas-lime);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .1em;
+}
+
+/* DIRECTORY HEADER */
+
+.behar-atlas__directory-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 25px 0;
+  border-top: 1px solid var(--atlas-line);
+  color: var(--atlas-lime);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .1em;
+}
+
+.behar-atlas__reset {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 18px;
+  border: 1px solid var(--atlas-line);
+  border-radius: 50px;
+  background: transparent;
+  color: #fff;
+  font: inherit;
+  font-size: 12px;
+  cursor: pointer;
+  transition:
+    background .3s ease,
+    border-color .3s ease,
+    color .3s ease;
+}
+
+.behar-atlas__reset span {
+  padding-inline-start: 10px;
+  border-inline-start: 1px solid currentColor;
+  font-size: 10px;
+}
+
+.behar-atlas__reset:hover,
+.behar-atlas__reset--active {
+  border-color: var(--atlas-lime);
+  background: var(--atlas-lime);
+  color: var(--atlas-forest);
+}
+
+/* CATEGORY ROWS */
+
+.behar-atlas__directory {
+  position: relative;
+  z-index: 1;
+  border-top: 1px solid var(--atlas-line);
+}
+
+.behar-atlas__row {
+  position: relative;
+  z-index: 0;
+  isolation: isolate;
+  display: grid;
+  grid-template-columns:
+    65px
+    minmax(0, 1fr)
+    120px
+    45px;
+  align-items: center;
+  gap: 22px;
+  width: 100%;
+  min-height: 165px;
+  padding: 30px 12px;
+  border: 0;
+  border-bottom: 1px solid var(--atlas-line);
+  background: transparent;
+  color: #fff;
+  text-align: start;
+  font: inherit;
+  cursor: pointer;
+  transition:
+    padding .35s ease,
+    background .35s ease,
+    color .35s ease,
+    transform .4s cubic-bezier(.22,1,.36,1),
+    box-shadow .4s ease;
+}
+
+.behar-atlas__row::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: var(--atlas-lime);
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform .45s cubic-bezier(.22,1,.36,1);
+}
+
+.behar-atlas__row:hover::before,
+.behar-atlas__row--active::before {
+  transform: scaleY(1);
+}
+
+.behar-atlas__row:hover,
+.behar-atlas__row--active {
+  z-index: 10;
+  color: var(--atlas-forest);
+  padding-inline: 28px;
+  transform: translateY(-10px) scale(1.012);
+  box-shadow: 0 18px 38px rgba(0,0,0,.22);
+}
+
+.behar-atlas__row > * {
+  position: relative;
+  z-index: 1;
+}
+
+.behar-atlas__row-number {
+  align-self: start;
+  padding-top: 12px;
+  color: var(--atlas-lime);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .08em;
+}
+
+.behar-atlas__row:hover .behar-atlas__row-number,
+.behar-atlas__row--active .behar-atlas__row-number {
+  color: var(--atlas-forest);
+}
+
+.behar-atlas__row-content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+}
+
+.behar-atlas__row-title {
+  font-size: clamp(35px, 5.2vw, 80px);
+  font-weight: 500;
+  line-height: 1.08;
+  letter-spacing: -.07em;
+}
+
+.behar-atlas__row-description {
+  color: var(--atlas-muted);
+  font-size: 13px;
+  letter-spacing: 0;
+  transition: color .3s ease;
+}
+
+.behar-atlas__row:hover .behar-atlas__row-description,
+.behar-atlas__row--active .behar-atlas__row-description {
+  color: #3c6254;
+}
+
+.behar-atlas__row-count {
+  color: var(--atlas-muted);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .08em;
+}
+
+.behar-atlas__row:hover .behar-atlas__row-count,
+.behar-atlas__row--active .behar-atlas__row-count {
+  color: var(--atlas-forest);
+}
+
+.behar-atlas__row-arrow {
+  display: grid;
+  place-items: center;
+  color: var(--atlas-lime);
+  transition: transform .35s ease;
+}
+
+.behar-atlas__row:hover .behar-atlas__row-arrow,
+.behar-atlas__row--active .behar-atlas__row-arrow {
+  color: var(--atlas-forest);
+  transform: rotate(45deg);
+}
+
+/* HOVER PREVIEW */
+
+.behar-atlas__preview {
+  position: absolute;
+  z-index: 50;
+  top: 0;
+  left: 0;
+  width: 270px;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(.92);
+  isolation: isolate;
+  will-change: transform;
+}
+
+.behar-atlas__preview-image {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 340px;
+  overflow: hidden;
+  background: var(--atlas-emerald);
+  box-shadow: 0 25px 65px rgba(0,0,0,.22);
+}
+
+.behar-atlas__preview-image img {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.behar-atlas__preview-image .behar-lazy-image__skeleton {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: block;
+  background: linear-gradient(110deg, #176e62 25%, #4f9180 45%, #176e62 65%);
+  background-size: 220% 100%;
+  animation: behar-course-preview-shimmer 1.3s ease-in-out infinite;
+}
+
+@keyframes behar-course-preview-shimmer {
+  from { background-position: 200% 0; }
+  to { background-position: -20% 0; }
+}
+
+.behar-atlas__preview-caption {
+  position: relative;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 15px;
+  background: var(--atlas-lime);
+  color: var(--atlas-forest);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+/* BOTTOM */
+
+.behar-atlas__bottomline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding-top: 30px;
+  color: var(--atlas-muted);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .1em;
+}
+
+/* RTL */
+
+.behar-atlas[dir="rtl"] {
+  font-family: "Noto Sans Arabic", sans-serif;
+}
+
+.behar-atlas[dir="rtl"] .behar-atlas__heading {
+  font-family: "Noto Sans Arabic", sans-serif;
+  font-size: clamp(55px, 8vw, 125px);
+  line-height: 1.35;
+  letter-spacing: -.04em;
+}
+
+.behar-atlas[dir="rtl"] .behar-atlas__heading-line--accent {
+  font-family: "Noto Sans Arabic", sans-serif;
+  font-style: normal;
+  letter-spacing: -.03em;
+}
+
+.behar-atlas[dir="rtl"] .behar-atlas__row-title {
+  font-size: clamp(32px, 4.5vw, 65px);
+  line-height: 1.5;
+  letter-spacing: -.035em;
+}
+
+/* TABLET */
+
+@media (max-width: 1100px) {
+  .behar-atlas__container {
+    width: calc(100% - 64px);
+  }
+
+  .behar-atlas__heading {
+    font-size: clamp(65px, 10vw, 130px);
+  }
+
+  .behar-atlas__row {
+    grid-template-columns: 45px minmax(0, 1fr) 90px 35px;
+    min-height: 145px;
+  }
+
+  .behar-atlas__preview {
+    width: 220px;
+  }
+
+  .behar-atlas__preview-image {
+    height: 275px;
+  }
+}
+
+/* MOBILE */
+
+@media (max-width: 800px) {
+  .behar-atlas {
+    padding: 75px 0 35px;
+  }
+
+  .behar-atlas__container {
+    width: calc(100% - 36px);
+  }
+
+  .behar-atlas__intro {
+    padding: 65px 0 75px;
+  }
+
+  .behar-atlas__heading {
+    font-size: clamp(52px, 10vw, 85px);
+  }
+
+  .behar-atlas__intro-bottom {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .behar-atlas__row {
+    grid-template-columns: 30px minmax(0, 1fr) 30px;
+    gap: 13px;
+    min-height: 115px;
+    padding: 22px 5px;
+  }
+
+  .behar-atlas__row-title {
+    font-size: clamp(29px, 5.5vw, 46px);
+  }
+
+  .behar-atlas__row-count {
+    display: none;
+  }
+
+  .behar-atlas__row:hover,
+  .behar-atlas__row--active {
+    padding-inline: 12px;
+  }
+
+  .behar-atlas__preview {
+    display: none;
+  }
+}
+
+@media (max-width: 520px) {
+  .behar-atlas__heading {
+    font-size: clamp(44px, 10vw, 60px);
+  }
+
+  .behar-atlas__directory-header {
+    flex-wrap: wrap;
+  }
+
+  .behar-atlas__row {
+    min-height: 100px;
+  }
+
+  .behar-atlas__row-title {
+    font-size: 27px;
+  }
+
+  .behar-atlas__row-description {
+    font-size: 11px;
+  }
+
+  .behar-atlas__row-arrow svg {
+    width: 22px;
+  }
+}
+
+/* ACCESSIBILITY */
+
+.behar-atlas button:focus-visible {
+  outline: 3px solid var(--atlas-lime);
+  outline-offset: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .behar-atlas *,
+  .behar-atlas *::before,
+  .behar-atlas *::after {
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+  }
+}

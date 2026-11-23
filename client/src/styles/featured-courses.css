@@ -895,6 +895,33 @@
   }
 }
 
+/* Keep the filter rail touch-scrollable on tablet and mobile. */
+@media (max-width: 1024px) {
+  .behar-featured__filters {
+    scrollbar-width: thin;
+    scrollbar-color: var(--forest) #dce4db;
+    scroll-behavior: smooth;
+    overscroll-behavior-inline: contain;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 7px;
+  }
+
+  .behar-featured__filters::-webkit-scrollbar {
+    display: block;
+    height: 4px;
+  }
+
+  .behar-featured__filters::-webkit-scrollbar-track {
+    background: #dce4db;
+    border-radius: 999px;
+  }
+
+  .behar-featured__filters::-webkit-scrollbar-thumb {
+    background: var(--forest);
+    border-radius: 999px;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .behar-featured *,
   .behar-featured *::before,

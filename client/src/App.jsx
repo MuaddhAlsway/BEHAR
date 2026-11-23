@@ -1,9 +1,11 @@
 
 import { useEffect, useState } from "react";
+import { Routes, Route, useLocation } from "react-router-dom";
 import { ArrowUp } from "lucide-react";
 
 import Navbar from "./components/navigation/Navbar";
 import Home from "./pages/public/Home";
+import Courses from "./pages/public/Courses";
 import Footer from "./layouts/Footer";
 
 function ScrollToTop() {
@@ -39,14 +41,32 @@ function ScrollToTop() {
   );
 }
 
+function RouteScrollReset() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "instant" });
+  }, [pathname]);
+
+  return null;
+}
+
 function App() {
   return (
     <>
+      <RouteScrollReset />
+
       <Navbar />
+
       <main id="main-content">
-        <Home />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/courses" element={<Courses />} />
+        </Routes>
       </main>
-       <Footer />
+
+      <Footer />
+
       <ScrollToTop />
     </>
   );

@@ -486,7 +486,6 @@ export default function FeaturedCourses() {
       const spotlightImage = gallery.querySelector(".behar-spotlight__image img");
       const cards = gallery.querySelectorAll(".behar-course-card");
       const timeline = gsap.timeline({
-        paused: true,
         scrollTrigger: {
           trigger: gallery,
           start: "top 82%",
@@ -610,7 +609,11 @@ export default function FeaturedCourses() {
           </span>
         </div>
 
-        <div ref={gridRef} className="behar-featured__gallery">
+        <div
+          key={activeCategory}
+          ref={gridRef}
+          className="behar-featured__gallery"
+        >
           {spotlight ? (
             <>
               <div className="behar-featured__spotlight-wrap">
