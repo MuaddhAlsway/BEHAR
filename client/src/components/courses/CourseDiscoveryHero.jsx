@@ -80,6 +80,7 @@ function getLanguage() {
 export default function CourseDiscoveryHero({
   courseCount = 0,
   onSearch,
+  onCategoryChange,
 }) {
   const sectionRef = useRef(null);
   const navigate = useNavigate();
@@ -207,15 +208,27 @@ export default function CourseDiscoveryHero({
   };
 
   const selectTopic = (index) => {
-    const englishTopic = content.en.topics[index];
+    const categoryIds = [
+      "development",
+      "design",
+      "business",
+      "artificial-intelligence",
+    ];
+    const category = categoryIds[index];
 
     setQuery(t.topics[index]);
 
+    if (typeof onCategoryChange === "function") {
+      setQuery("");
+      onCategoryChange(category);
+      return;
+    }
+
     if (typeof onSearch === "function") {
-      onSearch(englishTopic);
+      onSearch("");
     } else {
       navigate(
-        `/courses?search=${encodeURIComponent(englishTopic)}#catalog`
+        `/courses?category=${encodeURIComponent(category)}#catalog`
       );
     }
   };

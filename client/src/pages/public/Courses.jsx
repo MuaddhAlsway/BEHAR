@@ -220,6 +220,7 @@ export default function Courses() {
       <CourseDiscoveryHero
         courseCount={courses.length}
         onSearch={handleSearch}
+        onCategoryChange={handleCategoryChange}
       />
 
       {/* P12.2 — Discipline Atlas */}
