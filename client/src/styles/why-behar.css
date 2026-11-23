@@ -120,6 +120,50 @@
   transition: transform .9s cubic-bezier(.2,.8,.2,1);
 }
 
+.behar-why__photo {
+  isolation: isolate;
+  background: #dfe8dc;
+}
+
+.behar-why__photo::before {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  background:
+    linear-gradient(110deg, transparent 25%, rgba(255,255,255,.55) 48%, transparent 70%),
+    linear-gradient(135deg, #dfe8dc, #cbd8ca 48%, #e8eee3);
+  background-size: 220% 100%, 100% 100%;
+  animation: behar-why-skeleton 1.35s ease-in-out infinite;
+  transition: opacity .45s ease;
+  pointer-events: none;
+}
+
+.behar-why__photo.is-loaded::before {
+  opacity: 0;
+  animation: none;
+}
+
+.behar-why__photo img {
+  position: relative;
+  z-index: 0;
+  opacity: 0;
+  transition: opacity .55s ease, transform .9s cubic-bezier(.2,.8,.2,1);
+}
+
+.behar-why__photo.is-loaded img {
+  opacity: 1;
+}
+
+@keyframes behar-why-skeleton {
+  0% {
+    background-position: 180% 0, 0 0;
+  }
+  100% {
+    background-position: -40% 0, 0 0;
+  }
+}
+
 .behar-why__visual:hover .behar-why__photo img {
   transform: scale(1.055);
 }
@@ -617,6 +661,10 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .behar-why__photo::before {
+    animation: none;
+  }
+
   .behar-why__photo img,
   .behar-why__principle,
   .behar-why__principle::before,

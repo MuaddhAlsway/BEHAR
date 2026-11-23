@@ -1,16 +1,45 @@
-import { useLayoutEffect, useRef } from "react"
+import { lazy, Suspense, useLayoutEffect, useRef } from "react"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 
-import ExploreCategories from "../../components/home/ExploreCategories"
-import FeaturedCourses from "../../components/home/FeaturedCourses"
-import Hero from "../../components/home/Hero"
-import HowBeharWorks from "../../components/home/HowBeharWorks"
-import WhyBehar from "../../components/home/WhyBehar"
-import MeetInstructors from "../../components/home/MeetInstructors"
-import StudentStories from "../../components/home/StudentStories"
+import "../../styles/home-loading.css"
+
+const ExploreCategories = lazy(() => import("../../components/home/ExploreCategories"))
+const FeaturedCourses = lazy(() => import("../../components/home/FeaturedCourses"))
+const Hero = lazy(() => import("../../components/home/Hero"))
+const HowBeharWorks = lazy(() => import("../../components/home/HowBeharWorks"))
+const WhyBehar = lazy(() => import("../../components/home/WhyBehar"))
+const MeetInstructors = lazy(() => import("../../components/home/MeetInstructors"))
+const StudentStories = lazy(() => import("../../components/home/StudentStories"))
 
 gsap.registerPlugin(ScrollTrigger)
+
+function HomeSectionSkeleton({ variant = "default" }) {
+  return (
+    <div
+      className={`behar-home-skeleton behar-home-skeleton--${variant}`}
+      aria-hidden="true"
+    >
+      <span className="behar-home-skeleton__eyebrow" />
+      <span className="behar-home-skeleton__title" />
+      <span className="behar-home-skeleton__line" />
+      <span className="behar-home-skeleton__line behar-home-skeleton__line--short" />
+      <div className="behar-home-skeleton__grid">
+        <span />
+        <span />
+        <span />
+      </div>
+    </div>
+  )
+}
+
+function LazySection({ children, variant }) {
+  return (
+    <Suspense fallback={<HomeSectionSkeleton variant={variant} />}>
+      {children}
+    </Suspense>
+  )
+}
 
 function Home() {
   const homeRef = useRef(null)
@@ -47,14 +76,13 @@ function Home() {
 
   return (
     <div ref={homeRef}>
-      <Hero />
-      <ExploreCategories />
-      <FeaturedCourses/>
-      <HowBeharWorks/>
-      <WhyBehar/>
-       <MeetInstructors />
-       
-      <StudentStories />
+      <LazySection variant="hero"><Hero /></LazySection>
+      <LazySection variant="categories"><ExploreCategories /></LazySection>
+      <LazySection variant="courses"><FeaturedCourses /></LazySection>
+      <LazySection variant="process"><HowBeharWorks /></LazySection>
+      <LazySection variant="why"><WhyBehar /></LazySection>
+      <LazySection variant="faculty"><MeetInstructors /></LazySection>
+      <LazySection variant="stories"><StudentStories /></LazySection>
     </div>
   )
 }

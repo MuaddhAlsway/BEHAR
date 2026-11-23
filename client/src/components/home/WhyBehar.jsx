@@ -107,6 +107,7 @@ export default function WhyBehar() {
   const sectionRef = useRef(null);
   const [language, setLanguage] = useState(readLanguage);
   const [active, setActive] = useState(0);
+  const [imageLoaded, setImageLoaded] = useState(false);
 
   const isArabic = language === "ar";
   const t = copy[language];
@@ -227,7 +228,11 @@ export default function WhyBehar() {
 
         <div className="behar-why__composition">
           <div className="behar-why__visual">
-            <div className="behar-why__photo">
+            <div
+              className={`behar-why__photo ${
+                imageLoaded ? "is-loaded" : "is-loading"
+              }`}
+            >
               <img
                 src={whybehas}
                 alt={
@@ -237,6 +242,8 @@ export default function WhyBehar() {
                 }
                 loading="lazy"
                 decoding="async"
+                onLoad={() => setImageLoaded(true)}
+                onError={() => setImageLoaded(true)}
               />
             </div>
 

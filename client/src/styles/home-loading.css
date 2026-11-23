@@ -1,0 +1,98 @@
+.behar-home-skeleton {
+  min-height: 520px;
+  padding: clamp(72px, 9vw, 130px) max(18px, 6vw);
+  overflow: hidden;
+  background: #f4f1e9;
+}
+
+.behar-home-skeleton--hero {
+  min-height: 720px;
+  background: #102c2b;
+}
+
+.behar-home-skeleton__eyebrow,
+.behar-home-skeleton__title,
+.behar-home-skeleton__line,
+.behar-home-skeleton__grid span {
+  display: block;
+  border-radius: 999px;
+  background: linear-gradient(110deg, #dce6d9 25%, #f7faf1 48%, #dce6d9 70%);
+  background-size: 220% 100%;
+  animation: behar-home-skeleton-shimmer 1.35s ease-in-out infinite;
+}
+
+.behar-home-skeleton--hero .behar-home-skeleton__eyebrow,
+.behar-home-skeleton--hero .behar-home-skeleton__title,
+.behar-home-skeleton--hero .behar-home-skeleton__line,
+.behar-home-skeleton--hero .behar-home-skeleton__grid span {
+  background: linear-gradient(110deg, #183b35 25%, #29554b 48%, #183b35 70%);
+  background-size: 220% 100%;
+}
+
+.behar-home-skeleton__eyebrow {
+  width: 130px;
+  height: 10px;
+  margin-bottom: 24px;
+}
+
+.behar-home-skeleton__title {
+  width: min(620px, 82%);
+  height: clamp(48px, 7vw, 92px);
+  margin-bottom: 28px;
+}
+
+.behar-home-skeleton__line {
+  width: min(520px, 90%);
+  height: 12px;
+  margin-bottom: 12px;
+}
+
+.behar-home-skeleton__line--short {
+  width: min(360px, 65%);
+}
+
+.behar-home-skeleton__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 55px;
+}
+
+.behar-home-skeleton__grid span {
+  min-height: 170px;
+  border-radius: 18px;
+}
+
+@keyframes behar-home-skeleton-shimmer {
+  0% { background-position: 180% 0; }
+  100% { background-position: -40% 0; }
+}
+
+@media (max-width: 640px) {
+  .behar-home-skeleton {
+    min-height: 440px;
+    padding-block: 70px;
+  }
+
+  .behar-home-skeleton--hero {
+    min-height: 620px;
+  }
+
+  .behar-home-skeleton__grid {
+    grid-template-columns: 1fr;
+    margin-top: 38px;
+  }
+
+  .behar-home-skeleton__grid span {
+    min-height: 90px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .behar-home-skeleton__eyebrow,
+  .behar-home-skeleton__title,
+  .behar-home-skeleton__line,
+  .behar-home-skeleton__grid span {
+    animation: none;
+  }
+}
