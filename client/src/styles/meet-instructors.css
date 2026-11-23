@@ -896,6 +896,14 @@
     opacity: 0;
   }
 
+  /* Touch selection and arrow navigation must not reveal skill chips. */
+  .behar-faculty__card-skills,
+  .behar-faculty__card:hover .behar-faculty__card-skills,
+  .behar-faculty__card:focus-visible .behar-faculty__card-skills,
+  .behar-faculty__card-skills.is-skills-visible {
+    display: none !important;
+  }
+
   .behar-faculty-modal__dialog {
     display: block;
     grid-template-columns: 1fr;

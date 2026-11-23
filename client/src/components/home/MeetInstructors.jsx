@@ -276,9 +276,11 @@ export default function MeetInstructors() {
   }, [activeIndex]);
 
   const changeInstructor = (index) => {
-    setActiveIndex(
-      (index + instructors.length) % instructors.length
-    );
+    const nextIndex = (index + instructors.length) % instructors.length;
+    setActiveIndex(nextIndex);
+    galleryRef.current
+      ?.querySelector(`[data-instructor-index="${nextIndex}"]`)
+      ?.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
   };
 
   const handleCardClick = (index) => {
@@ -338,6 +340,7 @@ export default function MeetInstructors() {
                   className={`behar-faculty__card ${
                     active ? "is-active" : ""
                   }`}
+                  data-instructor-index={index}
                   style={{
                     flexGrow: active ? 3.4 : 1,
                   }}
