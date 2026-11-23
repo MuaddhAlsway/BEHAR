@@ -22,9 +22,11 @@
 /* Header shell */
 
 .behar-header {
-  position: relative;
+  position: sticky;
+  top: 0;
   z-index: 100;
   width: 100%;
+  background: var(--behar-canvas);
   font-family: "DM Sans", "Noto Sans Arabic", sans-serif;
 }
 
