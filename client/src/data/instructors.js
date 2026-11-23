@@ -220,3 +220,10 @@ export const instructors = [
     ],
   },
 ];
+
+export function getInstructorByName(name) {
+  return (
+    instructors.find((instructor) => instructor.name === name) ||
+    instructors[0]
+  );
+}

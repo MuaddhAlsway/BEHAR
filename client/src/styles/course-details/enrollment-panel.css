@@ -1,0 +1,669 @@
+
+/* ==========================================
+   BEHAR P13.6 — THE DECISION POINT
+========================================== */
+
+.behar-enroll {
+  --be-forest: #102c2b;
+  --be-emerald: #176e62;
+  --be-lime: #d9ef74;
+  --be-cream: #f4f1e9;
+  --be-sage: #a8c0b5;
+  --be-muted: #66776d;
+  --be-line: #d5dcd1;
+
+  position: relative;
+  overflow: hidden;
+  padding: 100px 0 45px;
+  background: var(--be-cream);
+  color: var(--be-forest);
+  scroll-margin-top: 100px;
+}
+
+.behar-enroll,
+.behar-enroll * {
+  box-sizing: border-box;
+}
+
+.behar-enroll__container {
+  width: min(1500px, calc(100% - 96px));
+  margin-inline: auto;
+}
+
+/* TOPLINE */
+
+.behar-enroll__topline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--be-line);
+  color: var(--be-emerald);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .1em;
+}
+
+/* INTRO */
+
+.behar-enroll__intro {
+  padding: 90px 0 100px;
+}
+
+.behar-enroll__eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 45px;
+  color: var(--be-emerald);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .12em;
+}
+
+.behar-enroll__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--be-emerald);
+}
+
+.behar-enroll__heading {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  font-family: "Outfit", sans-serif;
+  font-size: clamp(75px, 10vw, 155px);
+  font-weight: 600;
+  line-height: .9;
+  letter-spacing: -.08em;
+}
+
+.behar-enroll__heading-line {
+  display: block;
+  overflow: hidden;
+  padding: .1em 0;
+}
+
+.behar-enroll__heading-line > span {
+  display: block;
+}
+
+.behar-enroll__heading-line--accent {
+  color: var(--be-emerald);
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 400;
+  font-style: italic;
+  letter-spacing: -.06em;
+}
+
+.behar-enroll__intro-bottom {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 30px;
+  margin-top: 45px;
+  padding-top: 30px;
+  border-top: 1px solid var(--be-line);
+}
+
+.behar-enroll__intro-bottom p {
+  max-width: 550px;
+  margin: 0;
+  color: var(--be-muted);
+  font-size: 16px;
+  line-height: 1.9;
+}
+
+.behar-enroll__intro-symbol {
+  display: grid;
+  place-items: center;
+  width: 90px;
+  height: 90px;
+  border: 1px solid var(--be-line);
+  border-radius: 50%;
+  color: var(--be-emerald);
+}
+
+/* EXPERIENCE GRID */
+
+.behar-enroll__experience {
+  display: grid;
+  grid-template-columns: 1.1fr .9fr;
+  min-height: 750px;
+  margin-bottom: 100px;
+}
+
+/* EDITORIAL PANEL */
+
+.behar-enroll__editorial {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-width: 0;
+  overflow: hidden;
+  padding: clamp(35px, 5vw, 75px);
+  background: var(--be-forest);
+  color: var(--be-cream);
+}
+
+.behar-enroll__editorial-top,
+.behar-enroll__editorial-bottom {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  color: var(--be-lime);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .1em;
+}
+
+.behar-enroll__editorial-content {
+  position: relative;
+  z-index: 2;
+  padding: 80px 0;
+}
+
+.behar-enroll__editorial-eyebrow {
+  color: var(--be-lime);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .1em;
+}
+
+.behar-enroll__editorial-content h3 {
+  max-width: 680px;
+  margin: 25px 0 65px;
+  font-size: clamp(45px, 5.2vw, 85px);
+  font-weight: 500;
+  line-height: 1.05;
+  letter-spacing: -.065em;
+}
+
+.behar-enroll__course-details {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 35px 25px;
+  max-width: 550px;
+}
+
+.behar-enroll__course-details > div {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(244,241,233,.18);
+}
+
+.behar-enroll__course-details span {
+  color: var(--be-sage);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .1em;
+}
+
+.behar-enroll__course-details strong {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.behar-enroll__editorial-watermark {
+  position: absolute;
+  bottom: -90px;
+  inset-inline-end: -30px;
+  color: rgba(217,239,116,.07);
+  font-family: "Outfit", sans-serif;
+  font-size: clamp(250px, 30vw, 500px);
+  font-weight: 700;
+  line-height: 1;
+  pointer-events: none;
+}
+
+/* ENROLLMENT TICKET */
+
+.behar-enroll__ticket {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding: clamp(35px, 4.5vw, 70px);
+  border: 1px solid var(--be-line);
+  border-inline-start: 0;
+  background: #fffdf8;
+}
+
+.behar-enroll__ticket-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding-bottom: 25px;
+  border-bottom: 1px solid var(--be-line);
+  color: var(--be-emerald);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .1em;
+}
+
+.behar-enroll__price-block {
+  padding: 55px 0 45px;
+}
+
+.behar-enroll__price-label {
+  color: var(--be-emerald);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .1em;
+}
+
+.behar-enroll__price {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.behar-enroll__price strong {
+  font-size: clamp(65px, 7vw, 115px);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -.075em;
+}
+
+.behar-enroll__price > span {
+  color: var(--be-emerald);
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.behar-enroll__price-block p {
+  margin: 20px 0 0;
+  color: var(--be-muted);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .08em;
+}
+
+/* TICKET DIVIDER */
+
+.behar-enroll__ticket-divider {
+  position: relative;
+  height: 1px;
+  margin: 0 -20px;
+  border-top: 1px dashed var(--be-line);
+}
+
+.behar-enroll__ticket-divider > span {
+  position: absolute;
+  top: -11px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--be-cream);
+}
+
+.behar-enroll__ticket-divider > span:first-child {
+  inset-inline-start: -11px;
+}
+
+.behar-enroll__ticket-divider > span:last-child {
+  inset-inline-end: -11px;
+}
+
+/* BENEFITS */
+
+.behar-enroll__benefits {
+  padding: 40px 0 35px;
+}
+
+.behar-enroll__benefits h4 {
+  margin: 0 0 25px;
+  color: var(--be-emerald);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .1em;
+}
+
+.behar-enroll__benefit {
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr) 20px;
+  align-items: center;
+  gap: 15px;
+  padding: 17px 0;
+  border-bottom: 1px solid var(--be-line);
+}
+
+.behar-enroll__benefit-icon {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--be-line);
+  border-radius: 50%;
+  color: var(--be-emerald);
+}
+
+.behar-enroll__benefit > span:nth-child(2) {
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.behar-enroll__benefit > svg {
+  color: var(--be-emerald);
+}
+
+/* ACTION */
+
+.behar-enroll__action {
+  margin-top: auto;
+  padding-top: 35px;
+}
+
+.behar-enroll__button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 25px;
+  width: 100%;
+  min-height: 75px;
+  padding: 20px 28px;
+  border: 0;
+  background: var(--be-lime);
+  color: var(--be-forest);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition:
+    background .3s ease,
+    transform .3s ease;
+}
+
+.behar-enroll__button:hover:not(:disabled) {
+  background: #c7e65c;
+  transform: translateY(-3px);
+}
+
+.behar-enroll__button:disabled {
+  opacity: .6;
+  cursor: wait;
+}
+
+.behar-enroll__enrolled {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 18px;
+  color: var(--be-emerald);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.behar-enroll__security {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  margin-top: 25px;
+  color: var(--be-emerald);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .08em;
+}
+
+.behar-enroll__note {
+  max-width: 350px;
+  margin: 15px auto 0;
+  color: var(--be-muted);
+  font-size: 11px;
+  line-height: 1.7;
+  text-align: center;
+}
+
+/* BOTTOMLINE */
+
+.behar-enroll__bottomline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding-top: 25px;
+  border-top: 1px solid var(--be-line);
+  color: var(--be-emerald);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .1em;
+}
+
+/* MOBILE STICKY BAR */
+
+.behar-enroll__mobile-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  padding: 15px 20px;
+  padding-bottom: max(15px, env(safe-area-inset-bottom));
+  border-top: 1px solid var(--be-line, #d5dcd1);
+  background: #fffdf8;
+  box-shadow: 0 -10px 35px rgba(0,0,0,.08);
+  transform: translateY(110%);
+  visibility: hidden;
+  transition:
+    transform .35s ease,
+    visibility .35s ease;
+}
+
+.behar-enroll__mobile-bar.is-visible {
+  transform: translateY(0);
+  visibility: visible;
+}
+
+.behar-enroll__mobile-info {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.behar-enroll__mobile-info > span {
+  color: #66776d;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .07em;
+}
+
+.behar-enroll__mobile-info strong {
+  color: #102c2b;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.behar-enroll__mobile-bar button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  min-height: 50px;
+  padding: 15px 20px;
+  border: 0;
+  background: #102c2b;
+  color: #d9ef74;
+  font: inherit;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.behar-enroll__mobile-bar button:disabled {
+  opacity: .6;
+  cursor: wait;
+}
+
+/* LOADING */
+
+.behar-enroll__spinner {
+  animation: behar-enroll-spin 1s linear infinite;
+}
+
+@keyframes behar-enroll-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* RTL */
+
+.behar-enroll[dir="rtl"],
+.behar-enroll__mobile-bar[dir="rtl"] {
+  font-family: "Noto Sans Arabic", sans-serif;
+}
+
+.behar-enroll[dir="rtl"] .behar-enroll__heading {
+  font-family: "Noto Sans Arabic", sans-serif;
+  font-size: clamp(55px, 8vw, 125px);
+  line-height: 1.4;
+  letter-spacing: -.04em;
+}
+
+.behar-enroll[dir="rtl"] .behar-enroll__heading-line--accent {
+  font-family: "Noto Sans Arabic", sans-serif;
+  font-style: normal;
+}
+
+.behar-enroll[dir="rtl"] .behar-enroll__editorial-content h3 {
+  line-height: 1.5;
+  letter-spacing: -.025em;
+}
+
+/* TABLET */
+
+@media (max-width: 1100px) {
+  .behar-enroll__container {
+    width: calc(100% - 64px);
+  }
+
+  .behar-enroll__experience {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .behar-enroll__editorial,
+  .behar-enroll__ticket {
+    padding: 35px;
+  }
+
+  .behar-enroll__editorial-content h3 {
+    font-size: 55px;
+  }
+}
+
+/* MOBILE */
+
+@media (max-width: 850px) {
+  .behar-enroll {
+    padding-top: 75px;
+  }
+
+  .behar-enroll__container {
+    width: calc(100% - 36px);
+  }
+
+  .behar-enroll__intro {
+    padding: 65px 0;
+  }
+
+  .behar-enroll__heading {
+    font-size: clamp(50px, 10vw, 85px);
+  }
+
+  .behar-enroll__intro-bottom {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .behar-enroll__experience {
+    grid-template-columns: 1fr;
+  }
+
+  .behar-enroll__editorial {
+    min-height: 550px;
+  }
+
+  .behar-enroll__ticket {
+    border-inline-start: 1px solid var(--be-line);
+  }
+
+  .behar-enroll__mobile-bar {
+    display: flex;
+  }
+}
+
+@media (max-width: 520px) {
+  .behar-enroll__heading {
+    font-size: clamp(42px, 10vw, 60px);
+  }
+
+  .behar-enroll__editorial,
+  .behar-enroll__ticket {
+    padding: 30px 24px;
+  }
+
+  .behar-enroll__editorial-content {
+    padding: 65px 0;
+  }
+
+  .behar-enroll__editorial-content h3 {
+    font-size: 43px;
+  }
+
+  .behar-enroll__course-details {
+    gap: 25px 15px;
+  }
+
+  .behar-enroll__course-details strong {
+    font-size: 14px;
+  }
+
+  .behar-enroll__price strong {
+    font-size: 75px;
+  }
+
+  .behar-enroll__benefit {
+    grid-template-columns: 36px minmax(0, 1fr) 18px;
+    gap: 12px;
+  }
+
+  .behar-enroll__benefit-icon {
+    width: 35px;
+    height: 35px;
+  }
+}
+
+/* ACCESSIBILITY */
+
+.behar-enroll button:focus-visible,
+.behar-enroll__mobile-bar button:focus-visible {
+  outline: 3px solid #176e62;
+  outline-offset: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .behar-enroll *,
+  .behar-enroll *::before,
+  .behar-enroll *::after,
+  .behar-enroll__mobile-bar {
+    transition-duration: .01ms !important;
+    animation-duration: .01ms !important;
+  }
+}

@@ -7,6 +7,7 @@ import Navbar from "./components/navigation/Navbar";
 import Home from "./pages/public/Home";
 import Courses from "./pages/public/Courses";
 import Footer from "./layouts/Footer";
+import CourseDetails from "./pages/public/CourseDetails";
 
 function ScrollToTop() {
   const [visible, setVisible] = useState(false);
@@ -62,6 +63,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/courses" element={<Courses />} />
+          <Route path="/courses/:slug" element={<CourseDetails />} />
         </Routes>
       </main>
 

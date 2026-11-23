@@ -1,0 +1,621 @@
+
+/* ==========================================
+   BEHAR P13.3 — THE CURRICULUM INDEX
+========================================== */
+
+.behar-curriculum {
+  --bc-forest: #102c2b;
+  --bc-emerald: #176e62;
+  --bc-lime: #d9ef74;
+  --bc-cream: #f4f1e9;
+  --bc-sage: #a8c0b5;
+  --bc-line: rgba(244, 241, 233, .17);
+
+  position: relative;
+  overflow: hidden;
+  padding: 100px 0 45px;
+  background: var(--bc-forest);
+  color: var(--bc-cream);
+  scroll-margin-top: 100px;
+}
+
+.behar-curriculum,
+.behar-curriculum * {
+  box-sizing: border-box;
+}
+
+.behar-curriculum__container {
+  width: min(1500px, calc(100% - 96px));
+  margin-inline: auto;
+}
+
+/* TOPLINE */
+
+.behar-curriculum__topline {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--bc-line);
+  color: var(--bc-lime);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .1em;
+}
+
+/* INTRO */
+
+.behar-curriculum__intro {
+  padding: 90px 0 85px;
+}
+
+.behar-curriculum__eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 45px;
+  color: var(--bc-lime);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .12em;
+}
+
+.behar-curriculum__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--bc-lime);
+}
+
+.behar-curriculum__heading {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  font-family: "Outfit", sans-serif;
+  font-size: clamp(75px, 10vw, 155px);
+  font-weight: 600;
+  line-height: .9;
+  letter-spacing: -.08em;
+}
+
+.behar-curriculum__heading-line {
+  display: block;
+  overflow: hidden;
+  padding: .1em 0;
+}
+
+.behar-curriculum__heading-line > span {
+  display: block;
+}
+
+.behar-curriculum__heading-line--accent {
+  color: var(--bc-lime);
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 400;
+  font-style: italic;
+  letter-spacing: -.06em;
+}
+
+.behar-curriculum__intro-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 30px;
+  margin-top: 45px;
+  padding-top: 30px;
+  border-top: 1px solid var(--bc-line);
+}
+
+.behar-curriculum__intro-bottom > div:first-child {
+  max-width: 550px;
+}
+
+.behar-curriculum__intro-label {
+  color: var(--bc-lime);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .1em;
+}
+
+.behar-curriculum__intro-bottom p {
+  margin: 18px 0 0;
+  color: var(--bc-sage);
+  font-size: 16px;
+  line-height: 1.9;
+}
+
+.behar-curriculum__intro-symbol {
+  display: grid;
+  place-items: center;
+  width: 90px;
+  height: 90px;
+  border: 1px solid var(--bc-line);
+  border-radius: 50%;
+  color: var(--bc-lime);
+}
+
+/* STATS */
+
+.behar-curriculum__stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-bottom: 100px;
+  border-top: 1px solid var(--bc-line);
+  border-bottom: 1px solid var(--bc-line);
+}
+
+.behar-curriculum__stats > div {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 35px 30px;
+  border-inline-end: 1px solid var(--bc-line);
+}
+
+.behar-curriculum__stats > div:first-child {
+  padding-inline-start: 0;
+}
+
+.behar-curriculum__stats > div:last-child {
+  border-inline-end: 0;
+}
+
+.behar-curriculum__stats strong {
+  font-size: clamp(55px, 6vw, 90px);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -.07em;
+}
+
+.behar-curriculum__stats span {
+  color: var(--bc-sage);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .1em;
+}
+
+/* SYLLABUS HEADER */
+
+.behar-curriculum__syllabus-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding-bottom: 25px;
+  border-bottom: 1px solid var(--bc-line);
+  color: var(--bc-lime);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .1em;
+}
+
+.behar-curriculum__syllabus-header button {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  border: 0;
+  background: transparent;
+  color: var(--bc-cream);
+  font: inherit;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.behar-curriculum__syllabus-header button svg {
+  transition: transform .3s ease;
+}
+
+.behar-curriculum__syllabus-header button svg.is-rotated {
+  transform: rotate(180deg);
+}
+
+/* CHAPTERS */
+
+.behar-curriculum__chapters {
+  padding-bottom: 100px;
+}
+
+.behar-curriculum__chapter {
+  border-bottom: 1px solid var(--bc-line);
+  transition: background .3s ease;
+}
+
+.behar-curriculum__chapter:hover,
+.behar-curriculum__chapter.is-open {
+  background: rgba(255,255,255,.035);
+}
+
+.behar-curriculum__chapter-heading {
+  margin: 0;
+}
+
+.behar-curriculum__chapter-trigger {
+  display: grid;
+  grid-template-columns: 75px minmax(0, 1fr) 150px 60px;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+  min-height: 190px;
+  padding: 30px 20px;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: start;
+  cursor: pointer;
+}
+
+.behar-curriculum__chapter-number {
+  align-self: start;
+  padding-top: 10px;
+  color: var(--bc-lime);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.behar-curriculum__chapter-main {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.behar-curriculum__chapter-label {
+  color: var(--bc-lime);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .1em;
+}
+
+.behar-curriculum__chapter-title {
+  font-size: clamp(30px, 4vw, 62px);
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -.055em;
+  transition: color .3s ease;
+}
+
+.behar-curriculum__chapter:hover .behar-curriculum__chapter-title,
+.behar-curriculum__chapter.is-open .behar-curriculum__chapter-title {
+  color: var(--bc-lime);
+}
+
+.behar-curriculum__chapter-description {
+  max-width: 550px;
+  color: var(--bc-sage);
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.behar-curriculum__chapter-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  color: var(--bc-sage);
+  font-size: 11px;
+  font-weight: 700;
+  text-align: end;
+}
+
+.behar-curriculum__chapter-chevron {
+  display: grid;
+  place-items: center;
+  justify-self: end;
+  width: 55px;
+  height: 55px;
+  border: 1px solid var(--bc-line);
+  border-radius: 50%;
+  transition:
+    background .3s ease,
+    color .3s ease,
+    transform .3s ease;
+}
+
+.behar-curriculum__chapter.is-open .behar-curriculum__chapter-chevron {
+  background: var(--bc-lime);
+  color: var(--bc-forest);
+  transform: rotate(180deg);
+}
+
+/* LESSON LIST */
+
+.behar-curriculum__chapter-panel {
+  padding: 0 90px 45px 115px;
+}
+
+.behar-curriculum__chapter-panel[hidden] {
+  display: none;
+}
+
+.behar-curriculum__lesson-list {
+  border-top: 1px solid var(--bc-line);
+}
+
+.behar-curriculum__lesson {
+  display: grid;
+  grid-template-columns: 40px 48px minmax(0, 1fr) 210px;
+  align-items: center;
+  gap: 18px;
+  min-height: 105px;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--bc-line);
+}
+
+.behar-curriculum__lesson-number {
+  color: var(--bc-sage);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.behar-curriculum__lesson-icon {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--bc-line);
+  border-radius: 50%;
+  color: var(--bc-lime);
+}
+
+.behar-curriculum__lesson-content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+
+.behar-curriculum__lesson-type {
+  color: var(--bc-sage);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .1em;
+}
+
+.behar-curriculum__lesson-content strong {
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.behar-curriculum__lesson-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 12px;
+}
+
+.behar-curriculum__lesson-duration {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--bc-sage);
+  font-size: 11px;
+}
+
+.behar-curriculum__preview {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 12px;
+  border: 1px solid var(--bc-lime);
+  background: transparent;
+  color: var(--bc-lime);
+  font: inherit;
+  font-size: 10px;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    background .25s ease,
+    color .25s ease;
+}
+
+.behar-curriculum__preview:hover {
+  background: var(--bc-lime);
+  color: var(--bc-forest);
+}
+
+.behar-curriculum__locked {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--bc-sage);
+  font-size: 10px;
+  font-weight: 700;
+}
+
+/* EMPTY */
+
+.behar-curriculum__empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  min-height: 300px;
+  color: var(--bc-sage);
+  text-align: center;
+}
+
+/* BOTTOMLINE */
+
+.behar-curriculum__bottomline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding-top: 25px;
+  border-top: 1px solid var(--bc-line);
+  color: var(--bc-lime);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .1em;
+}
+
+/* RTL */
+
+.behar-curriculum[dir="rtl"] {
+  font-family: "Noto Sans Arabic", sans-serif;
+}
+
+.behar-curriculum[dir="rtl"] .behar-curriculum__heading {
+  font-family: "Noto Sans Arabic", sans-serif;
+  font-size: clamp(55px, 8vw, 125px);
+  line-height: 1.4;
+  letter-spacing: -.04em;
+}
+
+.behar-curriculum[dir="rtl"] .behar-curriculum__heading-line--accent {
+  font-family: "Noto Sans Arabic", sans-serif;
+  font-style: normal;
+}
+
+.behar-curriculum[dir="rtl"] .behar-curriculum__chapter-title {
+  line-height: 1.5;
+  letter-spacing: -.025em;
+}
+
+.behar-curriculum[dir="rtl"] .behar-curriculum__chapter-panel {
+  padding: 0 115px 45px 90px;
+}
+
+.behar-curriculum[dir="rtl"] .behar-curriculum__lesson-right {
+  align-items: flex-start;
+}
+
+/* TABLET */
+
+@media (max-width: 1100px) {
+  .behar-curriculum__container {
+    width: calc(100% - 64px);
+  }
+
+  .behar-curriculum__chapter-trigger {
+    grid-template-columns: 50px minmax(0, 1fr) 110px 55px;
+    gap: 15px;
+  }
+
+  .behar-curriculum__chapter-panel {
+    padding-inline-start: 75px;
+    padding-inline-end: 25px;
+  }
+}
+
+/* MOBILE */
+
+@media (max-width: 800px) {
+  .behar-curriculum {
+    padding-top: 75px;
+  }
+
+  .behar-curriculum__container {
+    width: calc(100% - 36px);
+  }
+
+  .behar-curriculum__intro {
+    padding: 65px 0;
+  }
+
+  .behar-curriculum__heading {
+    font-size: clamp(50px, 10vw, 85px);
+  }
+
+  .behar-curriculum__intro-bottom {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .behar-curriculum__stats {
+    margin-bottom: 70px;
+  }
+
+  .behar-curriculum__stats > div {
+    padding: 25px 15px;
+  }
+
+  .behar-curriculum__stats strong {
+    font-size: 50px;
+  }
+
+  .behar-curriculum__chapter-trigger {
+    grid-template-columns: 35px minmax(0, 1fr) 48px;
+    min-height: 150px;
+    padding: 25px 8px;
+  }
+
+  .behar-curriculum__chapter-meta {
+    display: none;
+  }
+
+  .behar-curriculum__chapter-title {
+    font-size: clamp(26px, 4.5vw, 40px);
+  }
+
+  .behar-curriculum__chapter-chevron {
+    width: 45px;
+    height: 45px;
+  }
+
+  .behar-curriculum__chapter-panel {
+    padding-inline: 15px;
+  }
+
+  .behar-curriculum__lesson {
+    grid-template-columns: 35px minmax(0, 1fr);
+    gap: 12px;
+  }
+
+  .behar-curriculum__lesson-number {
+    display: none;
+  }
+
+  .behar-curriculum__lesson-right {
+    grid-column: 2;
+    align-items: flex-start;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+}
+
+@media (max-width: 520px) {
+  .behar-curriculum__heading {
+    font-size: clamp(43px, 10vw, 60px);
+  }
+
+  .behar-curriculum__stats strong {
+    font-size: 38px;
+  }
+
+  .behar-curriculum__stats span {
+    font-size: 8px;
+  }
+
+  .behar-curriculum__chapter-title {
+    font-size: 25px;
+  }
+
+  .behar-curriculum__chapter-description {
+    font-size: 12px;
+  }
+
+  .behar-curriculum__lesson-content strong {
+    font-size: 15px;
+  }
+}
+
+/* ACCESSIBILITY */
+
+.behar-curriculum button:focus-visible {
+  outline: 3px solid var(--bc-lime);
+  outline-offset: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .behar-curriculum *,
+  .behar-curriculum *::before,
+  .behar-curriculum *::after {
+    transition-duration: .01ms !important;
+    animation-duration: .01ms !important;
+  }
+}

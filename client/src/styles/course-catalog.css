@@ -1,0 +1,432 @@
+
+/* ==========================================
+   BEHAR P12.5 — THE LEARNING ARCHIVE
+========================================== */
+
+.behar-catalog {
+  --bc-forest: #102c2b;
+  --bc-emerald: #176e62;
+  --bc-lime: #d9ef74;
+  --bc-cream: #f4f1e9;
+  --bc-muted: #66776d;
+  --bc-line: #d5dcd1;
+
+  position: relative;
+  padding: 100px 0 45px;
+  background: var(--bc-cream);
+  color: var(--bc-forest);
+  scroll-margin-top: 100px;
+}
+
+.behar-catalog,
+.behar-catalog * {
+  box-sizing: border-box;
+}
+
+.behar-catalog__container {
+  width: min(1500px, calc(100% - 96px));
+  margin-inline: auto;
+}
+
+/* TOPLINE */
+
+.behar-catalog__topline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--bc-line);
+  color: var(--bc-emerald);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .12em;
+}
+
+/* INTRO */
+
+.behar-catalog__intro {
+  padding: 90px 0 85px;
+}
+
+.behar-catalog__eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 45px;
+  color: var(--bc-emerald);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .12em;
+}
+
+.behar-catalog__dot,
+.behar-catalog__live-dot {
+  width: 8px;
+  height: 8px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--bc-emerald);
+}
+
+.behar-catalog__heading {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  font-family: "Outfit", sans-serif;
+  font-size: clamp(75px, 10.5vw, 165px);
+  font-weight: 600;
+  line-height: .86;
+  letter-spacing: -.085em;
+}
+
+.behar-catalog__heading-line {
+  display: block;
+  overflow: hidden;
+  padding: .1em 0;
+}
+
+.behar-catalog__heading-line > span {
+  display: block;
+}
+
+.behar-catalog__heading-line--accent {
+  color: var(--bc-emerald);
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 400;
+  font-style: italic;
+  letter-spacing: -.06em;
+}
+
+.behar-catalog__intro-bottom {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 30px;
+  margin-top: 45px;
+  padding-top: 25px;
+  border-top: 1px solid var(--bc-line);
+}
+
+.behar-catalog__intro-bottom p {
+  max-width: 460px;
+  margin: 0;
+  color: var(--bc-muted);
+  font-size: 16px;
+  line-height: 1.9;
+}
+
+.behar-catalog__total {
+  display: flex;
+  align-items: baseline;
+  gap: 15px;
+}
+
+.behar-catalog__total strong {
+  font-size: clamp(50px, 6vw, 80px);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -.07em;
+}
+
+.behar-catalog__total span {
+  max-width: 105px;
+  color: var(--bc-emerald);
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 1.5;
+  letter-spacing: .08em;
+}
+
+/* TOOLBAR */
+
+.behar-catalog__toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 24px 0;
+  border-top: 1px solid var(--bc-line);
+  border-bottom: 1px solid var(--bc-line);
+}
+
+.behar-catalog__results-label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--bc-emerald);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .08em;
+}
+
+.behar-catalog__view-switch {
+  display: flex;
+  gap: 5px;
+}
+
+.behar-catalog__view-switch button {
+  display: grid;
+  place-items: center;
+  width: 43px;
+  height: 43px;
+  border: 1px solid var(--bc-line);
+  background: transparent;
+  color: var(--bc-forest);
+  cursor: pointer;
+  transition:
+    background .25s ease,
+    color .25s ease;
+}
+
+.behar-catalog__view-switch button.is-active {
+  background: var(--bc-forest);
+  border-color: var(--bc-forest);
+  color: var(--bc-lime);
+}
+
+.behar-catalog__view-switch button:hover:not(.is-active) {
+  background: #e1e8dc;
+}
+
+/* COURSE GRID */
+
+.behar-catalog__courses {
+  padding: 50px 0 90px;
+}
+
+.behar-catalog__courses--grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  column-gap: 30px;
+  row-gap: 75px;
+}
+
+.behar-catalog__courses--list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 35px;
+}
+
+/* EMPTY STATE */
+
+.behar-catalog__empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 450px;
+  padding: 70px 20px;
+  text-align: center;
+}
+
+.behar-catalog__empty-icon {
+  display: grid;
+  place-items: center;
+  width: 100px;
+  height: 100px;
+  margin-bottom: 30px;
+  border: 1px solid var(--bc-line);
+  border-radius: 50%;
+  color: var(--bc-emerald);
+}
+
+.behar-catalog__empty h3 {
+  margin: 0 0 15px;
+  font-size: clamp(35px, 5vw, 65px);
+  font-weight: 600;
+  letter-spacing: -.06em;
+}
+
+.behar-catalog__empty p {
+  max-width: 420px;
+  margin: 0 0 30px;
+  color: var(--bc-muted);
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+.behar-catalog__empty button {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 17px 25px;
+  border: 0;
+  border-radius: 50px;
+  background: var(--bc-lime);
+  color: var(--bc-forest);
+  font: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* PAGINATION */
+
+.behar-catalog__pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 25px;
+  padding: 30px 0 90px;
+}
+
+.behar-catalog__page-numbers {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.behar-catalog__page-slot {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.behar-catalog__page-numbers button,
+.behar-catalog__page-arrow {
+  display: grid;
+  place-items: center;
+  width: 45px;
+  height: 45px;
+  border: 1px solid var(--bc-line);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--bc-forest);
+  font: inherit;
+  font-size: 13px;
+  cursor: pointer;
+  transition:
+    background .25s ease,
+    color .25s ease;
+}
+
+.behar-catalog__page-numbers button.is-active {
+  background: var(--bc-forest);
+  border-color: var(--bc-forest);
+  color: var(--bc-lime);
+}
+
+.behar-catalog__page-numbers button:hover:not(.is-active),
+.behar-catalog__page-arrow:hover:not(:disabled) {
+  background: #e1e8dc;
+}
+
+.behar-catalog__page-arrow:disabled {
+  opacity: .3;
+  cursor: not-allowed;
+}
+
+.behar-catalog__ellipsis {
+  padding: 0 4px;
+  color: var(--bc-muted);
+}
+
+/* BOTTOMLINE */
+
+.behar-catalog__bottomline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding-top: 25px;
+  border-top: 1px solid var(--bc-line);
+  color: var(--bc-emerald);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .1em;
+}
+
+/* RTL */
+
+.behar-catalog[dir="rtl"] {
+  font-family: "Noto Sans Arabic", sans-serif;
+}
+
+.behar-catalog[dir="rtl"] .behar-catalog__heading {
+  font-family: "Noto Sans Arabic", sans-serif;
+  font-size: clamp(55px, 8vw, 125px);
+  line-height: 1.35;
+  letter-spacing: -.04em;
+}
+
+.behar-catalog[dir="rtl"]
+  .behar-catalog__heading-line--accent {
+  font-family: "Noto Sans Arabic", sans-serif;
+  font-style: normal;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 1100px) {
+  .behar-catalog__container {
+    width: calc(100% - 64px);
+  }
+
+  .behar-catalog__courses--grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 750px) {
+  .behar-catalog {
+    padding-top: 75px;
+  }
+
+  .behar-catalog__container {
+    width: calc(100% - 36px);
+  }
+
+  .behar-catalog__intro {
+    padding: 65px 0;
+  }
+
+  .behar-catalog__heading {
+    font-size: clamp(52px, 10vw, 85px);
+  }
+
+  .behar-catalog__intro-bottom {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .behar-catalog__courses--grid {
+    column-gap: 18px;
+    row-gap: 55px;
+  }
+}
+
+@media (max-width: 580px) {
+  .behar-catalog__heading {
+    font-size: clamp(44px, 10vw, 60px);
+  }
+
+  .behar-catalog__courses--grid {
+    grid-template-columns: 1fr;
+  }
+
+  .behar-catalog__pagination {
+    gap: 10px;
+  }
+
+  .behar-catalog__page-numbers button,
+  .behar-catalog__page-arrow {
+    width: 39px;
+    height: 39px;
+  }
+}
+
+/* ACCESSIBILITY */
+
+.behar-catalog button:focus-visible {
+  outline: 3px solid var(--bc-emerald);
+  outline-offset: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .behar-catalog *,
+  .behar-catalog *::before,
+  .behar-catalog *::after {
+    transition-duration: .01ms !important;
+    animation-duration: .01ms !important;
+  }
+}

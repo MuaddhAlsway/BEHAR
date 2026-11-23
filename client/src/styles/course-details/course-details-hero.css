@@ -1,0 +1,620 @@
+
+/* ==========================================
+   BEHAR P13.1 — COURSE DETAILS HERO
+   THE KNOWLEDGE EDITION
+========================================== */
+
+.behar-detail-hero {
+  --dh-forest: #102c2b;
+  --dh-emerald: #176e62;
+  --dh-lime: #d9ef74;
+  --dh-cream: #f4f1e9;
+  --dh-sage: #a8c0b5;
+  --dh-line: rgba(244, 241, 233, .18);
+
+  position: relative;
+  overflow: hidden;
+  padding: 110px 0 45px;
+  background: var(--dh-forest);
+  color: var(--dh-cream);
+  isolation: isolate;
+}
+
+.behar-detail-hero,
+.behar-detail-hero * {
+  box-sizing: border-box;
+}
+
+.behar-detail-hero__container {
+  width: min(1500px, calc(100% - 96px));
+  margin-inline: auto;
+}
+
+/* TOPLINE */
+
+.behar-detail-hero__topline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding-bottom: 22px;
+  border-bottom: 1px solid var(--dh-line);
+}
+
+.behar-detail-hero__back {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--dh-lime);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-decoration: none;
+  transition: gap .25s ease;
+}
+
+.behar-detail-hero__back:hover {
+  gap: 16px;
+}
+
+.behar-detail-hero__edition {
+  color: var(--dh-sage);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .1em;
+}
+
+/* INTRO */
+
+.behar-detail-hero__intro {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 280px;
+  align-items: end;
+  gap: 70px;
+  padding: 85px 0 70px;
+}
+
+.behar-detail-hero__intro-main {
+  min-width: 0;
+}
+
+.behar-detail-hero__eyebrow {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 32px;
+  color: var(--dh-lime);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .11em;
+  text-transform: uppercase;
+}
+
+.behar-detail-hero__eyebrow-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--dh-lime);
+}
+
+.behar-detail-hero__eyebrow-divider {
+  width: 30px;
+  height: 1px;
+  background: rgba(217, 239, 116, .4);
+}
+
+.behar-detail-hero__title {
+  max-width: 1050px;
+  margin: 0;
+  font-family: "Outfit", sans-serif;
+  font-size: clamp(68px, 8.5vw, 145px);
+  font-weight: 600;
+  line-height: .92;
+  letter-spacing: -.075em;
+  overflow-wrap: anywhere;
+}
+
+.behar-detail-hero__title-period {
+  color: var(--dh-lime);
+}
+
+.behar-detail-hero__intro-aside {
+  padding-bottom: 12px;
+}
+
+.behar-detail-hero__aside-index {
+  color: var(--dh-lime);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .1em;
+}
+
+.behar-detail-hero__intro-aside p {
+  margin: 20px 0 28px;
+  color: var(--dh-sage);
+  font-size: 15px;
+  line-height: 1.9;
+}
+
+.behar-detail-hero__aside-mark {
+  display: grid;
+  place-items: center;
+  width: 65px;
+  height: 65px;
+  border: 1px solid var(--dh-line);
+  border-radius: 50%;
+  color: var(--dh-lime);
+}
+
+/* METADATA */
+
+.behar-detail-hero__metadata {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  margin-bottom: 55px;
+  border-top: 1px solid var(--dh-line);
+  border-bottom: 1px solid var(--dh-line);
+}
+
+.behar-detail-hero__meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-width: 0;
+  padding: 23px 20px;
+  border-inline-end: 1px solid var(--dh-line);
+}
+
+.behar-detail-hero__meta-item:first-child {
+  padding-inline-start: 0;
+}
+
+.behar-detail-hero__meta-item:last-child {
+  border-inline-end: 0;
+}
+
+.behar-detail-hero__meta-label {
+  color: var(--dh-sage);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .1em;
+}
+
+.behar-detail-hero__meta-item strong {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  color: var(--dh-cream);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.behar-detail-hero__meta-item strong svg {
+  color: var(--dh-lime);
+}
+
+/* COVER */
+
+.behar-detail-hero__visual {
+  position: relative;
+  padding-inline-end: 290px;
+  padding-bottom: 60px;
+}
+
+.behar-detail-hero__cover {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+  background: #1c4640;
+}
+
+.behar-detail-hero__cover > img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.behar-detail-hero__cover-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(0,0,0,.35),
+    transparent 30%,
+    transparent 60%,
+    rgba(0,0,0,.5)
+  );
+  pointer-events: none;
+}
+
+.behar-detail-hero__cover-top {
+  position: absolute;
+  top: 27px;
+  inset-inline: 30px;
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .1em;
+}
+
+.behar-detail-hero__cover-bottom {
+  position: absolute;
+  bottom: 30px;
+  inset-inline: 30px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.behar-detail-hero__cover-bottom > span {
+  max-width: 240px;
+  color: white;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.5;
+  letter-spacing: .06em;
+}
+
+.behar-detail-hero__preview {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  border: 0;
+  background: transparent;
+  color: white;
+  font: inherit;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.behar-detail-hero__preview > span {
+  display: grid;
+  place-items: center;
+  width: 53px;
+  height: 53px;
+  border: 1px solid rgba(255,255,255,.7);
+  border-radius: 50%;
+  backdrop-filter: blur(8px);
+  transition:
+    background .3s ease,
+    color .3s ease;
+}
+
+.behar-detail-hero__preview:hover > span {
+  background: var(--dh-lime);
+  color: var(--dh-forest);
+}
+
+/* ENROLLMENT TICKET */
+
+.behar-detail-hero__ticket {
+  position: absolute;
+  top: 50%;
+  inset-inline-end: 0;
+  width: 350px;
+  padding: 28px;
+  background: var(--dh-cream);
+  color: var(--dh-forest);
+  box-shadow: 0 35px 80px rgba(0,0,0,.18);
+  transform: translateY(-50%);
+  z-index: 2;
+}
+
+.behar-detail-hero__ticket-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #d5dcd1;
+  color: var(--dh-emerald);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .08em;
+}
+
+.behar-detail-hero__ticket-price {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 35px 0;
+}
+
+.behar-detail-hero__ticket-price > span {
+  color: #66776d;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.behar-detail-hero__ticket-price strong {
+  font-size: clamp(40px, 4vw, 58px);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -.06em;
+}
+
+.behar-detail-hero__ticket-rule {
+  height: 1px;
+  background: #d5dcd1;
+}
+
+.behar-detail-hero__ticket-instructor {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 25px 0;
+}
+
+.behar-detail-hero__ticket-instructor > span {
+  color: #66776d;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .08em;
+}
+
+.behar-detail-hero__ticket-instructor strong {
+  font-size: 19px;
+  font-weight: 500;
+}
+
+.behar-detail-hero__ticket-features {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding-bottom: 30px;
+}
+
+.behar-detail-hero__ticket-features p {
+  margin: 0 0 5px;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.behar-detail-hero__ticket-features > span {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #66776d;
+  font-size: 12px;
+}
+
+.behar-detail-hero__ticket-features svg {
+  color: var(--dh-emerald);
+}
+
+.behar-detail-hero__enroll {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  width: 100%;
+  padding: 20px;
+  border: 0;
+  background: var(--dh-lime);
+  color: var(--dh-forest);
+  font: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  text-align: start;
+  cursor: pointer;
+  transition:
+    background .3s ease,
+    transform .3s ease;
+}
+
+.behar-detail-hero__enroll:hover {
+  background: #e5f78e;
+  transform: translateY(-3px);
+}
+
+.behar-detail-hero__save {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  margin-top: 15px;
+  padding: 15px;
+  border: 1px solid #d5dcd1;
+  background: transparent;
+  color: var(--dh-forest);
+  font: inherit;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.behar-detail-hero__save.is-saved {
+  color: var(--dh-emerald);
+  border-color: var(--dh-emerald);
+}
+
+.behar-detail-hero__ticket-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 25px;
+  color: #66776d;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .04em;
+}
+
+/* BOTTOMLINE */
+
+.behar-detail-hero__bottomline {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding-top: 25px;
+  border-top: 1px solid var(--dh-line);
+  color: var(--dh-lime);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .1em;
+}
+
+/* RTL */
+
+.behar-detail-hero[dir="rtl"] {
+  font-family: "Noto Sans Arabic", sans-serif;
+}
+
+.behar-detail-hero[dir="rtl"] .behar-detail-hero__title {
+  font-family: "Noto Sans Arabic", sans-serif;
+  font-size: clamp(55px, 7vw, 115px);
+  line-height: 1.35;
+  letter-spacing: -.04em;
+}
+
+.behar-detail-hero[dir="rtl"] .behar-detail-hero__ticket-price strong {
+  letter-spacing: 0;
+}
+
+/* TABLET */
+
+@media (max-width: 1200px) {
+  .behar-detail-hero__container {
+    width: calc(100% - 64px);
+  }
+
+  .behar-detail-hero__intro {
+    grid-template-columns: minmax(0, 1fr) 240px;
+    gap: 35px;
+  }
+
+  .behar-detail-hero__title {
+    font-size: clamp(60px, 7vw, 100px);
+  }
+
+  .behar-detail-hero__visual {
+    padding-inline-end: 220px;
+  }
+
+  .behar-detail-hero__ticket {
+    width: 310px;
+    padding: 24px;
+  }
+}
+
+/* MOBILE */
+
+@media (max-width: 900px) {
+  .behar-detail-hero {
+    padding-top: 95px;
+  }
+
+  .behar-detail-hero__intro {
+    grid-template-columns: 1fr;
+    gap: 30px;
+    padding: 65px 0 50px;
+  }
+
+  .behar-detail-hero__intro-aside {
+    max-width: 550px;
+  }
+
+  .behar-detail-hero__metadata {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .behar-detail-hero__meta-item {
+    border-bottom: 1px solid var(--dh-line);
+  }
+
+  .behar-detail-hero__visual {
+    padding: 0;
+  }
+
+  .behar-detail-hero__ticket {
+    position: relative;
+    top: auto;
+    inset-inline-end: auto;
+    width: min(100%, 600px);
+    margin: -35px auto 50px;
+    transform: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .behar-detail-hero__container {
+    width: calc(100% - 36px);
+  }
+
+  .behar-detail-hero__edition {
+    display: none;
+  }
+
+  .behar-detail-hero__title {
+    font-size: clamp(49px, 11vw, 75px);
+  }
+
+  .behar-detail-hero__metadata {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .behar-detail-hero__meta-item {
+    padding: 18px 12px;
+  }
+
+  .behar-detail-hero__meta-item:nth-child(odd) {
+    padding-inline-start: 0;
+  }
+
+  .behar-detail-hero__cover {
+    aspect-ratio: 4 / 3;
+  }
+
+  .behar-detail-hero__cover-top {
+    top: 15px;
+    inset-inline: 15px;
+    font-size: 8px;
+  }
+
+  .behar-detail-hero__cover-bottom {
+    bottom: 20px;
+    inset-inline: 15px;
+  }
+
+  .behar-detail-hero__cover-bottom > span {
+    display: none;
+  }
+
+  .behar-detail-hero__preview {
+    font-size: 10px;
+  }
+
+  .behar-detail-hero__ticket {
+    width: calc(100% - 20px);
+    margin-top: -20px;
+  }
+
+  .behar-detail-hero__bottomline {
+    font-size: 8px;
+  }
+}
+
+/* ACCESSIBILITY */
+
+.behar-detail-hero a:focus-visible,
+.behar-detail-hero button:focus-visible {
+  outline: 3px solid var(--dh-lime);
+  outline-offset: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .behar-detail-hero *,
+  .behar-detail-hero *::before,
+  .behar-detail-hero *::after {
+    transition-duration: .01ms !important;
+    animation-duration: .01ms !important;
+  }
+}

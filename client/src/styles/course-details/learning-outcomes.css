@@ -1,0 +1,642 @@
+
+/* ==========================================
+   BEHAR P13.2 — THE SKILL BLUEPRINT
+========================================== */
+
+.behar-outcomes {
+  --bo-forest: #102c2b;
+  --bo-emerald: #176e62;
+  --bo-lime: #d9ef74;
+  --bo-cream: #f4f1e9;
+  --bo-muted: #66776d;
+  --bo-line: #d5dcd1;
+
+  position: relative;
+  overflow: hidden;
+  padding: 100px 0 45px;
+  background: var(--bo-cream);
+  color: var(--bo-forest);
+  scroll-margin-top: 100px;
+}
+
+.behar-outcomes,
+.behar-outcomes * {
+  box-sizing: border-box;
+}
+
+.behar-outcomes__container {
+  width: min(1500px, calc(100% - 96px));
+  margin-inline: auto;
+}
+
+/* TOPLINE */
+
+.behar-outcomes__topline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--bo-line);
+  color: var(--bo-emerald);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .12em;
+}
+
+/* INTRO */
+
+.behar-outcomes__intro {
+  padding: 90px 0 100px;
+}
+
+.behar-outcomes__eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 45px;
+  color: var(--bo-emerald);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .12em;
+}
+
+.behar-outcomes__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--bo-emerald);
+}
+
+.behar-outcomes__heading {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  font-family: "Outfit", sans-serif;
+  font-size: clamp(70px, 10vw, 155px);
+  font-weight: 600;
+  line-height: .9;
+  letter-spacing: -.08em;
+}
+
+.behar-outcomes__heading-line {
+  display: block;
+  overflow: hidden;
+  padding: .1em 0;
+}
+
+.behar-outcomes__heading-line > span {
+  display: block;
+}
+
+.behar-outcomes__heading-line--accent {
+  color: var(--bo-emerald);
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 400;
+  font-style: italic;
+  letter-spacing: -.06em;
+}
+
+.behar-outcomes__intro-bottom {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 35px;
+  margin-top: 45px;
+  padding-top: 30px;
+  border-top: 1px solid var(--bo-line);
+}
+
+.behar-outcomes__intro-bottom p {
+  max-width: 530px;
+  margin: 0;
+  color: var(--bo-muted);
+  font-size: 16px;
+  line-height: 1.9;
+}
+
+.behar-outcomes__intro-symbol {
+  display: grid;
+  place-items: center;
+  width: 90px;
+  height: 90px;
+  border: 1px solid var(--bo-line);
+  border-radius: 50%;
+  color: var(--bo-emerald);
+}
+
+/* SKILLS HEADER */
+
+.behar-outcomes__skills-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 25px 0;
+  border-top: 1px solid var(--bo-line);
+  border-bottom: 1px solid var(--bo-line);
+  color: var(--bo-emerald);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .1em;
+}
+
+/* SKILL ROWS */
+
+.behar-outcomes__skills {
+  padding-bottom: 100px;
+}
+
+.behar-outcomes__skill {
+  border-bottom: 1px solid var(--bo-line);
+  transition: background .3s ease;
+}
+
+.behar-outcomes__skill:hover,
+.behar-outcomes__skill.is-open {
+  background: #e9eddf;
+}
+
+.behar-outcomes__skill-heading {
+  margin: 0;
+}
+
+.behar-outcomes__skill-trigger {
+  display: grid;
+  grid-template-columns: 75px minmax(0, 1fr) 170px 65px;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+  min-height: 145px;
+  padding: 25px 18px;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: start;
+  cursor: pointer;
+}
+
+.behar-outcomes__skill-number {
+  align-self: start;
+  padding-top: 13px;
+  color: var(--bo-emerald);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.behar-outcomes__skill-title {
+  font-size: clamp(28px, 4vw, 62px);
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: -.055em;
+  transition:
+    transform .35s ease,
+    color .35s ease;
+}
+
+.behar-outcomes__skill:hover .behar-outcomes__skill-title {
+  color: var(--bo-emerald);
+  transform: translateX(10px);
+}
+
+.behar-outcomes__skill-tag {
+  justify-self: end;
+  color: var(--bo-muted);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .1em;
+}
+
+.behar-outcomes__skill-icon {
+  display: grid;
+  place-items: center;
+  justify-self: end;
+  width: 55px;
+  height: 55px;
+  border: 1px solid var(--bo-line);
+  border-radius: 50%;
+  transition:
+    background .3s ease,
+    color .3s ease;
+}
+
+.behar-outcomes__skill:hover .behar-outcomes__skill-icon,
+.behar-outcomes__skill.is-open .behar-outcomes__skill-icon {
+  background: var(--bo-forest);
+  color: var(--bo-lime);
+}
+
+/* EXPANDED PANEL */
+
+.behar-outcomes__skill-panel {
+  padding: 0 100px 45px 113px;
+}
+
+.behar-outcomes__skill-panel[hidden] {
+  display: none;
+}
+
+.behar-outcomes__skill-panel-inner {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 30px;
+  max-width: 850px;
+  padding-top: 25px;
+  border-top: 1px solid var(--bo-line);
+}
+
+.behar-outcomes__skill-panel-inner > span {
+  flex-shrink: 0;
+  color: var(--bo-emerald);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .08em;
+}
+
+.behar-outcomes__skill-panel-inner p {
+  max-width: 500px;
+  margin: 0;
+  color: var(--bo-muted);
+  font-size: 15px;
+  line-height: 1.9;
+}
+
+.behar-outcomes__skill-panel-inner svg {
+  flex-shrink: 0;
+  color: var(--bo-emerald);
+}
+
+/* PROJECT EXHIBITION */
+
+.behar-outcomes__project {
+  display: grid;
+  grid-template-columns: 1.15fr .85fr;
+  min-height: 570px;
+  margin-bottom: 100px;
+  background: var(--bo-forest);
+  color: var(--bo-cream);
+}
+
+.behar-outcomes__project-main {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: clamp(35px, 5vw, 80px);
+  border-inline-end: 1px solid rgba(255,255,255,.16);
+}
+
+.behar-outcomes__project-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 70px;
+  color: var(--bo-lime);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .1em;
+}
+
+.behar-outcomes__project-index {
+  color: #a8c0b5;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .1em;
+}
+
+.behar-outcomes__project-main h3 {
+  max-width: 750px;
+  margin: 20px 0 25px;
+  font-size: clamp(40px, 5vw, 76px);
+  font-weight: 500;
+  line-height: 1.05;
+  letter-spacing: -.065em;
+}
+
+.behar-outcomes__project-main > p {
+  max-width: 470px;
+  margin: 0;
+  color: #a8c0b5;
+  font-size: 15px;
+  line-height: 1.9;
+}
+
+.behar-outcomes__project-mark {
+  display: grid;
+  place-items: center;
+  width: 80px;
+  height: 80px;
+  margin-top: auto;
+  border: 1px solid rgba(217,239,116,.3);
+  border-radius: 50%;
+  color: var(--bo-lime);
+}
+
+.behar-outcomes__project-side {
+  display: flex;
+  flex-direction: column;
+  padding: clamp(35px, 4vw, 65px);
+}
+
+.behar-outcomes__project-side-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding-bottom: 35px;
+  border-bottom: 1px solid rgba(255,255,255,.16);
+  color: var(--bo-lime);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .1em;
+}
+
+.behar-outcomes__project-side h4 {
+  margin: 65px 0 30px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: .1em;
+}
+
+.behar-outcomes__deliverables {
+  display: flex;
+  flex-direction: column;
+}
+
+.behar-outcomes__deliverable {
+  display: grid;
+  grid-template-columns: 40px 1fr 25px;
+  align-items: center;
+  gap: 15px;
+  padding: 24px 0;
+  border-top: 1px solid rgba(255,255,255,.16);
+}
+
+.behar-outcomes__deliverable > span {
+  color: var(--bo-lime);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.behar-outcomes__deliverable p {
+  margin: 0;
+  font-size: 15px;
+}
+
+.behar-outcomes__deliverable svg {
+  color: var(--bo-lime);
+}
+
+/* PREREQUISITES */
+
+.behar-outcomes__prerequisites {
+  display: grid;
+  grid-template-columns: .85fr 1.15fr;
+  gap: clamp(35px, 6vw, 100px);
+  padding: 55px 0 100px;
+  border-top: 1px solid var(--bo-line);
+}
+
+.behar-outcomes__prerequisites-heading > span {
+  color: var(--bo-emerald);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .1em;
+}
+
+.behar-outcomes__prerequisites-heading h3 {
+  margin: 20px 0;
+  font-size: clamp(40px, 5vw, 75px);
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -.06em;
+}
+
+.behar-outcomes__prerequisites-heading > p {
+  max-width: 340px;
+  margin: 0;
+  color: var(--bo-muted);
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+.behar-outcomes__prerequisites-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.behar-outcomes__prerequisite {
+  display: grid;
+  grid-template-columns: 40px 1fr 25px;
+  align-items: center;
+  gap: 20px;
+  min-height: 95px;
+  border-bottom: 1px solid var(--bo-line);
+}
+
+.behar-outcomes__prerequisite:first-child {
+  border-top: 1px solid var(--bo-line);
+}
+
+.behar-outcomes__prerequisite > span {
+  color: var(--bo-emerald);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.behar-outcomes__prerequisite p {
+  margin: 0;
+  font-size: 17px;
+}
+
+.behar-outcomes__prerequisite svg {
+  color: var(--bo-emerald);
+}
+
+/* BOTTOMLINE */
+
+.behar-outcomes__bottomline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding-top: 25px;
+  border-top: 1px solid var(--bo-line);
+  color: var(--bo-emerald);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .1em;
+}
+
+/* RTL */
+
+.behar-outcomes[dir="rtl"] {
+  font-family: "Noto Sans Arabic", sans-serif;
+}
+
+.behar-outcomes[dir="rtl"] .behar-outcomes__heading {
+  font-family: "Noto Sans Arabic", sans-serif;
+  font-size: clamp(55px, 8vw, 125px);
+  line-height: 1.4;
+  letter-spacing: -.04em;
+}
+
+.behar-outcomes[dir="rtl"] .behar-outcomes__heading-line--accent {
+  font-family: "Noto Sans Arabic", sans-serif;
+  font-style: normal;
+}
+
+.behar-outcomes[dir="rtl"] .behar-outcomes__skill-title,
+.behar-outcomes[dir="rtl"] .behar-outcomes__project-main h3,
+.behar-outcomes[dir="rtl"] .behar-outcomes__prerequisites-heading h3 {
+  line-height: 1.5;
+  letter-spacing: -.03em;
+}
+
+.behar-outcomes[dir="rtl"] .behar-outcomes__skill:hover
+  .behar-outcomes__skill-title {
+  transform: translateX(-10px);
+}
+
+.behar-outcomes[dir="rtl"] .behar-outcomes__skill-panel {
+  padding: 0 113px 45px 100px;
+}
+
+/* TABLET */
+
+@media (max-width: 1100px) {
+  .behar-outcomes__container {
+    width: calc(100% - 64px);
+  }
+
+  .behar-outcomes__skill-trigger {
+    grid-template-columns: 50px minmax(0, 1fr) 120px 55px;
+    gap: 15px;
+  }
+
+  .behar-outcomes__skill-panel {
+    padding-inline-start: 85px;
+    padding-inline-end: 40px;
+  }
+}
+
+/* MOBILE */
+
+@media (max-width: 800px) {
+  .behar-outcomes {
+    padding-top: 75px;
+  }
+
+  .behar-outcomes__container {
+    width: calc(100% - 36px);
+  }
+
+  .behar-outcomes__intro {
+    padding: 65px 0 75px;
+  }
+
+  .behar-outcomes__heading {
+    font-size: clamp(50px, 10vw, 85px);
+  }
+
+  .behar-outcomes__intro-bottom {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .behar-outcomes__skill-trigger {
+    grid-template-columns: 40px minmax(0, 1fr) 50px;
+    min-height: 115px;
+    gap: 12px;
+    padding: 20px 8px;
+  }
+
+  .behar-outcomes__skill-tag {
+    display: none;
+  }
+
+  .behar-outcomes__skill-title {
+    font-size: clamp(25px, 4.5vw, 40px);
+  }
+
+  .behar-outcomes__skill-panel {
+    padding: 0 20px 35px 55px;
+  }
+
+  .behar-outcomes__skill-panel-inner {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .behar-outcomes__project {
+    grid-template-columns: 1fr;
+  }
+
+  .behar-outcomes__project-main {
+    min-height: 480px;
+    border-inline-end: 0;
+    border-bottom: 1px solid rgba(255,255,255,.16);
+  }
+
+  .behar-outcomes__project-eyebrow {
+    margin-bottom: 60px;
+  }
+
+  .behar-outcomes__project-mark {
+    margin-top: 35px;
+  }
+
+  .behar-outcomes__prerequisites {
+    grid-template-columns: 1fr;
+    gap: 45px;
+  }
+}
+
+@media (max-width: 520px) {
+  .behar-outcomes__heading {
+    font-size: clamp(43px, 10vw, 60px);
+  }
+
+  .behar-outcomes__skills-header {
+    font-size: 9px;
+  }
+
+  .behar-outcomes__skill-title {
+    font-size: 25px;
+  }
+
+  .behar-outcomes__skill-icon {
+    width: 43px;
+    height: 43px;
+  }
+
+  .behar-outcomes__skill-panel {
+    padding-inline: 15px;
+  }
+
+  .behar-outcomes__project-main,
+  .behar-outcomes__project-side {
+    padding: 30px 24px;
+  }
+
+  .behar-outcomes__project-main h3 {
+    font-size: 42px;
+  }
+}
+
+/* ACCESSIBILITY */
+
+.behar-outcomes button:focus-visible {
+  outline: 3px solid var(--bo-emerald);
+  outline-offset: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .behar-outcomes *,
+  .behar-outcomes *::before,
+  .behar-outcomes *::after {
+    transition-duration: .01ms !important;
+    animation-duration: .01ms !important;
+  }
+}
