@@ -1,0 +1,898 @@
+
+/* ==========================================
+   BEHAR / P05 — THE BEHAR DIFFERENCE
+========================================== */
+
+.behar-why {
+  --forest: #102c2b;
+  --emerald: #176e62;
+  --lime: #d9ef74;
+  --cream: #f4f1e9;
+
+  position: relative;
+  overflow: hidden;
+  background: var(--cream);
+  color: var(--forest);
+  padding: 120px 0 75px;
+}
+
+.behar-why__container {
+  width: min(1440px, calc(100% - 96px));
+  margin-inline: auto;
+}
+
+/* INTRO */
+
+.behar-why__intro {
+  margin-bottom: 62px;
+}
+
+.behar-why__eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  margin-bottom: 33px;
+  color: var(--emerald);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .13em;
+}
+
+.behar-why__eyebrow-rule {
+  width: 65px;
+  height: 1px;
+  background: #b9cbbd;
+}
+
+.behar-why__heading-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 300px;
+  align-items: end;
+  gap: 55px;
+}
+
+.behar-why__heading-grid h2 {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  font-size: clamp(52px, 6.2vw, 102px);
+  font-weight: 500;
+  line-height: 1.02;
+  letter-spacing: -.075em;
+}
+
+.behar-why__heading-grid h2 em {
+  color: var(--emerald);
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 400;
+  letter-spacing: -.065em;
+}
+
+.behar-why__intro-aside {
+  padding-bottom: 8px;
+}
+
+.behar-why__aside-mark {
+  display: block;
+  margin-bottom: 17px;
+  color: var(--emerald);
+  font-size: 36px;
+}
+
+.behar-why__intro-aside p {
+  margin: 0;
+  color: #63766c;
+  font-size: 14px;
+  line-height: 1.9;
+}
+
+/* COMPOSITION */
+
+.behar-why__composition {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr);
+  align-items: stretch;
+  gap: 0;
+  min-height: 660px;
+}
+
+/* PHOTO */
+
+.behar-why__visual {
+  position: relative;
+  min-height: 660px;
+  overflow: hidden;
+  background: var(--forest);
+  isolation: isolate;
+}
+
+.behar-why__photo,
+.behar-why__photo img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.behar-why__photo img {
+  display: block;
+  object-fit: cover;
+  transition: transform .9s cubic-bezier(.2,.8,.2,1);
+}
+
+.behar-why__visual:hover .behar-why__photo img {
+  transform: scale(1.055);
+}
+
+.behar-why__photo-shade {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    rgba(7, 26, 23, .34) 0%,
+    transparent 35%,
+    rgba(7, 26, 23, .12) 60%,
+    rgba(7, 26, 23, .84) 100%
+  );
+}
+
+.behar-why__photo-top {
+  position: absolute;
+  z-index: 2;
+  inset-block-start: 30px;
+  inset-inline: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .14em;
+}
+
+.behar-why__photo-bottom {
+  position: absolute;
+  z-index: 2;
+  inset-block-end: 42px;
+  inset-inline: 37px;
+  max-width: 440px;
+  color: #fff;
+}
+
+.behar-why__photo-bottom > span {
+  display: block;
+  margin-bottom: 13px;
+  color: var(--lime);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .14em;
+}
+
+.behar-why__photo-bottom p {
+  margin: 0;
+  font-size: clamp(30px, 3vw, 48px);
+  line-height: 1.14;
+  letter-spacing: -.045em;
+}
+
+/* ROTATING BADGE */
+
+.behar-why__orbit-badge {
+  position: absolute;
+  z-index: 3;
+  top: 43%;
+  inset-inline-end: -58px;
+  display: grid;
+  place-items: center;
+  width: 145px;
+  height: 145px;
+  border-radius: 50%;
+  background: var(--lime);
+  color: var(--forest);
+  transform: translateY(-50%);
+  box-shadow: 0 12px 40px rgba(0,0,0,.12);
+}
+
+.behar-why__orbit-text {
+  position: absolute;
+  width: 125px;
+  height: 125px;
+  display: grid;
+  place-items: start center;
+  padding-top: 13px;
+  border: 1px dashed rgba(16,44,43,.35);
+  border-radius: 50%;
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: .08em;
+  animation: behar-why-orbit 18s linear infinite;
+}
+
+.behar-why__orbit-center {
+  display: grid;
+  place-items: center;
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  background: var(--forest);
+  color: var(--lime);
+}
+
+@keyframes behar-why-orbit {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* PRINCIPLES */
+
+.behar-why__principles {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding: 34px 45px 37px 72px;
+  background: #fffefa;
+}
+
+.behar-why__principles-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  margin-bottom: 20px;
+  color: var(--emerald);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .12em;
+}
+
+.behar-why__principle {
+  display: grid;
+  grid-template-columns: 35px minmax(0, 1fr) 46px;
+  align-items: start;
+  gap: 14px;
+  width: 100%;
+  padding: 23px 0;
+  border: 0;
+  border-top: 1px solid #dce4da;
+  background: transparent;
+  color: var(--forest);
+  font: inherit;
+  text-align: start;
+  cursor: pointer;
+}
+
+.behar-why__principle-number {
+  padding-top: 7px;
+  color: var(--emerald);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.behar-why__principle-main {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.behar-why__principle-title {
+  font-size: clamp(20px, 2vw, 29px);
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -.045em;
+  transition: color .3s ease;
+}
+
+.behar-why__principle.is-active
+.behar-why__principle-title {
+  color: var(--emerald);
+}
+
+.behar-why__principle-description {
+  display: grid;
+  grid-template-rows: 0fr;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  margin-top: 0;
+  color: #6a7b71;
+  font-size: 13px;
+  line-height: 1.8;
+  transition:
+    max-height .45s ease,
+    opacity .35s ease,
+    margin-top .35s ease;
+}
+
+.behar-why__principle.is-active
+.behar-why__principle-description {
+  max-height: 160px;
+  margin-top: 13px;
+  opacity: 1;
+}
+
+.behar-why__principle-icon {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid #cbd9ce;
+  border-radius: 50%;
+  color: var(--emerald);
+  transition:
+    background .3s ease,
+    color .3s ease,
+    transform .3s ease;
+}
+
+.behar-why__principle.is-active
+.behar-why__principle-icon {
+  background: var(--lime);
+  color: var(--forest);
+  border-color: var(--lime);
+  transform: rotate(-12deg);
+}
+
+.behar-why__principle:focus-visible {
+  outline: 2px solid var(--emerald);
+  outline-offset: 3px;
+}
+
+/* CTA */
+
+.behar-why__cta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  margin-top: auto;
+  padding: 11px 11px 11px 23px;
+  border-radius: 50px;
+  background: var(--forest);
+  color: #fff;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.behar-why__cta-arrow {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--lime);
+  color: var(--forest);
+  transition: transform .3s ease;
+}
+
+.behar-why__cta:hover .behar-why__cta-arrow {
+  transform: translateX(4px);
+}
+
+/* FOOTER */
+
+.behar-why__footer {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-top: 34px;
+  color: #63786c;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .12em;
+}
+
+.behar-why__footer > span:first-child {
+  color: var(--emerald);
+  font-size: 23px;
+}
+
+.behar-why__footer-rule {
+  flex: 1;
+  height: 1px;
+  background: #cad6ca;
+}
+
+/* EDITORIAL REFINEMENT */
+
+.behar-why {
+  background:
+    radial-gradient(circle at 8% 15%, rgba(217,239,116,.18), transparent 24%),
+    var(--cream);
+}
+
+.behar-why__composition {
+  border: 1px solid rgba(16,44,43,.12);
+  box-shadow: 0 24px 60px rgba(16,44,43,.1);
+}
+
+.behar-why__visual {
+  background: #0b2524;
+}
+
+.behar-why__visual::before {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  inset: 18px;
+  pointer-events: none;
+  border: 1px solid rgba(217,239,116,.35);
+  opacity: .7;
+}
+
+.behar-why__photo-top,
+.behar-why__photo-bottom {
+  text-shadow: 0 2px 18px rgba(0,0,0,.25);
+}
+
+.behar-why__orbit-badge {
+  border: 7px solid rgba(244,241,233,.45);
+  outline: 1px solid rgba(16,44,43,.35);
+  outline-offset: -13px;
+}
+
+.behar-why__principles {
+  position: relative;
+  background:
+    linear-gradient(135deg, rgba(255,255,255,.9), rgba(244,241,233,.6)),
+    #fffefa;
+}
+
+.behar-why__principles-heading {
+  padding-bottom: 17px;
+  border-bottom: 1px solid #dce4da;
+}
+
+.behar-why__principle {
+  position: relative;
+  transition: background .35s ease, padding-inline .35s ease;
+}
+
+.behar-why__principle::before {
+  content: "";
+  position: absolute;
+  inset-block: 14px;
+  inset-inline-start: -72px;
+  width: 3px;
+  border-radius: 10px;
+  background: var(--lime);
+  opacity: 0;
+  transform: scaleY(.35);
+  transition: opacity .35s ease, transform .35s ease;
+}
+
+.behar-why__principle:hover,
+.behar-why__principle.is-active {
+  background: rgba(217,239,116,.12);
+}
+
+.behar-why__principle.is-active::before {
+  opacity: 1;
+  transform: scaleY(1);
+}
+
+.behar-why__principle-number {
+  transition: color .3s ease, transform .3s ease;
+}
+
+.behar-why__principle.is-active .behar-why__principle-number {
+  color: var(--forest);
+  transform: translateX(3px);
+}
+
+.behar-why__cta {
+  box-shadow: 0 12px 25px rgba(16,44,43,.14);
+  transition: transform .35s ease, box-shadow .35s ease;
+}
+
+.behar-why__cta:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 32px rgba(16,44,43,.2);
+}
+
+/* RTL */
+
+.behar-why[dir="rtl"] {
+  font-family: "Noto Sans Arabic", sans-serif;
+}
+
+.behar-why[dir="rtl"] .behar-why__heading-grid h2 {
+  line-height: 1.35;
+  letter-spacing: -.035em;
+}
+
+.behar-why[dir="rtl"] .behar-why__heading-grid h2 em {
+  font-family: "Noto Sans Arabic", sans-serif;
+  font-style: normal;
+}
+
+.behar-why[dir="rtl"] .behar-why__principles {
+  padding: 34px 72px 37px 45px;
+}
+
+.behar-why[dir="rtl"] .behar-why__principle-title {
+  line-height: 1.5;
+  letter-spacing: -.025em;
+}
+
+.behar-why[dir="rtl"] .behar-why__cta {
+  padding: 11px 23px 11px 11px;
+}
+
+.behar-why[dir="rtl"] .behar-why__cta:hover
+.behar-why__cta-arrow {
+  transform: translateX(-4px);
+}
+
+/* TABLET */
+
+@media (max-width: 1100px) {
+  .behar-why__container {
+    width: calc(100% - 64px);
+  }
+
+  .behar-why__heading-grid {
+    grid-template-columns: 1fr 260px;
+    gap: 30px;
+  }
+
+  .behar-why__composition {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .behar-why__principles,
+  .behar-why[dir="rtl"] .behar-why__principles {
+    padding: 28px;
+  }
+
+  .behar-why__orbit-badge {
+    width: 115px;
+    height: 115px;
+    inset-inline-end: -42px;
+  }
+
+  .behar-why__orbit-text {
+    width: 100px;
+    height: 100px;
+    font-size: 7px;
+  }
+
+  .behar-why__orbit-center {
+    width: 53px;
+    height: 53px;
+  }
+}
+
+/* MOBILE */
+
+@media (max-width: 800px) {
+  .behar-why {
+    padding: 80px 0 55px;
+  }
+
+  .behar-why__container {
+    width: calc(100% - 36px);
+  }
+
+  .behar-why__heading-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .behar-why__heading-grid h2 {
+    font-size: clamp(47px, 9vw, 74px);
+  }
+
+  .behar-why__intro-aside {
+    max-width: 480px;
+  }
+
+  .behar-why__composition {
+    grid-template-columns: 1fr;
+  }
+
+  .behar-why__visual {
+    min-height: 510px;
+  }
+
+  .behar-why__orbit-badge {
+    inset-inline-end: 22px;
+    top: auto;
+    bottom: -30px;
+    transform: none;
+  }
+
+  .behar-why__principles,
+  .behar-why[dir="rtl"] .behar-why__principles {
+    padding: 40px 28px 30px;
+  }
+
+  .behar-why__cta {
+    margin-top: 24px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .behar-why__photo img,
+  .behar-why__principle,
+  .behar-why__principle::before,
+  .behar-why__principle-icon,
+  .behar-why__cta {
+    transition: none;
+  }
+
+  .behar-why__cta:hover {
+    transform: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .behar-why__intro {
+    margin-bottom: 40px;
+  }
+
+  .behar-why__heading-grid h2 {
+    font-size: 43px;
+  }
+
+  .behar-why__visual {
+    min-height: 430px;
+  }
+
+  .behar-why__photo-bottom {
+    inset-inline: 23px;
+    inset-block-end: 30px;
+  }
+
+  .behar-why__photo-bottom p {
+    font-size: 33px;
+  }
+
+  .behar-why__principles,
+  .behar-why[dir="rtl"] .behar-why__principles {
+    padding: 35px 20px 25px;
+  }
+
+  .behar-why__principle {
+    grid-template-columns: 25px minmax(0, 1fr) 38px;
+    gap: 10px;
+  }
+
+  .behar-why__principle-title {
+    font-size: 21px;
+  }
+
+  .behar-why__principle-icon {
+    width: 37px;
+    height: 37px;
+  }
+
+  .behar-why__footer {
+    font-size: 9px;
+    letter-spacing: .04em;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .behar-why__orbit-text {
+    animation: none;
+  }
+
+  .behar-why *,
+  .behar-why *::before,
+  .behar-why *::after {
+    transition-duration: .01ms !important;
+  }
+
+  .behar-why__cta:hover {
+    transform: none;
+  }
+}
+
+/* =================================================
+   WHY BEHAR / EDITORIAL REBUILD OVERRIDES
+================================================= */
+
+.behar-why {
+  background:
+    radial-gradient(circle at 88% 6%, rgba(217,239,116,.2), transparent 22%),
+    linear-gradient(180deg, #f8f6ef 0%, var(--cream) 100%);
+}
+
+.behar-why__container {
+  max-width: 1480px;
+}
+
+.behar-why__eyebrow {
+  display: inline-flex;
+  padding: 8px 12px 8px 8px;
+  border: 1px solid rgba(23,110,98,.22);
+  border-radius: 999px;
+  background: rgba(255,255,255,.34);
+  backdrop-filter: blur(12px);
+}
+
+.behar-why__eyebrow-rule {
+  width: 42px;
+}
+
+.behar-why__heading-grid {
+  grid-template-columns: minmax(0, 1fr) minmax(260px, 360px);
+}
+
+.behar-why__heading-grid h2 {
+  max-width: 900px;
+  text-wrap: balance;
+}
+
+.behar-why__intro-aside {
+  position: relative;
+  padding: 18px 0 12px 22px;
+  border-inline-start: 2px solid var(--lime);
+}
+
+.behar-why__aside-mark {
+  display: none;
+}
+
+.behar-why__intro-aside::before {
+  content: "BEHAR / METHOD";
+  display: block;
+  margin-bottom: 17px;
+  color: var(--emerald);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: .17em;
+}
+
+.behar-why__composition {
+  grid-template-columns: minmax(0, 1.08fr) minmax(0, .92fr);
+  min-height: 640px;
+  border: 1px solid rgba(16,44,43,.14);
+  border-radius: 0 28px 28px 28px;
+  box-shadow: 0 28px 70px rgba(16,44,43,.12);
+}
+
+.behar-why__visual {
+  min-height: 640px;
+  border-radius: 0 0 0 27px;
+}
+
+.behar-why__visual::before {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  inset: 20px;
+  border: 1px solid rgba(217,239,116,.42);
+  pointer-events: none;
+}
+
+.behar-why__photo {
+  overflow: hidden;
+}
+
+.behar-why__photo img {
+  filter: saturate(.82) contrast(1.04);
+  transition: transform 1.2s cubic-bezier(.2,.8,.2,1), filter .8s ease;
+}
+
+.behar-why__visual:hover .behar-why__photo img {
+  filter: saturate(1.05) contrast(1.05);
+}
+
+.behar-why__photo-top {
+  inset-block-start: 38px;
+  inset-inline: 40px;
+}
+
+.behar-why__photo-bottom {
+  inset-inline: 40px;
+  inset-block-end: 48px;
+}
+
+.behar-why__photo-bottom > span {
+  display: inline-flex;
+  padding: 7px 11px;
+  border: 1px solid rgba(217,239,116,.48);
+  border-radius: 999px;
+  background: rgba(16,44,43,.3);
+  backdrop-filter: blur(8px);
+}
+
+.behar-why__orbit-badge {
+  inset-inline-end: -48px;
+  width: 154px;
+  height: 154px;
+  border: 8px solid rgba(244,241,233,.5);
+  outline: 1px solid rgba(16,44,43,.32);
+  outline-offset: -15px;
+}
+
+.behar-why__principles {
+  padding: 38px 42px 40px 66px;
+  background: rgba(255,254,250,.88);
+  backdrop-filter: blur(16px);
+}
+
+.behar-why__principles-heading {
+  padding-bottom: 18px;
+  border-bottom: 1px solid #d8e2d8;
+}
+
+.behar-why__principle {
+  position: relative;
+  padding: 25px 0;
+  transition: background .35s ease, padding-inline .35s ease;
+}
+
+.behar-why__principle::before {
+  content: "";
+  position: absolute;
+  inset-block: 14px;
+  inset-inline-start: -66px;
+  width: 3px;
+  border-radius: 99px;
+  background: var(--lime);
+  opacity: 0;
+  transform: scaleY(.3);
+  transition: opacity .35s ease, transform .35s ease;
+}
+
+.behar-why__principle:hover,
+.behar-why__principle.is-active {
+  background: rgba(217,239,116,.12);
+}
+
+.behar-why__principle.is-active::before {
+  opacity: 1;
+  transform: scaleY(1);
+}
+
+.behar-why__principle-icon {
+  border-radius: 14px;
+  background: rgba(244,241,233,.72);
+}
+
+.behar-why__principle.is-active .behar-why__principle-icon {
+  transform: rotate(-8deg) scale(1.05);
+  box-shadow: 0 8px 18px rgba(16,44,43,.12);
+}
+
+.behar-why__cta {
+  margin-top: 28px;
+  box-shadow: 0 14px 28px rgba(16,44,43,.15);
+  transition: transform .35s ease, box-shadow .35s ease;
+}
+
+.behar-why__cta:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 35px rgba(16,44,43,.22);
+}
+
+.behar-why__footer {
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(16,44,43,.15);
+}
+
+@media (max-width: 800px) {
+  .behar-why__composition {
+    border-radius: 0 22px 22px 22px;
+  }
+
+  .behar-why__visual {
+    border-radius: 0;
+  }
+
+  .behar-why__principles {
+    padding: 34px 26px 30px;
+  }
+
+  .behar-why__principle::before {
+    inset-inline-start: -26px;
+  }
+}

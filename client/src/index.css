@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Noto+Sans+Arabic:wght@400;500;600;700;800&display=swap');
+
+:root {
+  font-family: 'Outfit', 'Noto Sans Arabic', sans-serif;
+}
+
+body {
+  margin: 0;
+  font-family: 'Outfit', 'Noto Sans Arabic', sans-serif;
+}
+
+html[lang='ar'] body {
+  font-family: 'Noto Sans Arabic', 'Outfit', sans-serif;
+}
+html {
+  scroll-behavior: smooth;
+}
+
+.behar-scroll-top {
+  position: fixed;
+  z-index: 50;
+  right: clamp(18px, 3vw, 40px);
+  bottom: clamp(18px, 3vw, 40px);
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border: 1px solid rgba(217, 239, 116, 0.55);
+  border-radius: 50%;
+  background: #102c2b;
+  color: #d9ef74;
+  cursor: pointer;
+  transition: opacity 220ms ease, transform 220ms ease, visibility 220ms ease;
+}
+
+.behar-scroll-top:hover {
+  transform: translateY(-4px);
+  background: #176e62;
+}
+
+.behar-scroll-top:focus-visible {
+  outline: 2px solid #d9ef74;
+  outline-offset: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .behar-scroll-top {
+    transition: none;
+  }
+}

@@ -1,0 +1,809 @@
+
+/* ==========================================
+   BEHAR / P04
+   THE LEARNING ORBIT
+========================================== */
+
+.behar-works {
+  --forest: #102c2b;
+  --emerald: #176e62;
+  --lime: #d9ef74;
+  --cream: #f4f1e9;
+  --line: rgba(217, 239, 116, 0.16);
+
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: var(--forest);
+  color: #fff;
+  padding: 120px 0 80px;
+}
+
+.behar-works__container {
+  position: relative;
+  z-index: 2;
+  width: min(1440px, calc(100% - 96px));
+  margin-inline: auto;
+}
+
+/* AMBIENT BACKGROUND */
+
+.behar-works__ambient {
+  position: absolute;
+  pointer-events: none;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: 0.13;
+}
+
+.behar-works__ambient--one {
+  width: 600px;
+  height: 600px;
+  background: #56b69d;
+  top: 0;
+  left: -280px;
+}
+
+.behar-works__ambient--two {
+  width: 500px;
+  height: 500px;
+  background: #d9ef74;
+  bottom: -350px;
+  right: -200px;
+}
+
+/* HEADING */
+
+.behar-works__heading {
+  margin-bottom: 70px;
+}
+
+.behar-works__eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  margin-bottom: 35px;
+  color: var(--lime);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+}
+
+.behar-works__eyebrow-icon {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border: 1px solid rgba(217,239,116,.4);
+  border-radius: 50%;
+}
+
+.behar-works__eyebrow-line {
+  width: 65px;
+  height: 1px;
+  background: rgba(217,239,116,.35);
+}
+
+.behar-works__heading-row {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 60px;
+}
+
+.behar-works__heading h2 {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  font-size: clamp(52px, 6.3vw, 105px);
+  font-weight: 500;
+  line-height: 0.99;
+  letter-spacing: -0.075em;
+}
+
+.behar-works__heading h2 em {
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 400;
+  color: var(--lime);
+  letter-spacing: -0.065em;
+}
+
+.behar-works__heading-row > p {
+  max-width: 315px;
+  margin: 0 0 7px;
+  color: #a9c1b6;
+  font-size: 14px;
+  line-height: 1.9;
+}
+
+/* EXPERIENCE */
+
+.behar-works__experience {
+  display: grid;
+  grid-template-columns: 1.05fr .95fr;
+  min-height: 610px;
+  border: 1px solid var(--line);
+}
+
+/* ORBIT VISUAL */
+
+.behar-works__visual {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  overflow: hidden;
+  background:
+    radial-gradient(
+      circle at 50% 50%,
+      rgba(217,239,116,.055),
+      transparent 55%
+    ),
+    #153632;
+  border-inline-end: 1px solid var(--line);
+}
+
+.behar-works__visual::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(
+      rgba(255,255,255,.025) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(255,255,255,.025) 1px,
+      transparent 1px
+    );
+  background-size: 42px 42px;
+}
+
+.behar-works__visual-top,
+.behar-works__visual-bottom {
+  position: relative;
+  z-index: 3;
+}
+
+.behar-works__visual-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 28px 30px;
+  color: #a7c4b7;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .12em;
+}
+
+.behar-works__orbit-space {
+  position: relative;
+  display: grid;
+  place-items: center;
+  flex: 1;
+  min-height: 440px;
+  overflow: hidden;
+}
+
+.behar-works__orbit-decoration {
+  position: absolute;
+  border: 1px solid rgba(217,239,116,.08);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.behar-works__orbit-decoration--one {
+  width: 480px;
+  height: 480px;
+}
+
+.behar-works__orbit-decoration--two {
+  width: 560px;
+  height: 560px;
+  border-style: dashed;
+}
+
+/* ROTATING ORBIT */
+
+.behar-works__orbit {
+  position: absolute;
+  width: 360px;
+  height: 360px;
+  border: 1px dashed rgba(217,239,116,.35);
+  border-radius: 50%;
+  will-change: transform;
+}
+
+.behar-works__orbit::before {
+  content: "";
+  position: absolute;
+  inset: 28px;
+  border: 1px solid rgba(217,239,116,.12);
+  border-radius: 50%;
+}
+
+.behar-works__orbit-node {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: grid;
+  place-items: center;
+  width: 76px;
+  height: 76px;
+  margin: -38px;
+  padding: 0;
+  border: 1px solid rgba(217,239,116,.4);
+  border-radius: 50%;
+  background: #1c4840;
+  color: #d3e5db;
+  cursor: pointer;
+  transform:
+    rotate(var(--node-angle))
+    translateY(-180px)
+    rotate(calc(-1 * var(--node-angle)));
+  transition:
+    background .35s ease,
+    border-color .35s ease,
+    box-shadow .35s ease;
+}
+
+.behar-works__orbit-node.is-active {
+  background: var(--lime);
+  color: var(--forest);
+  border-color: var(--lime);
+  box-shadow: 0 0 0 9px rgba(217,239,116,.08);
+}
+
+.behar-works__orbit-node:hover {
+  border-color: var(--lime);
+}
+
+.behar-works__orbit-node:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 5px;
+}
+
+.behar-works__orbit-node-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.behar-works__orbit-node-inner small {
+  font-size: 10px;
+  font-weight: 700;
+}
+
+/* CENTER CORE */
+
+.behar-works__core {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 215px;
+  height: 215px;
+  border-radius: 50%;
+  background: var(--lime);
+  color: var(--forest);
+  box-shadow:
+    0 0 0 12px rgba(217,239,116,.045),
+    0 0 75px rgba(217,239,116,.08);
+  pointer-events: none;
+}
+
+.behar-works__core-top {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .3em;
+}
+
+.behar-works__core strong {
+  display: flex;
+  align-items: baseline;
+  margin: 8px 0;
+  font-size: 75px;
+  font-weight: 500;
+  letter-spacing: -.08em;
+  line-height: 1;
+}
+
+.behar-works__core strong span {
+  font-size: 21px;
+  letter-spacing: -.03em;
+  opacity: .5;
+}
+
+.behar-works__core-bottom {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .15em;
+}
+
+.behar-works__orbit-star {
+  position: absolute;
+  color: var(--lime);
+  opacity: .7;
+}
+
+.behar-works__orbit-star--one {
+  top: 13%;
+  right: 13%;
+  font-size: 26px;
+}
+
+.behar-works__orbit-star--two {
+  bottom: 14%;
+  left: 13%;
+  font-size: 28px;
+}
+
+/* PROGRESS */
+
+.behar-works__visual-bottom {
+  padding: 20px 30px 28px;
+}
+
+.behar-works__progress {
+  display: flex;
+  gap: 14px;
+}
+
+.behar-works__progress-item {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  flex: 1;
+  min-width: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: #7eaa98;
+  text-align: start;
+  font-family: inherit;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.behar-works__progress-item.is-active {
+  color: var(--lime);
+}
+
+.behar-works__progress-track {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: rgba(217,239,116,.2);
+  overflow: hidden;
+}
+
+.behar-works__progress-track > span {
+  display: block;
+  width: 0;
+  height: 100%;
+  background: var(--lime);
+  transition: width .55s ease;
+}
+
+.behar-works__progress-item.is-active
+.behar-works__progress-track > span {
+  width: 100%;
+}
+
+/* CONTENT PANEL */
+
+.behar-works__panel {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding: 31px 43px 36px;
+  background: #102c2b;
+}
+
+.behar-works__panel-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #94b2a5;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .12em;
+}
+
+.behar-works__panel-symbol {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgba(217,239,116,.3);
+  border-radius: 50%;
+  color: var(--lime);
+}
+
+.behar-works__panel-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  flex: 1;
+  padding: 48px 0;
+}
+
+.behar-works__stage-icon {
+  display: grid;
+  place-items: center;
+  width: 69px;
+  height: 69px;
+  margin-bottom: 34px;
+  border: 1px solid rgba(217,239,116,.4);
+  border-radius: 50%;
+  color: var(--lime);
+}
+
+.behar-works__stage-label {
+  margin-bottom: 18px;
+  color: var(--lime);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .16em;
+}
+
+.behar-works__panel-content h3 {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  font-size: clamp(39px, 4.2vw, 67px);
+  font-weight: 500;
+  line-height: 1.08;
+  letter-spacing: -.065em;
+}
+
+.behar-works__panel-content h3 em {
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 400;
+  color: var(--lime);
+}
+
+.behar-works__stage-description {
+  max-width: 440px;
+  margin: 24px 0 0;
+  color: #a9c1b6;
+  font-size: 14px;
+  line-height: 1.9;
+}
+
+.behar-works__stage-detail {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 30px;
+  color: #d9e5dc;
+  font-size: 12px;
+}
+
+.behar-works__detail-mark {
+  color: var(--lime);
+  font-size: 21px;
+}
+
+/* PANEL FOOTER */
+
+.behar-works__panel-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding-top: 22px;
+  border-top: 1px solid var(--line);
+}
+
+.behar-works__stage-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 20px;
+  color: #fff;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.behar-works__stage-link-icon {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: var(--lime);
+  color: var(--forest);
+  transition: transform .3s ease;
+}
+
+.behar-works__stage-link:hover
+.behar-works__stage-link-icon {
+  transform: rotate(45deg);
+}
+
+.behar-works__panel-navigation {
+  display: flex;
+  gap: 8px;
+}
+
+.behar-works__panel-navigation button {
+  display: grid;
+  place-items: center;
+  width: 41px;
+  height: 41px;
+  border: 1px solid rgba(217,239,116,.25);
+  border-radius: 50%;
+  background: transparent;
+  color: #fff;
+  cursor: pointer;
+  transition:
+    background .25s ease,
+    color .25s ease;
+}
+
+.behar-works__panel-navigation button:hover {
+  background: var(--lime);
+  color: var(--forest);
+}
+
+/* FOOTER */
+
+.behar-works__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding-top: 34px;
+}
+
+.behar-works__footer-note {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #9db8aa;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .12em;
+}
+
+.behar-works__footer-note > span:first-child {
+  color: var(--lime);
+  font-size: 24px;
+}
+
+.behar-works__footer-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--lime);
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.behar-works__footer-link svg {
+  transition: transform .3s ease;
+}
+
+.behar-works__footer-link:hover svg {
+  transform: translateX(4px);
+}
+
+/* RTL */
+
+.behar-works[dir="rtl"] {
+  font-family: "Noto Sans Arabic", sans-serif;
+}
+
+.behar-works[dir="rtl"] .behar-works__heading h2 {
+  line-height: 1.3;
+  letter-spacing: -.04em;
+}
+
+.behar-works[dir="rtl"] .behar-works__heading h2 em,
+.behar-works[dir="rtl"] .behar-works__panel-content h3 em {
+  font-family: "Noto Sans Arabic", sans-serif;
+  font-style: normal;
+}
+
+.behar-works[dir="rtl"] .behar-works__panel-content h3 {
+  line-height: 1.45;
+  letter-spacing: -.035em;
+}
+
+.behar-works[dir="rtl"] .behar-works__footer-link:hover svg {
+  transform: translateX(-4px);
+}
+
+/* TABLET */
+
+@media (max-width: 1100px) {
+  .behar-works__container {
+    width: calc(100% - 64px);
+  }
+
+  .behar-works__experience {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .behar-works__orbit {
+    width: 300px;
+    height: 300px;
+  }
+
+  .behar-works__orbit-node {
+    transform:
+      rotate(var(--node-angle))
+      translateY(-150px)
+      rotate(calc(-1 * var(--node-angle)));
+  }
+
+  .behar-works__core {
+    width: 185px;
+    height: 185px;
+  }
+
+  .behar-works__core strong {
+    font-size: 63px;
+  }
+
+  .behar-works__panel {
+    padding: 28px;
+  }
+}
+
+/* MOBILE */
+
+@media (max-width: 800px) {
+  .behar-works {
+    padding: 80px 0 55px;
+  }
+
+  .behar-works__container {
+    width: calc(100% - 36px);
+  }
+
+  .behar-works__heading-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+  }
+
+  .behar-works__heading h2 {
+    font-size: clamp(45px, 9vw, 72px);
+  }
+
+  .behar-works__heading-row > p {
+    max-width: 500px;
+  }
+
+  .behar-works__experience {
+    grid-template-columns: 1fr;
+  }
+
+  .behar-works__visual {
+    border-inline-end: 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .behar-works__orbit-space {
+    min-height: 440px;
+  }
+
+  .behar-works__panel {
+    min-height: 480px;
+  }
+
+  .behar-works__panel-content {
+    padding: 45px 0;
+  }
+
+  .behar-works__panel-content h3 {
+    font-size: clamp(39px, 7vw, 60px);
+  }
+}
+
+@media (max-width: 480px) {
+  .behar-works__heading {
+    margin-bottom: 40px;
+  }
+
+  .behar-works__heading h2 {
+    font-size: 43px;
+  }
+
+  .behar-works__visual-top {
+    padding: 22px;
+    font-size: 9px;
+  }
+
+  .behar-works__orbit-space {
+    min-height: 350px;
+  }
+
+  .behar-works__orbit {
+    width: 240px;
+    height: 240px;
+  }
+
+  .behar-works__orbit-node {
+    width: 58px;
+    height: 58px;
+    margin: -29px;
+    transform:
+      rotate(var(--node-angle))
+      translateY(-120px)
+      rotate(calc(-1 * var(--node-angle)));
+  }
+
+  .behar-works__orbit-node-inner svg {
+    width: 17px;
+    height: 17px;
+  }
+
+  .behar-works__core {
+    width: 150px;
+    height: 150px;
+  }
+
+  .behar-works__core strong {
+    font-size: 49px;
+  }
+
+  .behar-works__core strong span {
+    font-size: 16px;
+  }
+
+  .behar-works__orbit-decoration--one {
+    width: 340px;
+    height: 340px;
+  }
+
+  .behar-works__orbit-decoration--two {
+    width: 400px;
+    height: 400px;
+  }
+
+  .behar-works__visual-bottom {
+    padding: 18px 22px 24px;
+  }
+
+  .behar-works__panel {
+    padding: 23px;
+    min-height: 470px;
+  }
+
+  .behar-works__panel-content h3 {
+    font-size: 39px;
+  }
+
+  .behar-works__stage-description {
+    font-size: 13px;
+  }
+
+  .behar-works__panel-navigation button {
+    width: 36px;
+    height: 36px;
+  }
+
+  .behar-works__footer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .behar-works *,
+  .behar-works *::before,
+  .behar-works *::after {
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+  }
+}

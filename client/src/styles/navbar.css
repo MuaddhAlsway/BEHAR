@@ -1,0 +1,653 @@
+
+/* =====================================================
+   BEHAR — EDITORIAL NAVIGATION
+   Supports LTR / RTL and responsive layouts
+===================================================== */
+
+:root {
+  --behar-forest: #102c2b;
+  --behar-emerald: #176e62;
+  --behar-lime: #d9ef74;
+  --behar-canvas: #f4f1e9;
+  --behar-ink: #172b2b;
+  --behar-muted: #7a837d;
+  --behar-border: #d9ddd4;
+  --behar-nav-height: 88px;
+}
+
+.be har-header {
+  position: relative;
+}
+
+/* Header shell */
+
+.behar-header {
+  position: relative;
+  z-index: 100;
+  width: 100%;
+  font-family: "DM Sans", "Noto Sans Arabic", sans-serif;
+}
+
+.behar-header *,
+.behar-header *::before,
+.behar-header *::after {
+  box-sizing: border-box;
+}
+
+.behar-header button,
+.behar-header input {
+  font: inherit;
+}
+
+.behar-header a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.behar-navbar {
+  position: relative;
+  z-index: 3;
+  background: var(--behar-canvas);
+  border-bottom: 1px solid var(--behar-border);
+}
+
+.behar-navbar__inner {
+  max-width: 1560px;
+  min-height: var(--behar-nav-height);
+  margin-inline: auto;
+  padding-inline: clamp(20px, 4vw, 72px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+}
+
+/* Brand */
+
+.behar-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.behar-brand__symbol {
+  position: relative;
+  width: 46px;
+  height: 46px;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background: var(--behar-forest);
+  border-radius: 11px 11px 11px 3px;
+  transform: rotate(-5deg);
+  transition: transform 300ms ease;
+}
+
+.behar-brand:hover .behar-brand__symbol {
+  transform: rotate(0deg);
+}
+
+.behar-brand__symbol-letter {
+  color: var(--behar-lime);
+  font-size: 29px;
+  font-weight: 800;
+  line-height: 1;
+  transform: rotate(5deg);
+  letter-spacing: -3px;
+}
+
+.behar-brand__symbol-dot {
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  background: var(--behar-lime);
+  border-radius: 50%;
+  inset-block-start: 9px;
+  inset-inline-end: 8px;
+}
+
+.behar-brand__identity {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.behar-brand__name {
+  font-family: "DM Sans", sans-serif;
+  color: var(--behar-forest);
+  font-size: 23px;
+  font-weight: 800;
+  letter-spacing: -1.4px;
+  line-height: 1;
+}
+
+.behar-brand__descriptor {
+  color: var(--behar-muted);
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 1.55px;
+}
+
+/* Desktop navigation */
+
+.behar-navlinks {
+  display: flex;
+  align-items: center;
+  gap: clamp(18px, 2.5vw, 44px);
+  margin-inline: auto;
+}
+
+.behar-navlink {
+  position: relative;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 7px;
+  padding-block: 32px;
+  color: var(--behar-ink);
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: color 200ms ease;
+}
+
+.behar-navlink__number {
+  color: var(--behar-muted);
+  font-size: 9px;
+  font-weight: 600;
+}
+
+.behar-navlink::after {
+  content: "";
+  position: absolute;
+  inset-inline-start: 0;
+  inset-inline-end: 100%;
+  bottom: 22px;
+  height: 2px;
+  background: var(--behar-emerald);
+  transition: inset-inline-end 250ms ease;
+}
+
+.behar-navlink:hover,
+.behar-navlink.is-active {
+  color: var(--behar-emerald);
+}
+
+.behar-navlink:hover::after,
+.behar-navlink.is-active::after {
+  inset-inline-end: 0;
+}
+
+/* Actions */
+
+.behar-actions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-shrink: 0;
+}
+
+.behar-icon-button,
+.behar-menu-toggle {
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--behar-forest);
+  cursor: pointer;
+  transition: color 200ms ease, transform 200ms ease;
+}
+
+.behar-icon-button:hover,
+.behar-menu-toggle:hover {
+  color: var(--behar-emerald);
+  transform: scale(1.07);
+}
+
+.behar-icon-button.is-active {
+  color: var(--behar-emerald);
+}
+
+.behar-actions__separator {
+  width: 1px;
+  height: 22px;
+  background: var(--behar-border);
+}
+
+.behar-language {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 7px 0;
+  background: transparent;
+  border: 0;
+  color: var(--behar-forest);
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.behar-language:hover {
+  color: var(--behar-emerald);
+}
+
+.behar-login {
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+  transition: color 200ms ease;
+}
+
+.behar-login:hover {
+  color: var(--behar-emerald);
+}
+
+/* Lime editorial CTA */
+
+.behar-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 17px;
+  padding: 7px 7px 7px 20px;
+  background: var(--behar-lime);
+  border: 1px solid var(--behar-forest);
+  border-radius: 100px;
+  color: var(--behar-forest);
+  font-size: 12px;
+  font-weight: 800;
+  white-space: nowrap;
+  box-shadow: 3px 3px 0 var(--behar-forest);
+  transition: transform 200ms ease, box-shadow 200ms ease;
+}
+
+.behar-cta:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0 var(--behar-forest);
+}
+
+.behar-cta__icon {
+  width: 31px;
+  height: 31px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--behar-forest);
+  color: var(--behar-lime);
+}
+
+.behar-menu-toggle {
+  display: none;
+}
+
+/* Search panel */
+
+.behar-search-panel {
+  position: absolute;
+  z-index: 2;
+  top: 100%;
+  inset-inline: 0;
+  background: var(--behar-forest);
+  color: #fff;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-15px);
+  transition:
+    opacity 250ms ease,
+    transform 250ms ease,
+    visibility 250ms ease;
+  box-shadow: 0 24px 50px rgba(16, 44, 43, 0.17);
+}
+
+.behar-search-panel.is-open {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.behar-search-panel__inner {
+  max-width: 1100px;
+  margin-inline: auto;
+  padding: 48px 28px 34px;
+}
+
+.behar-search-panel__eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 23px;
+  color: var(--behar-lime);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.8px;
+}
+
+.behar-search-form {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.35);
+}
+
+.behar-search-form > svg {
+  flex-shrink: 0;
+  color: var(--behar-lime);
+}
+
+.behar-search-form input {
+  flex: 1;
+  width: 100%;
+  min-width: 0;
+  padding: 10px 0;
+  background: transparent;
+  border: 0;
+  outline: 0;
+  color: #fff;
+  font-size: clamp(19px, 3vw, 34px);
+  font-weight: 500;
+}
+
+.behar-search-form input::placeholder {
+  color: rgba(255, 255, 255, 0.52);
+}
+
+.behar-search-submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 13px;
+  padding: 14px 19px;
+  border: 0;
+  background: var(--behar-lime);
+  color: var(--behar-forest);
+  font-size: 13px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: background 200ms ease;
+}
+
+.behar-search-submit:hover {
+  background: #ecf9a9;
+}
+
+.behar-search-panel__bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 20px;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 11px;
+}
+
+.behar-search-panel__bottom > span:first-child {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.behar-search-panel__hint {
+  letter-spacing: 1px;
+}
+
+/* Mobile panel */
+
+.behar-mobile-panel {
+  display: none;
+}
+
+/* Arabic adjustments */
+
+.behar-header[dir="rtl"] {
+  font-family: "Noto Sans Arabic", "DM Sans", sans-serif;
+}
+
+.behar-header[dir="rtl"] .behar-brand__identity,
+.behar-header[dir="rtl"] .behar-brand__symbol {
+  direction: ltr;
+}
+
+.behar-header[dir="rtl"] .behar-cta {
+  padding: 7px 20px 7px 7px;
+}
+
+.behar-header[dir="rtl"] .behar-navlink {
+  font-size: 13px;
+}
+
+/* Keyboard accessibility */
+
+.behar-header a:focus-visible,
+.behar-header button:focus-visible,
+.behar-header input:focus-visible {
+  outline: 3px solid var(--behar-emerald);
+  outline-offset: 4px;
+}
+
+.behar-search-panel input:focus-visible,
+.behar-search-panel button:focus-visible {
+  outline-color: var(--behar-lime);
+}
+
+/* Tablet */
+
+@media (max-width: 1190px) {
+  .behar-navbar__inner {
+    gap: 18px;
+  }
+
+  .behar-navlinks {
+    gap: 18px;
+  }
+
+  .behar-actions {
+    gap: 12px;
+  }
+
+  .behar-brand__descriptor {
+    display: none;
+  }
+
+  .behar-login {
+    display: none;
+  }
+}
+
+/* Mobile and compact navigation */
+
+@media (max-width: 960px) {
+  :root {
+    --behar-nav-height: 76px;
+  }
+
+  .behar-navbar__inner {
+    padding-inline: 22px;
+  }
+
+  .behar-navlinks,
+  .behar-actions__separator,
+  .behar-cta {
+    display: none;
+  }
+
+  .behar-menu-toggle {
+    display: grid;
+  }
+
+  .behar-actions {
+    gap: 10px;
+  }
+
+  .behar-language {
+    padding-inline: 5px;
+  }
+
+  .behar-mobile-panel {
+    position: absolute;
+    z-index: 1;
+    top: 100%;
+    inset-inline: 0;
+    display: block;
+    max-height: calc(100dvh - var(--behar-nav-height));
+    overflow-y: auto;
+    background: var(--behar-forest);
+    color: white;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-15px);
+    transition:
+      opacity 250ms ease,
+      transform 250ms ease,
+      visibility 250ms ease;
+    box-shadow: 0 30px 45px rgba(16, 44, 43, 0.2);
+  }
+
+  .behar-mobile-panel.is-open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  .behar-mobile-panel__inner {
+    padding: 30px 26px 36px;
+  }
+
+  .behar-mobile-panel__label {
+    display: flex;
+    justify-content: space-between;
+    color: var(--behar-lime);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+  }
+
+  .behar-mobile-links {
+    margin-top: 30px;
+  }
+
+  .behar-mobile-link {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+    transition: color 200ms ease;
+  }
+
+  .behar-mobile-link:hover {
+    color: var(--behar-lime);
+  }
+
+  .behar-mobile-link__number {
+    align-self: flex-start;
+    padding-top: 8px;
+    color: var(--behar-lime);
+    font-size: 11px;
+  }
+
+  .behar-mobile-link__title {
+    flex: 1;
+    font-size: clamp(25px, 5vw, 42px);
+    font-weight: 600;
+    letter-spacing: -1px;
+  }
+
+  .behar-mobile-panel__footer {
+    margin-top: 44px;
+  }
+
+  .behar-mobile-panel__footer p {
+    margin: 0 0 24px;
+    color: rgba(255, 255, 255, 0.65);
+    font-size: 14px;
+  }
+
+  .behar-mobile-panel__buttons {
+    display: flex;
+    gap: 12px;
+  }
+
+  .behar-mobile-login,
+  .behar-mobile-cta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    min-height: 48px;
+    padding: 12px 20px;
+    font-size: 13px;
+    font-weight: 700;
+  }
+
+  .behar-mobile-login {
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    color: white;
+  }
+
+  .behar-mobile-cta {
+    flex: 1;
+    background: var(--behar-lime);
+    color: var(--behar-forest) !important;
+  }
+}
+
+/* Small screens */
+
+@media (max-width: 520px) {
+  .behar-navbar__inner {
+    padding-inline: 16px;
+  }
+
+  .behar-brand__symbol {
+    width: 40px;
+    height: 40px;
+  }
+
+  .behar-brand__name {
+    font-size: 20px;
+  }
+
+  .behar-brand {
+    gap: 9px;
+  }
+
+  .behar-language span {
+    font-size: 11px;
+  }
+
+  .behar-search-panel__inner {
+    padding: 30px 20px;
+  }
+
+  .behar-search-form {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .behar-search-form input {
+    font-size: 20px;
+  }
+
+  .behar-search-submit {
+    width: 100%;
+  }
+
+  .behar-search-panel__hint {
+    display: none;
+  }
+}
+
+/* Reduced motion */
+
+@media (prefers-reduced-motion: reduce) {
+  .behar-header *,
+  .behar-header *::before,
+  .behar-header *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

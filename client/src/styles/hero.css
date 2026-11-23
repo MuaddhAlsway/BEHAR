@@ -1,0 +1,640 @@
+
+/* =============================================
+   BEHAR — HOMEPAGE HERO
+   Editorial / Asymmetric / Bilingual
+============================================= */
+
+.behar-hero {
+  --hero-forest: #102c2b;
+  --hero-emerald: #176e62;
+  --hero-lime: #d9ef74;
+  --hero-canvas: #f4f1e9;
+  --hero-ink: #172b2b;
+  --hero-muted: #7a837d;
+
+  position: relative;
+  overflow: hidden;
+  background: var(--hero-canvas);
+  color: var(--hero-ink);
+  font-family: "Outfit", "Noto Sans Arabic", sans-serif;
+}
+
+.behar-hero *,
+.behar-hero *::before,
+.behar-hero *::after {
+  box-sizing: border-box;
+}
+
+.behar-hero a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.behar-hero__container {
+  max-width: 1600px;
+  margin-inline: auto;
+  padding: 64px clamp(22px, 5vw, 80px) 90px;
+  display: grid;
+  grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
+  gap: clamp(30px, 4vw, 70px);
+  align-items: stretch;
+  min-height: 720px;
+}
+
+/* Left content */
+
+.behar-hero__content {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.behar-hero__eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--hero-emerald);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1.8px;
+}
+
+.behar-hero__eyebrow-mark {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border: 1px solid var(--hero-emerald);
+  border-radius: 50%;
+}
+
+.behar-hero__eyebrow-line {
+  width: 34px;
+  height: 1px;
+  background: #b6c6ba;
+}
+
+.behar-hero__eyebrow-index {
+  color: var(--hero-muted);
+  font-size: 9px;
+  letter-spacing: 1px;
+}
+
+.behar-hero__title {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: clamp(50px, 7vw, 110px) 0 0;
+  font-size: clamp(65px, 7.2vw, 126px);
+  font-weight: 600;
+  line-height: 0.92;
+  letter-spacing: -0.075em;
+}
+
+.behar-hero__title > span {
+  display: block;
+  max-width: 100%;
+}
+
+.behar-hero__title-outline {
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--hero-forest);
+  font-weight: 500;
+}
+
+.behar-hero__title-last {
+  position: relative;
+  color: var(--hero-emerald);
+}
+
+.behar-hero__title-star {
+  display: inline-block;
+  margin-inline-start: 16px;
+  color: var(--hero-emerald);
+  font-size: 0.34em;
+  vertical-align: top;
+  transform: rotate(-18deg);
+  animation: behar-star-turn 12s linear infinite;
+}
+
+@keyframes behar-star-turn {
+  to {
+    transform: rotate(342deg);
+  }
+}
+
+.behar-hero__bottom {
+  margin-top: auto;
+  padding-top: 60px;
+}
+
+.behar-hero__intro {
+  display: flex;
+  align-items: flex-start;
+  gap: 22px;
+  max-width: 540px;
+}
+
+.behar-hero__intro-number {
+  padding-top: 7px;
+  flex-shrink: 0;
+  color: var(--hero-emerald);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.behar-hero__intro p {
+  max-width: 440px;
+  margin: 0;
+  color: #59665f;
+  font-size: clamp(14px, 1.25vw, 17px);
+  line-height: 1.8;
+}
+
+.behar-hero__actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 24px;
+  margin-top: 30px;
+}
+
+.behar-hero__primary {
+  display: inline-flex;
+  width: fit-content;
+  max-width: 100%;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: space-between;
+  gap: 35px;
+  min-height: 60px;
+  padding: 7px 7px 7px 25px;
+  background: var(--hero-forest);
+  color: #fff !important;
+  border-radius: 100px;
+  font-size: 13px;
+  font-weight: 700;
+  white-space: nowrap;
+  transition: transform 250ms ease, background 250ms ease;
+}
+
+.behar-hero__primary:hover {
+  background: var(--hero-emerald);
+  transform: translateY(-3px);
+}
+
+.behar-hero__primary-icon {
+  display: grid;
+  place-items: center;
+  width: 45px;
+  height: 45px;
+  background: var(--hero-lime);
+  border-radius: 50%;
+  color: var(--hero-forest);
+  transition: transform 250ms ease;
+}
+
+.behar-hero__primary:hover .behar-hero__primary-icon {
+  transform: rotate(45deg);
+}
+
+.behar-hero__secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--hero-forest);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.behar-hero__play {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border: 1px solid #b6c6ba;
+  border-radius: 50%;
+  transition: background 250ms ease;
+}
+
+.behar-hero__secondary:hover .behar-hero__play {
+  background: var(--hero-lime);
+}
+
+.behar-hero__scroll {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 58px;
+  color: var(--hero-muted);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1.8px;
+}
+
+.behar-hero__scroll-line {
+  width: 35px;
+  height: 1px;
+  background: var(--hero-muted);
+}
+
+/* Right editorial visual */
+
+.behar-hero__visual {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.behar-hero__visual-top,
+.behar-hero__visual-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  color: var(--hero-muted);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1.1px;
+}
+
+.behar-hero__visual-top {
+  margin-bottom: 16px;
+}
+
+.behar-hero__visual-top span:last-child {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--hero-emerald);
+}
+
+.behar-hero__image-frame {
+  position: relative;
+  flex: 1;
+  min-height: 570px;
+  overflow: hidden;
+  background: #c6c7b8;
+  border-radius: 160px 160px 8px 8px;
+}
+
+.behar-hero__image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 570px;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 900ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.behar-hero__image-frame:hover .behar-hero__image {
+  transform: scale(1.05);
+}
+
+.behar-hero__image-frame::after {
+  content: "";
+  position: absolute;
+  inset: 40% 0 0;
+  pointer-events: none;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(16, 44, 43, 0.45)
+  );
+}
+
+.behar-hero__image-label {
+  position: absolute;
+  z-index: 1;
+  bottom: 28px;
+  inset-inline-start: 28px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.behar-hero__image-label-dot {
+  width: 8px;
+  height: 8px;
+  background: var(--hero-lime);
+  border-radius: 50%;
+}
+
+.behar-hero__image-index {
+  position: absolute;
+  z-index: 1;
+  top: 48%;
+  inset-inline-end: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.behar-hero__image-index span:nth-child(2) {
+  opacity: 0.6;
+}
+
+/* Overlapping course preview */
+
+.behar-hero__feature {
+  position: absolute;
+  z-index: 2;
+  bottom: 55px;
+  inset-inline-start: -75px;
+  display: flex;
+  flex-direction: column;
+  width: min(290px, 65%);
+  min-height: 220px;
+  padding: 22px;
+  background: var(--hero-lime);
+  color: var(--hero-forest);
+  box-shadow: 12px 12px 0 rgba(16, 44, 43, 0.13);
+  transition: transform 250ms ease;
+}
+
+.behar-hero__feature:hover {
+  transform: translateY(-6px);
+}
+
+.behar-hero__feature-top,
+.behar-hero__feature-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.behar-hero__feature-top {
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.behar-hero__feature-top span {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.behar-hero__feature-category {
+  margin-top: 26px;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1.3px;
+  opacity: 0.7;
+}
+
+.behar-hero__feature h2 {
+  margin: 7px 0 24px;
+  font-size: 25px;
+  font-weight: 600;
+  line-height: 1.12;
+  letter-spacing: -0.8px;
+}
+
+.behar-hero__feature-bottom {
+  margin-top: auto;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.behar-hero__feature-arrow {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border: 1px solid var(--hero-forest);
+  border-radius: 50%;
+}
+
+.behar-hero__visual-footer {
+  margin-top: 15px;
+}
+
+/* Marquee */
+
+.behar-hero__marquee {
+  overflow: hidden;
+  padding: 17px 0;
+  background: var(--hero-forest);
+  color: #fff;
+}
+
+.behar-hero__marquee-track {
+  display: flex;
+  width: max-content;
+  animation: behar-marquee 30s linear infinite;
+  will-change: transform;
+}
+
+.behar-hero__marquee-track > span {
+  flex-shrink: 0;
+  padding-inline: 35px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 3px;
+}
+
+.behar-hero__marquee-track > span span {
+  padding-inline: 20px;
+  color: var(--hero-lime);
+}
+
+@keyframes behar-marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes behar-marquee-rtl {
+  to {
+    transform: translateX(50%);
+  }
+}
+
+/* RTL */
+
+.behar-hero[dir="rtl"] {
+  font-family: "Noto Sans Arabic", "Outfit", sans-serif;
+}
+
+.behar-hero[dir="rtl"] .behar-hero__marquee-track {
+  animation-name: behar-marquee-rtl;
+}
+
+.behar-hero[dir="rtl"] .behar-hero__title {
+  font-size: clamp(58px, 6vw, 105px);
+  letter-spacing: -0.04em;
+  line-height: 1.25;
+}
+
+.behar-hero[dir="rtl"] .behar-hero__title-outline {
+  -webkit-text-stroke: 0;
+  color: var(--hero-forest);
+}
+
+.behar-hero[dir="rtl"] .behar-hero__primary {
+  padding: 7px 25px 7px 7px;
+}
+
+.behar-hero[dir="rtl"] .behar-hero__feature h2 {
+  letter-spacing: 0;
+  line-height: 1.5;
+}
+
+/* Responsive */
+
+@media (max-width: 1200px) {
+  .behar-hero__container {
+    gap: 30px;
+  }
+
+  .behar-hero__title {
+    font-size: clamp(60px, 6.8vw, 100px);
+  }
+
+  .behar-hero__feature {
+    inset-inline-start: -30px;
+  }
+}
+
+@media (max-width: 960px) {
+  .behar-hero__container {
+    grid-template-columns: 1fr;
+    padding-top: 55px;
+    gap: 55px;
+  }
+
+  .behar-hero__title {
+    margin-top: 55px;
+    font-size: clamp(65px, 10vw, 115px);
+  }
+
+  .behar-hero__bottom {
+    padding-top: 35px;
+  }
+
+  .behar-hero__visual {
+    max-width: 700px;
+    width: 100%;
+    margin-inline: auto;
+  }
+
+  .behar-hero__image-frame {
+    min-height: 530px;
+  }
+
+  .behar-hero__image {
+    min-height: 530px;
+  }
+
+  .behar-hero__feature {
+    inset-inline-start: -10px;
+  }
+
+  .behar-hero__scroll {
+    margin-top: 40px;
+  }
+}
+
+@media (max-width: 600px) {
+  .behar-hero__container {
+    padding: 35px 20px 55px;
+    gap: 40px;
+  }
+
+  .behar-hero__eyebrow {
+    gap: 8px;
+    font-size: 9px;
+    letter-spacing: 1px;
+  }
+
+  .behar-hero__eyebrow-index {
+    display: none;
+  }
+
+  .behar-hero__title {
+    margin-top: 45px;
+    font-size: clamp(49px, 12vw, 75px);
+    line-height: 1;
+  }
+
+  .behar-hero__title-star {
+    margin-inline-start: 7px;
+  }
+
+  .behar-hero__intro {
+    gap: 12px;
+  }
+
+  .behar-hero__intro p {
+    font-size: 14px;
+  }
+
+  .behar-hero__actions {
+    gap: 20px;
+  }
+
+  .behar-hero__primary {
+    min-height: 54px;
+    gap: 16px;
+    padding-inline-start: 18px;
+  }
+
+  .behar-hero__primary-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .behar-hero__image-frame {
+    min-height: 420px;
+    border-radius: 100px 100px 6px 6px;
+  }
+
+  .behar-hero__image {
+    min-height: 420px;
+  }
+
+  .behar-hero__feature {
+    bottom: 48px;
+    inset-inline-start: -5px;
+    width: 235px;
+    min-height: 190px;
+    padding: 17px;
+  }
+
+  .behar-hero__feature h2 {
+    font-size: 20px;
+  }
+
+  .behar-hero__feature-category {
+    margin-top: 20px;
+  }
+
+  .behar-hero__visual-footer {
+    font-size: 8px;
+  }
+
+  .behar-hero[dir="rtl"] .behar-hero__title {
+    font-size: clamp(46px, 10vw, 72px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .behar-hero *,
+  .behar-hero *::before,
+  .behar-hero *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}

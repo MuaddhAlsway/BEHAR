@@ -1,0 +1,1027 @@
+
+/* =========================================
+   BEHAR / P06 — THE FACULTY GALLERY
+========================================= */
+
+.behar-faculty {
+  --forest: #102c2b;
+  --emerald: #176e62;
+  --lime: #d9ef74;
+  --cream: #f4f1e9;
+
+  position: relative;
+  overflow: hidden;
+  background: var(--cream);
+  color: var(--forest);
+  padding: 115px 0 85px;
+}
+
+.behar-faculty__container {
+  width: min(1500px, calc(100% - 96px));
+  margin-inline: auto;
+}
+
+/* HEADING */
+
+.behar-faculty__heading {
+  margin-bottom: 60px;
+}
+
+.behar-faculty__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 11px;
+  margin-bottom: 32px;
+  color: var(--emerald);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .13em;
+}
+
+.behar-faculty__heading-grid {
+  display: grid;
+  grid-template-columns: 1.4fr .6fr;
+  align-items: end;
+  gap: 50px;
+}
+
+.behar-faculty__heading h2 {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  font-size: clamp(54px, 6.2vw, 105px);
+  font-weight: 500;
+  line-height: .98;
+  letter-spacing: -.075em;
+}
+
+.behar-faculty__heading h2 em {
+  color: var(--emerald);
+  font-family: Georgia, serif;
+  font-weight: 400;
+  letter-spacing: -.06em;
+}
+
+.behar-faculty__heading-aside {
+  padding-bottom: 10px;
+}
+
+.behar-faculty__heading-aside p {
+  max-width: 340px;
+  margin: 0 0 25px;
+  color: #65786d;
+  font-size: 14px;
+  line-height: 1.9;
+}
+
+.behar-faculty__all-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 18px;
+  padding: 15px 22px;
+  border-radius: 100px;
+  background: var(--forest);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background .3s ease, transform .3s ease;
+}
+
+.behar-faculty__all-link:hover {
+  background: var(--emerald);
+  transform: translateY(-3px);
+}
+
+/* GALLERY */
+
+.behar-faculty__gallery {
+  display: flex;
+  align-items: stretch;
+  gap: 10px;
+  height: clamp(400px, 39vw, 570px);
+  min-width: 0;
+}
+
+.behar-faculty__card {
+  position: relative;
+  isolation: isolate;
+  display: block;
+  flex: 1 1 0;
+  min-width: 0;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  border-radius: 24px;
+  background: #c6d0c7;
+  color: #fff;
+  text-align: start;
+  font: inherit;
+  cursor: pointer;
+  transition:
+    filter .45s ease,
+    border-radius .45s ease;
+}
+
+.behar-faculty__card:not(.is-active) {
+  filter: saturate(.55);
+}
+
+.behar-faculty__card:hover {
+  filter: saturate(1);
+}
+
+.behar-faculty__card.is-active {
+  border-radius: 35px;
+  outline: 2px solid var(--lime);
+  outline-offset: -2px;
+}
+
+.behar-faculty__card:focus-visible {
+  outline: 3px solid var(--emerald);
+  outline-offset: 4px;
+}
+
+.behar-faculty__card-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  color: var(--lime);
+  background:
+    radial-gradient(circle at 50% 38%, rgba(217, 239, 116, .18), transparent 28%),
+    linear-gradient(145deg, #183b35 0%, #0b2524 52%, #061917 100%);
+  transform: scale(1);
+  will-change: transform;
+}
+
+.behar-faculty__card-image svg {
+  filter: drop-shadow(0 10px 22px rgba(217, 239, 116, .18));
+}
+
+.behar-faculty__card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(6,25,22,.08),
+    transparent 38%,
+    rgba(6,25,22,.8) 100%
+  );
+}
+
+.behar-faculty__card:not(.is-active)
+.behar-faculty__card-overlay {
+  background: linear-gradient(
+    180deg,
+    rgba(6,25,22,.05),
+    rgba(6,25,22,.65)
+  );
+}
+
+.behar-faculty__featured {
+  position: absolute;
+  z-index: 2;
+  top: 22px;
+  inset-inline-start: 22px;
+  padding: 9px 13px;
+  border-radius: 30px;
+  background: var(--lime);
+  color: var(--forest);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .04em;
+}
+
+.behar-faculty__card-info {
+  position: absolute;
+  z-index: 2;
+  inset-inline: 23px;
+  bottom: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.behar-faculty__card-name {
+  font-size: clamp(16px, 1.8vw, 30px);
+  font-weight: 600;
+  letter-spacing: -.04em;
+  line-height: 1.15;
+}
+
+.behar-faculty__card-role {
+  font-size: 12px;
+  color: rgba(255,255,255,.8);
+  line-height: 1.5;
+}
+
+.behar-faculty__card-skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  max-height: 0;
+  margin-top: 0;
+  overflow: hidden;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(8px);
+  pointer-events: none;
+  transition:
+    max-height .35s ease,
+    margin-top .35s ease,
+    opacity .35s ease,
+    visibility .35s ease,
+    transform .35s ease;
+}
+
+.behar-faculty__card:hover .behar-faculty__card-skills,
+.behar-faculty__card:focus-visible .behar-faculty__card-skills,
+.behar-faculty__card-skills.is-skills-visible {
+  max-height: 80px;
+  margin-top: 12px;
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.behar-faculty__card-skills > span {
+  opacity: 0;
+  transform: translateY(7px);
+  clip-path: inset(0 100% 0 0 round 30px);
+  padding: 7px 10px;
+  border: 1px solid rgba(255,255,255,.6);
+  border-radius: 30px;
+  background: rgba(0,0,0,.15);
+  backdrop-filter: blur(8px);
+  font-size: 10px;
+  transition:
+    opacity .3s ease,
+    transform .3s ease,
+    clip-path .45s cubic-bezier(.22, 1, .36, 1);
+}
+
+.behar-faculty__card:hover .behar-faculty__card-skills > span,
+.behar-faculty__card:focus-visible .behar-faculty__card-skills > span,
+.behar-faculty__card-skills.is-skills-visible > span {
+  opacity: 1;
+  transform: translateY(0);
+  clip-path: inset(0 0 0 0 round 30px);
+}
+
+.behar-faculty__card-skills > span:nth-child(1) {
+  transition-delay: 40ms;
+}
+
+.behar-faculty__card-skills > span:nth-child(2) {
+  transition-delay: 100ms;
+}
+
+.behar-faculty__card-skills > span:nth-child(3) {
+  transition-delay: 160ms;
+}
+
+.behar-faculty__card-arrow {
+  position: absolute;
+  z-index: 2;
+  top: 22px;
+  inset-inline-end: 22px;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.85);
+  color: var(--forest);
+  opacity: 0;
+  transform: translateY(8px);
+  will-change: transform, opacity;
+}
+
+.behar-faculty__card.is-active .behar-faculty__card-arrow {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* GALLERY FOOTER */
+
+.behar-faculty__gallery-footer {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  margin-top: 28px;
+}
+
+.behar-faculty__counter {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  min-width: 80px;
+  font-size: 12px;
+  color: #829589;
+}
+
+.behar-faculty__counter strong {
+  color: var(--forest);
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.behar-faculty__progress {
+  display: flex;
+  gap: 8px;
+  flex: 1;
+}
+
+.behar-faculty__progress button {
+  flex: 1;
+  height: 16px;
+  padding: 6px 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.behar-faculty__progress button > span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: #cbd7c8;
+  transition: background .3s ease;
+}
+
+.behar-faculty__progress button.is-active > span {
+  background: var(--emerald);
+}
+
+.behar-faculty__controls {
+  display: flex;
+  gap: 8px;
+}
+
+.behar-faculty__controls button {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border: 1px solid #c6d4c8;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--forest);
+  cursor: pointer;
+  transition: background .3s ease, color .3s ease;
+}
+
+.behar-faculty__controls button:hover {
+  background: var(--forest);
+  color: #fff;
+}
+
+/* BENEFITS */
+
+.behar-faculty__benefits {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0;
+  margin-top: 65px;
+  padding-top: 35px;
+  border-top: 1px solid #d1ddcf;
+}
+
+.behar-faculty__benefit {
+  display: flex;
+  gap: 17px;
+  padding-inline: 25px;
+  border-inline-end: 1px solid #d1ddcf;
+}
+
+.behar-faculty__benefit:first-child {
+  padding-inline-start: 0;
+}
+
+.behar-faculty__benefit:last-child {
+  border: 0;
+}
+
+.behar-faculty__benefit-icon {
+  color: var(--emerald);
+  flex-shrink: 0;
+}
+
+.behar-faculty__benefit strong {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.behar-faculty__benefit p {
+  margin: 7px 0 0;
+  color: #788a7d;
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+/* =========================================
+   INSTRUCTOR PROFILE MODAL
+========================================= */
+
+.behar-faculty-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: grid;
+  place-items: center;
+  padding: 25px;
+  background: rgba(5, 24, 21, .78);
+  backdrop-filter: blur(18px) saturate(1.08);
+}
+
+.behar-faculty-modal__dialog {
+  position: relative;
+  display: grid;
+  grid-template-columns: .8fr 1.2fr;
+  width: min(1050px, 100%);
+  height: min(850px, calc(100dvh - 50px));
+  box-sizing: border-box;
+  min-height: 0;
+  max-height: min(850px, calc(100dvh - 50px));
+  overflow: hidden;
+  border: 1px solid rgba(217,239,116,.22);
+  border-radius: 26px;
+  background: #fffefa;
+  color: var(--forest, #102c2b);
+  box-shadow: 0 35px 100px rgba(0,0,0,.3);
+}
+
+.behar-faculty-modal__close {
+  position: absolute;
+  z-index: 5;
+  top: 18px;
+  right: 18px;
+  display: grid;
+  place-items: center;
+  width: 43px;
+  height: 43px;
+  border: 0;
+  border-radius: 50%;
+  background: #f0f1eb;
+  color: #102c2b;
+  cursor: pointer;
+  transition: background .25s ease, color .25s ease, transform .25s ease;
+}
+
+.behar-faculty-modal__close:hover {
+  background: #d9ef74;
+  transform: rotate(8deg);
+}
+
+.behar-faculty-modal__close:focus-visible {
+  outline: 2px solid #176e62;
+  outline-offset: 4px;
+}
+
+.behar-faculty-modal__portrait {
+  position: relative;
+  min-height: 600px;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 50% 34%, rgba(217, 239, 116, .2), transparent 25%),
+    linear-gradient(145deg, #183b35 0%, #0b2524 55%, #061917 100%);
+}
+
+.behar-faculty-modal__portrait-icon {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: var(--lime, #d9ef74);
+}
+
+.behar-faculty-modal__portrait-icon svg {
+  filter: drop-shadow(0 18px 35px rgba(217, 239, 116, .2));
+}
+
+.behar-faculty-modal__portrait img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.behar-faculty-modal__portrait::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    transparent 55%,
+    rgba(5,25,21,.85)
+  );
+}
+
+.behar-faculty-modal__portrait-label {
+  position: absolute;
+  z-index: 2;
+  bottom: 38px;
+  inset-inline: 35px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  color: #fff;
+}
+
+.behar-faculty-modal__portrait-label span {
+  color: #d9ef74;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .12em;
+}
+
+.behar-faculty-modal__portrait-label strong {
+  font-size: 40px;
+  font-weight: 500;
+  letter-spacing: -.05em;
+}
+
+.behar-faculty-modal__content {
+  height: 100%;
+  align-self: stretch;
+  min-height: 0;
+  max-height: 100%;
+  overflow-y: scroll;
+  overscroll-behavior: contain;
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-gutter: stable;
+  -webkit-overflow-scrolling: touch;
+  padding: 45px 45px 72px;
+  box-sizing: border-box;
+  scroll-padding-block-end: 72px;
+  scrollbar-color: #176e62 #edf2ea;
+}
+
+.behar-faculty-modal__content::-webkit-scrollbar,
+.behar-faculty-modal__dialog::-webkit-scrollbar {
+  width: 9px;
+}
+
+.behar-faculty-modal__content::-webkit-scrollbar-track,
+.behar-faculty-modal__dialog::-webkit-scrollbar-track {
+  margin-block: 14px;
+  background: #edf2ea;
+  border-radius: 999px;
+}
+
+.behar-faculty-modal__content::-webkit-scrollbar-thumb,
+.behar-faculty-modal__dialog::-webkit-scrollbar-thumb {
+  min-height: 48px;
+  border: 2px solid #edf2ea;
+  border-radius: 999px;
+  background: #176e62;
+}
+
+.behar-faculty-modal__content::-webkit-scrollbar-thumb:hover,
+.behar-faculty-modal__dialog::-webkit-scrollbar-thumb:hover {
+  background: #102c2b;
+}
+
+.behar-faculty-modal__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding-inline-end: 42px;
+  font-size: 10px;
+  font-weight: 700;
+  color: #75867a;
+}
+
+.behar-faculty-modal__tag {
+  padding: 8px 12px;
+  border-radius: 30px;
+  background: #d9ef74;
+  color: #102c2b;
+}
+
+.behar-faculty-modal__identity {
+  margin-top: 40px;
+}
+
+.behar-faculty-modal__identity > span {
+  color: #176e62;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.behar-faculty-modal__identity h2 {
+  margin: 10px 0;
+  font-size: clamp(40px, 4vw, 65px);
+  font-weight: 500;
+  letter-spacing: -.065em;
+  line-height: 1.05;
+}
+
+.behar-faculty-modal__role {
+  color: #65786b;
+  font-size: 13px;
+}
+
+.behar-faculty-modal__bio {
+  margin-top: 25px;
+  color: #63776b;
+  font-size: 14px;
+  line-height: 1.9;
+}
+
+.behar-faculty-modal__skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 22px;
+}
+
+.behar-faculty-modal__skills span {
+  padding: 9px 12px;
+  border: 1px solid #d5dfd4;
+  border-radius: 30px;
+  font-size: 11px;
+}
+
+.behar-faculty-modal__stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-top: 30px;
+}
+
+.behar-faculty-modal__stats > div {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  padding: 16px 12px;
+  border: 1px solid #e0e6dd;
+  border-radius: 12px;
+}
+
+.behar-faculty-modal__stats strong {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 27px;
+  font-weight: 600;
+}
+
+.behar-faculty-modal__stats strong svg {
+  color: #176e62;
+}
+
+.behar-faculty-modal__stats span {
+  color: #7b8a7e;
+  font-size: 10px;
+}
+
+.behar-faculty-modal__quote {
+  margin-top: 30px;
+  padding: 23px;
+  border-radius: 14px;
+  background: #f1f4e9;
+}
+
+.behar-faculty-modal__quote > span {
+  color: #176e62;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .12em;
+}
+
+.behar-faculty-modal__quote blockquote {
+  margin: 14px 0 0;
+  font-family: Georgia, serif;
+  font-size: 23px;
+  font-style: italic;
+  line-height: 1.4;
+}
+
+.behar-faculty-modal__courses {
+  margin-top: 35px;
+}
+
+.behar-faculty-modal__courses-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.behar-faculty-modal__courses-heading h3 {
+  margin: 0;
+  font-size: 23px;
+  font-weight: 600;
+}
+
+.behar-faculty-modal__courses-heading span {
+  color: #176e62;
+  font-size: 12px;
+}
+
+.behar-faculty-modal__course {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 0;
+  border-top: 1px solid #dfe5dc;
+  color: #102c2b;
+  text-decoration: none;
+}
+
+.behar-faculty-modal__course-icon {
+  display: grid;
+  place-items: center;
+  width: 45px;
+  height: 45px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  background: #e7eddf;
+  color: #176e62;
+}
+
+.behar-faculty-modal__course-info {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  flex: 1;
+  min-width: 0;
+}
+
+.behar-faculty-modal__course-info strong {
+  font-size: 13px;
+}
+
+.behar-faculty-modal__course-info small {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #7a8c7d;
+  font-size: 11px;
+}
+
+.behar-faculty-modal__profile {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 25px;
+  padding: 17px 22px;
+  border-radius: 40px;
+  background: #102c2b;
+  color: #fff;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+/* RTL */
+
+.behar-faculty[dir="rtl"],
+.behar-faculty-modal[dir="rtl"] {
+  font-family: "Noto Sans Arabic", sans-serif;
+}
+
+.behar-faculty[dir="rtl"] .behar-faculty__heading h2 {
+  line-height: 1.4;
+  letter-spacing: -.03em;
+}
+
+.behar-faculty[dir="rtl"] .behar-faculty__heading h2 em {
+  font-family: "Noto Sans Arabic", sans-serif;
+  font-style: normal;
+}
+
+.behar-faculty-modal[dir="rtl"]
+.behar-faculty-modal__close {
+  right: auto;
+  left: 18px;
+}
+
+.behar-faculty-modal[dir="rtl"]
+.behar-faculty-modal__identity h2 {
+  letter-spacing: -.03em;
+  line-height: 1.4;
+}
+
+.behar-faculty-modal[dir="rtl"]
+.behar-faculty-modal__quote blockquote {
+  font-family: "Noto Sans Arabic", sans-serif;
+  font-style: normal;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 1100px) {
+  .behar-faculty__container {
+    width: calc(100% - 64px);
+  }
+
+  .behar-faculty__gallery {
+    height: 460px;
+  }
+
+  .behar-faculty__card-info {
+    inset-inline: 14px;
+  }
+
+  .behar-faculty__benefits {
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 30px;
+  }
+
+  .behar-faculty__benefit:nth-child(2) {
+    border: 0;
+  }
+}
+
+@media (max-width: 800px) {
+  .behar-faculty {
+    padding: 80px 0 60px;
+  }
+
+  .behar-faculty__container {
+    width: calc(100% - 36px);
+  }
+
+  .behar-faculty__heading-grid {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+
+  .behar-faculty__heading h2 {
+    font-size: clamp(48px, 9vw, 75px);
+  }
+
+  .behar-faculty__gallery {
+    height: 460px;
+    gap: 6px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    overscroll-behavior-inline: contain;
+    padding-bottom: 4px;
+  }
+
+  .behar-faculty__gallery::-webkit-scrollbar {
+    display: none;
+  }
+
+  .behar-faculty__card {
+    flex: 0 0 24vw;
+    border-radius: 16px;
+    scroll-snap-align: start;
+  }
+
+  .behar-faculty__card.is-active {
+    flex-basis: 76vw;
+  }
+
+  .behar-faculty__card.is-active {
+    border-radius: 22px;
+  }
+
+  .behar-faculty__card:not(.is-active)
+  .behar-faculty__card-info {
+    opacity: 0;
+  }
+
+  .behar-faculty__card:not(.is-active)
+  .behar-faculty__card-arrow {
+    opacity: 0;
+  }
+
+  .behar-faculty-modal__dialog {
+    display: block;
+    grid-template-columns: 1fr;
+    overflow-y: scroll;
+  }
+
+  .behar-faculty-modal__portrait {
+    min-height: 340px;
+    max-height: 340px;
+  }
+
+  .behar-faculty-modal__content {
+    height: auto;
+    max-height: none;
+    overflow: visible;
+    padding: 30px 30px calc(72px + env(safe-area-inset-bottom));
+  }
+}
+
+/* Keep every card's editorial information available on hover. */
+.behar-faculty__card:hover .behar-faculty__card-info,
+.behar-faculty__card:focus-visible .behar-faculty__card-info {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.behar-faculty__card:hover .behar-faculty__card-arrow,
+.behar-faculty__card:focus-visible .behar-faculty__card-arrow {
+  opacity: 1;
+}
+
+.behar-faculty__card-info {
+  transition: opacity .35s ease, transform .35s ease;
+}
+
+@media (max-width: 520px) {
+  .behar-faculty__heading h2 {
+    font-size: 43px;
+  }
+
+  .behar-faculty__gallery {
+    height: 420px;
+  }
+
+  .behar-faculty__card {
+    border-radius: 12px;
+  }
+
+  .behar-faculty__card.is-active {
+    border-radius: 18px;
+  }
+
+  .behar-faculty__card-info {
+    inset-inline: 12px;
+    bottom: 20px;
+  }
+
+  .behar-faculty__card-name {
+    font-size: 19px;
+  }
+
+  .behar-faculty__card-skills {
+    display: flex;
+    max-width: 100%;
+  }
+
+  .behar-faculty__featured {
+    top: 14px;
+    inset-inline-start: 12px;
+    font-size: 8px;
+  }
+
+  .behar-faculty__card-arrow {
+    top: 14px;
+    inset-inline-end: 12px;
+    width: 32px;
+    height: 32px;
+  }
+
+  .behar-faculty__benefits {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .behar-faculty__benefit {
+    padding: 0;
+    border: 0;
+  }
+
+  .behar-faculty-modal {
+    padding: 0;
+  }
+
+  .behar-faculty-modal__dialog {
+    width: 100%;
+    max-height: 100dvh;
+    height: 100dvh;
+    border-radius: 0;
+  }
+
+  .behar-faculty-modal__portrait {
+    min-height: 300px;
+    max-height: 300px;
+  }
+
+  .behar-faculty-modal__content {
+    padding: 25px 20px calc(72px + env(safe-area-inset-bottom));
+  }
+
+  .behar-faculty-modal__stats {
+    gap: 6px;
+  }
+
+  .behar-faculty-modal__stats > div {
+    padding: 12px 8px;
+  }
+
+  .behar-faculty-modal__stats strong {
+    font-size: 23px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .behar-faculty *,
+  .behar-faculty-modal * {
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+  }
+}
