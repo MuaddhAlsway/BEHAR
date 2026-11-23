@@ -4,6 +4,7 @@ import { ArrowUp } from "lucide-react";
 
 import Navbar from "./components/navigation/Navbar";
 import Home from "./pages/public/Home";
+import Footer from "./layouts/Footer";
 
 function ScrollToTop() {
   const [visible, setVisible] = useState(false);
@@ -45,6 +46,7 @@ function App() {
       <main id="main-content">
         <Home />
       </main>
+       <Footer />
       <ScrollToTop />
     </>
   );

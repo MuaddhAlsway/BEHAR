@@ -1,12 +1,13 @@
-import { useState } from "react";
+import { forwardRef, useState } from "react";
 
-export default function LazyImage({ className = "", ...props }) {
+const LazyImage = forwardRef(function LazyImage({ className = "", ...props }, ref) {
   const [loaded, setLoaded] = useState(false);
 
   return (
     <>
       {!loaded && <span className="behar-lazy-image__skeleton" aria-hidden="true" />}
       <img
+        ref={ref}
         {...props}
         className={`${className}${loaded ? " is-loaded" : ""}`}
         loading={props.loading || "lazy"}
@@ -22,4 +23,6 @@ export default function LazyImage({ className = "", ...props }) {
       />
     </>
   );
-}
+});
+
+export default LazyImage;

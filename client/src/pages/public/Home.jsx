@@ -11,6 +11,9 @@ const HowBeharWorks = lazy(() => import("../../components/home/HowBeharWorks"))
 const WhyBehar = lazy(() => import("../../components/home/WhyBehar"))
 const MeetInstructors = lazy(() => import("../../components/home/MeetInstructors"))
 const StudentStories = lazy(() => import("../../components/home/StudentStories"))
+const BecomeInstructor = lazy(() => import("../../components/home/BecomeInstructor"))
+const HomeFAQ = lazy(() => import("../../components/home/HomeFAQ"))
+const FinalCTA = lazy(() => import("../../components/home/FinalCTA"))
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -83,6 +86,9 @@ function Home() {
       <LazySection variant="why"><WhyBehar /></LazySection>
       <LazySection variant="faculty"><MeetInstructors /></LazySection>
       <LazySection variant="stories"><StudentStories /></LazySection>
+      <LazySection variant="become-instructor"><BecomeInstructor /></LazySection>
+      <LazySection variant="faq"><HomeFAQ /></LazySection>
+      <LazySection variant="final-cta"><FinalCTA /></LazySection>
     </div>
   )
 }

@@ -18,7 +18,8 @@
 
 .behar-hero__image-frame,
 .behar-course-card__image-wrap,
-.behar-spotlight__image {
+.behar-spotlight__image,
+.behar-teach__image-frame {
   isolation: isolate;
 }
 
@@ -40,6 +41,28 @@
 .behar-home-skeleton--hero {
   min-height: 720px;
   background: #102c2b;
+}
+
+.behar-home-skeleton--become-instructor {
+  min-height: 390px;
+  background: #102c2b;
+}
+
+.behar-home-skeleton--faq,
+.behar-home-skeleton--final-cta {
+  min-height: 420px;
+}
+
+.behar-home-skeleton--become-instructor .behar-home-skeleton__eyebrow,
+.behar-home-skeleton--become-instructor .behar-home-skeleton__title,
+.behar-home-skeleton--become-instructor .behar-home-skeleton__line,
+.behar-home-skeleton--become-instructor .behar-home-skeleton__grid span {
+  background: linear-gradient(110deg, #183b35 25%, #29554b 48%, #183b35 70%);
+  background-size: 220% 100%;
+}
+
+.behar-home-skeleton--become-instructor .behar-home-skeleton__grid {
+  grid-template-columns: minmax(0, 1.2fr) minmax(180px, .8fr);
 }
 
 .behar-home-skeleton__eyebrow,
