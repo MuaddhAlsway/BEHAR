@@ -5,6 +5,38 @@
   background: #f4f1e9;
 }
 
+.behar-lazy-image__skeleton {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  display: block;
+  background: linear-gradient(110deg, #dce6d9 25%, #f7faf1 48%, #dce6d9 70%);
+  background-size: 220% 100%;
+  animation: behar-home-skeleton-shimmer 1.35s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.behar-hero__image-frame,
+.behar-course-card__image-wrap,
+.behar-spotlight__image {
+  isolation: isolate;
+}
+
+.behar-hero__image,
+.behar-course-card__image,
+.behar-spotlight__image img {
+  position: relative;
+  z-index: 0;
+  opacity: 0;
+  transition: opacity .45s ease;
+}
+
+.behar-hero__image.is-loaded,
+.behar-course-card__image.is-loaded,
+.behar-spotlight__image img.is-loaded {
+  opacity: 1;
+}
+
 .behar-home-skeleton--hero {
   min-height: 720px;
   background: #102c2b;

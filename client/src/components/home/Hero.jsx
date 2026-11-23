@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 
 import hero from "../../assets/Hero.png";
+import LazyImage from "./LazyImage";
 import "../../styles/hero.css";
 
 const content = {
@@ -259,7 +260,7 @@ export default function Hero() {
           {/* Hero image */}
 
           <div className="behar-hero__image-frame">
-            <img
+            <LazyImage
               src={hero}
               alt={t.imageAlt}
               className="behar-hero__image"

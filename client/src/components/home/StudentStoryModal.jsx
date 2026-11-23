@@ -2,7 +2,7 @@
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { Link } from "react-router-dom";
-import { ArrowUpLeft, ArrowUpRight, X } from "lucide-react";
+import { ArrowUpLeft, ArrowUpRight, GraduationCap, X } from "lucide-react";
 import gsap from "gsap";
 
 export default function StudentStoryModal({
@@ -175,11 +175,9 @@ export default function StudentStoryModal({
         </button>
 
         <div className="behar-story-modal__image">
-          <img
-            src={story.image}
-            alt={story.name}
-            style={{ objectPosition: story.position }}
-          />
+          <span className="behar-story-modal__student-icon" aria-hidden="true">
+            <GraduationCap size={170} strokeWidth={1} />
+          </span>
           <span>BEHAR / LEARNER JOURNAL</span>
         </div>
 

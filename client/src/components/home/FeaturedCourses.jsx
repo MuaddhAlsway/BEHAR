@@ -23,6 +23,7 @@ import BusinessThinkingforaChangingWorld from '../../assets/BusinessThinkingfora
 import TheNewRulesofDigitalMarketing from '../../assets/TheNewRulesofDigitalMarketing.png'
 import PhotographyBeyondtheOrdinary from '../../assets/PhotographyBeyondtheOrdinary.png'
 import BuildBetterHabits from '../../assets/BuildBetterHabits.png'
+import LazyImage from "./LazyImage";
 gsap.registerPlugin(ScrollTrigger);
 
 const courses = [
@@ -288,7 +289,7 @@ function CourseCard({ course, language, t, index }) {
       style={{ "--course-accent": course.accent }}
     >
       <div className="behar-course-card__image-wrap">
-        <img
+        <LazyImage
           src={course.image}
           alt={course.imageAlt}
           loading="lazy"
@@ -356,7 +357,7 @@ function SpotlightCourse({ course, language, t }) {
       className="behar-spotlight"
     >
       <div className="behar-spotlight__image">
-        <img
+        <LazyImage
           src={course.image}
           alt={course.imageAlt}
           loading="lazy"
