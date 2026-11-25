@@ -1,10 +1,7 @@
 
 import { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
-  ArrowUpRight,
-  ArrowUpLeft,
-  ArrowRight,
-  ArrowLeft,
   Play,
   FileText,
   ClipboardCheck,
@@ -13,9 +10,9 @@ import {
   Clock3,
   BookOpen,
   Asterisk,
-  Check,
   Layers3,
 } from "lucide-react";
+
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -27,6 +24,10 @@ import {
 import "../../styles/course-details/course-curriculum.css";
 
 gsap.registerPlugin(ScrollTrigger);
+
+/* ==========================================
+   TRANSLATIONS
+========================================== */
 
 const copy = {
   en: {
@@ -51,6 +52,7 @@ const copy = {
     empty: "The curriculum for this course is coming soon.",
     footer: "EVERY LESSON IS A STEP FORWARD.",
   },
+
   ar: {
     index: "P13.3 / فهرس المنهج",
     eyebrow: "رحلتك التعليمية",
@@ -75,13 +77,21 @@ const copy = {
   },
 };
 
+/* ==========================================
+   HELPERS
+========================================== */
+
 function getLanguage() {
   if (typeof document === "undefined") return "en";
-  return document.documentElement.lang === "ar" ? "ar" : "en";
+
+  return document.documentElement.lang === "ar"
+    ? "ar"
+    : "en";
 }
 
 function localize(value, language) {
   if (typeof value === "string") return value;
+
   return value?.[language] || value?.en || "";
 }
 
@@ -107,23 +117,46 @@ function formatDuration(minutes, language) {
 function LessonIcon({ type }) {
   switch (type) {
     case "quiz":
-      return <ClipboardCheck size={19} strokeWidth={1.5} />;
+      return (
+        <ClipboardCheck
+          size={19}
+          strokeWidth={1.5}
+        />
+      );
+
     case "assignment":
-      return <FileText size={19} strokeWidth={1.5} />;
+      return (
+        <FileText
+          size={19}
+          strokeWidth={1.5}
+        />
+      );
+
     default:
-      return <Play size={18} strokeWidth={1.5} />;
+      return (
+        <Play
+          size={18}
+          strokeWidth={1.5}
+        />
+      );
   }
 }
+
+/* ==========================================
+   COURSE CURRICULUM
+========================================== */
 
 export default function CourseCurriculum({
   course,
   onPreviewLesson,
 }) {
+  const navigate = useNavigate();
   const rootRef = useRef(null);
+
   const [language, setLanguage] = useState(getLanguage);
 
   const curriculum = getCourseCurriculum(course.slug);
-  const chapters = curriculum.chapters || [];
+  const chapters = curriculum?.chapters || [];
   const stats = getCurriculumStats(chapters);
 
   const [expandedChapters, setExpandedChapters] = useState(
@@ -132,14 +165,18 @@ export default function CourseCurriculum({
 
   const isArabic = language === "ar";
   const t = copy[language];
-  const Arrow = isArabic ? ArrowUpLeft : ArrowUpRight;
 
   const allExpanded =
     chapters.length > 0 &&
     expandedChapters.size === chapters.length;
 
+  /* ==========================================
+     LANGUAGE OBSERVER
+  ========================================== */
+
   useEffect(() => {
     const sync = () => setLanguage(getLanguage());
+
     sync();
 
     const observer = new MutationObserver(sync);
@@ -152,16 +189,25 @@ export default function CourseCurriculum({
     return () => observer.disconnect();
   }, []);
 
+  /* ==========================================
+     RESET EXPANDED CHAPTERS
+  ========================================== */
+
   useEffect(() => {
     setExpandedChapters(
       new Set(chapters[0] ? [chapters[0].id] : [])
     );
   }, [course.slug]);
 
+  /* ==========================================
+     GSAP ANIMATIONS
+  ========================================== */
+
   useEffect(() => {
     if (
-      window.matchMedia("(prefers-reduced-motion: reduce)")
-        .matches
+      window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+      ).matches
     ) {
       return;
     }
@@ -169,13 +215,17 @@ export default function CourseCurriculum({
     const ctx = gsap.context(() => {
       gsap.fromTo(
         ".behar-curriculum__heading-line > span",
-        { yPercent: 110, autoAlpha: 0 },
+        {
+          yPercent: 110,
+          autoAlpha: 0,
+        },
         {
           yPercent: 0,
           autoAlpha: 1,
           duration: 1.1,
           stagger: 0.15,
           ease: "power4.out",
+          immediateRender: false,
           scrollTrigger: {
             trigger: ".behar-curriculum__intro",
             start: "top 85%",
@@ -186,13 +236,17 @@ export default function CourseCurriculum({
 
       gsap.fromTo(
         ".behar-curriculum__chapter",
-        { y: 35, autoAlpha: 0 },
+        {
+          y: 35,
+          autoAlpha: 0,
+        },
         {
           y: 0,
           autoAlpha: 1,
           duration: 0.75,
           stagger: 0.08,
           ease: "power3.out",
+          immediateRender: false,
           scrollTrigger: {
             trigger: ".behar-curriculum__chapters",
             start: "top 85%",
@@ -204,6 +258,10 @@ export default function CourseCurriculum({
 
     return () => ctx.revert();
   }, [course.slug, language]);
+
+  /* ==========================================
+     CHAPTER CONTROLS
+  ========================================== */
 
   const toggleChapter = (chapterId) => {
     setExpandedChapters((previous) => {
@@ -227,6 +285,40 @@ export default function CourseCurriculum({
     );
   };
 
+  /* ==========================================
+     FREE PREVIEW NAVIGATION
+  ========================================== */
+
+  const handlePreviewLesson = (lesson) => {
+    if (!lesson?.preview) return;
+
+    // Allow a parent-provided preview handler.
+    if (typeof onPreviewLesson === "function") {
+      onPreviewLesson(lesson, course);
+      return;
+    }
+
+    if (!course?.slug || lesson?.id == null) {
+      console.error(
+        "BEHAR: Missing course slug or lesson ID."
+      );
+      return;
+    }
+
+    const courseSlug = encodeURIComponent(course.slug);
+    const lessonId = encodeURIComponent(
+      String(lesson.id)
+    );
+
+    navigate(
+      `/student/learn/${courseSlug}/lessons/${lessonId}`
+    );
+  };
+
+  /* ==========================================
+     RENDER
+  ========================================== */
+
   return (
     <section
       ref={rootRef}
@@ -237,13 +329,16 @@ export default function CourseCurriculum({
       aria-labelledby="behar-curriculum-heading"
     >
       <div className="behar-curriculum__container">
+
         {/* TOPLINE */}
+
         <div className="behar-curriculum__topline">
           <span>{t.index}</span>
           <Asterisk size={20} strokeWidth={1.4} />
         </div>
 
         {/* INTRO */}
+
         <header className="behar-curriculum__intro">
           <div className="behar-curriculum__eyebrow">
             <span className="behar-curriculum__dot" />
@@ -275,7 +370,10 @@ export default function CourseCurriculum({
               </span>
 
               <p>
-                {localize(curriculum.overview, language)}
+                {localize(
+                  curriculum?.overview,
+                  language
+                )}
               </p>
             </div>
 
@@ -286,14 +384,19 @@ export default function CourseCurriculum({
         </header>
 
         {/* STATS */}
+
         <div className="behar-curriculum__stats">
           <div>
-            <strong>{String(stats.chapters).padStart(2, "0")}</strong>
+            <strong>
+              {String(stats.chapters).padStart(2, "0")}
+            </strong>
             <span>{t.chapters}</span>
           </div>
 
           <div>
-            <strong>{String(stats.lessons).padStart(2, "0")}</strong>
+            <strong>
+              {String(stats.lessons).padStart(2, "0")}
+            </strong>
             <span>{t.lessons}</span>
           </div>
 
@@ -304,36 +407,50 @@ export default function CourseCurriculum({
         </div>
 
         {/* SYLLABUS HEADER */}
+
         <div className="behar-curriculum__syllabus-header">
           <span>{t.syllabus}</span>
 
           {chapters.length > 0 && (
-            <button type="button" onClick={toggleAll}>
+            <button
+              type="button"
+              onClick={toggleAll}
+            >
               {allExpanded ? t.collapse : t.expand}
+
               <ChevronDown
                 size={17}
-                className={allExpanded ? "is-rotated" : ""}
+                className={
+                  allExpanded ? "is-rotated" : ""
+                }
               />
             </button>
           )}
         </div>
 
         {/* CHAPTERS */}
+
         <div className="behar-curriculum__chapters">
           {chapters.length === 0 ? (
             <div className="behar-curriculum__empty">
-              <BookOpen size={34} strokeWidth={1.2} />
+              <BookOpen
+                size={34}
+                strokeWidth={1.2}
+              />
               <p>{t.empty}</p>
             </div>
           ) : (
             chapters.map((chapter, index) => {
-              const isOpen = expandedChapters.has(chapter.id);
-
-              const chapterMinutes = chapter.lessons.reduce(
-                (total, lesson) =>
-                  total + (lesson.duration || 0),
-                0
+              const isOpen = expandedChapters.has(
+                chapter.id
               );
+
+              const chapterMinutes =
+                chapter.lessons.reduce(
+                  (total, lesson) =>
+                    total + (lesson.duration || 0),
+                  0
+                );
 
               return (
                 <article
@@ -342,38 +459,60 @@ export default function CourseCurriculum({
                     isOpen ? "is-open" : ""
                   }`}
                 >
+                  {/* CHAPTER HEADER */}
+
                   <h3 className="behar-curriculum__chapter-heading">
                     <button
                       type="button"
                       className="behar-curriculum__chapter-trigger"
-                      onClick={() => toggleChapter(chapter.id)}
+                      onClick={() =>
+                        toggleChapter(chapter.id)
+                      }
                       aria-expanded={isOpen}
                       aria-controls={`chapter-panel-${chapter.id}`}
                     >
                       <span className="behar-curriculum__chapter-number">
-                        {String(index + 1).padStart(2, "0")}
+                        {String(index + 1).padStart(
+                          2,
+                          "0"
+                        )}
                       </span>
 
                       <span className="behar-curriculum__chapter-main">
                         <span className="behar-curriculum__chapter-label">
-                          {t.chapter} {String(index + 1).padStart(2, "0")}
+                          {t.chapter}{" "}
+                          {String(index + 1).padStart(
+                            2,
+                            "0"
+                          )}
                         </span>
 
                         <span className="behar-curriculum__chapter-title">
-                          {localize(chapter.title, language)}
+                          {localize(
+                            chapter.title,
+                            language
+                          )}
                         </span>
 
                         <span className="behar-curriculum__chapter-description">
-                          {localize(chapter.description, language)}
+                          {localize(
+                            chapter.description,
+                            language
+                          )}
                         </span>
                       </span>
 
                       <span className="behar-curriculum__chapter-meta">
                         <span>
-                          {chapter.lessons.length} {t.lesson}
+                          {chapter.lessons.length}{" "}
+                          {t.lesson}
                         </span>
+
                         <span>
-                          {formatDuration(chapterMinutes, language)}
+                          {formatDuration(
+                            chapterMinutes,
+                            language
+                          )}
                         </span>
                       </span>
 
@@ -386,61 +525,93 @@ export default function CourseCurriculum({
                     </button>
                   </h3>
 
+                  {/* CHAPTER LESSONS */}
+
                   <div
                     id={`chapter-panel-${chapter.id}`}
                     className="behar-curriculum__chapter-panel"
                     hidden={!isOpen}
                   >
                     <div className="behar-curriculum__lesson-list">
-                      {chapter.lessons.map((lesson, lessonIndex) => (
-                        <div
-                          key={lesson.id}
-                          className="behar-curriculum__lesson"
-                        >
-                          <span className="behar-curriculum__lesson-number">
-                            {String(lessonIndex + 1).padStart(2, "0")}
-                          </span>
+                      {chapter.lessons.map(
+                        (lesson, lessonIndex) => (
+                          <div
+                            key={lesson.id}
+                            className="behar-curriculum__lesson"
+                          >
+                            {/* NUMBER */}
 
-                          <span className="behar-curriculum__lesson-icon">
-                            <LessonIcon type={lesson.type} />
-                          </span>
-
-                          <div className="behar-curriculum__lesson-content">
-                            <span className="behar-curriculum__lesson-type">
-                              {t[lesson.type] || t.video}
+                            <span className="behar-curriculum__lesson-number">
+                              {String(
+                                lessonIndex + 1
+                              ).padStart(2, "0")}
                             </span>
 
-                            <strong>
-                              {localize(lesson.title, language)}
-                            </strong>
-                          </div>
+                            {/* ICON */}
 
-                          <div className="behar-curriculum__lesson-right">
-                            <span className="behar-curriculum__lesson-duration">
-                              <Clock3 size={14} />
-                              {lesson.duration} {t.minutes}
+                            <span className="behar-curriculum__lesson-icon">
+                              <LessonIcon
+                                type={lesson.type}
+                              />
                             </span>
 
-                            {lesson.preview ? (
-                              <button
-                                type="button"
-                                className="behar-curriculum__preview"
-                                onClick={() =>
-                                  onPreviewLesson?.(lesson, course)
-                                }
-                              >
-                                <Play size={14} fill="currentColor" />
-                                {t.preview}
-                              </button>
-                            ) : (
-                              <span className="behar-curriculum__locked">
-                                <LockKeyhole size={14} />
-                                {t.locked}
+                            {/* CONTENT */}
+
+                            <div className="behar-curriculum__lesson-content">
+                              <span className="behar-curriculum__lesson-type">
+                                {t[lesson.type] ||
+                                  t.video}
                               </span>
-                            )}
+
+                              <strong>
+                                {localize(
+                                  lesson.title,
+                                  language
+                                )}
+                              </strong>
+                            </div>
+
+                            {/* RIGHT SIDE */}
+
+                            <div className="behar-curriculum__lesson-right">
+                              <span className="behar-curriculum__lesson-duration">
+                                <Clock3 size={14} />
+                                {lesson.duration}{" "}
+                                {t.minutes}
+                              </span>
+
+                              {lesson.preview ? (
+                                <button
+                                  type="button"
+                                  className="behar-curriculum__preview"
+                                  onClick={(event) => {
+                                    event.preventDefault();
+                                    event.stopPropagation();
+                                    handlePreviewLesson(lesson);
+                                  }}
+                                  aria-label={`${t.preview}: ${localize(
+                                    lesson.title,
+                                    language
+                                  )}`}
+                                >
+                                  <Play
+                                    size={14}
+                                    fill="currentColor"
+                                  />
+                                  {t.preview}
+                                </button>
+                              ) : (
+                                <span className="behar-curriculum__locked">
+                                  <LockKeyhole
+                                    size={14}
+                                  />
+                                  {t.locked}
+                                </span>
+                              )}
+                            </div>
                           </div>
-                        </div>
-                      ))}
+                        )
+                      )}
                     </div>
                   </div>
                 </article>
@@ -450,6 +621,7 @@ export default function CourseCurriculum({
         </div>
 
         {/* BOTTOMLINE */}
+
         <div className="behar-curriculum__bottomline">
           <span>{t.footer}</span>
           <span>03 — 07</span>

@@ -3,8 +3,6 @@ import { useEffect, useRef, useState } from "react";
 import {
   ArrowUpRight,
   ArrowUpLeft,
-  ArrowRight,
-  ArrowLeft,
   Plus,
   Minus,
   Check,
@@ -74,7 +72,6 @@ export default function LearningOutcomes({ course }) {
   const isArabic = language === "ar";
   const t = copy[language];
   const Arrow = isArabic ? ArrowUpLeft : ArrowUpRight;
-  const DirectionArrow = isArabic ? ArrowLeft : ArrowRight;
 
   const data = getCourseLearningOutcomes(course.slug);
   const outcomes = data.outcomes || [];

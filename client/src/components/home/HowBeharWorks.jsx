@@ -10,9 +10,7 @@ import {
   BookOpen,
   Award,
   Sparkles,
-  MoveUpRight,
   Orbit,
-  Play,
 } from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -121,7 +119,6 @@ export default function HowBeharWorks() {
   const sectionRef = useRef(null);
   const orbitRef = useRef(null);
   const contentRef = useRef(null);
-  const progressRef = useRef(null);
   const activeRef = useRef(0);
   const changeStageRef = useRef(null);
 
@@ -132,7 +129,6 @@ export default function HowBeharWorks() {
   const t = copy[language];
 
   const Arrow = isArabic ? ArrowUpLeft : ArrowUpRight;
-  const Forward = isArabic ? ArrowLeft : ArrowRight;
 
   useEffect(() => {
     const sync = () => {

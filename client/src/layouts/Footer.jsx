@@ -14,6 +14,8 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 import "../styles/footer.css";
 
+const CURRENT_YEAR = new Date().getFullYear();
+
 gsap.registerPlugin(ScrollTrigger);
 
 const footerContent = {
@@ -452,7 +454,7 @@ export default function Footer() {
           <span>{t.signature}</span>
 
           <span>
-            © {new Date().getFullYear()} BEHAR.
+            © {CURRENT_YEAR} BEHAR.
             {" "}
             {t.copyright}
           </span>

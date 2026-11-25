@@ -1,0 +1,268 @@
+
+/* ==========================================
+   BEHAR — P14.3.8
+   LEARNING PLAYER RESPONSIVE QA
+========================================== */
+
+.behar-player {
+  --qa-forest: #102c2b;
+  --qa-emerald: #176e62;
+  --qa-cream: #f4f1e9;
+  --qa-lime: #d9ef74;
+
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+/* Prevent content from forcing grid/flex overflow */
+
+.behar-player *,
+.behar-player *::before,
+.behar-player *::after {
+  box-sizing: border-box;
+}
+
+.behar-player__layout,
+.behar-player__main {
+  min-width: 0;
+}
+
+.behar-player__main {
+  max-width: 100%;
+}
+
+.behar-player img,
+.behar-player video,
+.behar-player iframe {
+  max-width: 100%;
+}
+
+.behar-player img {
+  height: auto;
+}
+
+.behar-player a,
+.behar-player p,
+.behar-player h1,
+.behar-player h2,
+.behar-player h3 {
+  overflow-wrap: anywhere;
+}
+
+/* ==========================================
+   GLOBAL KEYBOARD FOCUS
+========================================== */
+
+.behar-player :is(
+  button,
+  a,
+  input,
+  textarea,
+  select,
+  [tabindex]
+):focus-visible {
+  outline: 3px solid var(--qa-emerald);
+  outline-offset: 3px;
+}
+
+.behar-player button:disabled {
+  cursor: not-allowed;
+}
+
+/* ==========================================
+   VIDEO SAFETY
+========================================== */
+
+.behar-player video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.behar-player .behar-video-player__video {
+  object-fit: cover;
+}
+
+.behar-player :fullscreen {
+  background: #000;
+}
+
+/* ==========================================
+   TABS
+========================================== */
+
+.behar-tabs {
+  min-width: 0;
+}
+
+.behar-tabs__navigation {
+  max-width: 100%;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  scrollbar-width: thin;
+}
+
+.behar-tabs__tab {
+  min-height: 48px;
+  touch-action: manipulation;
+}
+
+/* ==========================================
+   PROGRESS
+========================================== */
+
+.behar-progress-tracker {
+  min-width: 0;
+}
+
+.behar-progress-tracker__bar {
+  overflow: hidden;
+}
+
+/* ==========================================
+   TABLET
+========================================== */
+
+@media (max-width: 1024px) {
+  .behar-player__layout {
+    display: block;
+  }
+
+  .behar-player__main {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .behar-tabs__notes,
+  .behar-tabs__discussion,
+  .behar-tabs__resources-panel {
+    padding: 30px 26px;
+  }
+
+  .behar-progress-tracker {
+    padding: 32px 26px;
+  }
+}
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media (max-width: 640px) {
+  .behar-tabs__navigation {
+    justify-content: flex-start;
+  }
+
+  .behar-tabs__tab {
+    flex: 0 0 auto;
+    min-height: 52px;
+    padding-inline: 17px;
+  }
+
+  .behar-tabs__notes,
+  .behar-tabs__discussion,
+  .behar-tabs__resources-panel {
+    padding: 24px 18px;
+  }
+
+  .behar-tabs__editorial-heading h2 {
+    font-size: clamp(23px, 6vw, 30px);
+    line-height: 1.25;
+  }
+
+  .behar-tabs__note-composer textarea {
+    min-height: 130px;
+  }
+
+  .behar-progress-tracker {
+    padding: 28px 18px;
+  }
+
+  .behar-progress-tracker__top {
+    align-items: flex-start;
+  }
+
+  .behar-progress-tracker__percentage strong {
+    font-size: 28px;
+  }
+
+  .behar-progress-tracker__lesson {
+    align-items: flex-start;
+    padding: 18px;
+  }
+
+  .behar-progress-tracker__action {
+    width: 100%;
+    min-height: 46px;
+  }
+
+  .behar-tabs__resource-link {
+    min-width: 0;
+  }
+
+  .behar-tabs__resource-link strong {
+    overflow-wrap: anywhere;
+  }
+}
+
+/* ==========================================
+   SMALL MOBILE
+========================================== */
+
+@media (max-width: 380px) {
+  .behar-tabs__tab {
+    padding-inline: 13px;
+    font-size: 11px;
+  }
+
+  .behar-tabs__notes,
+  .behar-tabs__discussion,
+  .behar-tabs__resources-panel {
+    padding-inline: 14px;
+  }
+
+  .behar-progress-tracker {
+    padding-inline: 14px;
+  }
+
+  .behar-tabs__discussion-thread {
+    padding: 16px;
+  }
+}
+
+/* ==========================================
+   RTL
+========================================== */
+
+.behar-player[dir="rtl"] {
+  text-align: start;
+}
+
+.behar-player[dir="rtl"]
+.behar-tabs__navigation {
+  direction: rtl;
+}
+
+.behar-player[dir="rtl"]
+.behar-tabs__note-composer textarea,
+.behar-player[dir="rtl"]
+.behar-tabs__note-item textarea {
+  text-align: right;
+}
+
+/* ==========================================
+   REDUCED MOTION
+========================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .behar-player *,
+  .behar-player *::before,
+  .behar-player *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

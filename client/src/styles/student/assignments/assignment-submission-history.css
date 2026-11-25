@@ -1,0 +1,303 @@
+
+.behar-submission-history {
+  width: 100%;
+  margin-top: 40px;
+  color: #1c3126;
+}
+
+.behar-submission-history *,
+.behar-submission-history *::before,
+.behar-submission-history *::after {
+  box-sizing: border-box;
+}
+
+.behar-submission-history__header {
+  margin-bottom: 26px;
+}
+
+.behar-submission-history__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+  color: #62835c;
+  font-size: 10px;
+  font-weight: 750;
+  letter-spacing: 0.1em;
+}
+
+.behar-submission-history__header h3 {
+  margin: 0 0 9px;
+  color: #1c3126;
+  font-size: 21px;
+  font-weight: 650;
+  letter-spacing: -0.025em;
+}
+
+.behar-submission-history__header > p {
+  margin: 0;
+  color: #7b887e;
+  font-size: 12px;
+  line-height: 1.75;
+}
+
+.behar-submission-history__empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 42px 24px;
+  border: 1px dashed #d9e2d6;
+  border-radius: 14px;
+  background: #fafcf8;
+  text-align: center;
+}
+
+.behar-submission-history__empty-icon {
+  display: grid;
+  width: 50px;
+  height: 50px;
+  margin-bottom: 17px;
+  place-items: center;
+  border-radius: 14px;
+  background: #eaf2e6;
+  color: #61835a;
+}
+
+.behar-submission-history__empty h4 {
+  margin: 0 0 8px;
+  font-size: 15px;
+  font-weight: 650;
+}
+
+.behar-submission-history__empty p {
+  max-width: 300px;
+  margin: 0;
+  color: #7a897d;
+  font-size: 12px;
+  line-height: 1.75;
+}
+
+.behar-submission-history__timeline {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin: 0;
+  padding: 0 0 0 33px;
+  list-style: none;
+}
+
+.behar-submission-history__timeline::before {
+  content: "";
+  position: absolute;
+  top: 16px;
+  bottom: 16px;
+  left: 11px;
+  width: 1px;
+  background: #dfe8dc;
+}
+
+.behar-submission-history__item {
+  position: relative;
+  min-width: 0;
+}
+
+.behar-submission-history__marker {
+  position: absolute;
+  top: 14px;
+  left: -33px;
+  z-index: 1;
+  display: grid;
+  width: 23px;
+  height: 23px;
+  place-items: center;
+  border: 1px solid #cbdcc7;
+  border-radius: 50%;
+  background: #edf5e9;
+  color: #4e7d49;
+}
+
+.behar-submission-history__marker svg {
+  width: 12px;
+  height: 12px;
+}
+
+.behar-submission-history__card {
+  padding: 20px;
+  border: 1px solid #e5ebe2;
+  border-radius: 13px;
+  background: #fff;
+}
+
+.behar-submission-history__card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.behar-submission-history__attempt {
+  color: #24392b;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.behar-submission-history__status {
+  display: inline-flex;
+  align-items: center;
+  min-height: 25px;
+  padding: 5px 10px;
+  border-radius: 30px;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.behar-submission-history__status.is-submitted {
+  background: #eaf3ff;
+  color: #3566a2;
+}
+
+.behar-submission-history__status.is-under_review {
+  background: #fff4df;
+  color: #95652a;
+}
+
+.behar-submission-history__status.is-graded {
+  background: #eaf4e6;
+  color: #3c7841;
+}
+
+.behar-submission-history__date {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: #839087;
+  font-size: 11px;
+}
+
+.behar-submission-history__section {
+  margin-top: 20px;
+  padding-top: 17px;
+  border-top: 1px solid #eef1ec;
+}
+
+.behar-submission-history__label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 11px;
+  color: #667c6b;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.behar-submission-history__section p {
+  margin: 0;
+  color: #4e6252;
+  font-size: 12px;
+  line-height: 1.85;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}
+
+.behar-submission-history__project-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: #386a40;
+  font-size: 12px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.behar-submission-history__project-link:hover {
+  text-decoration: underline;
+}
+
+.behar-submission-history__project-link:focus-visible {
+  outline: 2px solid #8db578;
+  outline-offset: 4px;
+}
+
+.behar-submission-history__feedback {
+  margin-top: 20px;
+  padding: 18px;
+  border: 1px solid #e0ebdc;
+  border-radius: 11px;
+  background: #f7faf4;
+}
+
+.behar-submission-history__score {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.behar-submission-history__score span {
+  color: #728573;
+  font-size: 11px;
+}
+
+.behar-submission-history__score strong {
+  color: #2d6737;
+  font-size: 22px;
+  font-weight: 750;
+}
+
+.behar-submission-history__feedback > p {
+  margin: 0;
+  color: #536c56;
+  font-size: 12px;
+  line-height: 1.8;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}
+
+.behar-submission-history[dir="rtl"]
+  .behar-submission-history__timeline {
+  padding: 0 33px 0 0;
+}
+
+.behar-submission-history[dir="rtl"]
+  .behar-submission-history__timeline::before {
+  left: auto;
+  right: 11px;
+}
+
+.behar-submission-history[dir="rtl"]
+  .behar-submission-history__marker {
+  left: auto;
+  right: -33px;
+}
+
+@media (max-width: 600px) {
+  .behar-submission-history {
+    margin-top: 30px;
+  }
+
+  .behar-submission-history__card {
+    padding: 16px;
+  }
+
+  .behar-submission-history__timeline {
+    padding-left: 29px;
+  }
+
+  .behar-submission-history__marker {
+    left: -29px;
+  }
+
+  .behar-submission-history[dir="rtl"]
+    .behar-submission-history__timeline {
+    padding: 0 29px 0 0;
+  }
+
+  .behar-submission-history[dir="rtl"]
+    .behar-submission-history__marker {
+    right: -29px;
+  }
+}

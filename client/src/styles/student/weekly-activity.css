@@ -1,0 +1,669 @@
+
+/* ==========================================
+   BEHAR — P14.1.5 WEEKLY ACTIVITY
+========================================== */
+
+.behar-weekly {
+  --bw-forest: #102c2b;
+  --bw-emerald: #176e62;
+  --bw-lime: #d9ef74;
+  --bw-cream: #f4f1e9;
+  --bw-sage: #a8c0b5;
+  --bw-muted: #68786e;
+  --bw-line: #d6dcd2;
+
+  width: 100%;
+  min-width: 0;
+  margin-top: clamp(55px, 6vw, 90px);
+  color: var(--bw-forest);
+  font-family: "Outfit", sans-serif;
+}
+
+.behar-weekly,
+.behar-weekly * {
+  box-sizing: border-box;
+}
+
+.behar-weekly[dir="rtl"] {
+  font-family: "Noto Sans Arabic", sans-serif;
+}
+
+/* HEADER */
+
+.behar-weekly__header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 25px;
+  margin-bottom: 30px;
+}
+
+.behar-weekly__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 18px;
+  color: var(--bw-emerald);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .15em;
+}
+
+.behar-weekly__eyebrow-line {
+  width: 30px;
+  height: 1px;
+  background: var(--bw-emerald);
+}
+
+.behar-weekly__heading {
+  margin: 0;
+  font-size: clamp(32px, 3.5vw, 52px);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -.055em;
+}
+
+.behar-weekly__heading span {
+  color: var(--bw-emerald);
+}
+
+.behar-weekly__description {
+  max-width: 590px;
+  margin: 14px 0 0;
+  color: var(--bw-muted);
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+.behar-weekly__index {
+  padding-bottom: 5px;
+  color: #8a9b91;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .15em;
+  white-space: nowrap;
+}
+
+/* MAIN LAYOUT */
+
+.behar-weekly__layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.75fr) minmax(260px, .85fr);
+  gap: 15px;
+}
+
+/* CHART PANEL */
+
+.behar-weekly__chart-panel {
+  min-width: 0;
+  padding: clamp(23px, 3vw, 40px);
+  border: 1px solid var(--bw-line);
+  background: #fffdf8;
+}
+
+.behar-weekly__chart-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.behar-weekly__label {
+  color: var(--bw-muted);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .13em;
+}
+
+.behar-weekly__total {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.behar-weekly__total strong {
+  font-size: clamp(48px, 5vw, 76px);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -.07em;
+  font-variant-numeric: tabular-nums;
+}
+
+.behar-weekly__total span {
+  color: var(--bw-muted);
+  font-size: 14px;
+}
+
+.behar-weekly__date-range {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 11px 13px;
+  border: 1px solid var(--bw-line);
+  color: var(--bw-muted);
+  font-size: 11px;
+  white-space: nowrap;
+}
+
+.behar-weekly__date-range svg {
+  color: var(--bw-emerald);
+}
+
+/* CHART META */
+
+.behar-weekly__chart-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  margin-top: 42px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid var(--bw-line);
+}
+
+.behar-weekly__legend {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  color: var(--bw-muted);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .08em;
+}
+
+.behar-weekly__legend > span {
+  width: 9px;
+  height: 9px;
+  background: var(--bw-emerald);
+}
+
+.behar-weekly__chart-unit {
+  color: var(--bw-muted);
+  font-size: 10px;
+}
+
+/* BAR CHART */
+
+.behar-weekly__chart {
+  position: relative;
+  height: 250px;
+  margin-top: 20px;
+}
+
+.behar-weekly__chart-grid {
+  position: absolute;
+  inset: 0 0 34px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  pointer-events: none;
+}
+
+.behar-weekly__chart-grid span {
+  display: block;
+  width: 100%;
+  height: 1px;
+  background: #e7ebe4;
+}
+
+.behar-weekly__bars {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: clamp(6px, 1.5vw, 20px);
+  height: 100%;
+}
+
+.behar-weekly__day {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.behar-weekly__bar-area {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  width: 100%;
+  height: calc(100% - 34px);
+}
+
+.behar-weekly__bar-fill {
+  position: relative;
+  display: block;
+  width: min(100%, 45px);
+  min-height: 0;
+  background: #b9d2c6;
+  transition:
+    background .25s ease,
+    height .3s ease;
+}
+
+.behar-weekly__day:hover .behar-weekly__bar-fill {
+  background: var(--bw-emerald);
+}
+
+.behar-weekly__day--selected .behar-weekly__bar-fill {
+  background: var(--bw-forest);
+}
+
+.behar-weekly__day--empty .behar-weekly__bar-area::after {
+  content: "";
+  width: min(100%, 45px);
+  height: 4px;
+  background: #e3e8df;
+}
+
+.behar-weekly__bar-value {
+  position: absolute;
+  bottom: calc(100% + 10px);
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--bw-forest);
+  font-size: 10px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.behar-weekly__day-label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 34px;
+  color: var(--bw-muted);
+  font-size: 10px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.behar-weekly__day--selected .behar-weekly__day-label {
+  color: var(--bw-emerald);
+  font-weight: 700;
+}
+
+/* SELECTED DAY */
+
+.behar-weekly__selected {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-top: 20px;
+  padding: 20px 0 0;
+  border-top: 1px solid var(--bw-line);
+}
+
+.behar-weekly__selected-heading {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.behar-weekly__selected-heading > span {
+  color: var(--bw-muted);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .1em;
+}
+
+.behar-weekly__selected-heading strong {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.behar-weekly__selected-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+}
+
+.behar-weekly__selected-stats > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--bw-muted);
+  font-size: 11px;
+}
+
+.behar-weekly__selected-stats svg {
+  color: var(--bw-emerald);
+}
+
+.behar-weekly__selected-stats strong {
+  color: var(--bw-forest);
+  font-weight: 700;
+}
+
+/* GOAL PANEL */
+
+.behar-weekly__goal-panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-width: 0;
+  min-height: 480px;
+  padding: clamp(24px, 3vw, 38px);
+  background: var(--bw-forest);
+  color: var(--bw-cream);
+}
+
+.behar-weekly__goal-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.behar-weekly__goal-icon {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border: 1px solid rgba(217,239,116,.35);
+  border-radius: 50%;
+  color: var(--bw-lime);
+}
+
+.behar-weekly__goal-index {
+  color: var(--bw-sage);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .1em;
+}
+
+.behar-weekly__goal-content {
+  margin: 60px 0;
+}
+
+.behar-weekly__goal-label {
+  color: var(--bw-sage);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .13em;
+}
+
+.behar-weekly__goal-numbers {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.behar-weekly__goal-numbers strong {
+  color: var(--bw-lime);
+  font-size: clamp(50px, 5vw, 78px);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -.07em;
+}
+
+.behar-weekly__goal-numbers > span {
+  color: var(--bw-sage);
+  font-size: 13px;
+}
+
+.behar-weekly__goal-track {
+  height: 5px;
+  margin-top: 25px;
+  overflow: hidden;
+  background: rgba(255,255,255,.17);
+}
+
+.behar-weekly__goal-track > span {
+  display: block;
+  height: 100%;
+  background: var(--bw-lime);
+  transition: width .5s ease;
+}
+
+.behar-weekly__goal-progress {
+  margin: 12px 0 0;
+  color: var(--bw-sage);
+  font-size: 11px;
+}
+
+.behar-weekly__goal-bottom {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255,255,255,.15);
+  color: var(--bw-lime);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* INSIGHTS */
+
+.behar-weekly__insights {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1px;
+  margin-top: 15px;
+  overflow: hidden;
+  border: 1px solid var(--bw-line);
+  background: var(--bw-line);
+}
+
+.behar-weekly__insight {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 155px;
+  min-width: 0;
+  padding: 23px;
+  background: #fffdf8;
+}
+
+.behar-weekly__insight-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.behar-weekly__insight-top span {
+  color: var(--bw-muted);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  line-height: 1.5;
+}
+
+.behar-weekly__insight-top svg {
+  flex-shrink: 0;
+  color: var(--bw-emerald);
+}
+
+.behar-weekly__insight > strong {
+  margin-top: 24px;
+  font-size: clamp(28px, 3vw, 43px);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -.05em;
+  font-variant-numeric: tabular-nums;
+}
+
+.behar-weekly__insight > strong small {
+  color: var(--bw-muted);
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+/* FOOTER */
+
+.behar-weekly__footer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 22px 0;
+  border-bottom: 1px solid var(--bw-line);
+  color: var(--bw-muted);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .12em;
+}
+
+.behar-weekly__footer-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--bw-emerald);
+}
+
+/* RTL */
+
+.behar-weekly[dir="rtl"] .behar-weekly__heading {
+  letter-spacing: -.025em;
+  line-height: 1.35;
+}
+
+.behar-weekly[dir="rtl"] .behar-weekly__eyebrow,
+.behar-weekly[dir="rtl"] .behar-weekly__label,
+.behar-weekly[dir="rtl"] .behar-weekly__insight-top span,
+.behar-weekly[dir="rtl"] .behar-weekly__footer {
+  letter-spacing: 0;
+}
+
+.behar-weekly[dir="rtl"] .behar-weekly__day-label {
+  font-size: 9px;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 1150px) {
+  .behar-weekly__layout {
+    grid-template-columns: minmax(0, 1.5fr) minmax(240px, 1fr);
+  }
+
+  .behar-weekly__chart-panel {
+    padding: 25px;
+  }
+
+  .behar-weekly__goal-panel {
+    padding: 25px;
+  }
+}
+
+@media (max-width: 1000px) {
+  .behar-weekly__layout {
+    grid-template-columns: 1fr;
+  }
+
+  .behar-weekly__goal-panel {
+    min-height: 310px;
+  }
+
+  .behar-weekly__goal-content {
+    margin: 35px 0;
+  }
+
+  .behar-weekly__insights {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 650px) {
+  .behar-weekly {
+    margin-top: 60px;
+  }
+
+  .behar-weekly__header {
+    align-items: flex-start;
+  }
+
+  .behar-weekly__heading {
+    font-size: 36px;
+  }
+
+  .behar-weekly__index {
+    display: none;
+  }
+
+  .behar-weekly__chart-panel {
+    padding: 22px 16px;
+  }
+
+  .behar-weekly__chart-top {
+    flex-direction: column;
+  }
+
+  .behar-weekly__total strong {
+    font-size: 60px;
+  }
+
+  .behar-weekly__chart {
+    height: 220px;
+  }
+
+  .behar-weekly__bars {
+    gap: 6px;
+  }
+
+  .behar-weekly__bar-value {
+    font-size: 9px;
+  }
+
+  .behar-weekly__selected {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .behar-weekly__selected-stats {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .behar-weekly__goal-panel {
+    padding: 26px;
+  }
+
+  .behar-weekly__insight {
+    min-height: 135px;
+    padding: 18px;
+  }
+
+  .behar-weekly__insight > strong {
+    font-size: 32px;
+  }
+}
+
+@media (max-width: 370px) {
+  .behar-weekly__day-label {
+    font-size: 9px;
+  }
+
+  .behar-weekly[dir="rtl"] .behar-weekly__day-label {
+    font-size: 8px;
+  }
+}
+
+/* ACCESSIBILITY */
+
+.behar-weekly button:focus-visible {
+  outline: 3px solid var(--bw-emerald);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .behar-weekly *,
+  .behar-weekly *::before,
+  .behar-weekly *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}

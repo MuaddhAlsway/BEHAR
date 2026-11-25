@@ -1,0 +1,463 @@
+
+/* ==========================================
+   BEHAR — P14.3.7 LEARNING PLAYER TABS
+========================================== */
+
+.behar-tabs {
+  --tabs-forest: #102c2b;
+  --tabs-emerald: #176e62;
+  --tabs-lime: #d9ef74;
+  --tabs-muted: #71857a;
+  --tabs-line: #e2e7df;
+
+  background: #fffdf8;
+  color: var(--tabs-forest);
+  min-width: 0;
+}
+
+/* NAVIGATION */
+
+.behar-tabs__navigation {
+  display: flex;
+  gap: 0;
+  overflow-x: auto;
+  scrollbar-width: thin;
+  border-bottom: 1px solid var(--tabs-line);
+  background: #f4f1e9;
+}
+
+.behar-tabs__tab {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  flex: 1 0 auto;
+  min-height: 65px;
+  padding: 16px 23px;
+  border: 0;
+  border-bottom: 3px solid transparent;
+  background: transparent;
+  color: #71857a;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    color 0.2s ease,
+    background 0.2s ease;
+}
+
+.behar-tabs__tab:hover {
+  color: var(--tabs-forest);
+  background: #e9eee5;
+}
+
+.behar-tabs__tab--active {
+  color: var(--tabs-forest);
+  border-bottom-color: var(--tabs-emerald);
+  background: #fffdf8;
+}
+
+.behar-tabs__tab:focus-visible {
+  outline: 2px solid var(--tabs-emerald);
+  outline-offset: -5px;
+}
+
+/* PANELS */
+
+.behar-tabs__panel {
+  min-height: 260px;
+  outline-offset: -3px;
+}
+
+.behar-tabs__panel:focus-visible {
+  outline: 2px solid var(--tabs-emerald);
+}
+
+/* EDITORIAL HEADING */
+
+.behar-tabs__editorial-heading {
+  margin-bottom: 28px;
+}
+
+.behar-tabs__eyebrow {
+  color: var(--tabs-emerald);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+.behar-tabs__editorial-heading h2 {
+  margin: 14px 0 10px;
+  font-size: clamp(25px, 3vw, 35px);
+  font-weight: 500;
+  letter-spacing: -0.04em;
+}
+
+.behar-tabs__editorial-heading p {
+  max-width: 650px;
+  margin: 0;
+  color: var(--tabs-muted);
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+/* NOTES / DISCUSSION / RESOURCES */
+
+.behar-tabs__notes,
+.behar-tabs__discussion,
+.behar-tabs__resources-panel {
+  padding: 38px 40px 45px;
+}
+
+/* NOTE COMPOSER */
+
+.behar-tabs__note-composer {
+  border: 1px solid var(--tabs-line);
+  background: #fff;
+}
+
+.behar-tabs__note-composer textarea,
+.behar-tabs__note-item textarea {
+  display: block;
+  width: 100%;
+  min-height: 120px;
+  padding: 22px;
+  border: 0;
+  outline: 0;
+  resize: vertical;
+  background: transparent;
+  color: var(--tabs-forest);
+  font: inherit;
+  font-size: 13px;
+  line-height: 1.8;
+  box-sizing: border-box;
+}
+
+.behar-tabs__note-composer:focus-within {
+  border-color: var(--tabs-emerald);
+}
+
+.behar-tabs__composer-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  padding: 13px 17px;
+  border-top: 1px solid var(--tabs-line);
+}
+
+.behar-tabs__composer-footer > span {
+  color: var(--tabs-muted);
+  font-size: 11px;
+}
+
+.behar-tabs__composer-footer button,
+.behar-tabs__note-actions button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 11px 15px;
+  border: 0;
+  background: var(--tabs-forest);
+  color: #fff;
+  font: inherit;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.behar-tabs__composer-footer button:disabled,
+.behar-tabs__note-actions button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* SAVED NOTES */
+
+.behar-tabs__notes-heading {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 35px 0 17px;
+}
+
+.behar-tabs__notes-heading h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.behar-tabs__notes-heading > span {
+  padding: 4px 9px;
+  background: #eaf1e7;
+  color: var(--tabs-emerald);
+  font-size: 11px;
+}
+
+.behar-tabs__notes-list {
+  display: grid;
+  gap: 12px;
+}
+
+.behar-tabs__note-item {
+  padding: 22px;
+  border: 1px solid var(--tabs-line);
+  background: #fff;
+}
+
+.behar-tabs__note-item > p {
+  margin: 0 0 20px;
+  font-size: 13px;
+  line-height: 1.9;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.behar-tabs__note-footer,
+.behar-tabs__note-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.behar-tabs__note-footer {
+  justify-content: space-between;
+}
+
+.behar-tabs__note-footer time {
+  color: var(--tabs-muted);
+  font-size: 10px;
+}
+
+.behar-tabs__note-actions button {
+  padding: 9px;
+  background: #edf2e9;
+  color: var(--tabs-forest);
+}
+
+.behar-tabs__note-actions button:hover {
+  background: #d9e8d6;
+}
+
+/* RESOURCES */
+
+.behar-tabs__resource-list {
+  display: grid;
+  gap: 12px;
+}
+
+.behar-tabs__resource-link {
+  display: flex;
+  align-items: center;
+  gap: 17px;
+  padding: 20px;
+  border: 1px solid var(--tabs-line);
+  background: #fff;
+  color: var(--tabs-forest);
+  text-decoration: none;
+}
+
+.behar-tabs__resource-link:hover {
+  border-color: var(--tabs-emerald);
+  background: #f7faf5;
+}
+
+.behar-tabs__resource-symbol {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 47px;
+  height: 47px;
+  background: #edf2e9;
+  color: var(--tabs-emerald);
+}
+
+.behar-tabs__resource-link > span:nth-child(2) {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+.behar-tabs__resource-link strong {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.behar-tabs__resource-link small {
+  color: var(--tabs-muted);
+  font-size: 11px;
+}
+
+.behar-tabs__resource-action {
+  color: var(--tabs-emerald);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+/* DISCUSSION */
+
+.behar-tabs__discussion-notice {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 17px 20px;
+  margin-bottom: 24px;
+  background: #edf2e9;
+  color: var(--tabs-emerald);
+}
+
+.behar-tabs__discussion-notice p {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.behar-tabs__discussion-list {
+  display: grid;
+  gap: 16px;
+}
+
+.behar-tabs__discussion-thread {
+  padding: 25px;
+  border: 1px solid var(--tabs-line);
+  background: #fff;
+}
+
+.behar-tabs__discussion-author {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.behar-tabs__avatar {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 39px;
+  height: 39px;
+  background: #e9eee5;
+  color: var(--tabs-forest);
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.behar-tabs__avatar--instructor {
+  background: var(--tabs-forest);
+  color: var(--tabs-lime);
+}
+
+.behar-tabs__discussion-author > div {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.behar-tabs__discussion-author strong {
+  font-size: 12px;
+}
+
+.behar-tabs__discussion-author small {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--tabs-muted);
+  font-size: 10px;
+}
+
+.behar-tabs__discussion-thread > p,
+.behar-tabs__discussion-reply > p {
+  margin: 18px 0 0;
+  font-size: 13px;
+  line-height: 1.9;
+}
+
+.behar-tabs__discussion-reply {
+  margin-top: 23px;
+  padding: 20px;
+  border-inline-start: 3px solid var(--tabs-emerald);
+  background: #f1f5ed;
+}
+
+/* EMPTY STATES */
+
+.behar-tabs__empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 190px;
+  padding: 35px 20px;
+  color: var(--tabs-muted);
+  text-align: center;
+  background: #f4f1e9;
+}
+
+.behar-tabs__empty h3 {
+  margin: 15px 0 5px;
+  color: var(--tabs-forest);
+  font-size: 17px;
+}
+
+.behar-tabs__empty p {
+  max-width: 400px;
+  margin: 8px 0 0;
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+/* RTL */
+
+.behar-tabs[dir="rtl"] {
+  font-family: "Noto Sans Arabic", sans-serif;
+}
+
+.behar-tabs[dir="rtl"] .behar-tabs__eyebrow {
+  letter-spacing: 0;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 850px) {
+  .behar-tabs__notes,
+  .behar-tabs__discussion,
+  .behar-tabs__resources-panel {
+    padding: 30px 25px;
+  }
+}
+
+@media (max-width: 600px) {
+  .behar-tabs__tab {
+    min-height: 57px;
+    padding: 13px 17px;
+    font-size: 11px;
+  }
+
+  .behar-tabs__notes,
+  .behar-tabs__discussion,
+  .behar-tabs__resources-panel {
+    padding: 25px 20px;
+  }
+
+  .behar-tabs__resource-link {
+    flex-wrap: wrap;
+  }
+
+  .behar-tabs__resource-action {
+    margin-inline-start: auto;
+  }
+
+  .behar-tabs__discussion-thread {
+    padding: 19px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .behar-tabs__tab {
+    transition: none;
+  }
+}

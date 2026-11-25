@@ -1,0 +1,301 @@
+
+.behar-assignment-feedback {
+  width: 100%;
+  margin-top: 36px;
+  color: #20372a;
+}
+
+.behar-assignment-feedback *,
+.behar-assignment-feedback *::before,
+.behar-assignment-feedback *::after {
+  box-sizing: border-box;
+}
+
+.behar-assignment-feedback__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.behar-assignment-feedback__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+  color: #64835e;
+  font-size: 10px;
+  font-weight: 750;
+  letter-spacing: 0.1em;
+}
+
+.behar-assignment-feedback__header h3 {
+  margin: 0;
+  color: #1d3426;
+  font-size: 21px;
+  font-weight: 650;
+  letter-spacing: -0.025em;
+}
+
+.behar-assignment-feedback__status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+  padding: 7px 11px;
+  border-radius: 30px;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.behar-assignment-feedback__status.is-graded {
+  background: #e8f3e5;
+  color: #37763f;
+}
+
+.behar-assignment-feedback__status.is-submitted {
+  background: #eaf2ff;
+  color: #3768a3;
+}
+
+.behar-assignment-feedback__status.is-under_review {
+  background: #fff2dd;
+  color: #9b6a2e;
+}
+
+.behar-assignment-feedback__status.is-pending {
+  background: #f0f2ee;
+  color: #69776b;
+}
+
+.behar-assignment-feedback__empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 24px;
+  border: 1px dashed #dce5d8;
+  border-radius: 14px;
+  background: #fafcf8;
+  text-align: center;
+}
+
+.behar-assignment-feedback__empty-icon {
+  display: grid;
+  width: 52px;
+  height: 52px;
+  margin-bottom: 16px;
+  place-items: center;
+  border-radius: 15px;
+  background: #edf4e9;
+  color: #64845e;
+}
+
+.behar-assignment-feedback__empty h4 {
+  margin: 0 0 8px;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.behar-assignment-feedback__empty p {
+  max-width: 340px;
+  margin: 0;
+  color: #7c897e;
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+.behar-assignment-feedback__body {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.behar-assignment-feedback__score-card {
+  padding: 24px;
+  border: 1px solid #dfe9db;
+  border-radius: 15px;
+  background: #f5faf2;
+}
+
+.behar-assignment-feedback__score-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  color: #58775b;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.behar-assignment-feedback__score-value {
+  display: flex;
+  align-items: baseline;
+  gap: 9px;
+  margin-top: 18px;
+}
+
+.behar-assignment-feedback__score-value strong {
+  color: #2d6336;
+  font-size: clamp(38px, 6vw, 52px);
+  font-weight: 750;
+  line-height: 1;
+  letter-spacing: -0.06em;
+}
+
+.behar-assignment-feedback__score-value > span {
+  color: #788d78;
+  font-size: 13px;
+}
+
+.behar-assignment-feedback__progress {
+  height: 7px;
+  margin-top: 20px;
+  overflow: hidden;
+  border-radius: 20px;
+  background: #dfeade;
+}
+
+.behar-assignment-feedback__progress > span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: #4b8750;
+  transition: width 350ms ease;
+}
+
+.behar-assignment-feedback__percentage {
+  display: block;
+  margin-top: 8px;
+  color: #4e7951;
+  font-size: 12px;
+  font-weight: 700;
+  text-align: end;
+}
+
+.behar-assignment-feedback__date {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: 18px;
+  color: #78907b;
+  font-size: 11px;
+}
+
+.behar-assignment-feedback__no-score {
+  margin: 18px 0 0;
+  color: #6d806e;
+  font-size: 12px;
+}
+
+.behar-assignment-feedback__comment {
+  padding: 22px;
+  border: 1px solid #e4ebe1;
+  border-radius: 14px;
+  background: #fff;
+}
+
+.behar-assignment-feedback__comment h4,
+.behar-assignment-feedback__rubric h4 {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin: 0 0 15px;
+  color: #253c2b;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.behar-assignment-feedback__comment p {
+  margin: 0;
+  color: #566a59;
+  font-size: 12px;
+  line-height: 1.9;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}
+
+.behar-assignment-feedback__rubric {
+  padding: 22px;
+  border: 1px solid #e4ebe1;
+  border-radius: 14px;
+  background: #fff;
+}
+
+.behar-assignment-feedback__criteria {
+  display: flex;
+  flex-direction: column;
+  gap: 19px;
+}
+
+.behar-assignment-feedback__criterion {
+  min-width: 0;
+}
+
+.behar-assignment-feedback__criterion-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.behar-assignment-feedback__criterion-top strong {
+  color: #334a39;
+  font-size: 12px;
+  font-weight: 650;
+}
+
+.behar-assignment-feedback__criterion-top span {
+  flex-shrink: 0;
+  color: #527756;
+  font-size: 12px;
+  font-weight: 750;
+}
+
+.behar-assignment-feedback__criterion p {
+  margin: 7px 0 0;
+  color: #859186;
+  font-size: 11px;
+  line-height: 1.7;
+}
+
+.behar-assignment-feedback__criterion-bar {
+  height: 5px;
+  margin-top: 12px;
+  overflow: hidden;
+  border-radius: 20px;
+  background: #edf1eb;
+}
+
+.behar-assignment-feedback__criterion-bar > span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: #5c915e;
+}
+
+@media (max-width: 600px) {
+  .behar-assignment-feedback {
+    margin-top: 28px;
+  }
+
+  .behar-assignment-feedback__header {
+    flex-wrap: wrap;
+  }
+
+  .behar-assignment-feedback__score-card,
+  .behar-assignment-feedback__comment,
+  .behar-assignment-feedback__rubric {
+    padding: 17px;
+  }
+
+  .behar-assignment-feedback__header h3 {
+    font-size: 19px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .behar-assignment-feedback__progress > span {
+    transition: none;
+  }
+}

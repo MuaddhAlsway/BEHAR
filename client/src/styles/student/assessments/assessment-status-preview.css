@@ -1,0 +1,224 @@
+
+.behar-status-preview {
+  --sp-forest: #102c2b;
+  --sp-emerald: #176e62;
+  --sp-cream: #f4f1e9;
+  --sp-border: #dce3da;
+  --sp-muted: #6c7b74;
+
+  padding: clamp(24px, 4vw, 60px);
+  background: var(--sp-cream);
+  color: var(--sp-forest);
+  font-family: "Outfit", sans-serif;
+}
+
+.behar-status-preview[dir="rtl"] {
+  font-family: "Noto Sans Arabic", sans-serif;
+}
+
+.behar-status-preview *,
+.behar-status-preview *::before,
+.behar-status-preview *::after {
+  box-sizing: border-box;
+}
+
+.behar-status-preview__container {
+  max-width: 1440px;
+  margin-inline: auto;
+}
+
+.behar-status-preview__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 24px;
+  margin-bottom: 35px;
+  padding-bottom: 30px;
+  border-bottom: 1px solid var(--sp-border);
+}
+
+.behar-status-preview__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  color: var(--sp-emerald);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}
+
+.behar-status-preview__header h2 {
+  margin: 20px 0 10px;
+  font-size: clamp(30px, 4vw, 54px);
+  font-weight: 500;
+  letter-spacing: -0.05em;
+  line-height: 1.15;
+}
+
+.behar-status-preview__header p {
+  margin: 0;
+  max-width: 570px;
+  color: var(--sp-muted);
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+.behar-status-preview__refresh {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 12px 16px;
+  border: 1px solid var(--sp-border);
+  background: transparent;
+  color: var(--sp-forest);
+  font: inherit;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.behar-status-preview__refresh:hover {
+  border-color: var(--sp-emerald);
+}
+
+.behar-status-preview__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(260px, 0.75fr);
+  gap: 18px;
+}
+
+.behar-status-preview__primary {
+  min-width: 0;
+}
+
+.behar-status-preview__label {
+  display: block;
+  margin-bottom: 15px;
+  color: var(--sp-emerald);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}
+
+.behar-status-preview__history {
+  padding: 26px;
+  background: var(--sp-forest);
+  color: #fff;
+}
+
+.behar-status-preview__history-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 25px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.behar-status-preview__history-heading .behar-status-preview__label {
+  color: #d9ef74;
+}
+
+.behar-status-preview__latest,
+.behar-status-preview__score {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  padding: 20px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.behar-status-preview__latest span,
+.behar-status-preview__score span {
+  color: #a8c0b5;
+  font-size: 12px;
+}
+
+.behar-status-preview__latest strong {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.behar-status-preview__score strong {
+  font-size: 36px;
+  font-weight: 500;
+  color: #d9ef74;
+}
+
+.behar-status-preview__latest .is-passed {
+  color: #d9ef74;
+}
+
+.behar-status-preview__latest .is-failed {
+  color: #f1b4a4;
+}
+
+.behar-status-preview__empty {
+  padding: 35px 0;
+  color: #a8c0b5;
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+.behar-status-preview__error,
+.behar-status-preview__message {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+  padding: 15px 18px;
+  font-size: 13px;
+}
+
+.behar-status-preview__error {
+  background: #f7e2de;
+  color: #974b3d;
+}
+
+.behar-status-preview__message {
+  background: #dfeee4;
+  color: #176b4c;
+}
+
+.behar-status-preview__footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  margin-top: 40px;
+  padding-top: 22px;
+  border-top: 1px solid var(--sp-border);
+  color: var(--sp-muted);
+  font-size: 11px;
+}
+
+.behar-status-preview button:focus-visible {
+  outline: 2px solid var(--sp-emerald);
+  outline-offset: 3px;
+}
+
+.behar-status-preview[dir="rtl"] h2 {
+  letter-spacing: 0;
+}
+
+@media (max-width: 900px) {
+  .behar-status-preview__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .behar-status-preview {
+    padding: 24px 16px;
+  }
+
+  .behar-status-preview__header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .behar-status-preview__footer {
+    flex-direction: column;
+    gap: 8px;
+  }
+}

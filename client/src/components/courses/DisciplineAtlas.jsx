@@ -56,7 +56,6 @@ export default function DisciplineAtlas({
   const sectionRef = useRef(null);
   const previewRef = useRef(null);
   const previewImageRef = useRef(null);
-  const previewContextRef = useRef(null);
   const moveXRef = useRef(null);
   const moveYRef = useRef(null);
 

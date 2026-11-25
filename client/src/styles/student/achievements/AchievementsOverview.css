@@ -1,0 +1,159 @@
+
+.behar-achievements-overview {
+  display: grid;
+  gap: 28px;
+  width: 100%;
+  color: #172b35;
+}
+
+.behar-achievements-overview__header {
+  max-width: 720px;
+}
+
+.behar-achievements-overview__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #247c83;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+}
+
+.behar-achievements-overview__header h1 {
+  margin: 12px 0 10px;
+  font-size: clamp(30px, 4vw, 48px);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.045em;
+}
+
+.behar-achievements-overview__header p {
+  margin: 0;
+  color: #71818a;
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.behar-achievements-overview__stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.behar-achievements-overview__stat {
+  min-width: 0;
+  padding: 22px;
+  border: 1px solid #e3e9eb;
+  border-radius: 18px;
+  background: #fff;
+}
+
+.behar-achievements-overview__stat-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  color: #72828b;
+  font-size: 13px;
+}
+
+.behar-achievements-overview__stat-top svg {
+  color: #247c83;
+  flex-shrink: 0;
+}
+
+.behar-achievements-overview__stat strong {
+  display: block;
+  margin-top: 24px;
+  color: #172b35;
+  font-size: clamp(26px, 3vw, 36px);
+  font-weight: 750;
+  letter-spacing: -0.04em;
+}
+
+.behar-achievements-overview__level {
+  padding: 26px;
+  border-radius: 20px;
+  background: #eaf4f2;
+}
+
+.behar-achievements-overview__level-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 16px;
+}
+
+.behar-achievements-overview__level-header span {
+  color: #47736f;
+  font-size: 13px;
+}
+
+.behar-achievements-overview__level-header h2 {
+  margin: 8px 0 0;
+  font-size: 22px;
+  letter-spacing: -0.03em;
+}
+
+.behar-achievements-overview__level-header strong {
+  font-size: 24px;
+  color: #247c83;
+}
+
+.behar-achievements-overview__progress {
+  height: 9px;
+  margin-top: 22px;
+  overflow: hidden;
+  border-radius: 100px;
+  background: #c9dfdb;
+}
+
+.behar-achievements-overview__progress span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: #247c83;
+  transition: width 300ms ease;
+}
+
+.behar-achievements-overview__level > p {
+  margin: 12px 0 0;
+  color: #47736f;
+  font-size: 12px;
+}
+
+@media (max-width: 900px) {
+  .behar-achievements-overview__stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 560px) {
+  .behar-achievements-overview {
+    gap: 22px;
+  }
+
+  .behar-achievements-overview__stats {
+    gap: 10px;
+  }
+
+  .behar-achievements-overview__stat {
+    padding: 16px;
+    border-radius: 14px;
+  }
+
+  .behar-achievements-overview__stat strong {
+    margin-top: 20px;
+  }
+
+  .behar-achievements-overview__level {
+    padding: 20px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .behar-achievements-overview__progress span {
+    transition: none;
+  }
+}

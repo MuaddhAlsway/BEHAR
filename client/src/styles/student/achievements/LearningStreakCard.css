@@ -1,0 +1,399 @@
+
+/* ==========================================
+   BEHAR LMS — LEARNING STREAK CARD
+   P14.5.0.4
+========================================== */
+
+.behar-streak-card {
+  --streak-bg: #fffdf8;
+  --streak-text: #222923;
+  --streak-muted: #858a80;
+  --streak-accent: #ec743d;
+  --streak-border: #e9e8e0;
+
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  padding: clamp(22px, 3vw, 34px);
+  padding-top: clamp(34px, 4vw, 48px);
+
+  border: 1px solid var(--streak-border);
+  border-radius: 24px;
+  background: var(--streak-bg);
+  color: var(--streak-text);
+  font-family: "Outfit", sans-serif;
+}
+
+.behar-streak-card *,
+.behar-streak-card *::before,
+.behar-streak-card *::after {
+  box-sizing: border-box;
+}
+
+.behar-streak-card__header,
+.behar-streak-card__eyebrow,
+.behar-streak-card__hero,
+.behar-streak-card__count,
+.behar-streak-card__status,
+.behar-streak-card__section-title,
+.behar-streak-card__milestone-top,
+.behar-streak-card__record {
+  display: flex;
+  align-items: center;
+}
+
+.behar-streak-card__header {
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.behar-streak-card__eyebrow {
+  gap: 8px;
+  margin-bottom: 10px;
+
+  color: var(--streak-accent);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+}
+
+.behar-streak-card__header h2 {
+  margin: 0;
+  font-size: 23px;
+  font-weight: 500;
+  letter-spacing: -0.035em;
+}
+
+.behar-streak-card__header-icon {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+
+  width: 46px;
+  height: 46px;
+
+  color: var(--streak-accent);
+  background: #fff0e6;
+  border-radius: 14px;
+}
+
+/* Main streak number */
+
+.behar-streak-card__hero {
+  gap: 22px;
+  padding: 38px 0 28px;
+}
+
+.behar-streak-card__flame {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+
+  width: 98px;
+  height: 98px;
+
+  color: #f47b3b;
+  background:
+    radial-gradient(
+      circle at 50% 60%,
+      #ffe0b8,
+      #fff1e2 72%
+    );
+  border-radius: 50%;
+
+  box-shadow: 0 12px 35px rgba(236, 116, 61, 0.1);
+}
+
+.behar-streak-card__flame svg {
+  filter: drop-shadow(
+    0 6px 10px rgba(236, 116, 61, 0.18)
+  );
+}
+
+.behar-streak-card__count {
+  align-items: baseline;
+  gap: 10px;
+}
+
+.behar-streak-card__count strong {
+  font-size: clamp(58px, 6vw, 82px);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.075em;
+  font-variant-numeric: tabular-nums;
+}
+
+.behar-streak-card__count span {
+  font-size: 17px;
+  color: var(--streak-muted);
+}
+
+.behar-streak-card__hero-copy p {
+  margin: 8px 0 0;
+  color: var(--streak-muted);
+  font-size: 13px;
+}
+
+/* Daily status */
+
+.behar-streak-card__status {
+  gap: 9px;
+  min-height: 42px;
+  padding: 11px 14px;
+
+  border-radius: 12px;
+  background: #f5f5ef;
+
+  color: #586055;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.behar-streak-card__status-dot {
+  flex-shrink: 0;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #c1c5b8;
+}
+
+.behar-streak-card__status-dot.is-complete {
+  background: #58a46a;
+}
+
+.behar-streak-card__status svg {
+  margin-inline-start: auto;
+  color: #58a46a;
+}
+
+/* Seven-day activity */
+
+.behar-streak-card__week {
+  padding: 29px 0;
+  border-bottom: 1px solid var(--streak-border);
+}
+
+.behar-streak-card__section-title {
+  justify-content: space-between;
+  margin-bottom: 22px;
+
+  color: var(--streak-muted);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+}
+
+.behar-streak-card__days {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 7px;
+}
+
+.behar-streak-card__day {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+}
+
+.behar-streak-card__weekday {
+  color: var(--streak-muted);
+  font-size: 11px;
+  white-space: nowrap;
+}
+
+.behar-streak-card__day-circle {
+  display: grid;
+  place-items: center;
+
+  width: min(100%, 42px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+
+  background: #f2f1eb;
+  color: #92978c;
+
+  font-size: 12px;
+  font-weight: 500;
+  border: 1px solid transparent;
+}
+
+.behar-streak-card__day-circle.is-active {
+  background: #fce0ce;
+  color: #d9622d;
+}
+
+.behar-streak-card__day-circle.is-today {
+  border-color: var(--streak-accent);
+}
+
+.behar-streak-card__day-circle.is-active.is-today {
+  background: var(--streak-accent);
+  color: white;
+}
+
+.behar-streak-card__today {
+  color: var(--streak-accent);
+  font-size: 10px;
+}
+
+/* Record and milestone */
+
+.behar-streak-card__bottom {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  padding-top: 25px;
+}
+
+.behar-streak-card__record {
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.behar-streak-card__record-icon {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+
+  width: 42px;
+  height: 42px;
+
+  border-radius: 12px;
+  color: #9c7c35;
+  background: #f5efdf;
+}
+
+.behar-streak-card__record > div:last-child {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.behar-streak-card__record span,
+.behar-streak-card__milestone-top span {
+  color: var(--streak-muted);
+  font-size: 12px;
+}
+
+.behar-streak-card__record strong {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.behar-streak-card__milestone {
+  padding-inline-start: 18px;
+  border-inline-start: 1px solid var(--streak-border);
+}
+
+.behar-streak-card__milestone-top {
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.behar-streak-card__milestone-top svg {
+  color: var(--streak-accent);
+}
+
+.behar-streak-card__milestone > strong {
+  display: block;
+  margin-bottom: 12px;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+.behar-streak-card__milestone-track {
+  height: 5px;
+  overflow: hidden;
+  border-radius: 99px;
+  background: #f1e8dd;
+}
+
+.behar-streak-card__milestone-track > div {
+  height: 100%;
+  border-radius: inherit;
+  background: var(--streak-accent);
+  transition: width 500ms ease;
+}
+
+.behar-streak-card__milestone small {
+  display: block;
+  margin-top: 8px;
+  color: var(--streak-muted);
+  font-size: 11px;
+}
+
+/* RTL */
+
+.behar-streak-card[dir="rtl"] {
+  text-align: right;
+}
+
+.behar-streak-card[dir="rtl"]
+.behar-streak-card__eyebrow,
+.behar-streak-card[dir="rtl"]
+.behar-streak-card__section-title {
+  letter-spacing: 0;
+}
+
+.behar-streak-card[dir="rtl"]
+.behar-streak-card__count strong {
+  letter-spacing: 0;
+}
+
+/* Responsive */
+
+@media (max-width: 640px) {
+  .behar-streak-card {
+    padding: 22px 18px;
+    border-radius: 20px;
+  }
+
+  .behar-streak-card__hero {
+    gap: 16px;
+    padding: 30px 0 24px;
+  }
+
+  .behar-streak-card__flame {
+    width: 76px;
+    height: 76px;
+  }
+
+  .behar-streak-card__flame svg {
+    width: 42px;
+    height: 42px;
+  }
+
+  .behar-streak-card__count strong {
+    font-size: 60px;
+  }
+
+  .behar-streak-card__bottom {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+
+  .behar-streak-card__milestone {
+    padding-inline-start: 0;
+    padding-top: 20px;
+    border-inline-start: 0;
+    border-top: 1px solid var(--streak-border);
+  }
+
+  .behar-streak-card__days {
+    gap: 4px;
+  }
+
+  .behar-streak-card__weekday {
+    font-size: 10px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .behar-streak-card__milestone-track > div {
+    transition: none;
+  }
+}

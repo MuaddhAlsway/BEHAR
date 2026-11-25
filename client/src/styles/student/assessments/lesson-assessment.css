@@ -1,0 +1,485 @@
+
+.behar-lesson-assessment {
+  --la-forest: #102c2b;
+  --la-emerald: #176e62;
+  --la-lime: #d9ef74;
+  --la-cream: #f4f1e9;
+  --la-line: #dce3da;
+  --la-muted: #6c7b74;
+
+  width: 100%;
+  min-width: 0;
+  padding: clamp(22px, 4vw, 48px);
+  background: var(--la-cream);
+  color: var(--la-forest);
+  font-family: "Outfit", sans-serif;
+}
+
+.behar-lesson-assessment[dir="rtl"] {
+  font-family: "Noto Sans Arabic", sans-serif;
+}
+
+.behar-lesson-assessment *,
+.behar-lesson-assessment *::before,
+.behar-lesson-assessment *::after {
+  box-sizing: border-box;
+}
+
+.behar-lesson-assessment__heading {
+  padding-bottom: 28px;
+  border-bottom: 1px solid var(--la-line);
+}
+
+.behar-lesson-assessment__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--la-emerald);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}
+
+.behar-lesson-assessment__heading h2 {
+  margin: 18px 0 12px;
+  font-size: clamp(26px, 3.5vw, 42px);
+  font-weight: 500;
+  letter-spacing: -0.045em;
+  line-height: 1.2;
+}
+
+.behar-lesson-assessment__heading p,
+.behar-lesson-assessment__intro p,
+.behar-lesson-assessment__question > p {
+  color: var(--la-muted);
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+.behar-lesson-assessment__primary,
+.behar-lesson-assessment__secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 46px;
+  padding: 12px 20px;
+  border: 1px solid var(--la-forest);
+  font: inherit;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.behar-lesson-assessment__primary {
+  background: var(--la-forest);
+  color: white;
+}
+
+.behar-lesson-assessment__secondary {
+  background: transparent;
+  color: var(--la-forest);
+}
+
+.behar-lesson-assessment button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.behar-lesson-assessment button:focus-visible,
+.behar-lesson-assessment input:focus-visible {
+  outline: 2px solid var(--la-emerald);
+  outline-offset: 3px;
+}
+
+/* INTRO */
+
+.behar-lesson-assessment__intro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 48px 24px;
+  margin-top: 24px;
+  border: 1px solid var(--la-line);
+  background: #fff;
+  text-align: center;
+}
+
+.behar-lesson-assessment__intro-icon,
+.behar-lesson-assessment__result-icon {
+  display: grid;
+  place-items: center;
+  width: 76px;
+  height: 76px;
+  margin-bottom: 20px;
+  border-radius: 50%;
+  background: #e5eee7;
+  color: var(--la-emerald);
+}
+
+.behar-lesson-assessment__intro h3,
+.behar-lesson-assessment__result h3 {
+  margin: 0;
+  font-size: 25px;
+  font-weight: 500;
+}
+
+.behar-lesson-assessment__intro p {
+  max-width: 430px;
+  margin-bottom: 26px;
+}
+
+.behar-lesson-assessment__stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  width: 100%;
+  gap: 10px;
+  margin: 14px 0 30px;
+}
+
+.behar-lesson-assessment__stats > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 22px 10px;
+  background: var(--la-cream);
+}
+
+.behar-lesson-assessment__stats svg {
+  color: var(--la-emerald);
+}
+
+.behar-lesson-assessment__stats strong {
+  font-size: 23px;
+  font-weight: 500;
+}
+
+.behar-lesson-assessment__stats span {
+  color: var(--la-muted);
+  font-size: 11px;
+}
+
+.behar-lesson-assessment__intro > button + button {
+  margin-top: 12px;
+}
+
+/* PROGRESS */
+
+.behar-lesson-assessment__workspace {
+  margin-top: 24px;
+  padding: clamp(20px, 3vw, 36px);
+  background: #fff;
+  border: 1px solid var(--la-line);
+}
+
+.behar-lesson-assessment__progress > div:first-child {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  font-size: 12px;
+}
+
+.behar-lesson-assessment__progress strong {
+  font-weight: 600;
+}
+
+.behar-lesson-assessment__track {
+  display: block;
+  height: 5px;
+  margin-top: 12px;
+  background: #e4eae1;
+  overflow: hidden;
+}
+
+.behar-lesson-assessment__track > span {
+  display: block;
+  height: 100%;
+  background: var(--la-emerald);
+  transition: width 0.2s ease;
+}
+
+.behar-lesson-assessment__question-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 30px 0;
+}
+
+.behar-lesson-assessment__question-nav button {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--la-line);
+  background: transparent;
+  color: var(--la-forest);
+  font: inherit;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.behar-lesson-assessment__question-nav button.is-answered {
+  background: #e5f0e5;
+  color: var(--la-emerald);
+}
+
+.behar-lesson-assessment__question-nav button.is-current {
+  background: var(--la-forest);
+  color: white;
+  border-color: var(--la-forest);
+}
+
+/* QUESTION */
+
+.behar-lesson-assessment__question {
+  padding-top: 24px;
+  border-top: 1px solid var(--la-line);
+}
+
+.behar-lesson-assessment__question-meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  color: var(--la-emerald);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+}
+
+.behar-lesson-assessment__question h3 {
+  margin: 24px 0 12px;
+  font-size: clamp(20px, 2.6vw, 30px);
+  font-weight: 500;
+  line-height: 1.45;
+}
+
+.behar-lesson-assessment__options {
+  display: grid;
+  gap: 10px;
+  margin-top: 25px;
+}
+
+.behar-lesson-assessment__options label {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-height: 64px;
+  padding: 15px 18px;
+  border: 1px solid var(--la-line);
+  background: #fff;
+  cursor: pointer;
+}
+
+.behar-lesson-assessment__options label:hover,
+.behar-lesson-assessment__options label.is-selected {
+  border-color: var(--la-emerald);
+}
+
+.behar-lesson-assessment__options label.is-selected {
+  background: #edf4e9;
+}
+
+.behar-lesson-assessment__options input {
+  width: 17px;
+  height: 17px;
+  accent-color: var(--la-emerald);
+}
+
+.behar-lesson-assessment__letter {
+  display: grid;
+  place-items: center;
+  flex: 0 0 32px;
+  height: 32px;
+  background: var(--la-cream);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.behar-lesson-assessment__option-text {
+  flex: 1;
+  min-width: 0;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.behar-lesson-assessment__options label > svg {
+  color: var(--la-emerald);
+}
+
+.behar-lesson-assessment__navigation {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 35px;
+  padding-top: 25px;
+  border-top: 1px solid var(--la-line);
+}
+
+.behar-lesson-assessment__autosave {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 22px;
+  color: var(--la-emerald);
+  font-size: 11px;
+}
+
+/* RESULT */
+
+.behar-lesson-assessment__result {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 55px 24px;
+  margin-top: 24px;
+  background: #fff;
+  border: 1px solid var(--la-line);
+  text-align: center;
+}
+
+.behar-lesson-assessment__score {
+  margin: 15px 0;
+  font-size: clamp(60px, 8vw, 96px);
+  font-weight: 500;
+  letter-spacing: -0.06em;
+}
+
+.behar-lesson-assessment__result p {
+  color: var(--la-muted);
+  font-size: 13px;
+}
+
+.behar-lesson-assessment__result-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 25px;
+}
+
+/* HISTORY */
+
+.behar-lesson-assessment__history {
+  margin-top: 32px;
+}
+
+.behar-lesson-assessment__history h3 {
+  margin-bottom: 16px;
+  font-size: 19px;
+  font-weight: 500;
+}
+
+.behar-lesson-assessment__history > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--la-line);
+  font-size: 13px;
+}
+
+.behar-lesson-assessment__history strong {
+  color: var(--la-emerald);
+}
+
+/* CONFIRMATION */
+
+.behar-lesson-assessment__overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1100;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: rgba(8, 27, 25, 0.75);
+}
+
+.behar-lesson-assessment__dialog {
+  width: min(100%, 460px);
+  padding: 32px;
+  background: var(--la-cream);
+}
+
+.behar-lesson-assessment__dialog > svg {
+  color: var(--la-emerald);
+}
+
+.behar-lesson-assessment__dialog h3 {
+  margin: 22px 0 10px;
+  font-size: 25px;
+  font-weight: 500;
+}
+
+.behar-lesson-assessment__dialog p {
+  color: var(--la-muted);
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+.behar-lesson-assessment__dialog > strong {
+  display: block;
+  margin: 22px 0;
+  font-size: 13px;
+}
+
+.behar-lesson-assessment__dialog > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.behar-lesson-assessment__error {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+  padding: 15px;
+  background: #f7e5df;
+  color: #a34b3b;
+  font-size: 13px;
+}
+
+.behar-lesson-assessment__message {
+  padding: 30px;
+  color: var(--la-muted);
+  font-size: 13px;
+}
+
+.behar-lesson-assessment[dir="rtl"] h2,
+.behar-lesson-assessment[dir="rtl"] h3 {
+  letter-spacing: 0;
+}
+
+@media (max-width: 680px) {
+  .behar-lesson-assessment {
+    padding: 20px 16px;
+  }
+
+  .behar-lesson-assessment__stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .behar-lesson-assessment__workspace {
+    padding: 18px;
+  }
+
+  .behar-lesson-assessment__navigation {
+    flex-wrap: wrap;
+  }
+
+  .behar-lesson-assessment__navigation button {
+    flex: 1;
+  }
+
+  .behar-lesson-assessment__options label {
+    gap: 10px;
+    padding: 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .behar-lesson-assessment__track > span {
+    transition: none;
+  }
+}

@@ -1,0 +1,488 @@
+
+.beh ar-placeholder {}
+
+.behar-student-progress {
+  --progress-ink: #182b25;
+  --progress-muted: #6d7770;
+  --progress-accent: #b9e36c;
+  --progress-border: #e6e9e3;
+  --progress-surface: #ffffff;
+
+  width: 100%;
+  max-width: 1440px;
+  margin-inline: auto;
+  padding: 30px clamp(18px, 3vw, 48px) 80px;
+  color: var(--progress-ink);
+}
+
+.behar-student-progress *,
+.behar-student-progress *::before,
+.behar-student-progress *::after {
+  box-sizing: border-box;
+}
+
+.behar-student-progress__back {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  margin-bottom: 28px;
+  color: var(--progress-muted);
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.behar-student-progress__back:hover {
+  color: var(--progress-ink);
+}
+
+.behar-student-progress__hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 290px;
+  padding: clamp(30px, 5vw, 64px);
+  overflow: hidden;
+  border-radius: 22px;
+  background: #192d26;
+  color: #ffffff;
+}
+
+.behar-student-progress__hero::after {
+  content: "";
+  position: absolute;
+  width: 420px;
+  height: 420px;
+  inset-inline-end: -130px;
+  top: -190px;
+  border: 1px solid rgb(255 255 255 / 12%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.behar-student-progress__hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 660px;
+}
+
+.behar-student-progress__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  margin-bottom: 24px;
+  color: var(--progress-accent);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+}
+
+.behar-student-progress__hero h1 {
+  max-width: 580px;
+  margin: 0 0 16px;
+  font-size: clamp(34px, 4.3vw, 62px);
+  font-weight: 600;
+  line-height: 1.08;
+  letter-spacing: -0.055em;
+}
+
+.behar-student-progress__hero p {
+  max-width: 530px;
+  margin: 0;
+  color: #c2cec5;
+  font-size: 15px;
+  line-height: 1.75;
+}
+
+.behar-student-progress__hero-icon {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  flex: 0 0 180px;
+  width: 180px;
+  height: 180px;
+  place-items: center;
+  border: 1px solid rgb(255 255 255 / 15%);
+  border-radius: 50%;
+  color: var(--progress-accent);
+  background: rgb(255 255 255 / 5%);
+}
+
+.behar-student-progress__stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 22px;
+}
+
+.behar-student-progress__stat {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-height: 150px;
+  padding: 23px;
+  border: 1px solid var(--progress-border);
+  border-radius: 15px;
+  background: var(--progress-surface);
+}
+
+.behar-student-progress__stat-icon {
+  display: grid;
+  width: 36px;
+  height: 36px;
+  margin-bottom: 18px;
+  place-items: center;
+  border-radius: 10px;
+  background: #edf3e8;
+  color: #38563e;
+}
+
+.behar-student-progress__stat strong {
+  font-size: clamp(24px, 2.4vw, 35px);
+  font-weight: 650;
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+}
+
+.behar-student-progress__stat > span {
+  margin-top: 8px;
+  color: var(--progress-muted);
+  font-size: 12px;
+}
+
+.behar-student-progress__section {
+  margin-top: 65px;
+}
+
+.behar-student-progress__section-heading {
+  margin-bottom: 26px;
+}
+
+.behar-student-progress__section-heading > span {
+  display: block;
+  margin-bottom: 10px;
+  color: #6c8066;
+  font-size: 11px;
+  font-weight: 750;
+  letter-spacing: 0.12em;
+}
+
+.behar-student-progress__section-heading h2 {
+  margin: 0;
+  font-size: clamp(25px, 2.8vw, 38px);
+  font-weight: 600;
+  letter-spacing: -0.045em;
+  line-height: 1.2;
+}
+
+.behar-student-progress__section-heading p {
+  margin: 10px 0 0;
+  color: var(--progress-muted);
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+.behar-student-progress__courses {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.behar-progress-course {
+  display: flex;
+  flex-direction: column;
+  min-height: 255px;
+  padding: 26px;
+  border: 1px solid var(--progress-border);
+  border-radius: 17px;
+  background: var(--progress-surface);
+}
+
+.behar-progress-course__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 22px;
+}
+
+.behar-progress-course__symbol {
+  display: grid;
+  width: 46px;
+  height: 46px;
+  place-items: center;
+  border-radius: 12px;
+  background: #eff3e9;
+  color: #38583e;
+}
+
+.behar-progress-course__status {
+  padding: 7px 11px;
+  border-radius: 30px;
+  background: #f2f3f0;
+  color: #737b72;
+  font-size: 11px;
+  font-weight: 650;
+}
+
+.behar-progress-course__status.is-completed {
+  background: #e7f3db;
+  color: #37653b;
+}
+
+.behar-progress-course h3 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 650;
+  line-height: 1.4;
+}
+
+.behar-progress-course__instructor {
+  margin: 7px 0 0;
+  color: var(--progress-muted);
+  font-size: 12px;
+}
+
+.behar-progress-course__progress {
+  margin-top: 26px;
+}
+
+.behar-progress-course__progress-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+  font-size: 12px;
+  color: var(--progress-muted);
+}
+
+.behar-progress-course__progress-label strong {
+  color: var(--progress-ink);
+  font-size: 14px;
+}
+
+.behar-progress-course__track {
+  width: 100%;
+  height: 7px;
+  overflow: hidden;
+  border-radius: 20px;
+  background: #edf0e9;
+}
+
+.behar-progress-course__track > span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: #86ae57;
+  transition: width 0.3s ease;
+}
+
+.behar-progress-course__link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: auto;
+  padding-top: 25px;
+  color: #355a3a;
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.behar-progress-course__link:hover {
+  color: #172c1c;
+}
+
+.behar-student-progress__empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 70px 24px;
+  border: 1px dashed #d9dfd5;
+  border-radius: 18px;
+  background: #fafbf8;
+  text-align: center;
+}
+
+.behar-student-progress__empty > svg {
+  color: #69876c;
+  margin-bottom: 20px;
+}
+
+.behar-student-progress__empty h3 {
+  margin: 0 0 8px;
+  font-size: 21px;
+}
+
+.behar-student-progress__empty p {
+  max-width: 350px;
+  margin: 0;
+  color: var(--progress-muted);
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.behar-student-progress__empty a {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  margin-top: 24px;
+  padding: 12px 19px;
+  border-radius: 9px;
+  background: #1c3427;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 650;
+  text-decoration: none;
+}
+
+.behar-student-progress__momentum {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  gap: 18px;
+}
+
+.behar-student-progress__momentum > * {
+  min-width: 0;
+}
+
+.behar-student-progress__weekly-goal {
+  margin-top: 18px;
+}
+
+.behar-student-progress__milestones {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.behar-student-progress__milestone {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 13px;
+  padding: 27px;
+  border: 1px solid var(--progress-border);
+  border-radius: 15px;
+  background: #fff;
+}
+
+.behar-student-progress__milestone > svg {
+  color: #658b56;
+}
+
+.behar-student-progress__milestone strong {
+  font-size: 30px;
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+}
+
+.behar-student-progress__milestone span {
+  color: var(--progress-muted);
+  font-size: 12px;
+}
+
+.behar-student-progress__achievements-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 22px;
+  color: #31563a;
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.behar-student-progress__note {
+  margin-top: 48px;
+  color: #879088;
+  font-size: 12px;
+  text-align: center;
+}
+
+.behar-student-progress a:focus-visible {
+  outline: 3px solid #86ae57;
+  outline-offset: 4px;
+}
+
+[dir="rtl"].behar-student-progress
+  .behar-student-progress__hero h1 {
+  letter-spacing: normal;
+}
+
+@media (max-width: 1000px) {
+  .behar-student-progress__stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .behar-student-progress__hero-icon {
+    flex-basis: 130px;
+    width: 130px;
+    height: 130px;
+  }
+
+  .behar-student-progress__momentum {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 680px) {
+  .behar-student-progress {
+    padding: 20px 16px 55px;
+  }
+
+  .behar-student-progress__hero {
+    min-height: 0;
+    padding: 34px 25px;
+  }
+
+  .behar-student-progress__hero-icon {
+    display: none;
+  }
+
+  .behar-student-progress__hero h1 {
+    font-size: 37px;
+  }
+
+  .behar-student-progress__hero p {
+    font-size: 13px;
+  }
+
+  .behar-student-progress__stats {
+    gap: 10px;
+  }
+
+  .behar-student-progress__stat {
+    min-height: 135px;
+    padding: 17px;
+  }
+
+  .behar-student-progress__section {
+    margin-top: 48px;
+  }
+
+  .behar-student-progress__courses {
+    grid-template-columns: 1fr;
+  }
+
+  .behar-student-progress__milestones {
+    grid-template-columns: 1fr;
+  }
+
+  .behar-student-progress__milestone {
+    padding: 20px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .behar-student-progress *,
+  .behar-student-progress *::before,
+  .behar-student-progress *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}

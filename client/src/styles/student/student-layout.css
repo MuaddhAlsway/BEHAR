@@ -1,0 +1,475 @@
+
+/* ==========================================
+   BEHAR — STUDENT DASHBOARD FOUNDATION
+========================================== */
+
+.behar-student-layout {
+  --student-forest: #102c2b;
+  --student-emerald: #176e62;
+  --student-lime: #d9ef74;
+  --student-cream: #f4f1e9;
+  --student-sage: #a8c0b5;
+  --student-muted: #66776d;
+  --student-line: #d5dcd1;
+  --student-sidebar-width: 275px;
+
+  display: flex;
+  min-height: 100vh;
+  background: var(--student-cream);
+  color: var(--student-forest);
+  font-family: "Outfit", sans-serif;
+}
+
+.behar-student-layout,
+.behar-student-layout * {
+  box-sizing: border-box;
+}
+
+/* SIDEBAR */
+
+.behar-student-sidebar {
+  position: fixed;
+  inset-block: 0;
+  inset-inline-start: 0;
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  width: var(--student-sidebar-width);
+  padding: 35px 22px 25px;
+  overflow-y: auto;
+  background: var(--student-forest);
+  color: var(--student-cream);
+  scrollbar-width: thin;
+  scrollbar-color: rgba(217,239,116,.78) transparent;
+  scrollbar-gutter: stable;
+  overscroll-behavior: contain;
+}
+
+.behar-student-sidebar::-webkit-scrollbar,
+.behar-student-mobile__panel::-webkit-scrollbar {
+  width: 6px;
+}
+
+.behar-student-sidebar::-webkit-scrollbar-track,
+.behar-student-mobile__panel::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.behar-student-sidebar::-webkit-scrollbar-thumb,
+.behar-student-mobile__panel::-webkit-scrollbar-thumb {
+  min-height: 42px;
+  border: 1px solid rgba(16,44,43,.55);
+  border-radius: 999px;
+  background: linear-gradient(
+    180deg,
+    var(--student-lime),
+    rgba(168,192,181,.8)
+  );
+}
+
+.behar-student-sidebar::-webkit-scrollbar-thumb:hover,
+.behar-student-mobile__panel::-webkit-scrollbar-thumb:hover {
+  background: var(--student-lime);
+}
+
+.behar-student-sidebar::-webkit-scrollbar-button,
+.behar-student-mobile__panel::-webkit-scrollbar-button {
+  display: none;
+}
+
+.behar-student-sidebar__brand {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 55px;
+  padding-inline: 13px;
+}
+
+.behar-student-sidebar__logo {
+  color: var(--student-cream);
+  font-size: 34px;
+  font-weight: 700;
+  letter-spacing: -.075em;
+  text-decoration: none;
+}
+
+.behar-student-sidebar__logo span {
+  color: var(--student-lime);
+}
+
+.behar-student-sidebar__brand-caption {
+  color: var(--student-sage);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .16em;
+}
+
+.behar-student-sidebar__nav {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.behar-student-sidebar__group-label {
+  display: block;
+  margin: 0 0 18px;
+  padding-inline: 13px;
+  color: var(--student-sage);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .12em;
+}
+
+.behar-student-sidebar__link {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  min-height: 45px;
+  padding: 11px 13px;
+  border-radius: 5px;
+  color: #c5d1cb;
+  font-size: 13px;
+  font-weight: 500;
+  text-decoration: none;
+  transition:
+    background .2s ease,
+    color .2s ease;
+}
+
+.behar-student-sidebar__link:hover {
+  background: rgba(255,255,255,.07);
+  color: white;
+}
+
+.behar-student-sidebar__link.is-active {
+  background: var(--student-emerald);
+  color: var(--student-lime);
+}
+
+.behar-student-sidebar__link svg {
+  flex-shrink: 0;
+}
+
+.behar-student-sidebar__bottom {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: auto;
+  padding-top: 35px;
+}
+
+.behar-student-sidebar__explore {
+  margin-top: 25px;
+  padding: 22px;
+  border: 1px solid rgba(217,239,116,.2);
+  background: rgba(217,239,116,.06);
+}
+
+.behar-student-sidebar__explore > span {
+  color: var(--student-lime);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .1em;
+}
+
+.behar-student-sidebar__explore p {
+  margin: 12px 0 20px;
+  font-size: 16px;
+  line-height: 1.4;
+}
+
+.behar-student-sidebar__explore a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--student-lime);
+  font-size: 11px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+/* WORKSPACE */
+
+.behar-student-layout__workspace {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 100vh;
+  margin-inline-start: var(--student-sidebar-width);
+}
+
+.behar-student-layout__main {
+  flex: 1;
+  width: 100%;
+  min-width: 0;
+  padding: 45px clamp(22px, 4vw, 75px);
+}
+
+.behar-student-layout__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 22px clamp(22px, 4vw, 75px);
+  border-top: 1px solid var(--student-line);
+  color: var(--student-muted);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .08em;
+}
+
+/* HEADER */
+
+.behar-student-header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  min-height: 88px;
+  padding: 15px clamp(22px, 4vw, 75px);
+  border-bottom: 1px solid var(--student-line);
+  background: rgba(244,241,233,.96);
+  backdrop-filter: blur(16px);
+}
+
+.behar-student-header__left,
+.behar-student-header__actions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.behar-student-header__breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 12px;
+}
+
+.behar-student-header__breadcrumb a {
+  color: var(--student-muted);
+  text-decoration: none;
+}
+
+.behar-student-header__breadcrumb span {
+  color: var(--student-forest);
+  font-weight: 700;
+}
+
+.behar-student-header__action {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border: 1px solid var(--student-line);
+  border-radius: 50%;
+  color: var(--student-forest);
+  text-decoration: none;
+  transition:
+    background .2s ease,
+    border-color .2s ease;
+}
+
+.behar-student-header__action:hover {
+  border-color: var(--student-emerald);
+  background: white;
+}
+
+.behar-student-header__notification-dot {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--student-emerald);
+}
+
+.behar-student-header__avatar {
+  display: grid;
+  place-items: center;
+  width: 43px;
+  height: 43px;
+  border-radius: 50%;
+  background: var(--student-forest);
+  color: var(--student-lime);
+  text-decoration: none;
+}
+
+.behar-student-header__menu {
+  display: none;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border: 0;
+  background: transparent;
+  color: var(--student-forest);
+  cursor: pointer;
+}
+
+/* MOBILE DRAWER */
+
+.behar-student-mobile {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+}
+
+.behar-student-mobile__backdrop {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background: rgba(0,0,0,.55);
+  cursor: pointer;
+}
+
+.behar-student-mobile__panel {
+  position: absolute;
+  inset-block: 0;
+  inset-inline-start: 0;
+  width: min(340px, 88vw);
+  padding: 25px 20px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(217,239,116,.78) transparent;
+  scrollbar-gutter: stable;
+  overscroll-behavior: contain;
+  background: var(--student-forest);
+  color: white;
+  box-shadow: 15px 0 50px rgba(0,0,0,.2);
+}
+
+.behar-student-mobile__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 45px;
+  padding-inline: 12px;
+}
+
+.behar-student-mobile__top > span {
+  color: white;
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: -.06em;
+}
+
+.behar-student-mobile__top button {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgba(255,255,255,.2);
+  border-radius: 50%;
+  background: transparent;
+  color: white;
+  cursor: pointer;
+}
+
+.behar-student-mobile__panel nav {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.behar-student-mobile__divider {
+  height: 1px;
+  margin: 20px 0;
+  background: rgba(255,255,255,.15);
+}
+
+/* RTL */
+
+[dir="rtl"] .behar-student-layout {
+  font-family: "Noto Sans Arabic", sans-serif;
+}
+
+[dir="rtl"] .behar-student-header__breadcrumb > svg {
+  transform: rotate(180deg);
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 1100px) {
+  .behar-student-layout {
+    --student-sidebar-width: 240px;
+  }
+
+  .behar-student-sidebar {
+    padding-inline: 15px;
+  }
+}
+
+@media (max-width: 900px) {
+  .behar-student-sidebar {
+    display: none;
+  }
+
+  .behar-student-layout__workspace {
+    margin-inline-start: 0;
+  }
+
+  .behar-student-header__menu {
+    display: grid;
+  }
+}
+
+@media (max-width: 600px) {
+  .behar-student-header {
+    min-height: 70px;
+    padding: 12px 18px;
+  }
+
+  .behar-student-header__left,
+  .behar-student-header__actions {
+    gap: 10px;
+  }
+
+  .behar-student-header__breadcrumb {
+    font-size: 11px;
+  }
+
+  .behar-student-header__action {
+    width: 36px;
+    height: 36px;
+  }
+
+  .behar-student-header__avatar {
+    width: 36px;
+    height: 36px;
+  }
+
+  .behar-student-layout__main {
+    padding: 30px 18px;
+  }
+
+  .behar-student-layout__footer {
+    padding: 20px 18px;
+    font-size: 9px;
+  }
+}
+
+/* ACCESSIBILITY */
+
+.behar-student-layout a:focus-visible,
+.behar-student-layout button:focus-visible,
+.behar-student-mobile button:focus-visible,
+.behar-student-mobile a:focus-visible {
+  outline: 3px solid var(--student-lime, #d9ef74);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .behar-student-layout *,
+  .behar-student-mobile * {
+    transition-duration: .01ms !important;
+    animation-duration: .01ms !important;
+  }
+}

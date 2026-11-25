@@ -1,0 +1,271 @@
+
+/* ==========================================
+   BEHAR — P14.2.4 ENROLLED COURSES GRID
+========================================== */
+
+.behar-courses-grid {
+  --cg-forest: #102c2b;
+  --cg-emerald: #176e62;
+  --cg-lime: #d9ef74;
+  --cg-cream: #f4f1e9;
+  --cg-muted: #68786e;
+  --cg-line: #d6dcd2;
+
+  width: 100%;
+  min-width: 0;
+  margin-top: clamp(35px, 4vw, 60px);
+  color: var(--cg-forest);
+  font-family: "Outfit", sans-serif;
+}
+
+.behar-courses-grid,
+.behar-courses-grid * {
+  box-sizing: border-box;
+}
+
+.behar-courses-grid[dir="rtl"] {
+  font-family: "Noto Sans Arabic", sans-serif;
+}
+
+/* HEADER */
+
+.behar-courses-grid__header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 24px;
+  margin-bottom: 27px;
+}
+
+.behar-courses-grid__header-copy {
+  min-width: 0;
+}
+
+.behar-courses-grid__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 13px;
+  color: var(--cg-emerald);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+}
+
+.behar-courses-grid__eyebrow > span {
+  width: 26px;
+  height: 1px;
+  background: var(--cg-emerald);
+}
+
+.behar-courses-grid__header h2 {
+  margin: 0;
+  font-size: clamp(26px, 3vw, 39px);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.045em;
+}
+
+.behar-courses-grid__header p {
+  margin: 10px 0 0;
+  color: var(--cg-muted);
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.behar-courses-grid__count {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 15px;
+  border: 1px solid var(--cg-line);
+  color: var(--cg-muted);
+  font-size: 11px;
+}
+
+.behar-courses-grid__count svg {
+  color: var(--cg-emerald);
+}
+
+.behar-courses-grid__count strong {
+  color: var(--cg-forest);
+  font-weight: 700;
+}
+
+/* GRID */
+
+.behar-courses-grid__list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: stretch;
+  gap: clamp(14px, 2vw, 24px);
+}
+
+.behar-courses-grid__list > * {
+  min-width: 0;
+}
+
+/* EMPTY STATE */
+
+.behar-courses-grid__empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 420px;
+  padding: 50px 24px;
+  border: 1px solid var(--cg-line);
+  background: #fffdf8;
+  text-align: center;
+}
+
+.behar-courses-grid__empty-art {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 100px;
+  height: 100px;
+  margin-bottom: 26px;
+  color: var(--cg-emerald);
+}
+
+.behar-courses-grid__empty-art > svg {
+  position: relative;
+  z-index: 1;
+}
+
+.behar-courses-grid__empty-orbit {
+  position: absolute;
+  inset: 0;
+  border: 1px solid #c8d9cd;
+  border-radius: 50%;
+  box-shadow:
+    0 0 0 18px rgba(23, 110, 98, 0.04),
+    0 0 0 36px rgba(23, 110, 98, 0.025);
+}
+
+.behar-courses-grid__empty-index {
+  color: var(--cg-emerald);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+}
+
+.behar-courses-grid__empty h3 {
+  margin: 16px 0 0;
+  font-size: clamp(23px, 3vw, 32px);
+  font-weight: 600;
+  letter-spacing: -0.04em;
+}
+
+.behar-courses-grid__empty p {
+  max-width: 390px;
+  margin: 13px 0 0;
+  color: var(--cg-muted);
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+.behar-courses-grid__empty-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 46px;
+  margin-top: 25px;
+  padding: 12px 19px;
+  border: 1px solid var(--cg-forest);
+  background: var(--cg-forest);
+  color: #fff;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.behar-courses-grid__empty-action:hover {
+  background: var(--cg-emerald);
+  border-color: var(--cg-emerald);
+}
+
+.behar-courses-grid__empty-action:focus-visible {
+  outline: 2px solid var(--cg-emerald);
+  outline-offset: 3px;
+}
+
+/* FOOTER */
+
+.behar-courses-grid__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  margin-top: 24px;
+  padding-top: 17px;
+  border-top: 1px solid var(--cg-line);
+  color: var(--cg-muted);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}
+
+/* RTL */
+
+.behar-courses-grid[dir="rtl"]
+.behar-courses-grid__header h2 {
+  letter-spacing: 0;
+  line-height: 1.5;
+}
+
+.behar-courses-grid[dir="rtl"]
+.behar-courses-grid__eyebrow,
+.behar-courses-grid[dir="rtl"]
+.behar-courses-grid__footer {
+  letter-spacing: 0;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 1250px) {
+  .behar-courses-grid__list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 720px) {
+  .behar-courses-grid__list {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .behar-courses-grid__header {
+    align-items: flex-start;
+    gap: 17px;
+  }
+
+  .behar-courses-grid__header h2 {
+    font-size: 27px;
+  }
+
+  .behar-courses-grid__empty {
+    min-height: 340px;
+    padding: 40px 18px;
+  }
+
+  .behar-courses-grid__empty h3 {
+    font-size: 25px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .behar-courses-grid *,
+  .behar-courses-grid *::before,
+  .behar-courses-grid *::after {
+    transition: none !important;
+    animation: none !important;
+  }
+}

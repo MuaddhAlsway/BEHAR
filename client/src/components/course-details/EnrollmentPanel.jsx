@@ -3,12 +3,9 @@ import { useEffect, useRef, useState } from "react";
 import {
   ArrowUpRight,
   ArrowUpLeft,
-  ArrowRight,
-  ArrowLeft,
   Asterisk,
   BookOpen,
   Clock3,
-  Globe2,
   GraduationCap,
   Check,
   ShieldCheck,
@@ -16,7 +13,6 @@ import {
   LoaderCircle,
   LockKeyhole,
   Sparkles,
-  X,
 } from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";

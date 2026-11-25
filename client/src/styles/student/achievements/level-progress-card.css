@@ -1,0 +1,424 @@
+
+/* ==========================================
+   BEHAR LMS — LEVEL PROGRESS CARD
+   P14.5.0.3
+========================================== */
+
+.behar-level-card {
+  --level-bg: #101d1b;
+  --level-accent: #c5f277;
+  --level-text: #f6f8f2;
+  --level-muted: #a2b0a8;
+
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+
+  padding: clamp(24px, 3vw, 40px);
+  padding-top: clamp(38px, 4vw, 56px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 24px;
+
+  background: var(--level-bg);
+  color: var(--level-text);
+  font-family: "Outfit", sans-serif;
+}
+
+/* Dashboard entry point */
+.behar-dashboard-achievements-link {
+  display: inline-flex;
+  width: fit-content;
+  align-items: center;
+  gap: 10px;
+  margin: 8px 0 24px;
+  padding: 12px 16px;
+  border: 1px solid rgba(16, 44, 43, 0.22);
+  border-radius: 999px;
+  color: #102c2b;
+  background: rgba(217, 239, 116, 0.28);
+  font-family: "Outfit", sans-serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: color 180ms ease, background 180ms ease, transform 180ms ease;
+}
+
+.behar-dashboard-achievements-link svg {
+  transition: transform 180ms ease;
+}
+
+.behar-dashboard-achievements-link:hover,
+.behar-dashboard-achievements-link:focus-visible {
+  color: #f4f1e9;
+  background: #102c2b;
+  transform: translateY(-2px);
+}
+
+.behar-dashboard-achievements-link:hover svg,
+.behar-dashboard-achievements-link:focus-visible svg {
+  transform: translate(3px, -3px);
+}
+
+.behar-dashboard-achievements-link:focus-visible {
+  outline: 2px solid #d9ef74;
+  outline-offset: 4px;
+}
+
+.behar-level-card *,
+.behar-level-card *::before,
+.behar-level-card *::after {
+  box-sizing: border-box;
+}
+
+.behar-level-card__glow {
+  position: absolute;
+  z-index: -1;
+  pointer-events: none;
+
+  top: -170px;
+  right: -100px;
+
+  width: 430px;
+  height: 430px;
+  border-radius: 50%;
+
+  background: radial-gradient(
+    circle,
+    rgba(197, 242, 119, 0.13),
+    transparent 70%
+  );
+}
+
+.behar-level-card__header,
+.behar-level-card__eyebrow,
+.behar-level-card__main,
+.behar-level-card__identity,
+.behar-level-card__progress-heading,
+.behar-level-card__progress-footer,
+.behar-level-card__footer {
+  display: flex;
+  align-items: center;
+}
+
+.behar-level-card__header {
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.behar-level-card__eyebrow {
+  gap: 9px;
+  color: var(--level-accent);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+}
+
+.behar-level-card__symbol {
+  display: grid;
+  place-items: center;
+
+  width: 40px;
+  height: 40px;
+
+  color: var(--level-accent);
+  border: 1px solid rgba(197, 242, 119, 0.2);
+  border-radius: 12px;
+
+  background: rgba(197, 242, 119, 0.06);
+}
+
+.behar-level-card__main {
+  justify-content: space-between;
+  gap: 24px;
+  margin-top: 40px;
+  margin-bottom: 48px;
+}
+
+.behar-level-card__identity {
+  align-items: flex-end;
+  gap: 20px;
+  min-width: 0;
+}
+
+.behar-level-card__level-number {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex-shrink: 0;
+}
+
+.behar-level-card__level-number > span {
+  font-size: 13px;
+  color: var(--level-muted);
+}
+
+.behar-level-card__level-number strong {
+  font-size: clamp(68px, 8vw, 104px);
+  font-weight: 500;
+  line-height: 0.9;
+  letter-spacing: -0.08em;
+  font-variant-numeric: tabular-nums;
+}
+
+.behar-level-card__identity-info {
+  min-width: 0;
+  padding-bottom: 6px;
+}
+
+.behar-level-card__identity-info h2 {
+  margin: 0 0 12px;
+  font-size: clamp(19px, 2vw, 26px);
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.behar-level-card__identity-info p {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+
+  margin: 0;
+  font-size: 13px;
+  color: var(--level-muted);
+}
+
+.behar-level-card__identity-info p svg {
+  color: var(--level-accent);
+  flex-shrink: 0;
+}
+
+/* Decorative level orb */
+
+.behar-level-card__orb {
+  position: relative;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+
+  width: 142px;
+  height: 142px;
+}
+
+.behar-level-card__orb-inner {
+  display: grid;
+  place-items: center;
+
+  width: 106px;
+  height: 106px;
+  border-radius: 50%;
+
+  background: radial-gradient(
+    circle at 35% 30%,
+    #e1ffb0,
+    #a4d75b 65%,
+    #648b35
+  );
+
+  box-shadow:
+    0 0 50px rgba(197, 242, 119, 0.15),
+    inset 0 -12px 25px rgba(20, 45, 12, 0.15);
+}
+
+.behar-level-card__orb-inner span {
+  color: #17271b;
+  font-size: 42px;
+  font-weight: 600;
+  letter-spacing: -0.06em;
+}
+
+.behar-level-card__orb-ring {
+  position: absolute;
+  inset: 0;
+  border: 1px dashed rgba(197, 242, 119, 0.4);
+  border-radius: 50%;
+  animation: behar-level-orbit 35s linear infinite;
+}
+
+@keyframes behar-level-orbit {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Progress */
+
+.behar-level-card__progress-heading {
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.behar-level-card__progress-heading span {
+  color: var(--level-muted);
+  font-size: 13px;
+}
+
+.behar-level-card__progress-heading strong {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--level-accent);
+}
+
+.behar-level-card__progress-track {
+  width: 100%;
+  height: 9px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.behar-level-card__progress-fill {
+  height: 100%;
+  border-radius: inherit;
+
+  background: linear-gradient(
+    90deg,
+    #8ccf56,
+    #d5ff95
+  );
+
+  box-shadow: 0 0 15px rgba(197, 242, 119, 0.3);
+
+  transition: width 650ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.behar-level-card__progress-footer {
+  justify-content: space-between;
+  gap: 12px;
+
+  margin-top: 10px;
+
+  color: var(--level-muted);
+  font-size: 12px;
+}
+
+/* Footer */
+
+.behar-level-card__footer {
+  gap: 14px;
+  margin-top: 32px;
+  padding-top: 24px;
+
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.behar-level-card__next-icon {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+
+  width: 44px;
+  height: 44px;
+  border-radius: 13px;
+
+  color: var(--level-accent);
+  background: rgba(197, 242, 119, 0.1);
+}
+
+.behar-level-card__next-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  min-width: 0;
+  flex: 1;
+}
+
+.behar-level-card__next-copy span {
+  color: var(--level-muted);
+  font-size: 12px;
+}
+
+.behar-level-card__next-copy strong {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.behar-level-card__footer-arrow {
+  color: var(--level-accent);
+  flex-shrink: 0;
+}
+
+/* RTL */
+
+.behar-level-card[dir="rtl"] {
+  text-align: right;
+}
+
+.behar-level-card[dir="rtl"]
+.behar-level-card__eyebrow {
+  letter-spacing: 0;
+}
+
+.behar-level-card[dir="rtl"]
+.behar-level-card__level-number strong {
+  letter-spacing: 0;
+}
+
+/* Responsive */
+
+@media (max-width: 640px) {
+  .behar-level-card {
+    padding: 24px 20px;
+    border-radius: 20px;
+  }
+
+  .behar-level-card__main {
+    margin-top: 34px;
+    margin-bottom: 38px;
+    gap: 12px;
+  }
+
+  .behar-level-card__identity {
+    gap: 14px;
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .behar-level-card__level-number strong {
+    font-size: 72px;
+  }
+
+  .behar-level-card__orb {
+    width: 100px;
+    height: 100px;
+  }
+
+  .behar-level-card__orb-inner {
+    width: 76px;
+    height: 76px;
+  }
+
+  .behar-level-card__orb-inner span {
+    font-size: 30px;
+  }
+
+  .behar-level-card__identity-info h2 {
+    font-size: 20px;
+  }
+
+  .behar-level-card__footer {
+    margin-top: 26px;
+    padding-top: 20px;
+  }
+}
+
+@media (max-width: 380px) {
+  .behar-level-card__orb {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .behar-level-card__orb-ring {
+    animation: none;
+  }
+
+  .behar-level-card__progress-fill {
+    transition: none;
+  }
+}

@@ -1,5 +1,5 @@
 import { useParams, Link } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import { courses } from "../../data/courses";
 import CourseDetailsHero from "../../components/course-details/CourseDetailsHero";
@@ -9,9 +9,11 @@ import InstructorProfile from "../../components/course-details/InstructorProfile
 import CourseReviews from "../../components/course-details/CourseReviews";
 import EnrollmentPanel from "../../components/course-details/EnrollmentPanel";
 import RelatedCourses from "../../components/course-details/RelatedCourses";
+import CoursePreviewModal from "../../components/courses/CoursePreviewModal";
 
 export default function CourseDetails() {
   const { slug } = useParams();
+  const [previewLesson, setPreviewLesson] = useState(null);
 
   const course = courses.find(
     (item) => item.slug === slug
@@ -53,6 +55,28 @@ export default function CourseDetails() {
     console.log("Enroll in course:", selectedCourse.slug);
   };
 
+  const handlePreviewLesson = (lesson, selectedCourse = course) => {
+    if (
+      selectedCourse?.slug !== course.slug ||
+      lesson?.preview !== true
+    ) {
+      return;
+    }
+
+    setPreviewLesson(lesson);
+  };
+
+  const handlePreviewEnroll = (selectedCourse) => {
+    handleEnroll(selectedCourse);
+    setPreviewLesson(null);
+
+    window.requestAnimationFrame(() => {
+      document
+        .getElementById("course-enrollment")
+        ?.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  };
+
   return (
     <main className="behar-course-details">
       {/* P13.1 — Course Details Hero */}
@@ -65,12 +89,9 @@ export default function CourseDetails() {
   <LearningOutcomes course={course} />
       {/* P13.3 — Course Curriculum */}
 <CourseCurriculum
-      course={course}
-      onPreviewLesson={(lesson) => {
-        // Connect to a lesson-preview modal later.
-        console.log("Preview lesson:", lesson.id);
-      }}
-    />
+        course={course}
+        onPreviewLesson={handlePreviewLesson}
+      />
       {/* P13.4 — Instructor Profile */}
  <InstructorProfile course={course} />
       {/* P13.5 — Student Reviews */}
@@ -87,6 +108,13 @@ export default function CourseDetails() {
     />
       {/* P13.7 — Related Courses */}
          <RelatedCourses course={course} />
+      <CoursePreviewModal
+        lesson={previewLesson}
+        course={course}
+        isOpen={Boolean(previewLesson)}
+        onClose={() => setPreviewLesson(null)}
+        onEnroll={handlePreviewEnroll}
+      />
     </main>
   );
 }

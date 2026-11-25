@@ -32,7 +32,8 @@
 /* TOPLINE */
 
 .behar-curriculum__topline {
-  display: flex;
+  display: grid;
+  grid-template-columns: 40px 48px minmax(0, 1fr) auto;
   justify-content: space-between;
   align-items: center;
   gap: 20px;
@@ -138,6 +139,8 @@
 /* STATS */
 
 .behar-curriculum__stats {
+  position: relative;
+  z-index: 1;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   margin-bottom: 100px;
@@ -146,6 +149,8 @@
 }
 
 .behar-curriculum__stats > div {
+  position: relative;
+  z-index: 1;
   display: flex;
   flex-direction: column;
   gap: 15px;
@@ -162,6 +167,11 @@
 }
 
 .behar-curriculum__stats strong {
+  display: block;
+  color: var(--bc-cream);
+  opacity: 1;
+  visibility: visible;
+  -webkit-text-fill-color: var(--bc-cream);
   font-size: clamp(55px, 6vw, 90px);
   font-weight: 500;
   line-height: 1;
@@ -169,6 +179,9 @@
 }
 
 .behar-curriculum__stats span {
+  display: block;
+  opacity: 1;
+  visibility: visible;
   color: var(--bc-sage);
   font-size: 10px;
   font-weight: 700;
@@ -321,7 +334,7 @@
 /* LESSON LIST */
 
 .behar-curriculum__chapter-panel {
-  padding: 0 90px 45px 115px;
+  padding: 0 0 45px 115px;
 }
 
 .behar-curriculum__chapter-panel[hidden] {
@@ -329,17 +342,26 @@
 }
 
 .behar-curriculum__lesson-list {
+  position: relative;
+  z-index: 1;
+  width: 100%;
   border-top: 1px solid var(--bc-line);
 }
 
 .behar-curriculum__lesson {
+  position: relative;
+  z-index: 1;
   display: grid;
-  grid-template-columns: 40px 48px minmax(0, 1fr) 210px;
+  grid-template-columns: 40px 48px minmax(0, 1fr) max-content;
   align-items: center;
   gap: 18px;
+  width: 100%;
   min-height: 105px;
   padding: 20px 0;
   border-bottom: 1px solid var(--bc-line);
+  color: var(--bc-cream);
+  opacity: 1;
+  visibility: visible;
 }
 
 .behar-curriculum__lesson-number {
@@ -373,6 +395,12 @@
 }
 
 .behar-curriculum__lesson-content strong {
+  display: block;
+  color: var(--bc-cream);
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0);
+  transition: color .25s ease, transform .25s ease;
   font-size: 17px;
   font-weight: 500;
   line-height: 1.5;
@@ -383,6 +411,15 @@
   flex-direction: column;
   align-items: flex-end;
   gap: 12px;
+}
+
+.behar-curriculum__lesson:hover .behar-curriculum__lesson-content strong,
+.behar-curriculum__lesson:focus-within .behar-curriculum__lesson-content strong {
+  color: var(--bc-lime);
+  -webkit-text-fill-color: var(--bc-lime);
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(6px);
 }
 
 .behar-curriculum__lesson-duration {

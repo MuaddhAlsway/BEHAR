@@ -1,0 +1,356 @@
+
+/* =========================================
+   BEHAR — 404 PAGE NOT FOUND
+========================================= */
+
+.behar-404 {
+  --nf-forest: #102c2b;
+  --nf-emerald: #176e62;
+  --nf-lime: #d9ef74;
+  --nf-cream: #f4f1e9;
+  --nf-sage: #a8c0b5;
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 760px;
+  min-height: min(850px, 100svh);
+  overflow: hidden;
+  background: var(--nf-forest);
+  color: var(--nf-cream);
+  font-family: "Outfit", sans-serif;
+  isolation: isolate;
+}
+
+.behar-404,
+.behar-404 * {
+  box-sizing: border-box;
+}
+
+.behar-404[dir="rtl"] {
+  font-family: "Noto Sans Arabic", sans-serif;
+}
+
+.behar-404__topline,
+.behar-404__bottomline {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding: 28px clamp(24px, 5vw, 90px);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .16em;
+}
+
+.behar-404__topline {
+  border-bottom: 1px solid rgba(255, 255, 255, .12);
+  color: var(--nf-sage);
+}
+
+.behar-404__bottomline {
+  border-top: 1px solid rgba(255, 255, 255, .12);
+  color: var(--nf-sage);
+}
+
+.behar-404__content {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr);
+  align-items: center;
+  flex: 1;
+  width: 100%;
+  max-width: 1600px;
+  margin-inline: auto;
+  padding: 90px clamp(24px, 7vw, 110px);
+}
+
+.behar-404__copy {
+  position: relative;
+  z-index: 2;
+}
+
+.behar-404__label {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  margin-bottom: 30px;
+  color: var(--nf-lime);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .17em;
+}
+
+.behar-404__label-line {
+  width: 36px;
+  height: 1px;
+  background: var(--nf-lime);
+}
+
+.behar-404__title {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  font-size: clamp(56px, 7.5vw, 125px);
+  font-weight: 600;
+  line-height: .95;
+  letter-spacing: -.075em;
+  text-transform: uppercase;
+}
+
+.behar-404__title-accent {
+  color: var(--nf-lime);
+}
+
+.behar-404__description {
+  max-width: 440px;
+  margin: 34px 0 0;
+  color: #b7c8c0;
+  font-size: clamp(15px, 1.3vw, 18px);
+  font-weight: 400;
+  line-height: 1.8;
+}
+
+.behar-404__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 15px;
+  margin-top: 43px;
+}
+
+.behar-404__primary,
+.behar-404__secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  min-height: 55px;
+  padding: 0 25px;
+  font-size: 12px;
+  font-weight: 700;
+  text-decoration: none;
+  transition:
+    background .25s ease,
+    color .25s ease,
+    transform .25s ease,
+    border-color .25s ease;
+}
+
+.behar-404__primary {
+  background: var(--nf-lime);
+  color: var(--nf-forest);
+}
+
+.behar-404__primary:hover {
+  background: #e8f6a4;
+  transform: translateY(-3px);
+}
+
+.behar-404__secondary {
+  border: 1px solid rgba(255,255,255,.25);
+  color: var(--nf-cream);
+}
+
+.behar-404__secondary:hover {
+  border-color: var(--nf-lime);
+  color: var(--nf-lime);
+  transform: translateY(-3px);
+}
+
+/* COMPASS VISUAL */
+
+.behar-404__visual {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 470px;
+}
+
+.behar-404__orbit {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: min(35vw, 480px);
+  aspect-ratio: 1;
+}
+
+.behar-404__orbit-outer,
+.behar-404__orbit-middle,
+.behar-404__orbit-inner {
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(217,239,116,.22);
+  border-radius: 50%;
+}
+
+.behar-404__orbit-outer {
+  width: 100%;
+  height: 100%;
+  border-style: dashed;
+  animation: behar404Spin 90s linear infinite;
+}
+
+.behar-404__orbit-middle {
+  width: 78%;
+  height: 78%;
+  border-color: rgba(217,239,116,.35);
+}
+
+.behar-404__orbit-inner {
+  width: 68%;
+  height: 68%;
+  border-color: rgba(217,239,116,.55);
+  background: rgba(217,239,116,.04);
+  color: var(--nf-lime);
+}
+
+.behar-404__orbit-inner svg {
+  animation: behar404CounterSpin 90s linear infinite;
+}
+
+.behar-404__orbit-marker {
+  position: absolute;
+  top: 5%;
+  left: 20%;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: var(--nf-lime);
+  box-shadow: 0 0 25px rgba(217,239,116,.6);
+}
+
+.behar-404__giant-number {
+  position: absolute;
+  z-index: -1;
+  color: rgba(217,239,116,.055);
+  font-size: clamp(150px, 23vw, 380px);
+  font-weight: 700;
+  letter-spacing: -.12em;
+  user-select: none;
+}
+
+.behar-404__visual-caption {
+  position: absolute;
+  bottom: 0;
+  color: var(--nf-sage);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .18em;
+}
+
+@keyframes behar404Spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes behar404CounterSpin {
+  to { transform: rotate(-360deg); }
+}
+
+/* RTL */
+
+.behar-404[dir="rtl"] .behar-404__title {
+  letter-spacing: -.04em;
+  line-height: 1.25;
+  text-transform: none;
+}
+
+.behar-404[dir="rtl"] .behar-404__primary svg {
+  transform: rotate(0deg);
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 900px) {
+  .behar-404__content {
+    grid-template-columns: 1fr;
+    gap: 45px;
+    padding-block: 75px;
+  }
+
+  .behar-404__visual {
+    min-height: 320px;
+  }
+
+  .behar-404__orbit {
+    width: min(65vw, 350px);
+  }
+
+  .behar-404__title {
+    font-size: clamp(60px, 11vw, 100px);
+  }
+}
+
+@media (max-width: 600px) {
+  .behar-404 {
+    min-height: 100svh;
+  }
+
+  .behar-404__topline,
+  .behar-404__bottomline {
+    padding: 20px 22px;
+    font-size: 8px;
+    letter-spacing: .08em;
+  }
+
+  .behar-404__content {
+    padding: 65px 22px;
+    gap: 35px;
+  }
+
+  .behar-404__title {
+    font-size: clamp(48px, 13vw, 75px);
+  }
+
+  .behar-404__description {
+    margin-top: 25px;
+    font-size: 15px;
+  }
+
+  .behar-404__actions {
+    gap: 10px;
+    margin-top: 32px;
+  }
+
+  .behar-404__primary,
+  .behar-404__secondary {
+    min-height: 50px;
+    padding: 0 18px;
+    font-size: 11px;
+  }
+
+  .behar-404__visual {
+    min-height: 250px;
+  }
+
+  .behar-404__orbit {
+    width: min(65vw, 270px);
+  }
+
+  .behar-404__orbit-inner svg {
+    width: 48px;
+  }
+
+  .behar-404__visual-caption {
+    bottom: -15px;
+  }
+}
+
+/* ACCESSIBILITY */
+
+.behar-404 a:focus-visible {
+  outline: 3px solid var(--nf-lime);
+  outline-offset: 5px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .behar-404 *,
+  .behar-404 *::before,
+  .behar-404 *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}

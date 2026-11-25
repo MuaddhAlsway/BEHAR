@@ -1,0 +1,425 @@
+
+/* ==========================================
+   BEHAR — P14.3.3 LESSON VIDEO PLAYER
+========================================== */
+
+.behar-video-player {
+  --vp-forest: #102c2b;
+  --vp-emerald: #176e62;
+  --vp-lime: #d9ef74;
+  --vp-muted: #a8c0b5;
+
+  position: relative;
+  min-width: 0;
+  overflow: hidden;
+  background: var(--vp-forest);
+  color: #fff;
+  outline-offset: 4px;
+}
+
+.behar-video-player__viewport {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  min-height: 250px;
+  overflow: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: var(--vp-lime) var(--vp-forest);
+  background:
+    radial-gradient(
+      circle at 50% 45%,
+      #214c43 0%,
+      #102c2b 65%
+    );
+}
+
+.behar-video-player__viewport::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.behar-video-player__viewport::-webkit-scrollbar-track {
+  background: var(--vp-forest);
+}
+
+.behar-video-player__viewport::-webkit-scrollbar-thumb {
+  border: 2px solid var(--vp-forest);
+  border-radius: 999px;
+  background: var(--vp-lime);
+}
+
+.behar-video-player__viewport::-webkit-scrollbar-thumb:hover {
+  background: #eef9a5;
+}
+
+.behar-video-player__video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+}
+
+.behar-video-player__grid {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  opacity: 0.12;
+  pointer-events: none;
+  background-image:
+    linear-gradient(#a8c0b5 1px, transparent 1px),
+    linear-gradient(90deg, #a8c0b5 1px, transparent 1px);
+  background-size: 55px 55px;
+}
+
+.behar-video-player__topline {
+  position: absolute;
+  top: 23px;
+  inset-inline: 25px;
+  z-index: 3;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  pointer-events: none;
+}
+
+.behar-video-player__brand {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.05em;
+}
+
+.behar-video-player__brand span {
+  color: var(--vp-lime);
+}
+
+.behar-video-player__type {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #d5e3d7;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+}
+
+.behar-video-player__type > span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--vp-lime);
+}
+
+/* PLAYER STATES */
+
+.behar-video-player__state {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 50px 24px 24px;
+  background: rgba(16, 44, 43, 0.9);
+  text-align: center;
+}
+
+.behar-video-player__state h2 {
+  margin: 0;
+  color: #fff;
+  font-size: clamp(18px, 2vw, 25px);
+  font-weight: 500;
+}
+
+.behar-video-player__state p {
+  max-width: 340px;
+  margin: 0;
+  color: #b7cfc1;
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.behar-video-player__state-icon {
+  display: grid;
+  place-items: center;
+  width: 70px;
+  height: 70px;
+  border: 1px solid #5b7b6c;
+  border-radius: 50%;
+  color: var(--vp-lime);
+}
+
+.behar-video-player__state--loading {
+  z-index: 5;
+  background: rgba(16, 44, 43, 0.75);
+}
+
+.behar-video-player__spinner {
+  color: var(--vp-lime);
+  animation: behar-video-spin 1s linear infinite;
+}
+
+@keyframes behar-video-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.behar-video-player__retry {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+  padding: 12px 18px;
+  border: 1px solid var(--vp-lime);
+  background: var(--vp-lime);
+  color: var(--vp-forest);
+  font: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* CENTER PLAY */
+
+.behar-video-player__center-play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 3;
+  display: grid;
+  place-items: center;
+  width: 80px;
+  height: 80px;
+  transform: translate(-50%, -50%);
+  border: 1px solid rgba(217, 239, 116, 0.6);
+  border-radius: 50%;
+  background: var(--vp-lime);
+  color: var(--vp-forest);
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease;
+}
+
+.behar-video-player__center-play:hover {
+  transform: translate(-50%, -50%) scale(1.08);
+  background: #e7f6a8;
+}
+
+.behar-video-player__ended {
+  position: absolute;
+  bottom: 20px;
+  z-index: 3;
+  padding: 8px 14px;
+  background: rgba(16, 44, 43, 0.8);
+  color: var(--vp-lime);
+  font-size: 11px;
+}
+
+/* CONTROLS */
+
+.behar-video-player__controls {
+  position: relative;
+  z-index: 6;
+  padding: 14px 21px 16px;
+  background: #0b2221;
+}
+
+.behar-video-player__timeline input {
+  width: 100%;
+  height: 5px;
+  margin: 0;
+  border-radius: 0;
+  appearance: none;
+  background: linear-gradient(
+    to right,
+    var(--vp-lime) var(--video-progress, 0%),
+    #48635a var(--video-progress, 0%)
+  );
+  cursor: pointer;
+}
+
+.behar-video-player__timeline input::-webkit-slider-thumb,
+.behar-video-player__volume input::-webkit-slider-thumb {
+  width: 12px;
+  height: 12px;
+  appearance: none;
+  border: 0;
+  border-radius: 50%;
+  background: var(--vp-lime);
+}
+
+.behar-video-player__timeline input::-moz-range-thumb,
+.behar-video-player__volume input::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--vp-lime);
+}
+
+.behar-video-player__time {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 7px;
+  color: #a8c0b5;
+  font-size: 10px;
+  font-variant-numeric: tabular-nums;
+}
+
+.behar-video-player__controls-row,
+.behar-video-player__control-group,
+.behar-video-player__volume {
+  display: flex;
+  align-items: center;
+}
+
+.behar-video-player__controls-row {
+  justify-content: space-between;
+  gap: 15px;
+  margin-top: 12px;
+}
+
+.behar-video-player__control-group {
+  gap: 9px;
+}
+
+.behar-video-player__controls button {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #e8f1e8;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.behar-video-player__controls button:hover {
+  color: var(--vp-lime);
+}
+
+.behar-video-player__controls button:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.behar-video-player__volume {
+  gap: 7px;
+}
+
+.behar-video-player__volume input {
+  width: 70px;
+  height: 4px;
+  appearance: none;
+  background: #547066;
+  cursor: pointer;
+}
+
+.behar-video-player__controls select {
+  padding: 6px 7px;
+  border: 1px solid #456159;
+  background: transparent;
+  color: #e8f1e8;
+  font: inherit;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.behar-video-player__controls select option {
+  background: #102c2b;
+  color: #fff;
+}
+
+.behar-video-player button:focus-visible,
+.behar-video-player input:focus-visible,
+.behar-video-player select:focus-visible {
+  outline: 2px solid var(--vp-lime);
+  outline-offset: 3px;
+}
+
+/* FULLSCREEN */
+
+.behar-video-player:fullscreen {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100dvh;
+}
+
+.behar-video-player:fullscreen
+.behar-video-player__viewport {
+  flex: 1;
+  min-height: 0;
+  aspect-ratio: auto;
+}
+
+.behar-video-player:fullscreen
+.behar-video-player__controls {
+  flex-shrink: 0;
+}
+
+/* RTL */
+
+.behar-video-player[dir="rtl"] {
+  font-family: "Noto Sans Arabic", sans-serif;
+}
+
+.behar-video-player[dir="rtl"]
+.behar-video-player__type {
+  letter-spacing: 0;
+}
+
+.behar-video-player__timeline,
+.behar-video-player__time {
+  direction: ltr;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 650px) {
+  .behar-video-player__viewport {
+    min-height: 210px;
+  }
+
+  .behar-video-player__topline {
+    top: 15px;
+    inset-inline: 16px;
+  }
+
+  .behar-video-player__center-play {
+    width: 62px;
+    height: 62px;
+  }
+
+  .behar-video-player__controls {
+    padding: 12px 13px;
+  }
+
+  .behar-video-player__control-group {
+    gap: 3px;
+  }
+
+  .behar-video-player__volume input {
+    width: 45px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .behar-video-player *,
+  .behar-video-player *::before,
+  .behar-video-player *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}

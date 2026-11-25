@@ -4,8 +4,6 @@ import { Link } from "react-router-dom";
 import {
   ArrowUpRight,
   ArrowUpLeft,
-  ArrowRight,
-  ArrowLeft,
   Asterisk,
   BookOpen,
   GraduationCap,

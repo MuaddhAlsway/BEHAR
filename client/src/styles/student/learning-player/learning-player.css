@@ -1,0 +1,863 @@
+
+/* ==========================================
+   BEHAR — P14.3 LEARNING PLAYER
+   FULL RESPONSIVE STYLESHEET
+
+   Desktop: Fluid video + curriculum
+   Tablet/Mobile: Curriculum drawer
+   Languages: English LTR / Arabic RTL
+========================================== */
+
+/* ==========================================
+   01 — FOUNDATION
+========================================== */
+
+.behar-player {
+  --lp-forest: #102c2b;
+  --lp-emerald: #176e62;
+  --lp-lime: #d9ef74;
+  --lp-cream: #f4f1e9;
+  --lp-sage: #a8c0b5;
+  --lp-line: #d9e0d5;
+  --lp-muted: #68786e;
+
+  width: 100%;
+  max-width: none;
+  min-width: 0;
+  min-height: 100vh;
+
+  margin: 0;
+  padding: 0;
+
+  background: var(--lp-cream);
+  color: var(--lp-forest);
+
+  font-family: "Outfit", sans-serif;
+}
+
+.behar-player,
+.behar-player *,
+.behar-player *::before,
+.behar-player *::after {
+  box-sizing: border-box;
+}
+
+.behar-player[dir="rtl"] {
+  font-family: "Noto Sans Arabic", sans-serif;
+}
+
+/* ==========================================
+   02 — HEADER
+========================================== */
+
+.behar-player__header {
+  width: 100%;
+  padding: 28px clamp(20px, 4vw, 70px) 34px;
+
+  border-bottom: 1px solid var(--lp-line);
+  background: #fffdf8;
+}
+
+.behar-player__header-top,
+.behar-player__header-main {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.behar-player__header-top {
+  align-items: center;
+  margin-bottom: 36px;
+}
+
+.behar-player__back {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+
+  color: var(--lp-forest);
+  font-size: 12px;
+  font-weight: 600;
+  text-decoration: none;
+
+  transition: color 180ms ease;
+}
+
+.behar-player__back:hover {
+  color: var(--lp-emerald);
+}
+
+.behar-player__phase {
+  color: #91a198;
+
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+}
+
+.behar-player__header-main {
+  align-items: flex-end;
+}
+
+.behar-player__course-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.behar-player__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+
+  color: var(--lp-emerald);
+
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.behar-player__eyebrow > span {
+  width: 23px;
+  height: 1px;
+
+  flex-shrink: 0;
+  background: var(--lp-emerald);
+}
+
+.behar-player__course-info h1 {
+  margin: 12px 0 8px;
+
+  font-size: clamp(25px, 3vw, 43px);
+  font-weight: 600;
+  letter-spacing: -0.045em;
+  line-height: 1.2;
+
+  overflow-wrap: anywhere;
+}
+
+.behar-player__course-info p {
+  margin: 0;
+
+  color: var(--lp-muted);
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+/* ==========================================
+   03 — HEADER PROGRESS
+========================================== */
+
+.behar-player__progress {
+  flex: 0 0 230px;
+  min-width: 0;
+}
+
+.behar-player__progress-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+
+  margin-bottom: 12px;
+  font-size: 11px;
+}
+
+.behar-player__progress-top strong {
+  color: var(--lp-emerald);
+  font-size: 17px;
+}
+
+.behar-player__progress-track {
+  width: 100%;
+  height: 5px;
+
+  overflow: hidden;
+  background: #e1e8df;
+  border-radius: 999px;
+}
+
+.behar-player__progress-track > span {
+  display: block;
+  height: 100%;
+
+  background: var(--lp-emerald);
+  border-radius: inherit;
+
+  transition: width 250ms ease;
+}
+
+.behar-player__progress-caption {
+  display: block;
+  margin-top: 10px;
+
+  color: var(--lp-muted);
+  font-size: 10px;
+  text-align: end;
+}
+
+/* ==========================================
+   04 — MAIN LAYOUT
+   FULL DESKTOP WIDTH
+========================================== */
+
+.behar-player__layout {
+  display: grid;
+
+  grid-template-columns: minmax(0, 1fr) 360px;
+  align-items: start;
+  gap: 0;
+
+  width: 100%;
+  max-width: none;
+  min-width: 0;
+  min-height: 650px;
+
+  margin: 0;
+  padding: 0;
+}
+
+.behar-player__main {
+  grid-column: 1;
+  grid-row: 1;
+
+  width: 100%;
+  max-width: none;
+  min-width: 0;
+
+  padding:
+    30px
+    clamp(20px, 3vw, 50px)
+    55px;
+}
+
+/* Actual CourseCurriculumSidebar component */
+
+.behar-player__layout > .behar-curriculum {
+  grid-column: 2;
+  grid-row: 1;
+
+  width: 100%;
+  max-width: none;
+  min-width: 0;
+  align-self: start;
+
+  border-inline-start: 1px solid var(--lp-line);
+  background: #fffdf8;
+}
+
+/* Prevent nested content from forcing overflow */
+
+.behar-player__main > * {
+  max-width: 100%;
+  min-width: 0;
+}
+
+/* Legacy sidebar wrapper support */
+
+.behar-player__sidebar {
+  min-width: 0;
+  border-inline-start: 1px solid var(--lp-line);
+  background: #fffdf8;
+}
+
+/* ==========================================
+   05 — VIDEO FOUNDATION
+========================================== */
+
+.behar-player__stage {
+  position: relative;
+
+  display: grid;
+  place-items: center;
+
+  width: 100%;
+  max-width: 100%;
+  aspect-ratio: 16 / 9;
+  min-height: 260px;
+
+  overflow: hidden;
+
+  background: var(--lp-forest);
+  color: #fff;
+}
+
+.behar-player__stage-grid {
+  position: absolute;
+  inset: 0;
+
+  opacity: 0.1;
+
+  background-image:
+    linear-gradient(#fff 1px, transparent 1px),
+    linear-gradient(90deg, #fff 1px, transparent 1px);
+
+  background-size: 48px 48px;
+}
+
+.behar-player__stage-center {
+  position: relative;
+  z-index: 1;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  max-width: 410px;
+  padding: 30px;
+
+  text-align: center;
+}
+
+.behar-player__play-symbol {
+  display: grid;
+  place-items: center;
+
+  width: 76px;
+  height: 76px;
+
+  margin-bottom: 25px;
+
+  border: 1px solid rgb(217 239 116 / 35%);
+  border-radius: 50%;
+
+  background: var(--lp-lime);
+  color: var(--lp-forest);
+}
+
+.behar-player__stage-center > span {
+  color: var(--lp-lime);
+
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.behar-player__stage-center h2 {
+  margin: 14px 0;
+
+  font-size: clamp(21px, 2.5vw, 31px);
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+.behar-player__stage-center p {
+  margin: 0;
+
+  color: var(--lp-sage);
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+.behar-player__stage-label {
+  position: absolute;
+  bottom: 20px;
+  inset-inline-start: 24px;
+
+  color: var(--lp-sage);
+  font-size: 9px;
+  letter-spacing: 0.13em;
+}
+
+/* ==========================================
+   06 — LESSON DETAILS
+========================================== */
+
+.behar-player__lesson {
+  width: 100%;
+  padding: 34px 0;
+
+  border-bottom: 1px solid var(--lp-line);
+}
+
+.behar-player__lesson-eyebrow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+
+  color: var(--lp-emerald);
+
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+.behar-player__lesson h2 {
+  margin: 16px 0;
+
+  font-size: clamp(23px, 2.4vw, 34px);
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  line-height: 1.35;
+}
+
+.behar-player__lesson-meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 22px;
+
+  color: var(--lp-muted);
+  font-size: 12px;
+}
+
+.behar-player__lesson-meta > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+
+/* ==========================================
+   07 — LESSON NAVIGATION
+========================================== */
+
+.behar-player__navigation {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+
+  width: 100%;
+  margin-top: 28px;
+}
+
+.behar-player__nav-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+
+  min-height: 46px;
+  padding: 12px 18px;
+
+  border: 1px solid var(--lp-line);
+  border-radius: 8px;
+
+  background: #fffdf8;
+  color: var(--lp-forest);
+
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  text-decoration: none;
+
+  cursor: pointer;
+
+  transition:
+    background 180ms ease,
+    border-color 180ms ease,
+    color 180ms ease;
+}
+
+.behar-player__nav-button:hover {
+  border-color: var(--lp-emerald);
+}
+
+.behar-player__nav-button--next {
+  background: var(--lp-forest);
+  border-color: var(--lp-forest);
+  color: #fff;
+}
+
+.behar-player__nav-button--next:hover {
+  background: var(--lp-emerald);
+  border-color: var(--lp-emerald);
+}
+
+/* ==========================================
+   08 — LEGACY SIDEBAR STYLES
+========================================== */
+
+.behar-player__sidebar-header {
+  padding: 30px 25px;
+  border-bottom: 1px solid var(--lp-line);
+}
+
+.behar-player__sidebar-header h2 {
+  margin: 13px 0 8px;
+
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+}
+
+.behar-player__sidebar-header p {
+  margin: 0;
+
+  color: var(--lp-muted);
+  font-size: 11px;
+}
+
+.behar-player__module {
+  border-bottom: 1px solid var(--lp-line);
+}
+
+.behar-player__module-heading {
+  display: flex;
+  align-items: flex-start;
+  gap: 13px;
+
+  padding: 23px 25px 17px;
+}
+
+.behar-player__module-heading > span {
+  color: var(--lp-emerald);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.behar-player__module-heading h3 {
+  margin: 0;
+
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.behar-player__module-lessons {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 13px;
+}
+
+.behar-player__sidebar-lesson {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  padding: 13px 25px;
+
+  border-inline-start: 3px solid transparent;
+
+  color: var(--lp-forest);
+  text-decoration: none;
+
+  transition: background 200ms ease;
+}
+
+.behar-player__sidebar-lesson:hover {
+  background: #f0f4ed;
+}
+
+.behar-player__sidebar-lesson--active {
+  border-inline-start-color: var(--lp-emerald);
+  background: #eaf1e7;
+}
+
+.behar-player__sidebar-lesson-icon {
+  display: grid;
+  place-items: center;
+
+  flex-shrink: 0;
+
+  width: 31px;
+  height: 31px;
+
+  background: #e8eee5;
+  color: var(--lp-emerald);
+}
+
+.behar-player__sidebar-lesson--active
+.behar-player__sidebar-lesson-icon {
+  background: var(--lp-forest);
+  color: var(--lp-lime);
+}
+
+.behar-player__sidebar-lesson-copy {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 5px;
+
+  min-width: 0;
+}
+
+.behar-player__sidebar-lesson-copy strong {
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.behar-player__sidebar-lesson-copy small {
+  color: var(--lp-muted);
+  font-size: 10px;
+}
+
+.behar-player__active-indicator {
+  flex-shrink: 0;
+  color: var(--lp-emerald);
+}
+
+/* ==========================================
+   09 — ERROR / NOT FOUND
+========================================== */
+
+.behar-player__message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  min-height: 65vh;
+
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.behar-player__message-icon {
+  display: grid;
+  place-items: center;
+
+  width: 85px;
+  height: 85px;
+
+  border-radius: 50%;
+
+  background: #e5eee4;
+  color: var(--lp-emerald);
+}
+
+.behar-player__message h1 {
+  margin: 24px 0 10px;
+  font-size: clamp(24px, 3vw, 36px);
+}
+
+.behar-player__message p {
+  max-width: 450px;
+
+  color: var(--lp-muted);
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+.behar-player__message-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+
+  margin-top: 20px;
+  padding: 14px 22px;
+
+  background: var(--lp-forest);
+  color: #fff;
+
+  font-size: 12px;
+  text-decoration: none;
+}
+
+/* ==========================================
+   10 — RTL SUPPORT
+========================================== */
+
+.behar-player[dir="rtl"] h1,
+.behar-player[dir="rtl"] h2,
+.behar-player[dir="rtl"] h3 {
+  letter-spacing: 0;
+}
+
+.behar-player[dir="rtl"] .behar-player__layout {
+  direction: rtl;
+  grid-template-columns: 360px minmax(0, 1fr);
+}
+
+.behar-player[dir="rtl"] .behar-player__main {
+  grid-column: 2;
+}
+
+.behar-player[dir="rtl"]
+.behar-player__layout > .behar-curriculum {
+  grid-column: 1;
+}
+
+/* ==========================================
+   11 — MEDIUM DESKTOP
+========================================== */
+
+@media (min-width: 1025px) and (max-width: 1100px) {
+  .behar-player__layout {
+    grid-template-columns: minmax(0, 1fr) 320px;
+  }
+
+  .behar-player[dir="rtl"] .behar-player__layout {
+    grid-template-columns: 320px minmax(0, 1fr);
+  }
+
+  .behar-player__main {
+    padding: 26px 24px 45px;
+  }
+}
+
+/* ==========================================
+   12 — TABLET / MOBILE
+   Curriculum becomes a drawer
+========================================== */
+
+@media (max-width: 1024px) {
+  .behar-player__layout,
+  .behar-player[dir="rtl"] .behar-player__layout {
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+    min-height: 0;
+  }
+
+  .behar-player__main,
+  .behar-player[dir="rtl"] .behar-player__main {
+    order: 2;
+
+    width: 100%;
+    max-width: none;
+    min-width: 0;
+
+    padding: 24px;
+  }
+
+  .behar-player__layout > .behar-curriculum,
+  .behar-player[dir="rtl"]
+  .behar-player__layout > .behar-curriculum {
+    order: 1;
+
+    width: 100%;
+    min-width: 0;
+
+    padding: 16px 24px 0;
+
+    border-inline-start: 0;
+    background: transparent;
+  }
+
+  .behar-player__header-main {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .behar-player__progress {
+    flex: auto;
+    width: min(100%, 350px);
+  }
+
+  .behar-player__sidebar {
+    border-inline-start: 0;
+    border-top: 1px solid var(--lp-line);
+  }
+}
+
+/* ==========================================
+   13 — MOBILE
+========================================== */
+
+@media (max-width: 600px) {
+  .behar-player__header {
+    padding: 22px 18px 28px;
+  }
+
+  .behar-player__header-top {
+    margin-bottom: 28px;
+  }
+
+  .behar-player__phase {
+    display: none;
+  }
+
+  .behar-player__course-info h1 {
+    font-size: clamp(24px, 7vw, 34px);
+  }
+
+  .behar-player__main {
+    padding: 18px 14px 35px;
+  }
+
+  .behar-player__layout > .behar-curriculum {
+    padding: 14px 14px 0;
+  }
+
+  .behar-player__stage {
+    min-height: 220px;
+  }
+
+  .behar-player__stage-center {
+    padding: 20px;
+  }
+
+  .behar-player__stage-center p {
+    font-size: 11px;
+  }
+
+  .behar-player__play-symbol {
+    width: 58px;
+    height: 58px;
+    margin-bottom: 15px;
+  }
+
+  .behar-player__navigation {
+    flex-wrap: wrap;
+  }
+
+  .behar-player__nav-button {
+    font-size: 11px;
+  }
+
+  .behar-player__sidebar-header {
+    padding: 25px 20px;
+  }
+
+  .behar-player__lesson {
+    padding: 26px 0;
+  }
+}
+
+/* ==========================================
+   14 — SMALL MOBILE
+========================================== */
+
+@media (max-width: 380px) {
+  .behar-player__main {
+    padding-inline: 12px;
+  }
+
+  .behar-player__layout > .behar-curriculum {
+    padding-inline: 12px;
+  }
+
+  .behar-player__lesson-meta {
+    gap: 12px;
+  }
+
+  .behar-player__nav-button {
+    padding: 11px 12px;
+  }
+}
+
+/* ==========================================
+   15 — ACCESSIBILITY
+========================================== */
+
+.behar-player :is(
+  a,
+  button,
+  input,
+  textarea,
+  select
+):focus-visible {
+  outline: 2px solid var(--lp-emerald);
+  outline-offset: 3px;
+}
+
+/* ==========================================
+   16 — REDUCED MOTION
+========================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .behar-player *,
+  .behar-player *::before,
+  .behar-player *::after {
+    transition: none !important;
+    animation: none !important;
+    scroll-behavior: auto !important;
+  }
+}

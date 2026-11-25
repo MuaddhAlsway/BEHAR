@@ -1,0 +1,551 @@
+
+/* ==========================================
+   BEHAR — BADGE COLLECTION
+   P14.5.0.6
+========================================== */
+
+.behar-badge-collection {
+  --badge-text: #222b26;
+  --badge-muted: #858c85;
+  --badge-border: #e6e8e2;
+  --badge-accent: #47765c;
+
+  width: 100%;
+  min-width: 0;
+  padding: clamp(22px, 3vw, 36px);
+  padding-top: clamp(34px, 4vw, 50px);
+  box-sizing: border-box;
+  border: 1px solid var(--badge-border);
+  border-radius: 26px;
+  background: #fafbf8;
+  color: var(--badge-text);
+  font-family: "Outfit", sans-serif;
+}
+
+.behar-badge-collection *,
+.behar-badge-collection *::before,
+.behar-badge-collection *::after {
+  box-sizing: border-box;
+}
+
+.behar-badge-collection__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.behar-badge-collection__eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+  color: var(--badge-accent);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+}
+
+.behar-badge-collection__heading h2 {
+  margin: 0;
+  font-size: clamp(23px, 3vw, 30px);
+  font-weight: 500;
+  letter-spacing: -0.045em;
+}
+
+.behar-badge-collection__heading p {
+  max-width: 440px;
+  margin: 10px 0 0;
+  color: var(--badge-muted);
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.behar-badge-collection__count {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  min-width: 110px;
+  padding: 14px 18px;
+  border-radius: 16px;
+  background: #edf1e9;
+}
+
+.behar-badge-collection__count > span {
+  color: #738475;
+  font-size: 11px;
+}
+
+.behar-badge-collection__count strong {
+  font-size: 29px;
+  font-weight: 500;
+  line-height: 1.1;
+}
+
+.behar-badge-collection__count small {
+  color: #8c9b8e;
+  font-size: 15px;
+  font-weight: 400;
+}
+
+.behar-badge-collection__summary {
+  margin-top: 28px;
+  padding: 18px 20px;
+  border: 1px solid var(--badge-border);
+  border-radius: 14px;
+  background: #fff;
+}
+
+.behar-badge-collection__summary-copy {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+  font-size: 12px;
+}
+
+.behar-badge-collection__summary-copy span {
+  color: var(--badge-muted);
+}
+
+.behar-badge-collection__summary-copy strong {
+  color: var(--badge-accent);
+}
+
+.behar-badge-collection__summary-track,
+.behar-badge-card__track {
+  height: 6px;
+  overflow: hidden;
+  border-radius: 99px;
+  background: #e9ede7;
+}
+
+.behar-badge-collection__summary-track > span,
+.behar-badge-card__track > span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: #6a9e79;
+  transition: width 350ms ease;
+}
+
+/* Filters */
+
+.behar-badge-collection__filters {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin: 26px 0 22px;
+}
+
+.behar-badge-collection__filters button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border: 1px solid #e2e6df;
+  border-radius: 999px;
+  background: #fff;
+  color: #6c756e;
+  font: inherit;
+  font-size: 12px;
+  cursor: pointer;
+  transition: 180ms ease;
+}
+
+.behar-badge-collection__filters button:hover {
+  border-color: #9ebaa5;
+  color: #335c42;
+}
+
+.behar-badge-collection__filters button.is-active {
+  background: #294d39;
+  border-color: #294d39;
+  color: #fff;
+}
+
+/* Badge grid */
+
+.behar-badge-collection__grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.behar-badge-card {
+  --rarity: #b8a37a;
+  --rarity-light: #f5eee0;
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 265px;
+  padding: 18px;
+
+  border: 1px solid #e9e9e3;
+  border-radius: 18px;
+  background: #fff;
+  color: inherit;
+  text-align: start;
+  font: inherit;
+  cursor: pointer;
+  transition:
+    transform 200ms ease,
+    border-color 200ms ease,
+    box-shadow 200ms ease;
+}
+
+.behar-badge-card.rarity-rare,
+.behar-badge-collection__dialog-icon.rarity-rare {
+  --rarity: #4b9688;
+  --rarity-light: #e5f2ed;
+}
+
+.behar-badge-card.rarity-epic,
+.behar-badge-collection__dialog-icon.rarity-epic {
+  --rarity: #8d73c0;
+  --rarity-light: #f0ebfa;
+}
+
+.behar-badge-card.rarity-legendary,
+.behar-badge-collection__dialog-icon.rarity-legendary {
+  --rarity: #d9903d;
+  --rarity-light: #fff0d9;
+}
+
+.behar-badge-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--rarity);
+  box-shadow: 0 14px 32px rgba(33, 48, 38, 0.07);
+}
+
+.behar-badge-card:focus-visible,
+.behar-badge-collection button:focus-visible {
+  outline: 2px solid #467c56;
+  outline-offset: 3px;
+}
+
+.behar-badge-card__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.behar-badge-card__rarity {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #7d837d;
+  font-size: 10px;
+}
+
+.behar-badge-card__rarity-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--rarity);
+}
+
+.behar-badge-card__state {
+  display: grid;
+  place-items: center;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #f0f1ed;
+  color: #9ba29a;
+}
+
+.behar-badge-card.is-unlocked
+.behar-badge-card__state {
+  background: #e4f1e7;
+  color: #418454;
+}
+
+.behar-badge-card__medallion {
+  display: grid;
+  place-items: center;
+  margin: 17px auto 20px;
+  width: 94px;
+  height: 94px;
+  border: 1px solid var(--rarity);
+  border-radius: 50%;
+  background: var(--rarity-light);
+}
+
+.behar-badge-card__medallion-inner {
+  display: grid;
+  place-items: center;
+  width: 75px;
+  height: 75px;
+  border: 1px dashed var(--rarity);
+  border-radius: 50%;
+  color: var(--rarity);
+}
+
+.behar-badge-card.is-locked
+.behar-badge-card__medallion {
+  filter: grayscale(0.8);
+  opacity: 0.6;
+}
+
+.behar-badge-card__content {
+  flex: 1;
+}
+
+.behar-badge-card__content h3 {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.behar-badge-card__content p {
+  display: -webkit-box;
+  margin: 8px 0 0;
+  overflow: hidden;
+  color: var(--badge-muted);
+  font-size: 11px;
+  line-height: 1.6;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.behar-badge-card__footer {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.behar-badge-card__progress {
+  flex: 1;
+  min-width: 0;
+}
+
+.behar-badge-card__progress-copy {
+  display: flex;
+  justify-content: space-between;
+  gap: 6px;
+  margin-bottom: 8px;
+  color: #929990;
+  font-size: 10px;
+}
+
+.behar-badge-card__progress-copy strong {
+  color: #5a6d5d;
+  font-weight: 600;
+}
+
+.behar-badge-card__earned,
+.behar-badge-card__locked {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #4c8a5b;
+  font-size: 11px;
+}
+
+.behar-badge-card__locked {
+  color: #a0a6a0;
+}
+
+.behar-badge-card__arrow {
+  flex-shrink: 0;
+  color: #a4ada4;
+}
+
+/* Badge details */
+
+.behar-badge-collection__overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: rgba(16, 27, 21, 0.6);
+  backdrop-filter: blur(5px);
+}
+
+.behar-badge-collection__dialog {
+  position: relative;
+  width: min(100%, 440px);
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 34px;
+  border-radius: 24px;
+  background: #fff;
+  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.15);
+  text-align: center;
+}
+
+.behar-badge-collection__close {
+  position: absolute;
+  top: 18px;
+  inset-inline-end: 18px;
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border: 0;
+  border-radius: 10px;
+  background: #f2f4f0;
+  color: #4b574e;
+  cursor: pointer;
+}
+
+.behar-badge-collection__dialog-icon {
+  --rarity: #b8a37a;
+  --rarity-light: #f5eee0;
+
+  display: grid;
+  place-items: center;
+  width: 112px;
+  height: 112px;
+  margin: 15px auto 20px;
+  border: 2px solid var(--rarity);
+  border-radius: 50%;
+  background: var(--rarity-light);
+  color: var(--rarity);
+}
+
+.behar-badge-collection__dialog-rarity {
+  color: #8b938b;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.behar-badge-collection__dialog h3 {
+  margin: 12px 0;
+  font-size: 25px;
+  font-weight: 500;
+}
+
+.behar-badge-collection__dialog > p {
+  margin: 0 auto;
+  max-width: 310px;
+  color: #7c857d;
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+.behar-badge-collection__dialog-detail {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 26px;
+  padding: 18px;
+  border-radius: 14px;
+  background: #f5f7f3;
+  text-align: start;
+}
+
+.behar-badge-collection__dialog-detail > span {
+  color: #858e84;
+  font-size: 11px;
+}
+
+.behar-badge-collection__dialog-detail > strong {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.behar-badge-collection__empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 12px;
+  min-height: 170px;
+  color: #879287;
+  font-size: 13px;
+}
+
+/* RTL */
+
+.behar-badge-collection[dir="rtl"] {
+  text-align: right;
+}
+
+.behar-badge-collection[dir="rtl"]
+.behar-badge-collection__eyebrow,
+.behar-badge-collection[dir="rtl"]
+.behar-badge-collection__dialog-rarity {
+  letter-spacing: 0;
+}
+
+.behar-badge-collection[dir="rtl"]
+.behar-badge-card__arrow {
+  transform: rotate(180deg);
+}
+
+/* Responsive */
+
+@media (max-width: 1100px) {
+  .behar-badge-collection__grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 780px) {
+  .behar-badge-collection__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 520px) {
+  .behar-badge-collection {
+    padding: 20px 15px;
+    border-radius: 20px;
+  }
+
+  .behar-badge-collection__header {
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .behar-badge-collection__count {
+    width: 100%;
+  }
+
+  .behar-badge-collection__grid {
+    gap: 9px;
+  }
+
+  .behar-badge-card {
+    padding: 13px;
+    min-height: 260px;
+  }
+
+  .behar-badge-card__medallion {
+    width: 76px;
+    height: 76px;
+  }
+
+  .behar-badge-card__medallion-inner {
+    width: 60px;
+    height: 60px;
+  }
+
+  .behar-badge-card__medallion-inner svg {
+    width: 27px;
+    height: 27px;
+  }
+
+  .behar-badge-collection__dialog {
+    padding: 26px 20px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .behar-badge-card,
+  .behar-badge-collection__summary-track > span,
+  .behar-badge-card__track > span {
+    transition: none;
+  }
+}

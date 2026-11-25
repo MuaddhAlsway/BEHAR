@@ -1,0 +1,645 @@
+
+/* ==========================================
+   BEHAR — P14.1.6 UPCOMING DEADLINES
+========================================== */
+
+.behar-deadlines {
+  --bd-forest: #102c2b;
+  --bd-emerald: #176e62;
+  --bd-lime: #d9ef74;
+  --bd-cream: #f4f1e9;
+  --bd-sage: #a8c0b5;
+  --bd-muted: #68786e;
+  --bd-line: #d6dcd2;
+
+  width: 100%;
+  min-width: 0;
+  margin-top: clamp(55px, 6vw, 90px);
+  color: var(--bd-forest);
+  font-family: "Outfit", sans-serif;
+}
+
+.behar-deadlines,
+.behar-deadlines * {
+  box-sizing: border-box;
+}
+
+.behar-deadlines[dir="rtl"] {
+  font-family: "Noto Sans Arabic", sans-serif;
+}
+
+/* HEADER */
+
+.behar-deadlines__header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 25px;
+  margin-bottom: 30px;
+}
+
+.behar-deadlines__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 18px;
+  color: var(--bd-emerald);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .15em;
+}
+
+.behar-deadlines__eyebrow-line {
+  width: 30px;
+  height: 1px;
+  background: var(--bd-emerald);
+}
+
+.behar-deadlines__heading {
+  margin: 0;
+  font-size: clamp(32px, 3.5vw, 52px);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -.055em;
+}
+
+.behar-deadlines__heading span {
+  color: var(--bd-emerald);
+}
+
+.behar-deadlines__description {
+  max-width: 600px;
+  margin: 14px 0 0;
+  color: var(--bd-muted);
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+.behar-deadlines__index {
+  padding-bottom: 5px;
+  color: #8a9b91;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .15em;
+  white-space: nowrap;
+}
+
+.behar-deadlines__view-all {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 9px;
+  border-bottom: 1px solid var(--bd-forest);
+  color: var(--bd-forest);
+  font-size: 12px;
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+/* FEATURED DEADLINE */
+
+.behar-deadlines__featured {
+  position: relative;
+  min-width: 0;
+  overflow: hidden;
+  padding: clamp(25px, 3.5vw, 45px);
+  background: var(--bd-forest);
+  color: var(--bd-cream);
+}
+
+.behar-deadlines__featured-top {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.behar-deadlines__featured-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--bd-lime);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .12em;
+}
+
+.behar-deadlines__pulse {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--bd-lime);
+  box-shadow: 0 0 0 5px rgba(217,239,116,.12);
+}
+
+.behar-deadlines__featured-count {
+  color: var(--bd-sage);
+  font-size: 10px;
+  letter-spacing: .1em;
+}
+
+.behar-deadlines__featured-main {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: flex-start;
+  gap: clamp(20px, 4vw, 60px);
+  margin-top: 50px;
+  margin-bottom: 45px;
+}
+
+.behar-deadlines__featured-date {
+  display: flex;
+  flex-shrink: 0;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 100px;
+}
+
+.behar-deadlines__featured-date strong {
+  color: var(--bd-lime);
+  font-size: clamp(70px, 9vw, 125px);
+  font-weight: 400;
+  line-height: .85;
+  letter-spacing: -.08em;
+}
+
+.behar-deadlines__featured-date span {
+  margin-top: 15px;
+  color: var(--bd-sage);
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .15em;
+}
+
+.behar-deadlines__featured-content {
+  min-width: 0;
+  padding-top: 8px;
+}
+
+.behar-deadlines__type {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  color: var(--bd-lime);
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.behar-deadlines__featured-content h3 {
+  max-width: 640px;
+  margin: 18px 0 12px;
+  font-size: clamp(27px, 3.5vw, 49px);
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: -.045em;
+}
+
+.behar-deadlines__featured-content p {
+  margin: 0;
+  color: var(--bd-sage);
+  font-size: 13px;
+}
+
+.behar-deadlines__featured-bottom {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding-top: 25px;
+  border-top: 1px solid rgba(255,255,255,.18);
+}
+
+.behar-deadlines__featured-info {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 22px;
+}
+
+.behar-deadlines__featured-info > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  color: var(--bd-sage);
+  font-size: 12px;
+}
+
+.behar-deadlines__featured-info > span svg {
+  color: var(--bd-lime);
+}
+
+.behar-deadlines__featured-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  min-height: 46px;
+  padding: 12px 17px;
+  border: 0;
+  background: var(--bd-lime);
+  color: var(--bd-forest);
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.behar-deadlines__featured-action:disabled {
+  opacity: .7;
+  cursor: not-allowed;
+}
+
+.behar-deadlines__featured-decoration {
+  position: absolute;
+  top: -140px;
+  inset-inline-end: -150px;
+  width: 450px;
+  height: 450px;
+  opacity: .12;
+  pointer-events: none;
+}
+
+.behar-deadlines__featured-decoration span {
+  position: absolute;
+  inset: 0;
+  border: 1px solid var(--bd-lime);
+  border-radius: 50%;
+}
+
+.behar-deadlines__featured-decoration span:nth-child(2) {
+  inset: 55px;
+}
+
+.behar-deadlines__featured-decoration span:nth-child(3) {
+  inset: 110px;
+}
+
+/* REMAINING TIME */
+
+.behar-deadlines__remaining {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--bd-emerald);
+  font-size: 11px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.behar-deadlines__remaining--soon {
+  color: #b37b39;
+}
+
+.behar-deadlines__remaining--urgent,
+.behar-deadlines__remaining--overdue {
+  color: #c35a46;
+}
+
+.behar-deadlines__featured .behar-deadlines__remaining {
+  color: var(--bd-lime);
+}
+
+.behar-deadlines__featured
+.behar-deadlines__remaining--overdue {
+  color: #ffb49d;
+}
+
+/* SCHEDULE */
+
+.behar-deadlines__schedule {
+  margin-top: 35px;
+}
+
+.behar-deadlines__schedule-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  padding-bottom: 18px;
+  color: var(--bd-muted);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .13em;
+}
+
+.behar-deadlines__rows {
+  border-top: 1px solid var(--bd-line);
+}
+
+.behar-deadlines__row {
+  display: grid;
+  grid-template-columns: 68px 46px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: clamp(12px, 2vw, 28px);
+  min-width: 0;
+  padding: 24px 0;
+  border-bottom: 1px solid var(--bd-line);
+}
+
+.behar-deadlines__row-date {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.behar-deadlines__row-date strong {
+  font-size: 39px;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -.06em;
+}
+
+.behar-deadlines__row-date span {
+  margin-top: 5px;
+  color: var(--bd-muted);
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.behar-deadlines__row-icon {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--bd-line);
+  border-radius: 50%;
+  color: var(--bd-emerald);
+}
+
+.behar-deadlines__row-content {
+  min-width: 0;
+}
+
+.behar-deadlines__row-meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 9px;
+  color: var(--bd-emerald);
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.behar-deadlines__meta-separator {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--bd-sage);
+}
+
+.behar-deadlines__row-content h3 {
+  margin: 9px 0 6px;
+  font-size: clamp(15px, 1.7vw, 20px);
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: -.025em;
+}
+
+.behar-deadlines__row-content p {
+  margin: 0;
+  color: var(--bd-muted);
+  font-size: 11px;
+}
+
+.behar-deadlines__row-end {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.behar-deadlines__row-action {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 43px;
+  height: 43px;
+  border: 1px solid var(--bd-line);
+  background: transparent;
+  color: var(--bd-forest);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.behar-deadlines__row-action:not(:disabled):hover {
+  border-color: var(--bd-emerald);
+  color: var(--bd-emerald);
+}
+
+.behar-deadlines__row-action:disabled {
+  opacity: .4;
+  cursor: not-allowed;
+}
+
+/* EMPTY STATE */
+
+.behar-deadlines__empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 340px;
+  padding: 50px 25px;
+  border: 1px solid var(--bd-line);
+  background: #fffdf8;
+  text-align: center;
+}
+
+.behar-deadlines__empty-icon {
+  display: grid;
+  place-items: center;
+  width: 85px;
+  height: 85px;
+  border: 1px solid var(--bd-line);
+  border-radius: 50%;
+  color: var(--bd-emerald);
+}
+
+.behar-deadlines__empty h3 {
+  margin: 24px 0 10px;
+  font-size: 28px;
+  letter-spacing: -.04em;
+}
+
+.behar-deadlines__empty p {
+  max-width: 430px;
+  margin: 0;
+  color: var(--bd-muted);
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+.behar-deadlines__empty a {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 25px;
+  padding: 15px 20px;
+  background: var(--bd-forest);
+  color: white;
+  font-size: 12px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+/* FOOTER */
+
+.behar-deadlines__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 15px;
+  padding: 23px 0;
+  border-bottom: 1px solid var(--bd-line);
+}
+
+.behar-deadlines__footer > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--bd-muted);
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.behar-deadlines__footer-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--bd-emerald);
+}
+
+/* RTL */
+
+.behar-deadlines[dir="rtl"] .behar-deadlines__heading,
+.behar-deadlines[dir="rtl"] .behar-deadlines__featured-content h3,
+.behar-deadlines[dir="rtl"] .behar-deadlines__row-content h3 {
+  letter-spacing: -.025em;
+  line-height: 1.4;
+}
+
+.behar-deadlines[dir="rtl"] .behar-deadlines__eyebrow,
+.behar-deadlines[dir="rtl"] .behar-deadlines__schedule-header {
+  letter-spacing: 0;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 1000px) {
+  .behar-deadlines__row {
+    grid-template-columns: 60px minmax(0, 1fr) auto;
+  }
+
+  .behar-deadlines__row-icon {
+    display: none;
+  }
+}
+
+@media (max-width: 700px) {
+  .behar-deadlines {
+    margin-top: 60px;
+  }
+
+  .behar-deadlines__header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .behar-deadlines__heading {
+    font-size: 36px;
+  }
+
+  .behar-deadlines__index {
+    display: none;
+  }
+
+  .behar-deadlines__featured {
+    padding: 28px 22px;
+  }
+
+  .behar-deadlines__featured-main {
+    flex-direction: column;
+    gap: 24px;
+    margin-top: 35px;
+    margin-bottom: 35px;
+  }
+
+  .behar-deadlines__featured-date {
+    flex-direction: row;
+    align-items: baseline;
+    gap: 12px;
+  }
+
+  .behar-deadlines__featured-date strong {
+    font-size: 80px;
+  }
+
+  .behar-deadlines__featured-date span {
+    margin: 0;
+  }
+
+  .behar-deadlines__featured-content h3 {
+    font-size: 30px;
+  }
+
+  .behar-deadlines__featured-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .behar-deadlines__featured-action {
+    width: 100%;
+  }
+
+  .behar-deadlines__row {
+    grid-template-columns: 45px minmax(0, 1fr);
+    gap: 14px;
+    align-items: flex-start;
+  }
+
+  .behar-deadlines__row-date strong {
+    font-size: 31px;
+  }
+
+  .behar-deadlines__row-end {
+    grid-column: 2;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .behar-deadlines__row-content h3 {
+    font-size: 17px;
+  }
+
+  .behar-deadlines__footer {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+
+/* ACCESSIBILITY */
+
+.behar-deadlines a:focus-visible,
+.behar-deadlines button:focus-visible {
+  outline: 3px solid var(--bd-emerald);
+  outline-offset: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .behar-deadlines *,
+  .behar-deadlines *::before,
+  .behar-deadlines *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}

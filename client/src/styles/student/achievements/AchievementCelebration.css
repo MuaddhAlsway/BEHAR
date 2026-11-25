@@ -1,0 +1,369 @@
+
+/* ==========================================
+   BEHAR — ACHIEVEMENT CELEBRATION
+   P14.5.0.7
+========================================== */
+
+.behar-celebration-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+
+  display: grid;
+  place-items: center;
+
+  padding: 20px;
+  background: rgba(16, 25, 20, 0.72);
+  backdrop-filter: blur(9px);
+  font-family: "Outfit", sans-serif;
+}
+
+.behar-celebration-overlay *,
+.behar-celebration-overlay *::before,
+.behar-celebration-overlay *::after {
+  box-sizing: border-box;
+}
+
+.behar-celebration {
+  --celebration-accent: #c99a52;
+  --celebration-light: #f7ead4;
+
+  position: relative;
+  isolation: isolate;
+  width: min(100%, 470px);
+  max-height: 90dvh;
+  overflow: hidden;
+
+  border: 1px solid #eee8dc;
+  border-radius: 28px;
+
+  background:
+    radial-gradient(
+      circle at 50% 12%,
+      #fbf2df 0%,
+      transparent 52%
+    ),
+    #fffdf9;
+
+  box-shadow: 0 32px 110px rgba(0, 0, 0, 0.25);
+  animation: behar-celebration-enter 450ms
+    cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.behar-celebration--badge_unlocked {
+  --celebration-accent: #9271bc;
+  --celebration-light: #f0eafa;
+}
+
+.behar-celebration--xp_earned {
+  --celebration-accent: #4f9471;
+  --celebration-light: #e7f4eb;
+}
+
+.behar-celebration__content {
+  position: relative;
+  z-index: 2;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  max-height: 90dvh;
+  overflow-y: auto;
+
+  padding: 48px 34px 34px;
+  text-align: center;
+}
+
+.behar-celebration__close {
+  position: absolute;
+  z-index: 5;
+  top: 19px;
+  inset-inline-end: 19px;
+
+  display: grid;
+  place-items: center;
+
+  width: 37px;
+  height: 37px;
+
+  border: 1px solid #e9e5dc;
+  border-radius: 11px;
+
+  background: rgba(255, 255, 255, 0.85);
+  color: #596159;
+  cursor: pointer;
+}
+
+.behar-celebration__icon-wrap {
+  display: grid;
+  place-items: center;
+
+  width: 136px;
+  height: 136px;
+
+  margin-bottom: 25px;
+  border: 1px solid var(--celebration-accent);
+  border-radius: 50%;
+
+  background: var(--celebration-light);
+  box-shadow:
+    0 0 0 12px rgba(210, 184, 133, 0.08),
+    0 0 0 24px rgba(210, 184, 133, 0.04);
+}
+
+.behar-celebration__icon-ring {
+  display: grid;
+  place-items: center;
+
+  width: 104px;
+  height: 104px;
+
+  border: 1px dashed var(--celebration-accent);
+  border-radius: 50%;
+
+  color: var(--celebration-accent);
+}
+
+.behar-celebration__eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+
+  margin-bottom: 11px;
+
+  color: var(--celebration-accent);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+}
+
+.behar-celebration h2 {
+  margin: 0;
+  color: #25362b;
+  font-size: clamp(28px, 5vw, 36px);
+  font-weight: 500;
+  letter-spacing: -0.045em;
+}
+
+.behar-celebration h3 {
+  margin: 12px 0 0;
+  color: #526a55;
+  font-size: 19px;
+  font-weight: 500;
+}
+
+.behar-celebration p {
+  max-width: 315px;
+  margin: 15px 0 0;
+  color: #7d877e;
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+.behar-celebration__description {
+  margin-top: 6px !important;
+}
+
+.behar-celebration__level {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1px;
+
+  margin-top: 20px;
+  color: var(--celebration-accent);
+}
+
+.behar-celebration__level span {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.behar-celebration__level strong {
+  font-size: 75px;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.07em;
+}
+
+.behar-celebration__xp {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  margin-top: 24px;
+  padding: 12px 20px;
+
+  border: 1px solid #e8e4d8;
+  border-radius: 999px;
+
+  background: var(--celebration-light);
+  color: var(--celebration-accent);
+}
+
+.behar-celebration__xp strong {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.behar-celebration__xp span {
+  font-size: 12px;
+}
+
+.behar-celebration__continue {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  width: 100%;
+  min-height: 51px;
+
+  margin-top: 31px;
+  padding: 12px 18px;
+
+  border: 0;
+  border-radius: 13px;
+
+  background: #273c2f;
+  color: #fff;
+
+  font: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition:
+    background 180ms ease,
+    transform 180ms ease;
+}
+
+.behar-celebration__continue:hover {
+  background: #3d614a;
+  transform: translateY(-2px);
+}
+
+.behar-celebration button:focus-visible {
+  outline: 2px solid var(--celebration-accent);
+  outline-offset: 3px;
+}
+
+/* Celebration particles */
+
+.behar-celebration__particles {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.behar-celebration__particles span {
+  --angle: calc(var(--particle-index) * 30deg);
+
+  position: absolute;
+  top: 28%;
+  left: 50%;
+
+  width: 7px;
+  height: 13px;
+
+  border-radius: 2px;
+  background: var(--celebration-accent);
+
+  opacity: 0;
+
+  animation: behar-confetti 1.25s ease-out
+    calc(var(--particle-index) * 45ms) both;
+}
+
+.behar-celebration__particles span:nth-child(3n) {
+  background: #7fa98c;
+}
+
+.behar-celebration__particles span:nth-child(4n) {
+  background: #e5c98e;
+}
+
+@keyframes behar-confetti {
+  0% {
+    opacity: 1;
+    transform:
+      rotate(var(--angle))
+      translateY(0)
+      scale(0.4);
+  }
+
+  70% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform:
+      rotate(var(--angle))
+      translateY(-155px)
+      rotate(240deg);
+  }
+}
+
+@keyframes behar-celebration-enter {
+  from {
+    opacity: 0;
+    transform: translateY(25px) scale(0.94);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* RTL */
+
+.behar-celebration-overlay[dir="rtl"] {
+  text-align: right;
+}
+
+.behar-celebration-overlay[dir="rtl"]
+.behar-celebration__eyebrow {
+  letter-spacing: 0;
+}
+
+/* Responsive */
+
+@media (max-width: 520px) {
+  .behar-celebration {
+    border-radius: 22px;
+  }
+
+  .behar-celebration__content {
+    padding: 50px 23px 25px;
+  }
+
+  .behar-celebration__icon-wrap {
+    width: 112px;
+    height: 112px;
+  }
+
+  .behar-celebration__icon-ring {
+    width: 88px;
+    height: 88px;
+  }
+
+  .behar-celebration__level strong {
+    font-size: 62px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .behar-celebration,
+  .behar-celebration__particles span {
+    animation: none;
+  }
+
+  .behar-celebration__continue {
+    transition: none;
+  }
+}

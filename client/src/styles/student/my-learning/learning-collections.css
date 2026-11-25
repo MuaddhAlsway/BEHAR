@@ -1,0 +1,461 @@
+
+/* =========================================
+   BEHAR — P14.2.5 LEARNING COLLECTIONS
+========================================= */
+
+.behar-collections {
+  --lc-forest: #102c2b;
+  --lc-emerald: #176e62;
+  --lc-lime: #d9ef74;
+  --lc-cream: #f4f1e9;
+  --lc-muted: #68786e;
+  --lc-line: #d9dfd5;
+
+  width: 100%;
+  min-width: 0;
+  margin-top: clamp(55px, 6vw, 90px);
+  color: var(--lc-forest);
+  font-family: "Outfit", sans-serif;
+}
+
+.behar-collections,
+.behar-collections * {
+  box-sizing: border-box;
+}
+
+.behar-collections[dir="rtl"] {
+  font-family: "Noto Sans Arabic", sans-serif;
+}
+
+/* HEADER */
+
+.behar-collections__header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.behar-collections__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+  color: var(--lc-emerald);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+}
+
+.behar-collections__eyebrow > span {
+  width: 25px;
+  height: 1px;
+  background: var(--lc-emerald);
+}
+
+.behar-collections__header h2 {
+  margin: 0;
+  font-size: clamp(27px, 3vw, 40px);
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.045em;
+}
+
+.behar-collections__header p {
+  max-width: 500px;
+  margin: 10px 0 0;
+  color: var(--lc-muted);
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+.behar-collections__header-mark {
+  flex-shrink: 0;
+  color: #98a79d;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+}
+
+/* LAYOUT */
+
+.behar-collections__layout {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 20px;
+}
+
+.behar-collections__panel {
+  min-width: 0;
+  padding: clamp(20px, 2.4vw, 30px);
+  border: 1px solid var(--lc-line);
+  background: #fffdf8;
+}
+
+.behar-collections__panel--continue {
+  grid-row: span 2;
+  background: var(--lc-forest);
+  border-color: var(--lc-forest);
+  color: white;
+}
+
+/* PANEL HEADER */
+
+.behar-collections__group-heading {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  padding-bottom: 23px;
+  border-bottom: 1px solid var(--lc-line);
+}
+
+.behar-collections__group-icon {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 43px;
+  height: 43px;
+  background: #e6eee6;
+  color: var(--lc-emerald);
+}
+
+.behar-collections__group-copy {
+  flex: 1;
+  min-width: 0;
+}
+
+.behar-collections__group-copy h3 {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.behar-collections__group-copy p {
+  margin: 5px 0 0;
+  color: var(--lc-muted);
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+.behar-collections__group-count {
+  flex-shrink: 0;
+  color: var(--lc-emerald);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.behar-collections__group-count span {
+  font-size: 10px;
+  font-weight: 400;
+}
+
+/* DARK PANEL */
+
+.behar-collections__panel--continue
+.behar-collections__group-heading {
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.behar-collections__panel--continue
+.behar-collections__group-icon {
+  background: var(--lc-lime);
+  color: var(--lc-forest);
+}
+
+.behar-collections__panel--continue
+.behar-collections__group-copy p {
+  color: #a8c0b5;
+}
+
+.behar-collections__panel--continue
+.behar-collections__group-count {
+  color: var(--lc-lime);
+}
+
+/* CONTINUE LEARNING */
+
+.behar-collections__course-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.behar-collections__course {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 24px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  color: inherit;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.behar-collections__course:last-child {
+  border-bottom: 0;
+}
+
+.behar-collections__course:hover {
+  opacity: 0.75;
+}
+
+.behar-collections__course-index {
+  flex-shrink: 0;
+  color: var(--lc-lime);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.behar-collections__course-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.behar-collections__course-main h4 {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.behar-collections__course-meta {
+  margin-top: 9px;
+}
+
+.behar-collections__course-meta > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #a8c0b5;
+  font-size: 11px;
+}
+
+.behar-collections__progress {
+  height: 4px;
+  margin-top: 17px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.behar-collections__progress > span {
+  display: block;
+  height: 100%;
+  background: var(--lc-lime);
+  transition: width 0.35s ease;
+}
+
+.behar-collections__course-percent {
+  flex-shrink: 0;
+  color: var(--lc-lime);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.behar-collections__course-arrow {
+  flex-shrink: 0;
+  color: #a8c0b5;
+}
+
+/* SUBJECTS */
+
+.behar-collections__subjects {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  padding-top: 25px;
+}
+
+.behar-collections__subject {
+  display: grid;
+  grid-template-columns: 24px minmax(0, 1fr) 75px;
+  align-items: center;
+  gap: 12px;
+}
+
+.behar-collections__subject-index {
+  color: #98a79d;
+  font-size: 11px;
+}
+
+.behar-collections__subject-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.behar-collections__subject-copy strong {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.behar-collections__subject-copy > span {
+  color: var(--lc-muted);
+  font-size: 10px;
+}
+
+.behar-collections__subject-bar {
+  height: 4px;
+  overflow: hidden;
+  background: #e5eae1;
+}
+
+.behar-collections__subject-bar > span {
+  display: block;
+  height: 100%;
+  background: var(--lc-emerald);
+}
+
+/* COMPLETED */
+
+.behar-collections__completed-list {
+  display: flex;
+  flex-direction: column;
+  padding-top: 10px;
+}
+
+.behar-collections__completed-course {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--lc-line);
+  color: var(--lc-forest);
+  font-size: 12px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.behar-collections__completed-course > span:nth-child(2) {
+  flex: 1;
+}
+
+.behar-collections__completed-check {
+  color: var(--lc-emerald);
+}
+
+.behar-collections__completed-course > svg {
+  color: var(--lc-emerald);
+}
+
+.behar-collections__completed-course:hover {
+  color: var(--lc-emerald);
+}
+
+/* EMPTY */
+
+.behar-collections__empty {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 30px 0;
+  color: #a8c0b5;
+}
+
+.behar-collections__empty p {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.behar-collections__empty--completed {
+  flex-direction: column;
+  justify-content: center;
+  min-height: 150px;
+  color: var(--lc-muted);
+  text-align: center;
+}
+
+.behar-collections__empty-symbol {
+  display: grid;
+  place-items: center;
+  width: 55px;
+  height: 55px;
+  border: 1px solid var(--lc-line);
+  border-radius: 50%;
+  color: var(--lc-emerald);
+}
+
+/* RTL */
+
+.behar-collections[dir="rtl"]
+.behar-collections__header h2,
+.behar-collections[dir="rtl"]
+.behar-collections__group-copy h3 {
+  letter-spacing: 0;
+}
+
+.behar-collections[dir="rtl"]
+.behar-collections__eyebrow {
+  letter-spacing: 0;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 1050px) {
+  .behar-collections__layout {
+    grid-template-columns: 1fr;
+  }
+
+  .behar-collections__panel--continue {
+    grid-row: auto;
+  }
+}
+
+@media (max-width: 650px) {
+  .behar-collections__header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .behar-collections__panel {
+    padding: 20px;
+  }
+
+  .behar-collections__group-heading {
+    gap: 10px;
+  }
+
+  .behar-collections__group-copy h3 {
+    font-size: 15px;
+  }
+
+  .behar-collections__group-count span {
+    display: none;
+  }
+
+  .behar-collections__course {
+    gap: 10px;
+  }
+
+  .behar-collections__course-main h4 {
+    font-size: 13px;
+  }
+
+  .behar-collections__subject {
+    grid-template-columns: 20px minmax(0, 1fr) 50px;
+    gap: 9px;
+  }
+}
+
+/* ACCESSIBILITY */
+
+.behar-collections a:focus-visible {
+  outline: 2px solid var(--lc-lime);
+  outline-offset: 4px;
+}
+
+.behar-collections__panel:not(
+  .behar-collections__panel--continue
+) a:focus-visible {
+  outline-color: var(--lc-emerald);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .behar-collections *,
+  .behar-collections *::before,
+  .behar-collections *::after {
+    transition: none !important;
+    animation: none !important;
+  }
+}

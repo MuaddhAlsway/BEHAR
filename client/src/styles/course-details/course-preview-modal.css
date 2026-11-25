@@ -1,0 +1,253 @@
+.behar-course-preview,
+.behar-course-preview__dialog {
+  scrollbar-width: thin;
+  scrollbar-color: #d9ef74 #102c2b;
+}
+
+html {
+  scrollbar-width: thin;
+  scrollbar-color: #d9ef74 #102c2b;
+}
+
+html::-webkit-scrollbar,
+.behar-course-preview::-webkit-scrollbar,
+.behar-course-preview__dialog::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+html::-webkit-scrollbar-track,
+.behar-course-preview::-webkit-scrollbar-track,
+.behar-course-preview__dialog::-webkit-scrollbar-track {
+  background: #102c2b;
+}
+
+html::-webkit-scrollbar-thumb,
+.behar-course-preview::-webkit-scrollbar-thumb,
+.behar-course-preview__dialog::-webkit-scrollbar-thumb {
+  border: 2px solid #102c2b;
+  border-radius: 999px;
+  background: #d9ef74;
+}
+
+html::-webkit-scrollbar-thumb:hover,
+.behar-course-preview::-webkit-scrollbar-thumb:hover,
+.behar-course-preview__dialog::-webkit-scrollbar-thumb:hover {
+  background: #eef9a5;
+}
+
+.behar-course-preview {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  color: #f4f1e9;
+  font-family: "Outfit", "Noto Sans Arabic", sans-serif;
+}
+
+.behar-course-preview__backdrop {
+  position: absolute;
+  inset: 0;
+  border: 0;
+  background: rgba(7, 22, 21, 0.82);
+  cursor: pointer;
+}
+
+.behar-course-preview__dialog {
+  position: relative;
+  z-index: 1;
+  width: min(960px, 100%);
+  max-height: calc(100vh - 48px);
+  overflow-x: hidden;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #d9ef74 #102c2b;
+  border: 1px solid rgba(217, 239, 116, 0.22);
+  background: #102c2b;
+  box-shadow: 0 28px 90px rgba(0, 0, 0, 0.42);
+}
+
+.behar-course-preview__dialog::-webkit-scrollbar {
+  width: 9px;
+}
+
+.behar-course-preview__dialog::-webkit-scrollbar-track {
+  background: #102c2b;
+}
+
+.behar-course-preview__dialog::-webkit-scrollbar-thumb {
+  border: 2px solid #102c2b;
+  border-radius: 999px;
+  background: #d9ef74;
+}
+
+.behar-course-preview__dialog::-webkit-scrollbar-thumb:hover {
+  background: #eef9a5;
+}
+
+.behar-course-preview__close {
+  position: absolute;
+  inset-block-start: 18px;
+  inset-inline-end: 18px;
+  z-index: 2;
+  display: grid;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+  border: 1px solid rgba(244, 241, 233, 0.22);
+  border-radius: 50%;
+  color: #f4f1e9;
+  background: rgba(16, 44, 43, 0.76);
+  cursor: pointer;
+  transition: color 180ms ease, background 180ms ease, transform 180ms ease;
+}
+
+.behar-course-preview__close:hover,
+.behar-course-preview__close:focus-visible {
+  color: #102c2b;
+  background: #d9ef74;
+  transform: rotate(8deg);
+}
+
+.behar-course-preview__header {
+  display: grid;
+  gap: 8px;
+  padding: 30px 82px 24px 30px;
+}
+
+.behar-course-preview__eyebrow {
+  color: #d9ef74;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+}
+
+.behar-course-preview__course {
+  color: rgba(244, 241, 233, 0.62);
+  font-size: 0.78rem;
+}
+
+.behar-course-preview__header h2 {
+  margin: 0;
+  color: #f4f1e9;
+  font-size: clamp(1.35rem, 2.4vw, 2rem);
+  line-height: 1.12;
+}
+
+.behar-course-preview__video-wrap {
+  aspect-ratio: auto;
+  height: auto;
+  overflow: visible;
+  background: #071615;
+}
+
+.behar-course-preview__video-wrap .behar-video-player {
+  width: 100%;
+  height: auto;
+}
+
+.behar-course-preview__video-wrap .behar-video-player__viewport {
+  min-height: 0;
+  aspect-ratio: 16 / 9;
+}
+
+.behar-course-preview__video-wrap .behar-video-player__controls {
+  display: block;
+  position: relative;
+  z-index: 10;
+  min-height: 92px;
+  visibility: visible;
+  opacity: 1;
+  color: #f4f1e9;
+}
+
+.behar-course-preview__video-wrap .behar-video-player__controls-row {
+  flex-wrap: wrap;
+}
+
+.behar-course-preview__video-wrap .behar-video-player__volume {
+  display: inline-flex;
+  min-width: 104px;
+}
+
+.behar-course-preview__video-wrap .behar-video-player__volume input {
+  width: 70px;
+  min-width: 70px;
+  visibility: visible;
+  opacity: 1;
+}
+
+.behar-course-preview__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 22px 30px 28px;
+}
+
+.behar-course-preview__footer p {
+  max-width: 58ch;
+  margin: 0;
+  color: rgba(244, 241, 233, 0.68);
+  font-size: 0.88rem;
+  line-height: 1.6;
+}
+
+.behar-course-preview__actions {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 10px;
+}
+
+.behar-course-preview__course-link,
+.behar-course-preview__enroll {
+  display: inline-flex;
+  min-height: 42px;
+  align-items: center;
+  justify-content: center;
+  padding: 0 16px;
+  border-radius: 999px;
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.behar-course-preview__course-link {
+  border: 1px solid rgba(244, 241, 233, 0.24);
+  color: #f4f1e9;
+}
+
+.behar-course-preview__enroll {
+  border: 1px solid #d9ef74;
+  color: #102c2b;
+  background: #d9ef74;
+}
+
+@media (max-width: 640px) {
+  .behar-course-preview { padding: 12px; }
+  .behar-course-preview__dialog {
+    max-height: calc(100vh - 24px);
+    border-radius: 16px;
+  }
+  .behar-course-preview__header { padding: 24px 70px 18px 20px; }
+  .behar-course-preview__close { inset-block-start: 12px; inset-inline-end: 12px; }
+  .behar-course-preview__footer { align-items: stretch; flex-direction: column; padding: 18px 20px 22px; }
+  .behar-course-preview__actions { width: 100%; }
+  .behar-course-preview__course-link,
+  .behar-course-preview__enroll { flex: 1; }
+  .behar-course-preview__video-wrap .behar-video-player__controls {
+    min-height: 118px;
+  }
+  .behar-course-preview__video-wrap .behar-video-player__controls-row {
+    align-items: flex-start;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .behar-course-preview__close { transition: none; }
+}

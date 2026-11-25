@@ -1,0 +1,401 @@
+
+/* ==========================================
+   BEHAR — P14.2.3 ENROLLED COURSE CARD
+========================================== */
+
+.behar-enrolled-card {
+  --ec-forest: #102c2b;
+  --ec-emerald: #176e62;
+  --ec-lime: #d9ef74;
+  --ec-cream: #f4f1e9;
+  --ec-muted: #68786e;
+  --ec-line: #dce2d8;
+
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  height: 100%;
+  overflow: hidden;
+  background: #fffdf8;
+  border: 1px solid var(--ec-line);
+  color: var(--ec-forest);
+  font-family: "Outfit", sans-serif;
+  transition:
+    border-color 0.25s ease,
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.behar-enrolled-card,
+.behar-enrolled-card * {
+  box-sizing: border-box;
+}
+
+.behar-enrolled-card[dir="rtl"] {
+  font-family: "Noto Sans Arabic", sans-serif;
+}
+
+.behar-enrolled-card:hover {
+  transform: translateY(-4px);
+  border-color: #9cb8a9;
+  box-shadow: 0 15px 35px rgba(16, 44, 43, 0.07);
+}
+
+/* MEDIA */
+
+.behar-enrolled-card__media {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: var(--ec-forest);
+}
+
+.behar-enrolled-card__media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    rgba(16, 44, 43, 0.18),
+    transparent 42%,
+    rgba(16, 44, 43, 0.18)
+  );
+}
+
+.behar-enrolled-card__media > img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.behar-enrolled-card:hover
+.behar-enrolled-card__media > img {
+  transform: scale(1.045);
+}
+
+.behar-enrolled-card__media-fallback {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  width: 100%;
+  height: 100%;
+  color: var(--ec-lime);
+  background:
+    radial-gradient(
+      circle at 70% 30%,
+      rgba(217, 239, 116, 0.13),
+      transparent 45%
+    ),
+    var(--ec-forest);
+}
+
+.behar-enrolled-card__media-fallback span {
+  font-size: 10px;
+  letter-spacing: 0.16em;
+}
+
+.behar-enrolled-card__media-index {
+  position: absolute;
+  z-index: 1;
+  top: 18px;
+  inset-inline-start: 18px;
+  color: #fff;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+}
+
+.behar-enrolled-card__status {
+  position: absolute;
+  z-index: 1;
+  bottom: 17px;
+  inset-inline-start: 17px;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 11px;
+  background: #fffdf8;
+  color: var(--ec-forest);
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.behar-enrolled-card--in_progress
+.behar-enrolled-card__status {
+  background: var(--ec-lime);
+}
+
+.behar-enrolled-card--completed
+.behar-enrolled-card__status {
+  background: var(--ec-emerald);
+  color: #fff;
+}
+
+/* CONTENT */
+
+.behar-enrolled-card__content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: 23px;
+}
+
+.behar-enrolled-card__category {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--ec-emerald);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.behar-enrolled-card__category-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--ec-emerald);
+}
+
+.behar-enrolled-card__title {
+  margin: 12px 0 19px;
+  font-size: clamp(20px, 2vw, 25px);
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.035em;
+}
+
+.behar-enrolled-card__title a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.behar-enrolled-card__title a:hover {
+  color: var(--ec-emerald);
+}
+
+/* INSTRUCTOR */
+
+.behar-enrolled-card__instructor {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  margin-bottom: 20px;
+}
+
+.behar-enrolled-card__avatar {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #e4e9df;
+  color: var(--ec-forest);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.behar-enrolled-card__instructor-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.behar-enrolled-card__instructor-copy span {
+  color: var(--ec-muted);
+  font-size: 10px;
+}
+
+.behar-enrolled-card__instructor-copy strong {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* META */
+
+.behar-enrolled-card__meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px 20px;
+  padding: 17px 0;
+  border-top: 1px solid var(--ec-line);
+  border-bottom: 1px solid var(--ec-line);
+}
+
+.behar-enrolled-card__meta > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--ec-muted);
+  font-size: 11px;
+}
+
+.behar-enrolled-card__meta svg {
+  color: var(--ec-emerald);
+}
+
+/* PROGRESS */
+
+.behar-enrolled-card__progress {
+  margin-top: auto;
+  padding-top: 25px;
+  padding-bottom: 23px;
+}
+
+.behar-enrolled-card__progress-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.behar-enrolled-card__progress-top span {
+  color: var(--ec-muted);
+  font-size: 11px;
+}
+
+.behar-enrolled-card__progress-top strong {
+  color: var(--ec-emerald);
+  font-size: 21px;
+  font-weight: 600;
+  letter-spacing: -0.04em;
+}
+
+.behar-enrolled-card__progress-track {
+  width: 100%;
+  height: 5px;
+  overflow: hidden;
+  background: #dfe7da;
+}
+
+.behar-enrolled-card__progress-track > span {
+  display: block;
+  height: 100%;
+  background: var(--ec-emerald);
+  transition: width 0.45s ease;
+}
+
+.behar-enrolled-card--completed
+.behar-enrolled-card__progress-track > span {
+  background: var(--ec-forest);
+}
+
+.behar-enrolled-card__lesson-count {
+  display: block;
+  margin-top: 11px;
+  color: var(--ec-muted);
+  font-size: 10px;
+}
+
+/* ACTION */
+
+.behar-enrolled-card__action {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  min-height: 50px;
+  padding: 13px 15px;
+  border: 1px solid var(--ec-lime);
+  background: var(--ec-lime);
+  color: var(--ec-forest);
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  text-align: start;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.behar-enrolled-card__action:hover {
+  background: #cde765;
+  border-color: #cde765;
+}
+
+.behar-enrolled-card__action-copy {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.behar-enrolled-card__action > svg {
+  flex-shrink: 0;
+}
+
+.behar-enrolled-card--completed
+.behar-enrolled-card__action {
+  background: var(--ec-forest);
+  border-color: var(--ec-forest);
+  color: white;
+}
+
+.behar-enrolled-card--completed
+.behar-enrolled-card__action:hover {
+  background: var(--ec-emerald);
+  border-color: var(--ec-emerald);
+}
+
+/* RTL */
+
+.behar-enrolled-card[dir="rtl"]
+.behar-enrolled-card__title {
+  letter-spacing: 0;
+  line-height: 1.6;
+}
+
+.behar-enrolled-card[dir="rtl"]
+.behar-enrolled-card__category {
+  letter-spacing: 0;
+}
+
+/* MOBILE */
+
+@media (max-width: 650px) {
+  .behar-enrolled-card__content {
+    padding: 19px;
+  }
+
+  .behar-enrolled-card__title {
+    font-size: 21px;
+  }
+
+  .behar-enrolled-card__progress {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+}
+
+/* ACCESSIBILITY */
+
+.behar-enrolled-card a:focus-visible,
+.behar-enrolled-card button:focus-visible {
+  outline: 2px solid var(--ec-emerald);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .behar-enrolled-card,
+  .behar-enrolled-card *,
+  .behar-enrolled-card *::before,
+  .behar-enrolled-card *::after {
+    transition: none !important;
+    animation: none !important;
+  }
+
+  .behar-enrolled-card:hover {
+    transform: none;
+  }
+}

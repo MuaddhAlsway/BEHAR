@@ -1,0 +1,232 @@
+
+/* ==========================================
+   BEHAR — P14.2.0 MY LEARNING FOUNDATION
+========================================== */
+
+.behar-my-learning {
+  --ml-forest: #102c2b;
+  --ml-emerald: #176e62;
+  --ml-lime: #d9ef74;
+  --ml-cream: #f4f1e9;
+  --ml-sage: #a8c0b5;
+  --ml-muted: #68786e;
+  --ml-line: #d6dcd2;
+
+  width: 100%;
+  min-width: 0;
+  padding-bottom: 70px;
+  color: var(--ml-forest);
+  font-family: "Outfit", sans-serif;
+}
+
+.behar-my-learning,
+.behar-my-learning * {
+  box-sizing: border-box;
+}
+
+.behar-my-learning[dir="rtl"] {
+  font-family: "Noto Sans Arabic", sans-serif;
+}
+
+/* PAGE HEADING */
+
+.behar-my-learning__page-heading {
+  margin-bottom: 38px;
+}
+
+.behar-my-learning__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 11px;
+  margin-bottom: 17px;
+  color: var(--ml-emerald);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .15em;
+}
+
+.behar-my-learning__eyebrow > span {
+  width: 27px;
+  height: 1px;
+  background: var(--ml-emerald);
+}
+
+.behar-my-learning__page-heading h1 {
+  margin: 0;
+  font-size: clamp(38px, 4.5vw, 65px);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -.06em;
+}
+
+.behar-my-learning__page-heading p {
+  margin: 16px 0 0;
+  color: var(--ml-muted);
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+/* PLACEHOLDER COMPONENTS */
+
+.behar-my-learning__placeholder {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  min-height: 115px;
+  margin-top: 16px;
+  padding: 25px 30px;
+  border: 1px dashed #bdc9be;
+  background: rgba(255,255,255,.35);
+}
+
+.behar-my-learning__placeholder-index {
+  display: grid;
+  flex-shrink: 0;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border: 1px solid var(--ml-line);
+  color: var(--ml-emerald);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.behar-my-learning__placeholder-copy {
+  flex: 1;
+  min-width: 0;
+}
+
+.behar-my-learning__placeholder-copy h2 {
+  margin: 0 0 7px;
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.behar-my-learning__placeholder-copy p {
+  margin: 0;
+  color: var(--ml-muted);
+  font-size: 12px;
+}
+
+.behar-my-learning__placeholder > svg {
+  flex-shrink: 0;
+  color: var(--ml-sage);
+}
+
+/* TEMPORARY STATS */
+
+.behar-my-learning__summary {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  margin: 16px 0 30px;
+  border: 1px solid var(--ml-line);
+  background: var(--ml-line);
+}
+
+.behar-my-learning__summary > div {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  min-width: 0;
+  padding: 24px;
+  background: #fffdf8;
+}
+
+.behar-my-learning__summary svg {
+  color: var(--ml-emerald);
+}
+
+.behar-my-learning__summary strong {
+  font-size: 38px;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -.05em;
+}
+
+.behar-my-learning__summary span {
+  color: var(--ml-muted);
+  font-size: 11px;
+  font-weight: 600;
+}
+
+/* RTL */
+
+.behar-my-learning[dir="rtl"]
+.behar-my-learning__page-heading h1 {
+  letter-spacing: -.025em;
+  line-height: 1.4;
+}
+
+.behar-my-learning[dir="rtl"]
+.behar-my-learning__eyebrow {
+  letter-spacing: 0;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 650px) {
+  .behar-my-learning {
+    padding-bottom: 45px;
+  }
+
+  .behar-my-learning__page-heading {
+    margin-bottom: 28px;
+  }
+
+  .behar-my-learning__page-heading h1 {
+    font-size: 42px;
+  }
+
+  .behar-my-learning__placeholder {
+    gap: 14px;
+    min-height: 100px;
+    padding: 20px 16px;
+  }
+
+  .behar-my-learning__placeholder-index {
+    width: 38px;
+    height: 38px;
+  }
+
+  .behar-my-learning__placeholder-copy h2 {
+    font-size: 14px;
+  }
+
+  .behar-my-learning__placeholder > svg {
+    display: none;
+  }
+
+  .behar-my-learning__summary > div {
+    padding: 15px 12px;
+  }
+
+  .behar-my-learning__summary strong {
+    font-size: 30px;
+  }
+
+  .behar-my-learning__summary span {
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 380px) {
+  .behar-my-learning__summary {
+    grid-template-columns: 1fr;
+  }
+
+  .behar-my-learning__summary > div {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .behar-my-learning *,
+  .behar-my-learning *::before,
+  .behar-my-learning *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}

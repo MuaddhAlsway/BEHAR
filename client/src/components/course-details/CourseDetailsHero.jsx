@@ -131,6 +131,14 @@ export default function CourseDetailsHero({
   const BackArrow = isArabic ? ArrowRight : ArrowLeft;
 
   const title = getLocalizedValue(course.title, language);
+  const category = String(course.category || "course").replaceAll(
+    "-",
+    " "
+  );
+  const rating = Number(course.rating) || 0;
+  const students = Number(course.students) || 0;
+  const durationHours = Number(course.durationHours) || 0;
+  const priceValue = Number(course.price) || 0;
   const description =
     getLocalizedValue(course.description, language) ||
     (isArabic
@@ -138,9 +146,9 @@ export default function CourseDetailsHero({
       : "Discover a learning experience designed to develop your skills and turn knowledge into practical work.");
 
   const price =
-    course.price === 0
+    priceValue === 0
       ? t.free
-      : `${course.price.toLocaleString()} ${t.currency}`;
+      : `${priceValue.toLocaleString()} ${t.currency}`;
 
   useEffect(() => {
     const syncLanguage = () => setLanguage(getLanguage());
@@ -286,7 +294,7 @@ export default function CourseDetailsHero({
               <span className="behar-detail-hero__eyebrow-dot" />
               <span>{t.edition}</span>
               <span className="behar-detail-hero__eyebrow-divider" />
-              <span>{course.category.replaceAll("-", " ")}</span>
+              <span>{category}</span>
             </div>
 
             <h1
@@ -328,7 +336,7 @@ export default function CourseDetailsHero({
             </span>
             <strong>
               <Clock3 size={16} strokeWidth={1.5} />
-              {course.durationHours} {t.hours}
+              {durationHours} {t.hours}
             </strong>
           </div>
 
@@ -347,7 +355,7 @@ export default function CourseDetailsHero({
             </span>
             <strong>
               <Star size={16} fill="currentColor" />
-              {course.rating.toFixed(1)}
+              {rating.toFixed(1)}
             </strong>
           </div>
 
@@ -357,7 +365,7 @@ export default function CourseDetailsHero({
             </span>
             <strong>
               <Users size={16} strokeWidth={1.5} />
-              {course.students.toLocaleString()}
+              {students.toLocaleString()}
             </strong>
           </div>
         </div>

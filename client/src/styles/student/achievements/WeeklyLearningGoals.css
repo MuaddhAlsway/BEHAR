@@ -1,0 +1,340 @@
+
+/* ==========================================
+   BEHAR LMS — WEEKLY LEARNING GOALS
+   P14.5.0.5
+========================================== */
+
+.behar-weekly-goal {
+  --goal-bg: #f1f3e9;
+  --goal-text: #1e3027;
+  --goal-muted: #778579;
+  --goal-accent: #467c56;
+  --goal-border: #dce4d7;
+
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  padding: clamp(24px, 3vw, 34px);
+  padding-top: clamp(34px, 4vw, 48px);
+
+  background: var(--goal-bg);
+  border: 1px solid var(--goal-border);
+  border-radius: 24px;
+
+  color: var(--goal-text);
+  font-family: "Outfit", sans-serif;
+}
+
+.behar-weekly-goal *,
+.behar-weekly-goal *::before,
+.behar-weekly-goal *::after {
+  box-sizing: border-box;
+}
+
+.behar-weekly-goal__header,
+.behar-weekly-goal__eyebrow,
+.behar-weekly-goal__metric,
+.behar-weekly-goal__numbers,
+.behar-weekly-goal__progress-label,
+.behar-weekly-goal__remaining,
+.behar-weekly-goal__footer,
+.behar-weekly-goal__form-actions {
+  display: flex;
+  align-items: center;
+}
+
+.behar-weekly-goal__header {
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.behar-weekly-goal__eyebrow {
+  gap: 8px;
+  margin-bottom: 10px;
+
+  color: var(--goal-accent);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+}
+
+.behar-weekly-goal__header h2 {
+  margin: 0;
+  font-size: 23px;
+  font-weight: 500;
+  letter-spacing: -0.035em;
+}
+
+.behar-weekly-goal__edit {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+
+  width: 43px;
+  height: 43px;
+
+  border: 1px solid var(--goal-border);
+  border-radius: 12px;
+
+  background: rgba(255, 255, 255, 0.6);
+  color: var(--goal-text);
+
+  cursor: pointer;
+  transition: background 180ms ease;
+}
+
+.behar-weekly-goal__edit:hover {
+  background: white;
+}
+
+.behar-weekly-goal__edit:focus-visible,
+.behar-weekly-goal__form button:focus-visible,
+.behar-weekly-goal__form input:focus-visible,
+.behar-weekly-goal__form select:focus-visible {
+  outline: 2px solid var(--goal-accent);
+  outline-offset: 3px;
+}
+
+/* Hero */
+
+.behar-weekly-goal__hero {
+  padding: 38px 0 30px;
+}
+
+.behar-weekly-goal__metric {
+  gap: 11px;
+  color: var(--goal-muted);
+  font-size: 13px;
+}
+
+.behar-weekly-goal__metric-icon {
+  display: grid;
+  place-items: center;
+
+  width: 44px;
+  height: 44px;
+  border-radius: 13px;
+
+  background: #dfe9d9;
+  color: var(--goal-accent);
+}
+
+.behar-weekly-goal__numbers {
+  align-items: baseline;
+  gap: 9px;
+  margin: 20px 0 28px;
+}
+
+.behar-weekly-goal__numbers strong {
+  font-size: clamp(65px, 8vw, 92px);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.075em;
+  font-variant-numeric: tabular-nums;
+}
+
+.behar-weekly-goal__numbers span {
+  color: var(--goal-muted);
+  font-size: 27px;
+}
+
+.behar-weekly-goal__progress-label {
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 13px;
+
+  font-size: 13px;
+  color: var(--goal-muted);
+}
+
+.behar-weekly-goal__progress-label strong {
+  color: var(--goal-accent);
+  font-weight: 600;
+}
+
+.behar-weekly-goal__track {
+  width: 100%;
+  height: 10px;
+  overflow: hidden;
+
+  background: #d8e1d2;
+  border-radius: 999px;
+}
+
+.behar-weekly-goal__track > div {
+  height: 100%;
+  border-radius: inherit;
+
+  background: linear-gradient(
+    90deg,
+    #467c56,
+    #8fc79a
+  );
+
+  transition: width 500ms ease;
+}
+
+.behar-weekly-goal__remaining {
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 12px;
+
+  color: var(--goal-muted);
+  font-size: 12px;
+}
+
+/* Footer */
+
+.behar-weekly-goal__footer {
+  align-items: flex-start;
+  gap: 15px;
+
+  padding-top: 25px;
+  border-top: 1px solid var(--goal-border);
+}
+
+.behar-weekly-goal__footer-icon {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+
+  width: 45px;
+  height: 45px;
+
+  border-radius: 13px;
+  color: var(--goal-accent);
+  background: #dfe9d9;
+}
+
+.behar-weekly-goal__footer strong {
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.behar-weekly-goal__footer p {
+  margin: 7px 0 0;
+  color: var(--goal-muted);
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+/* Editor */
+
+.behar-weekly-goal__form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  margin-top: 30px;
+  padding: 24px;
+
+  border: 1px solid var(--goal-border);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.6);
+}
+
+.behar-weekly-goal__form h3 {
+  margin: 0 0 8px;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.behar-weekly-goal__form label {
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.behar-weekly-goal__form select,
+.behar-weekly-goal__form input {
+  width: 100%;
+  min-height: 46px;
+  padding: 0 13px;
+
+  border: 1px solid #cdd9c8;
+  border-radius: 10px;
+
+  background: #fff;
+  color: var(--goal-text);
+  font: inherit;
+  font-size: 14px;
+}
+
+.behar-weekly-goal__form-actions {
+  gap: 10px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+
+.behar-weekly-goal__form-actions button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  min-height: 44px;
+  padding: 0 18px;
+
+  border: 1px solid transparent;
+  border-radius: 10px;
+
+  font: inherit;
+  font-size: 13px;
+  font-weight: 500;
+
+  cursor: pointer;
+}
+
+.behar-weekly-goal__form-actions button:first-child {
+  background: var(--goal-text);
+  color: white;
+}
+
+.behar-weekly-goal__form-actions button:last-child {
+  background: #e7ede3;
+  color: var(--goal-text);
+}
+
+/* RTL */
+
+.behar-weekly-goal[dir="rtl"] {
+  text-align: right;
+}
+
+.behar-weekly-goal[dir="rtl"]
+.behar-weekly-goal__eyebrow {
+  letter-spacing: 0;
+}
+
+.behar-weekly-goal[dir="rtl"]
+.behar-weekly-goal__numbers strong {
+  letter-spacing: 0;
+}
+
+/* Responsive */
+
+@media (max-width: 640px) {
+  .behar-weekly-goal {
+    padding: 23px 19px;
+    border-radius: 20px;
+  }
+
+  .behar-weekly-goal__hero {
+    padding: 30px 0 25px;
+  }
+
+  .behar-weekly-goal__numbers strong {
+    font-size: 65px;
+  }
+
+  .behar-weekly-goal__form {
+    padding: 18px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .behar-weekly-goal__track > div {
+    transition: none;
+  }
+}

@@ -9,7 +9,6 @@ import {
   Asterisk,
   Clock3,
   Star,
-  Users,
   BookOpen,
 } from "lucide-react";
 import gsap from "gsap";

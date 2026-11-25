@@ -1,0 +1,422 @@
+
+/* ==========================================
+   BEHAR — P14.2.2 LEARNING FILTERS
+========================================== */
+
+.behar-learning-filters {
+  --lf-forest: #102c2b;
+  --lf-emerald: #176e62;
+  --lf-lime: #d9ef74;
+  --lf-cream: #f4f1e9;
+  --lf-muted: #68786e;
+  --lf-line: #d6dcd2;
+
+  width: 100%;
+  min-width: 0;
+  margin-top: clamp(35px, 4vw, 60px);
+  color: var(--lf-forest);
+  font-family: "Outfit", sans-serif;
+}
+
+.behar-learning-filters,
+.behar-learning-filters * {
+  box-sizing: border-box;
+}
+
+.behar-learning-filters[dir="rtl"] {
+  font-family: "Noto Sans Arabic", sans-serif;
+}
+
+/* HEADING */
+
+.behar-learning-filters__heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 28px;
+}
+
+.behar-learning-filters__heading-copy {
+  min-width: 0;
+}
+
+.behar-learning-filters__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+  color: var(--lf-emerald);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+}
+
+.behar-learning-filters__eyebrow-line {
+  width: 28px;
+  height: 1px;
+  background: var(--lf-emerald);
+}
+
+.behar-learning-filters__heading h2 {
+  margin: 0;
+  font-size: clamp(25px, 3vw, 39px);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.045em;
+}
+
+.behar-learning-filters__heading p {
+  margin: 11px 0 0;
+  color: var(--lf-muted);
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.behar-learning-filters__total {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  flex-shrink: 0;
+  padding-bottom: 3px;
+}
+
+.behar-learning-filters__total strong {
+  font-size: 35px;
+  font-weight: 500;
+  letter-spacing: -0.05em;
+}
+
+.behar-learning-filters__total span {
+  color: var(--lf-muted);
+  font-size: 11px;
+}
+
+/* WORKSPACE */
+
+.behar-learning-filters__workspace {
+  border-top: 1px solid var(--lf-line);
+  border-bottom: 1px solid var(--lf-line);
+}
+
+/* STATUS TABS */
+
+.behar-learning-filters__tabs {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 7px;
+  padding: 22px 0;
+}
+
+.behar-learning-filters__tab {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  min-height: 43px;
+  padding: 10px 15px;
+  border: 1px solid var(--lf-line);
+  background: transparent;
+  color: var(--lf-muted);
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.behar-learning-filters__tab:hover {
+  border-color: var(--lf-emerald);
+  color: var(--lf-emerald);
+}
+
+.behar-learning-filters__tab.is-active {
+  border-color: var(--lf-forest);
+  background: var(--lf-forest);
+  color: white;
+}
+
+.behar-learning-filters__tab-count {
+  display: inline-grid;
+  place-items: center;
+  min-width: 22px;
+  height: 22px;
+  padding: 0 5px;
+  border-radius: 50px;
+  background: rgba(16, 44, 43, 0.07);
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.behar-learning-filters__tab.is-active
+.behar-learning-filters__tab-count {
+  background: var(--lf-lime);
+  color: var(--lf-forest);
+}
+
+/* TOOLBAR */
+
+.behar-learning-filters__toolbar {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 13px;
+  padding-bottom: 20px;
+}
+
+.behar-learning-filters__search {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-width: 0;
+}
+
+.behar-learning-filters__search-icon {
+  position: absolute;
+  inset-inline-start: 17px;
+  color: var(--lf-muted);
+  pointer-events: none;
+}
+
+.behar-learning-filters__search input {
+  width: 100%;
+  height: 52px;
+  padding: 0 48px;
+  border: 1px solid var(--lf-line);
+  border-radius: 0;
+  outline: none;
+  background: #fffdf8;
+  color: var(--lf-forest);
+  font-family: inherit;
+  font-size: 13px;
+  transition: border-color 0.2s ease;
+}
+
+.behar-learning-filters__search input::placeholder {
+  color: #87958b;
+}
+
+.behar-learning-filters__search input:focus {
+  border-color: var(--lf-emerald);
+}
+
+.behar-learning-filters__search input::-webkit-search-cancel-button {
+  display: none;
+}
+
+.behar-learning-filters__clear-search {
+  position: absolute;
+  inset-inline-end: 10px;
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border: 0;
+  background: transparent;
+  color: var(--lf-muted);
+  cursor: pointer;
+}
+
+.behar-learning-filters__clear-search:hover {
+  color: var(--lf-forest);
+}
+
+/* SORT */
+
+.behar-learning-filters__sort {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  min-width: 235px;
+  height: 52px;
+  padding: 0 15px;
+  border: 1px solid var(--lf-line);
+  background: #fffdf8;
+}
+
+.behar-learning-filters__sort > svg {
+  flex-shrink: 0;
+  color: var(--lf-emerald);
+}
+
+.behar-learning-filters__sort label {
+  color: var(--lf-muted);
+  font-size: 11px;
+  white-space: nowrap;
+}
+
+.behar-learning-filters__sort select {
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  border: 0;
+  outline: none;
+  background: transparent;
+  color: var(--lf-forest);
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.behar-learning-filters__sort:focus-within {
+  border-color: var(--lf-emerald);
+}
+
+/* RESULTS */
+
+.behar-learning-filters__results {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 15px 0;
+  border-top: 1px solid var(--lf-line);
+}
+
+.behar-learning-filters__results-count {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--lf-muted);
+  font-size: 11px;
+}
+
+.behar-learning-filters__results-count svg {
+  color: var(--lf-emerald);
+}
+
+.behar-learning-filters__results-count strong {
+  color: var(--lf-forest);
+  font-weight: 700;
+}
+
+.behar-learning-filters__reset {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 0;
+  border: 0;
+  background: transparent;
+  color: var(--lf-emerald);
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.behar-learning-filters__reset:hover {
+  color: var(--lf-forest);
+}
+
+/* ACCESSIBILITY */
+
+.behar-learning-filters__sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}
+
+.behar-learning-filters button:focus-visible,
+.behar-learning-filters select:focus-visible,
+.behar-learning-filters input:focus-visible {
+  outline: 2px solid var(--lf-emerald);
+  outline-offset: 3px;
+}
+
+/* RTL */
+
+.behar-learning-filters[dir="rtl"]
+.behar-learning-filters__heading h2 {
+  letter-spacing: -0.02em;
+  line-height: 1.5;
+}
+
+.behar-learning-filters[dir="rtl"]
+.behar-learning-filters__eyebrow {
+  letter-spacing: 0;
+}
+
+/* TABLET */
+
+@media (max-width: 900px) {
+  .behar-learning-filters__toolbar {
+    grid-template-columns: 1fr;
+  }
+
+  .behar-learning-filters__sort {
+    width: 100%;
+  }
+}
+
+/* MOBILE */
+
+@media (max-width: 650px) {
+  .behar-learning-filters {
+    margin-top: 40px;
+  }
+
+  .behar-learning-filters__heading {
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .behar-learning-filters__heading h2 {
+    font-size: 26px;
+  }
+
+  .behar-learning-filters__heading p {
+    font-size: 12px;
+  }
+
+  .behar-learning-filters__total strong {
+    font-size: 28px;
+  }
+
+  .behar-learning-filters__tabs {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding: 17px 0;
+    scrollbar-width: none;
+  }
+
+  .behar-learning-filters__tabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .behar-learning-filters__tab {
+    flex-shrink: 0;
+    min-height: 40px;
+    padding: 9px 12px;
+    font-size: 11px;
+  }
+
+  .behar-learning-filters__toolbar {
+    gap: 10px;
+  }
+
+  .behar-learning-filters__search input,
+  .behar-learning-filters__sort {
+    height: 48px;
+  }
+
+  .behar-learning-filters__results {
+    align-items: flex-start;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .behar-learning-filters *,
+  .behar-learning-filters *::before,
+  .behar-learning-filters *::after {
+    transition: none !important;
+    animation: none !important;
+  }
+}

@@ -1,0 +1,104 @@
+
+  .behar-curriculum__lesson {
+
+    min-height: 68px;
+
+    padding: 12px 10px;
+
+  }
+
+  .behar-curriculum__footer {
+
+    padding: 15px 19px;
+
+  }
+
+
+
+/* ==========================================
+
+   SMALL MOBILE
+
+========================================== */
+
+@media (max-width: 380px) {
+
+  .behar-curriculum__panel {
+
+    width: 100vw;
+
+  }
+
+  .behar-curriculum__module-info strong {
+
+    font-size: 13px;
+
+  }
+
+  .behar-curriculum__lesson-info strong {
+
+    font-size: 11px;
+
+  }
+
+  .behar-curriculum__summary {
+
+    gap: 12px;
+
+  }
+
+}
+
+/* ==========================================
+
+   ARABIC RTL
+
+========================================== */
+
+.behar-curriculum[dir="rtl"] {
+
+  text-align: right;
+
+}
+
+.behar-curriculum[dir="rtl"]
+
+.behar-curriculum__module-toggle {
+
+  text-align: right;
+
+}
+
+.behar-curriculum[dir="rtl"]
+
+.behar-curriculum__chevron {
+
+  transform-origin: center;
+
+}
+
+/* ==========================================
+
+   REDUCED MOTION
+
+========================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .behar-curriculum *,
+
+  .behar-curriculum *::before,
+
+  .behar-curriculum *::after {
+
+    animation-duration: 0.01ms !important;
+
+    animation-iteration-count: 1 !important;
+
+    transition-duration: 0.01ms !important;
+
+    scroll-behavior: auto !important;
+
+  }
+
+}

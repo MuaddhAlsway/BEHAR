@@ -7,7 +7,6 @@ import {
   ArrowRight,
   ArrowLeft,
   Asterisk,
-  MoveUpRight,
   Sparkles,
 } from "lucide-react";
 import gsap from "gsap";
@@ -244,7 +243,6 @@ export default function FeaturedCollection({ courses: catalogCourses }) {
 
   const isArabic = language === "ar";
   const t = copy[language];
-  const Arrow = isArabic ? ArrowUpLeft : ArrowUpRight;
   const DirectionArrow = isArabic ? ArrowLeft : ArrowRight;
 
   const featuredCourses = useMemo(() => {

@@ -8,8 +8,6 @@ import {
   Quote,
   CheckCircle2,
   ChevronDown,
-  ArrowLeft,
-  ArrowRight,
   MessageCircle,
 } from "lucide-react";
 import gsap from "gsap";
