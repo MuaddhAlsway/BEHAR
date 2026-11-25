@@ -7,7 +7,6 @@ import {
   Search,
   X,
   Menu,
-  Globe2,
   Command,
   BookOpen,
   ArrowRight,
@@ -149,10 +148,6 @@ export default function Navbar() {
     };
   }, [menuOpen, searchOpen]);
 
-  const changeLanguage = () => {
-    setLanguage((current) => (current === "en" ? "ar" : "en"));
-  };
-
   const openSearch = () => {
     setMenuOpen(false);
     setSearchOpen((current) => !current);
@@ -234,20 +229,6 @@ export default function Navbar() {
               onClick={openSearch}
             >
               {searchOpen ? <X size={19} /> : <Search size={19} />}
-            </button>
-
-            <span className="behar-actions__separator" aria-hidden="true" />
-
-            <button
-              type="button"
-              className="behar-language"
-              onClick={changeLanguage}
-              aria-label={
-                isArabic ? "Switch to English" : "التبديل إلى العربية"
-              }
-            >
-              <Globe2 size={17} strokeWidth={1.8} />
-              <span>{t.language}</span>
             </button>
 
             <Link to="/login" className="behar-login">
