@@ -10,10 +10,9 @@ import {
   Sparkles,
   BookOpen,
   MoveUpRight,
+  UsersRound,
 } from "lucide-react";
 
-import hero from "../../assets/Hero.png";
-import LazyImage from "./LazyImage";
 import "../../styles/hero.css";
 
 const content = {
@@ -257,17 +256,16 @@ export default function Hero() {
             </span>
           </div>
 
-          {/* Hero image */}
+          {/* Hero learning visual */}
 
-          <div className="behar-hero__image-frame">
-            <LazyImage
-              src={hero}
-              alt={t.imageAlt}
-              className="behar-hero__image"
-              fetchPriority="high"
-              loading="eager"
-              decoding="async"
-            />
+          <div
+            className="behar-hero__image-frame"
+            role="img"
+            aria-label={t.imageAlt}
+          >
+            <span className="behar-hero__image" aria-hidden="true">
+              <UsersRound size={190} strokeWidth={1} />
+            </span>
 
             {/* Image caption */}
 

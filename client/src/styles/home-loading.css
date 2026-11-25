@@ -23,7 +23,6 @@
   isolation: isolate;
 }
 
-.behar-hero__image,
 .behar-course-card__image,
 .behar-spotlight__image img {
   position: relative;
@@ -32,7 +31,6 @@
   transition: opacity .45s ease;
 }
 
-.behar-hero__image.is-loaded,
 .behar-course-card__image.is-loaded,
 .behar-spotlight__image img.is-loaded {
   opacity: 1;
