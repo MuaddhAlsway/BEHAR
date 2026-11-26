@@ -13,7 +13,7 @@ import {
 } from "lucide-react";
 import gsap from "gsap";
 
-import "../../../styles/student/active-courses.css";
+import "../../../styles/student/public/active-courses.css";
 
 const translations = {
   en: {
@@ -208,7 +208,7 @@ function CourseAction({
   const label = isNew ? t.start : t.continue;
 
   const coursePath = `/student/learn/${encodeURIComponent(
-    course.id
+    course.slug
   )}`;
 
   const className = featured

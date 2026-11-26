@@ -6,83 +6,26 @@ import {
   CheckCircle2,
   ClipboardList,
   Clock3,
-  Search,
   Send,
 } from "lucide-react";
 
 import { courses } from "../../data/courses";
-import AssignmentDetails from "./AssignmentDetails";
+import AssignmentDetails from "../../components/student/assignments/AssignmentDetails";
+import {
+  ASSIGNMENT_STORAGE_KEY,
+  ASSIGNMENTS_UPDATED_EVENT,
+  baseAssignments,
+  mergeAssignmentSubmissions,
+  readAssignmentSubmissions,
+  saveAssignmentSubmission,
+} from "../../data/assignments";
+import AssignmentFilters, {
+  DEFAULT_ASSIGNMENT_FILTERS,
+  filterAssignments,
+  getAssignmentDeadline,
+} from "../../components/student/assignments/AssignmentFilters";
+
 import "../../styles/student/assignments.css";
-
-const STORAGE_KEY = "behar:student-assignments:v1";
-
-const baseAssignments = [
-  {
-    id: "assignment-001",
-    title: {
-      en: "Build a reusable component",
-      ar: "بناء مكوّن قابل لإعادة الاستخدام",
-    },
-    courseId: "course-001",
-    instructor: "Omar Khalid",
-    dueDate: "2026-12-02",
-    status: "pending",
-    points: 100,
-    description: {
-      en: "Create a reusable React component with clear props and accessible states.",
-      ar: "أنشئ مكوّناً قابلاً لإعادة الاستخدام مع خصائص واضحة وحالات سهلة الوصول.",
-    },
-  },
-  {
-    id: "assignment-002",
-    title: {
-      en: "Visual identity moodboard",
-      ar: "لوحة إلهام للهوية البصرية",
-    },
-    courseId: "course-002",
-    instructor: "Nora Alharbi",
-    dueDate: "2026-11-28",
-    status: "submitted",
-    points: 80,
-    description: {
-      en: "Translate a brand direction into a focused visual moodboard.",
-      ar: "حوّل توجه العلامة التجارية إلى لوحة إلهام بصرية مركزة.",
-    },
-  },
-  {
-    id: "assignment-003",
-    title: {
-      en: "Marketing campaign brief",
-      ar: "موجز حملة تسويقية",
-    },
-    courseId: "course-005",
-    instructor: "Layla Haddad",
-    dueDate: "2026-11-20",
-    status: "graded",
-    points: 100,
-    grade: "92 / 100",
-    description: {
-      en: "Write a concise campaign brief with audience, message, and channels.",
-      ar: "اكتب موجزاً لحملة يتضمن الجمهور والرسالة والقنوات.",
-    },
-  },
-  {
-    id: "assignment-004",
-    title: {
-      en: "AI creative workflow",
-      ar: "سير عمل إبداعي بالذكاء الاصطناعي",
-    },
-    courseId: "course-004",
-    instructor: "Youssef Salem",
-    dueDate: "2026-12-10",
-    status: "pending",
-    points: 120,
-    description: {
-      en: "Map a responsible AI workflow for a creative project.",
-      ar: "صمّم سير عمل مسؤولاً للذكاء الاصطناعي في مشروع إبداعي.",
-    },
-  },
-];
 
 const copy = {
   en: {
@@ -93,10 +36,8 @@ const copy = {
     total: "Total",
     pending: "Pending",
     submitted: "Submitted",
+    underReview: "Under review",
     graded: "Graded",
-    search: "Search assignments",
-    all: "All courses",
-    allStatus: "All status",
     grade: "Grade",
     points: "Points",
     due: "Due",
@@ -108,6 +49,7 @@ const copy = {
     statuses: {
       pending: "Pending",
       submitted: "Submitted",
+      under_review: "Under review",
       graded: "Graded",
     },
   },
@@ -119,10 +61,8 @@ const copy = {
     total: "الإجمالي",
     pending: "قيد الانتظار",
     submitted: "تم التسليم",
+    underReview: "قيد المراجعة",
     graded: "تم التقييم",
-    search: "ابحث في الواجبات",
-    all: "كل الدورات",
-    allStatus: "كل الحالات",
     grade: "النتيجة",
     points: "درجة",
     due: "موعد التسليم",
@@ -134,6 +74,7 @@ const copy = {
     statuses: {
       pending: "قيد الانتظار",
       submitted: "تم التسليم",
+      under_review: "قيد المراجعة",
       graded: "تم التقييم",
     },
   },
@@ -150,37 +91,17 @@ function getLanguage() {
 }
 
 function text(value, locale) {
-  if (typeof value === "string") {
-    return value;
-  }
-
-  return value?.[locale] || value?.en || "";
+  if (typeof value === "string") return value;
+  return value?.[locale] ?? value?.en ?? "";
 }
 
 function loadSubmissions() {
-  if (typeof window === "undefined") {
-    return {};
-  }
-
-  try {
-    const saved = JSON.parse(
-      localStorage.getItem(STORAGE_KEY) || "{}"
-    );
-
-    return saved &&
-      typeof saved === "object" &&
-      !Array.isArray(saved)
-      ? saved
-      : {};
-  } catch {
-    return {};
-  }
+  return readAssignmentSubmissions();
 }
 
 function formatDate(value, locale) {
   if (!value) return "—";
 
-  // Parse date-only strings as local calendar dates.
   const date = /^\d{4}-\d{2}-\d{2}$/.test(value)
     ? new Date(`${value}T12:00:00`)
     : new Date(value);
@@ -198,14 +119,37 @@ function formatDate(value, locale) {
   ).format(date);
 }
 
+function normalizeHistory(saved, assignmentId) {
+  if (Array.isArray(saved?.submissions)) {
+    return saved.submissions;
+  }
+
+  if (!saved?.submittedAt) {
+    return [];
+  }
+
+  return [
+    {
+      id: `${assignmentId}-legacy`,
+      text: saved.note ?? "",
+      link: saved.projectUrl ?? "",
+      submittedAt: saved.submittedAt,
+      status: "submitted",
+    },
+  ];
+}
+
 export default function Assignments() {
   const [locale, setLocale] = useState(getLanguage);
-  const [query, setQuery] = useState("");
-  const [status, setStatus] = useState("all");
-  const [courseFilter, setCourseFilter] = useState("all");
+
+  const [filters, setFilters] = useState({
+    ...DEFAULT_ASSIGNMENT_FILTERS,
+  });
+
   const [submissions, setSubmissions] = useState(
     loadSubmissions
   );
+
   const [selectedId, setSelectedId] = useState(null);
 
   const t = copy[locale];
@@ -223,11 +167,10 @@ export default function Assignments() {
     return () => observer.disconnect();
   }, []);
 
-  // Read updates written from another browser tab.
   useEffect(() => {
     function handleStorage(event) {
       if (
-        event.key === STORAGE_KEY ||
+        event.key === ASSIGNMENT_STORAGE_KEY ||
         event.key === null
       ) {
         setSubmissions(loadSubmissions());
@@ -238,20 +181,30 @@ export default function Assignments() {
       "storage",
       handleStorage
     );
+    const handleAssignmentsUpdated = () =>
+      setSubmissions(loadSubmissions());
+
+    window.addEventListener(
+      ASSIGNMENTS_UPDATED_EVENT,
+      handleAssignmentsUpdated
+    );
 
     return () => {
       window.removeEventListener(
         "storage",
         handleStorage
       );
+      window.removeEventListener(
+        ASSIGNMENTS_UPDATED_EVENT,
+        handleAssignmentsUpdated
+      );
     };
   }, []);
 
   const assignments = useMemo(() => {
-    return baseAssignments.map((item) => {
+    return mergeAssignmentSubmissions(baseAssignments, submissions).map((item) => {
       const saved = submissions[item.id];
 
-      // A student cannot overwrite graded records.
       if (
         item.status === "graded" ||
         !saved ||
@@ -280,6 +233,10 @@ export default function Assignments() {
           typeof saved.submittedAt === "string"
             ? saved.submittedAt
             : null,
+        submissions: normalizeHistory(
+          saved,
+          item.id
+        ),
       };
     });
   }, [submissions]);
@@ -294,38 +251,13 @@ export default function Assignments() {
   }, []);
 
   const filtered = useMemo(() => {
-    const searchQuery = query.trim().toLowerCase();
-
-    return assignments.filter((item) => {
-      const course = courseById.get(
-        String(item.courseId)
-      );
-
-      const haystack = [
-        text(item.title, "en"),
-        text(item.title, "ar"),
-        text(course?.title, "en"),
-        text(course?.title, "ar"),
-        text(item.instructor, "en"),
-      ]
-        .join(" ")
-        .toLowerCase();
-
-      return (
-        (status === "all" ||
-          item.status === status) &&
-        (courseFilter === "all" ||
-          item.courseId === courseFilter) &&
-        haystack.includes(searchQuery)
-      );
-    });
-  }, [
-    assignments,
-    courseById,
-    courseFilter,
-    query,
-    status,
-  ]);
+    return filterAssignments(
+      assignments,
+      courses,
+      filters,
+      locale
+    );
+  }, [assignments, filters, locale]);
 
   const counts = useMemo(() => {
     return {
@@ -346,7 +278,7 @@ export default function Assignments() {
     return (
       assignments.find(
         (item) => item.id === selectedId
-      ) || null
+      ) ?? null
     );
   }, [assignments, selectedId]);
 
@@ -358,19 +290,25 @@ export default function Assignments() {
     setSelectedId(null);
   }
 
-  function saveSubmission(
-    assignmentId,
-    submission
-  ) {
+  function saveSubmission(assignmentId, submission) {
     const assignment = assignments.find(
       (item) => item.id === assignmentId
     );
 
-    // Frontend-only protection against repeated
-    // submissions and modifications to graded work.
     if (
       !assignment ||
       assignment.status !== "pending"
+    ) {
+      return;
+    }
+
+    const deadline = getAssignmentDeadline(
+      assignment.dueDate
+    );
+
+    if (
+      deadline &&
+      Date.now() > deadline.getTime()
     ) {
       return;
     }
@@ -382,38 +320,99 @@ export default function Assignments() {
       return;
     }
 
-    const next = {
-      ...loadSubmissions(),
-      [assignmentId]: {
-        status: "submitted",
-        note: submission.text.trim(),
-        projectUrl:
-          typeof submission.link === "string"
-            ? submission.link.trim()
-            : "",
-        submittedAt: new Date().toISOString(),
-      },
-    };
+    const note = submission.text.trim();
 
-    try {
-      localStorage.setItem(
-        STORAGE_KEY,
-        JSON.stringify(next)
-      );
-    } catch {
-      // Keep the current session working even
-      // if browser storage is unavailable.
+    const projectUrl =
+      typeof submission.link === "string"
+        ? submission.link.trim()
+        : "";
+
+    if (projectUrl) {
+      try {
+        const url = new URL(projectUrl);
+
+        if (url.protocol !== "https:") {
+          return;
+        }
+      } catch {
+        return;
+      }
     }
 
-    setSubmissions(next);
+    const previous = loadSubmissions();
+
+    // Recheck stored state to prevent overwriting
+    // a previously submitted assignment.
+    if (
+      previous[assignmentId]?.status === "submitted"
+    ) {
+      setSubmissions(previous);
+      return;
+    }
+
+    const existingHistory = normalizeHistory(
+      previous[assignmentId],
+      assignmentId
+    );
+
+    const newSubmission = {
+      id:
+        typeof crypto !== "undefined" &&
+        typeof crypto.randomUUID === "function"
+          ? crypto.randomUUID()
+          : `${assignmentId}-${Date.now()}`,
+      text: note,
+      link: projectUrl,
+      submittedAt: new Date().toISOString(),
+      status: "submitted",
+    };
+
+    const result = saveAssignmentSubmission(assignmentId, {
+      text: newSubmission.text,
+      link: newSubmission.link,
+    });
+
+    if (!result.ok) return;
+
+    setSubmissions(readAssignmentSubmissions());
     closeDetails();
   }
 
   function resetFilters() {
-    setQuery("");
-    setStatus("all");
-    setCourseFilter("all");
+    setFilters({
+      ...DEFAULT_ASSIGNMENT_FILTERS,
+    });
   }
+
+  function changeOverviewStatus(status) {
+    setFilters((previous) => ({
+      ...previous,
+      status,
+    }));
+  }
+
+  const overviewItems = [
+    {
+      key: "total",
+      icon: ClipboardList,
+      status: "all",
+    },
+    {
+      key: "pending",
+      icon: Clock3,
+      status: "pending",
+    },
+    {
+      key: "submitted",
+      icon: Send,
+      status: "submitted",
+    },
+    {
+      key: "graded",
+      icon: CheckCircle2,
+      status: "graded",
+    },
+  ];
 
   return (
     <main
@@ -434,96 +433,39 @@ export default function Assignments() {
         className="behar-assignments__stats"
         aria-label={t.overview}
       >
-        {[
-          ["total", ClipboardList],
-          ["pending", Clock3],
-          ["submitted", Send],
-          ["graded", CheckCircle2],
-        ].map(([key, Icon]) => {
-          const filterValue =
-            key === "total" ? "all" : key;
-
-          return (
+        {overviewItems.map(
+          ({ key, icon: Icon, status }) => (
             <button
               type="button"
               key={key}
               className={
-                status === filterValue
+                filters.status === status
                   ? "is-active"
                   : ""
               }
               aria-pressed={
-                status === filterValue
+                filters.status === status
               }
               onClick={() =>
-                setStatus(filterValue)
+                changeOverviewStatus(status)
               }
             >
               <Icon size={18} />
               <span>{t[key]}</span>
               <strong>{counts[key]}</strong>
             </button>
-          );
-        })}
+          )
+        )}
       </section>
 
-      <section className="behar-assignments__toolbar">
-        <label>
-          <Search size={17} />
-
-          <input
-            type="search"
-            value={query}
-            onChange={(event) =>
-              setQuery(event.target.value)
-            }
-            placeholder={t.search}
-            aria-label={t.search}
-          />
-        </label>
-
-        <select
-          value={courseFilter}
-          onChange={(event) =>
-            setCourseFilter(event.target.value)
-          }
-          aria-label={t.all}
-        >
-          <option value="all">{t.all}</option>
-
-          {courses.map((course) => (
-            <option
-              key={course.id}
-              value={course.id}
-            >
-              {text(course.title, locale)}
-            </option>
-          ))}
-        </select>
-
-        <select
-          value={status}
-          onChange={(event) =>
-            setStatus(event.target.value)
-          }
-          aria-label={t.allStatus}
-        >
-          <option value="all">
-            {t.allStatus}
-          </option>
-
-          {Object.keys(t.statuses).map(
-            (key) => (
-              <option
-                key={key}
-                value={key}
-              >
-                {t.statuses[key]}
-              </option>
-            )
-          )}
-        </select>
-      </section>
+      <AssignmentFilters
+        language={locale}
+        courses={courses}
+        filters={filters}
+        onChange={setFilters}
+        onReset={resetFilters}
+        resultCount={filtered.length}
+      />
 
       <section
         className="behar-assignments__list"
@@ -544,7 +486,8 @@ export default function Assignments() {
                   <span
                     className={`behar-assignment-card__status is-${item.status}`}
                   >
-                    {t.statuses[item.status]}
+                    {t.statuses[item.status] ??
+                      item.status}
                   </span>
 
                   <span>

@@ -1,0 +1,229 @@
+
+.behar-pdf {
+  --pdf-green: #276b50;
+  --pdf-dark: #183b2c;
+  --pdf-muted: #6d7e73;
+  --pdf-gold: #b69a63;
+
+  width: 1123px;
+  height: 794px;
+  box-sizing: border-box;
+  padding: 24px;
+  background: #f9f8f3;
+  color: var(--pdf-dark);
+  font-family: "Noto Sans Arabic", Arial, sans-serif;
+  direction: ltr;
+  overflow: hidden;
+}
+
+.behar-pdf[dir="rtl"] {
+  direction: rtl;
+}
+
+.behar-pdf *,
+.behar-pdf *::before,
+.behar-pdf *::after {
+  box-sizing: border-box;
+}
+
+.behar-pdf-border {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  border: 2px solid var(--pdf-green);
+  padding: 32px 54px 24px;
+  background: #fffefb;
+}
+
+.behar-pdf-border::before {
+  content: "";
+  position: absolute;
+  inset: 8px;
+  border: 1px solid #d6e1d8;
+  pointer-events: none;
+}
+
+.behar-pdf-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  position: relative;
+  z-index: 1;
+}
+
+.behar-pdf-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--pdf-green);
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+.behar-pdf-logo-mark {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: var(--pdf-green);
+  color: white;
+  font-size: 23px;
+}
+
+.behar-pdf-header > p {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--pdf-muted);
+}
+
+.behar-pdf-decoration {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 9px;
+  margin-top: 30px;
+}
+
+.behar-pdf-decoration span {
+  height: 3px;
+  width: 30px;
+  background: var(--pdf-gold);
+}
+
+.behar-pdf-decoration span:nth-child(2) {
+  width: 65px;
+  background: var(--pdf-green);
+}
+
+.behar-pdf-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-height: 0;
+  padding: 10px 25px;
+}
+
+.behar-pdf-kicker {
+  margin: 0 0 12px;
+  color: var(--pdf-green);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.behar-pdf-content h1 {
+  margin: 0;
+  font-size: 39px;
+  line-height: 1.4;
+  font-weight: 750;
+  color: var(--pdf-dark);
+}
+
+.behar-pdf[dir="rtl"] .behar-pdf-content h1 {
+  font-size: 37px;
+  letter-spacing: 0;
+}
+
+.behar-pdf-rule {
+  width: 100px;
+  height: 2px;
+  background: var(--pdf-gold);
+  margin: 20px auto;
+}
+
+.behar-pdf-statement,
+.behar-pdf-completed {
+  margin: 0;
+  color: var(--pdf-muted);
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+.behar-pdf-student {
+  margin: 14px 0;
+  max-width: 900px;
+  font-size: 42px;
+  line-height: 1.4;
+  font-weight: 800;
+  color: var(--pdf-green);
+  overflow-wrap: anywhere;
+}
+
+.behar-pdf-course {
+  margin: 12px 0 0;
+  max-width: 850px;
+  font-size: 23px;
+  line-height: 1.6;
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+
+.behar-pdf-details {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+  padding: 24px 10px;
+  border-top: 1px solid #dce6de;
+  border-bottom: 1px solid #dce6de;
+}
+
+.behar-pdf-details > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  text-align: center;
+  min-width: 0;
+}
+
+.behar-pdf-details span {
+  color: var(--pdf-muted);
+  font-size: 12px;
+}
+
+.behar-pdf-details strong {
+  color: var(--pdf-dark);
+  font-size: 15px;
+  overflow-wrap: anywhere;
+}
+
+.behar-pdf-certificate-id {
+  font-family: Arial, sans-serif;
+  font-size: 13px !important;
+  unicode-bidi: isolate;
+}
+
+.behar-pdf-footer {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding-top: 22px;
+  font-size: 11px;
+  color: var(--pdf-muted);
+}
+
+.behar-pdf-footer strong {
+  color: #8d633f;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.behar-pdf[dir="rtl"] .behar-pdf-kicker {
+  letter-spacing: 0;
+}

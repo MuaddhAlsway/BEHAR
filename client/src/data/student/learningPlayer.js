@@ -46,7 +46,11 @@ export const mockLearningCurricula = {
         lesson("lesson_005", "Handling Events", "التعامل مع الأحداث", 18),
         lesson("lesson_006", "React Hooks", "خطافات React", 27),
         lesson("lesson_007", "Managing Effects", "إدارة التأثيرات", 22),
-        lesson("lesson_008", "Building a Feature", "بناء ميزة تطبيق", 30),
+        {
+          ...lesson("lesson_008", "Build a reusable component", "بناء مكوّن قابل لإعادة الاستخدام", 30),
+          type: "assignment",
+          assignmentId: "assignment-001",
+        },
       ]
     ),
   ],

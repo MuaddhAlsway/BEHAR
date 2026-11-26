@@ -1,0 +1,108 @@
+
+.behar-certificate-share {
+  margin-top: 24px;
+  padding: 20px;
+  border: 1px solid #e0e9e1;
+  border-radius: 14px;
+  background: #f8faf7;
+}
+
+.behar-certificate-share-heading {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  color: #276b50;
+}
+
+.behar-certificate-share-heading h3 {
+  margin: 0;
+  color: #24392d;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.behar-certificate-share-heading p {
+  margin: 5px 0 0;
+  color: #6a786d;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.behar-certificate-share-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin-top: 18px;
+}
+
+.behar-certificate-share-actions button,
+.behar-certificate-share-actions a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 42px;
+  padding: 0 14px;
+  border: 1px solid #d8e4da;
+  border-radius: 9px;
+  background: #fff;
+  color: #276b50;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 650;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    background 180ms ease,
+    border-color 180ms ease;
+}
+
+.behar-certificate-share-actions button:hover,
+.behar-certificate-share-actions a:hover {
+  background: #eaf4ec;
+  border-color: #b6d4bd;
+}
+
+.behar-certificate-share-actions button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.behar-certificate-share-actions :is(button, a):focus-visible {
+  outline: 3px solid #8ac4a1;
+  outline-offset: 3px;
+}
+
+.behar-certificate-share-feedback {
+  margin: 12px 0 0;
+  color: #276b50;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.behar-certificate-share-disclaimer {
+  margin: 18px 0 0;
+  padding-top: 12px;
+  border-top: 1px solid #e0e9e1;
+  color: #748177;
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+@media (max-width: 480px) {
+  .behar-certificate-share {
+    padding: 16px;
+  }
+
+  .behar-certificate-share-actions {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .behar-certificate-share-actions button,
+  .behar-certificate-share-actions a {
+    transition: none;
+  }
+}

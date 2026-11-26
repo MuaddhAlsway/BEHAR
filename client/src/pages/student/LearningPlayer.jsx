@@ -44,6 +44,7 @@ import LearningPlayerTabs from "../../components/student/learning-player/Learnin
 
 // P14.4.0.7 — Lesson Assessment Integration
 import LessonAssessment from "../../components/student/assessments/LessonAssessment";
+import LearningPlayerAssignment from "../../components/student/learning-player/LearningPlayerAssignment";
 
 // Styles
 import "../../styles/student/learning-player/learning-player.css";
@@ -496,6 +497,15 @@ export default function LearningPlayer() {
             content={lessonContent}
             language={language}
           />
+
+          {currentLesson.type === "assignment" && (
+            <LearningPlayerAssignment
+              course={course}
+              lesson={currentLesson}
+              assignmentId={currentLesson.assignmentId}
+              language={language}
+            />
+          )}
 
           {/* P14.4.0.7 — LESSON ASSESSMENT */}
           <LessonAssessment

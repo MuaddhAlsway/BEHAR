@@ -1,0 +1,106 @@
+
+.behar-cert-download {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  min-width: 0;
+}
+
+.behar-cert-download-export {
+  position: fixed;
+  top: 0;
+  left: -12000px;
+  z-index: -1;
+  width: 1123px;
+  height: 794px;
+  pointer-events: none;
+  opacity: 1;
+}
+
+.behar-cert-download-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 45px;
+  padding: 12px 19px;
+  border: 1px solid #276b50;
+  border-radius: 10px;
+  background: #276b50;
+  color: #fff;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    background 180ms ease,
+    border-color 180ms ease,
+    transform 180ms ease;
+}
+
+.behar-cert-download-button:hover:not(:disabled) {
+  background: #184a38;
+  border-color: #184a38;
+  transform: translateY(-1px);
+}
+
+.behar-cert-download-button:focus-visible {
+  outline: 3px solid #88c5a3;
+  outline-offset: 3px;
+}
+
+.behar-cert-download-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.65;
+}
+
+.behar-cert-download-spinner {
+  animation: behar-cert-download-spin 900ms linear infinite;
+}
+
+@keyframes behar-cert-download-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.behar-cert-download-feedback:empty {
+  display: none;
+}
+
+.behar-cert-download-feedback p {
+  display: flex;
+  align-items: flex-start;
+  gap: 7px;
+  margin: 9px 0 0;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.behar-cert-download-success {
+  color: #276b50;
+}
+
+.behar-cert-download-error {
+  color: #b43f3f;
+  overflow-wrap: anywhere;
+}
+
+.behar-cert-download-feedback svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .behar-cert-download-button {
+    transition: none;
+  }
+
+  .behar-cert-download-button:hover:not(:disabled) {
+    transform: none;
+  }
+
+  .behar-cert-download-spinner {
+    animation-duration: 2s;
+  }
+}

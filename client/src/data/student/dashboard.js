@@ -45,7 +45,7 @@ export const mockStudent = {
 // ==========================================
 
 export const mockContinueLearning = {
-  courseId: "course_001",
+  courseId: "course-001",
   courseSlug: "modern-react-development",
 
   title: {
@@ -59,7 +59,7 @@ export const mockContinueLearning = {
   },
 
   instructor: {
-    name: "Sarah Mitchell",
+    name: "Omar Khalid",
     avatar: null,
   },
 
@@ -101,7 +101,7 @@ export const mockContinueLearning = {
 
 export const mockActiveCourses = [
   {
-    id: "course_001",
+    id: "course-001",
     slug: "modern-react-development",
     title: {
       en: "Modern React Development",
@@ -112,7 +112,7 @@ export const mockActiveCourses = [
       ar: "البرمجة والتطوير",
     },
     instructor: {
-      name: "Sarah Mitchell",
+      name: "Omar Khalid",
       avatar: null,
     },
     image: "/images/courses/course-fallback.webp",
@@ -125,7 +125,7 @@ export const mockActiveCourses = [
     nextLessonId: "lesson_008",
   },
   {
-    id: "course_002",
+    id: "course-003",
     slug: "ui-ux-design-foundations",
     title: {
       en: "UI/UX Design Foundations",
@@ -149,11 +149,11 @@ export const mockActiveCourses = [
     nextLessonId: "lesson_006",
   },
   {
-    id: "course_003",
-    slug: "nodejs-backend-engineering",
+    id: "course-002",
+    slug: "advanced-nodejs-architecture",
     title: {
-      en: "Node.js Backend Engineering",
-      ar: "هندسة الخوادم باستخدام Node.js",
+      en: "Advanced Node.js Architecture",
+      ar: "هندسة Node.js المتقدمة",
     },
     category: {
       en: "Development",
@@ -173,11 +173,11 @@ export const mockActiveCourses = [
     nextLessonId: "lesson_004",
   },
   {
-    id: "course_004",
-    slug: "digital-marketing-strategy",
+    id: "course-008",
+    slug: "digital-marketing-essentials",
     title: {
-      en: "Digital Marketing Strategy",
-      ar: "استراتيجيات التسويق الرقمي",
+      en: "Digital Marketing Essentials",
+      ar: "أساسيات التسويق الرقمي",
     },
     category: {
       en: "Marketing",
@@ -261,7 +261,7 @@ export const mockUpcomingDeadlines = [
       ar: "بناء مكتبة مكونات قابلة لإعادة الاستخدام",
     },
     course: {
-      id: "course_001",
+      id: "course-001",
       title: {
         en: "Modern React Development",
         ar: "تطوير تطبيقات React الحديثة",
@@ -280,7 +280,7 @@ export const mockUpcomingDeadlines = [
       ar: "اختبار أساسيات أبحاث تجربة المستخدم",
     },
     course: {
-      id: "course_002",
+      id: "course-003",
       title: {
         en: "UI/UX Design Foundations",
         ar: "أساسيات تصميم تجربة المستخدم",
@@ -299,10 +299,10 @@ export const mockUpcomingDeadlines = [
       ar: "ورشة عمل هندسة الأنظمة الخلفية",
     },
     course: {
-      id: "course_003",
+      id: "course-002",
       title: {
-        en: "Node.js Backend Engineering",
-        ar: "هندسة الخوادم باستخدام Node.js",
+        en: "Advanced Node.js Architecture",
+        ar: "هندسة Node.js المتقدمة",
       },
     },
     dueAt: "2026-12-01T17:00:00+03:00",
@@ -318,7 +318,7 @@ export const mockUpcomingDeadlines = [
       ar: "التقييم النهائي لتطوير React",
     },
     course: {
-      id: "course_001",
+      id: "course-001",
       title: {
         en: "Modern React Development",
         ar: "تطوير تطبيقات React الحديثة",
@@ -456,11 +456,11 @@ export const mockLearningMilestones = {
 export const mockRecommendedCourses = [
   {
     id: "recommended_001",
-    courseId: "course_005",
-    slug: "advanced-typescript-patterns",
+    courseId: "course-010",
+    slug: "typescript-for-developers",
     title: {
-      en: "Advanced TypeScript Patterns",
-      ar: "أنماط TypeScript المتقدمة",
+      en: "TypeScript for Developers",
+      ar: "تعلم TypeScript للمطورين",
     },
     category: {
       en: "Development",
@@ -490,11 +490,11 @@ export const mockRecommendedCourses = [
   },
   {
     id: "recommended_002",
-    courseId: "course_006",
-    slug: "design-systems-masterclass",
+    courseId: "course-012",
+    slug: "product-design-systems",
     title: {
-      en: "Design Systems Masterclass",
-      ar: "الدليل المتقدم لأنظمة التصميم",
+      en: "Product Design Systems",
+      ar: "أنظمة تصميم المنتجات الرقمية",
     },
     category: {
       en: "Design",
@@ -524,11 +524,11 @@ export const mockRecommendedCourses = [
   },
   {
     id: "recommended_003",
-    courseId: "course_007",
-    slug: "mongodb-database-architecture",
+    courseId: "course-002",
+    slug: "advanced-nodejs-architecture",
     title: {
-      en: "MongoDB Database Architecture",
-      ar: "هندسة قواعد البيانات باستخدام MongoDB",
+      en: "Advanced Node.js Architecture",
+      ar: "هندسة Node.js المتقدمة",
     },
     category: {
       en: "Development",
@@ -558,11 +558,11 @@ export const mockRecommendedCourses = [
   },
   {
     id: "recommended_004",
-    courseId: "course_008",
-    slug: "product-design-thinking",
+    courseId: "course-003",
+    slug: "ui-ux-design-foundations",
     title: {
-      en: "Product Design Thinking",
-      ar: "التفكير التصميمي للمنتجات",
+      en: "UI/UX Design Foundations",
+      ar: "أساسيات تصميم تجربة المستخدم",
     },
     category: {
       en: "Design",
@@ -592,11 +592,11 @@ export const mockRecommendedCourses = [
   },
   {
     id: "recommended_005",
-    courseId: "course_009",
-    slug: "digital-brand-strategy",
+    courseId: "course-011",
+    slug: "brand-storytelling",
     title: {
-      en: "Digital Brand Strategy",
-      ar: "استراتيجية العلامات التجارية الرقمية",
+      en: "Brand Storytelling",
+      ar: "فن سرد قصص العلامات التجارية",
     },
     category: {
       en: "Marketing",

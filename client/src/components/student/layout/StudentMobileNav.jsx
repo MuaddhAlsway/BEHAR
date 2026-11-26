@@ -7,6 +7,15 @@ import {
   mainLinks,
   secondaryLinks,
 } from "./StudentSidebar";
+import { useStudentLanguage } from "../../../context/StudentLanguageContext";
+
+const arabicLabels = {
+  Overview: "نظرة عامة", "My Learning": "تعلمي", Progress: "التقدم",
+  Assignments: "الواجبات", Notifications: "الإشعارات", Certificates: "الشهادات",
+  Discussions: "النقاشات", Messages: "الرسائل", Calendar: "التقويم",
+  Wishlist: "المفضلة", Payments: "المدفوعات", Settings: "الإعدادات",
+  "Help & Support": "المساعدة والدعم",
+};
 
 export default function StudentMobileNav({
   isOpen,
@@ -15,6 +24,7 @@ export default function StudentMobileNav({
   const closeButtonRef = useRef(null);
   const panelRef = useRef(null);
   const previousFocusRef = useRef(null);
+  const { isArabic } = useStudentLanguage();
 
   useEffect(() => {
     if (!isOpen) return;
@@ -85,7 +95,7 @@ export default function StudentMobileNav({
 
         <nav aria-label="Mobile student navigation">
           <span className="behar-student-sidebar__group-label">
-            YOUR WORKSPACE
+            {isArabic ? "مساحة التعلم" : "YOUR WORKSPACE"}
           </span>
 
           {mainLinks.map(({ label, path, icon: Icon, end }) => (
@@ -101,7 +111,7 @@ export default function StudentMobileNav({
               }
             >
               <Icon size={19} strokeWidth={1.7} />
-              <span>{label}</span>
+              <span>{isArabic ? arabicLabels[label] : label}</span>
             </NavLink>
           ))}
 
@@ -119,7 +129,7 @@ export default function StudentMobileNav({
               }
             >
               <Icon size={19} strokeWidth={1.7} />
-              <span>{label}</span>
+              <span>{isArabic ? arabicLabels[label] : label}</span>
             </NavLink>
           ))}
         </nav>

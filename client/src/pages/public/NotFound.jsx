@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { ArrowUpRight, Compass, MoveLeft, MoveRight } from "lucide-react";
 import gsap from "gsap";
 
-import "../../styles/public/not-found.css";
+import "../../styles/student/public/not-found.css";
 
 const CURRENT_YEAR = new Date().getFullYear();
 

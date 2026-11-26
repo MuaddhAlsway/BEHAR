@@ -1,0 +1,75 @@
+
+.behar-discussion-storage-reset {
+  margin-top: 24px;
+}
+
+.behar-discussion-reset-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 13px;
+  border: 1px solid #dce7dd;
+  border-radius: 9px;
+  background: #fff;
+  color: #66776b;
+  font: inherit;
+  font-size: 11px;
+  font-weight: 650;
+  cursor: pointer;
+}
+
+.behar-discussion-reset-trigger:hover {
+  background: #f3f8f4;
+  color: #276b50;
+}
+
+.behar-discussion-reset-confirmation {
+  max-width: 520px;
+  padding: 17px;
+  border: 1px solid #ead8d5;
+  border-radius: 11px;
+  background: #fffaf9;
+}
+
+.behar-discussion-reset-confirmation p {
+  margin: 0 0 13px;
+  color: #765b55;
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.behar-discussion-reset-confirmation > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+}
+
+.behar-discussion-reset-confirmation button {
+  min-height: 36px;
+  padding: 0 13px;
+  border: 1px solid #dce7dd;
+  border-radius: 8px;
+  background: #fff;
+  color: #526558;
+  font: inherit;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.behar-discussion-reset-confirmation button.is-danger {
+  border-color: #b94b43;
+  background: #b94b43;
+  color: #fff;
+}
+
+.behar-discussion-storage-reset button:focus-visible {
+  outline: 3px solid #8ac4a1;
+  outline-offset: 3px;
+}
+
+@media (max-width: 480px) {
+  .behar-discussion-reset-confirmation {
+    max-width: 100%;
+  }
+}

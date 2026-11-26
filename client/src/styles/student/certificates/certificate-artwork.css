@@ -1,0 +1,151 @@
+
+.behar-cert-artwork {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 235px;
+  margin: 12px;
+  padding: 17px 21px;
+  overflow: hidden;
+  border: 1px solid #d5ded6;
+  border-radius: 7px;
+  background: radial-gradient(circle, #fff, #f8faf6);
+  color: #3c5848;
+}
+
+.behar-cert-artwork::after {
+  content: "";
+  position: absolute;
+  inset: 7px;
+  border: 1px solid #e1e7df;
+  pointer-events: none;
+}
+
+.behar-cert-artwork.is-earned {
+  background: #f9f7ef;
+  border-color: #dfd2b5;
+  color: #74603c;
+}
+
+.behar-cert-artwork.is-locked {
+  background: #f6f7f6;
+  border-color: #e0e4e0;
+  color: #929a94;
+}
+
+.behar-cert-artwork-top,
+.behar-cert-artwork-bottom {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.behar-cert-artwork-top span {
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+}
+
+.behar-cert-artwork-bottom span {
+  font-size: 9px;
+  font-weight: 650;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.behar-cert-artwork-center {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  text-align: center;
+}
+
+.behar-cert-artwork-seal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+}
+
+.behar-cert-artwork-kicker {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+}
+
+.behar-cert-artwork-center h3 {
+  max-width: 310px;
+  margin: 0;
+  font-size: clamp(15px, 2vw, 21px);
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.behar-cert-artwork-rule {
+  width: 65px;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.45;
+}
+
+/* Larger preview presentation */
+
+.behar-cert-artwork.is-preview {
+  min-height: 340px;
+  margin: 0;
+  padding: 28px 34px;
+  border-radius: 8px;
+}
+
+.behar-cert-artwork.is-preview::after {
+  inset: 11px;
+}
+
+.behar-cert-artwork.is-preview
+.behar-cert-artwork-seal {
+  width: 68px;
+  height: 68px;
+}
+
+.behar-cert-artwork.is-preview
+.behar-cert-artwork-center {
+  gap: 16px;
+}
+
+.behar-cert-artwork.is-preview
+.behar-cert-artwork-center h3 {
+  max-width: 430px;
+  font-size: clamp(23px, 3vw, 32px);
+}
+
+.behar-cert-artwork.is-preview
+.behar-cert-artwork-kicker {
+  font-size: 10px;
+}
+
+[dir="rtl"].behar-cert-artwork
+.behar-cert-artwork-kicker {
+  letter-spacing: normal;
+}
+
+@media (max-width: 600px) {
+  .behar-cert-artwork.is-preview {
+    min-height: 265px;
+    padding: 22px;
+  }
+
+  .behar-cert-artwork.is-preview
+  .behar-cert-artwork-center h3 {
+    font-size: 22px;
+  }
+}

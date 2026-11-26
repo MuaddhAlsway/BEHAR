@@ -28,6 +28,7 @@ import AchievementCelebrationDemo from "../../components/student/achievements/Ac
 
 // P14.5.0.9 — Shared Gamification Context
 import { useGamification } from "../../context/GamificationContext";
+import { useStudentLanguage } from "../../context/StudentLanguageContext";
 import DashboardPopup, {
   DashboardPopupTrigger,
 } from "../../components/student/dashboard/DashboardPopup";
@@ -44,7 +45,7 @@ import {
 } from "../../data/student/dashboard";
 
 export default function Dashboard() {
-  const language = "en";
+  const { language } = useStudentLanguage();
   const [popup, setPopup] = useState(null);
   const location = useLocation();
   const navigate = useNavigate();
@@ -111,7 +112,11 @@ export default function Dashboard() {
         to="/student/achievements"
         className="behar-dashboard-achievements-link"
       >
-        <span>Explore all achievements</span>
+        <span>
+          {language === "ar"
+            ? "استكشف جميع الإنجازات"
+            : "Explore all achievements"}
+        </span>
         <ArrowUpRight size={18} aria-hidden="true" />
       </Link>
 
@@ -292,6 +297,7 @@ export default function Dashboard() {
       {/* P14.4.0.3 — Scoring Preview */}
       <AssessmentResultPreview
         assessmentId="react-basics-quiz"
+        language={language}
       />
 
       {/* P14.4.0.4 — Attempt Storage */}

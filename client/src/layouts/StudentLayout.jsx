@@ -7,6 +7,9 @@ import StudentHeader from "../components/student/layout/StudentHeader";
 import StudentMobileNav from "../components/student/layout/StudentMobileNav";
 
 import "../styles/student/student-layout.css";
+import "../styles/student/notifications.css";
+import { StudentNotificationsProvider } from "../context/StudentNotificationsContext";
+import { StudentLanguageProvider } from "../context/StudentLanguageContext";
 
 const CURRENT_YEAR = new Date().getFullYear();
 
@@ -39,7 +42,9 @@ function StudentLayout() {
   }, [isMobileOpen]);
 
   return (
-    <div className="behar-student-layout">
+    <StudentLanguageProvider>
+      <StudentNotificationsProvider>
+      <div className="behar-student-layout">
       <StudentSidebar />
 
       <div className="behar-student-layout__workspace">
@@ -64,7 +69,9 @@ function StudentLayout() {
         isOpen={isMobileOpen}
         onClose={() => setIsMobileOpen(false)}
       />
-    </div>
+      </div>
+      </StudentNotificationsProvider>
+    </StudentLanguageProvider>
   );
 }
 

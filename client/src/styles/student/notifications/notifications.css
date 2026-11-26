@@ -1,0 +1,618 @@
+
+/* =========================================
+   BEHAR LMS — P14.9 Notifications Center
+========================================= */
+
+.behar-notifications-page,
+.behar-notification-bell {
+  --notification-ink: #1f2924;
+  --notification-muted: #747c75;
+  --notification-accent: #246b50;
+  --notification-border: #e7ebe7;
+  --notification-surface: #ffffff;
+  --notification-soft: #f6f8f5;
+  --notification-radius: 16px;
+  color: var(--notification-ink);
+}
+
+.behar-notifications-page *,
+.behar-notification-bell * {
+  box-sizing: border-box;
+}
+
+.behar-notifications-page button,
+.behar-notification-bell button {
+  font: inherit;
+  cursor: pointer;
+}
+
+.behar-notifications-page button:focus-visible,
+.behar-notification-bell button:focus-visible,
+.behar-notification-filters select:focus-visible {
+  outline: 3px solid #82bba2;
+  outline-offset: 3px;
+}
+
+/* Page */
+
+.behar-notifications-page {
+  width: 100%;
+  max-width: 1100px;
+  margin-inline: auto;
+  padding: 30px 28px 70px;
+}
+
+.behar-notifications-page-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 30px;
+}
+
+.behar-notifications-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--notification-accent);
+  font-size: 11px;
+  font-weight: 750;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.behar-notifications-page-header h1 {
+  margin: 0;
+  font-size: clamp(30px, 4vw, 44px);
+  font-weight: 650;
+  letter-spacing: -0.045em;
+  line-height: 1.15;
+}
+
+.behar-notifications-page-header p {
+  margin: 12px 0 0;
+  max-width: 530px;
+  font-size: 14px;
+  line-height: 1.75;
+  color: var(--notification-muted);
+}
+
+.behar-notifications-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  flex-shrink: 0;
+}
+
+.behar-notifications-unread-count {
+  font-size: 12px;
+  font-weight: 650;
+  color: var(--notification-accent);
+  white-space: nowrap;
+}
+
+.behar-notifications-header-actions button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 40px;
+  padding: 0 15px;
+  border: 1px solid var(--notification-border);
+  border-radius: 10px;
+  background: white;
+  color: var(--notification-ink);
+  font-size: 12px;
+  font-weight: 650;
+  transition: background 180ms ease, border-color 180ms ease;
+}
+
+.behar-notifications-header-actions button:hover:not(:disabled) {
+  background: var(--notification-soft);
+  border-color: #cdd8cf;
+}
+
+.behar-notifications-header-actions button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* Main panel */
+
+.behar-notifications-panel {
+  background: var(--notification-surface);
+  border: 1px solid var(--notification-border);
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+/* Filters */
+
+.behar-notification-filters {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding: 19px 24px;
+  border-bottom: 1px solid var(--notification-border);
+}
+
+.behar-notification-tabs {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px;
+  border-radius: 11px;
+  background: var(--notification-soft);
+}
+
+.behar-notification-tabs button {
+  border: 0;
+  background: transparent;
+  border-radius: 8px;
+  padding: 9px 15px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--notification-muted);
+  transition: background 180ms ease, color 180ms ease;
+}
+
+.behar-notification-tabs button.active {
+  background: white;
+  color: var(--notification-ink);
+  box-shadow: 0 1px 4px #14271b10;
+}
+
+.behar-notification-tabs button:hover:not(.active) {
+  color: var(--notification-ink);
+}
+
+.behar-notification-filters select {
+  min-height: 39px;
+  min-width: 160px;
+  padding: 0 12px;
+  background: white;
+  border: 1px solid var(--notification-border);
+  border-radius: 9px;
+  color: var(--notification-ink);
+  font: inherit;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+/* Groups */
+
+.behar-notification-group + .behar-notification-group {
+  border-top: 1px solid var(--notification-border);
+}
+
+.behar-notification-group-heading {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 21px 24px 11px;
+}
+
+.behar-notification-group-heading h2 {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 750;
+  letter-spacing: 0.015em;
+}
+
+.behar-notification-group-heading span {
+  font-size: 11px;
+  color: var(--notification-muted);
+  background: var(--notification-soft);
+  padding: 3px 8px;
+  border-radius: 20px;
+}
+
+/* Cards */
+
+.behar-notification-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 20px 24px;
+  border-bottom: 1px solid #f0f2ef;
+  transition: background 180ms ease;
+}
+
+.behar-notification-card:last-child {
+  border-bottom: 0;
+}
+
+.behar-notification-card:hover {
+  background: #fafbf9;
+}
+
+.behar-notification-card.is-unread {
+  background: #f7faf7;
+}
+
+.behar-notification-card.is-unread:hover {
+  background: #f1f7f1;
+}
+
+.behar-notification-icon {
+  width: 43px;
+  height: 43px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border-radius: 12px;
+  background: #e8f3ec;
+  color: #28744f;
+}
+
+.behar-notification-icon.type-course {
+  background: #eaf0fb;
+  color: #4268ac;
+}
+
+.behar-notification-icon.type-achievement {
+  background: #fff3df;
+  color: #a97823;
+}
+
+.behar-notification-icon.type-community {
+  background: #f1ebfb;
+  color: #8055b1;
+}
+
+.behar-notification-icon.type-system {
+  background: #edf0f1;
+  color: #617078;
+}
+
+.behar-notification-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.behar-notification-title-row {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.behar-notification-title-row h3 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 650;
+  line-height: 1.5;
+}
+
+.behar-notification-card.is-read
+.behar-notification-title-row h3 {
+  font-weight: 550;
+}
+
+.behar-notification-dot {
+  width: 7px;
+  height: 7px;
+  flex-shrink: 0;
+  background: #2f936a;
+  border-radius: 50%;
+}
+
+.behar-notification-content > p {
+  margin: 6px 0 8px;
+  color: var(--notification-muted);
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.behar-notification-content > time {
+  display: block;
+  font-size: 11px;
+  color: #909891;
+}
+
+.behar-notification-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 17px;
+  margin-top: 13px;
+}
+
+.behar-notification-actions button {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--notification-muted);
+  font-size: 11px;
+  font-weight: 650;
+}
+
+.behar-notification-actions button:first-child {
+  color: var(--notification-accent);
+}
+
+.behar-notification-actions button:hover {
+  color: var(--notification-ink);
+}
+
+.behar-notification-actions
+.behar-notification-delete {
+  margin-inline-start: auto;
+}
+
+.behar-notification-actions
+.behar-notification-delete:hover {
+  color: #b94e4e;
+}
+
+/* Empty state */
+
+.behar-notification-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 75px 24px;
+}
+
+.behar-notification-empty-icon {
+  width: 68px;
+  height: 68px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+  background: var(--notification-soft);
+  color: var(--notification-muted);
+  margin-bottom: 20px;
+}
+
+.behar-notification-empty h3 {
+  font-size: 18px;
+  margin: 0 0 8px;
+}
+
+.behar-notification-empty p {
+  max-width: 340px;
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--notification-muted);
+}
+
+/* Notification bell */
+
+.behar-notification-bell {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.behar-notification-bell-button {
+  position: relative;
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  color: inherit;
+  transition: background 180ms ease;
+}
+
+.behar-notification-bell-button:hover {
+  background: var(--notification-soft);
+}
+
+.behar-notification-badge {
+  position: absolute;
+  top: 0;
+  inset-inline-end: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 4px;
+  background: #c95643;
+  color: white;
+  font-size: 10px;
+  font-weight: 750;
+  border-radius: 20px;
+  border: 2px solid white;
+}
+
+/* Dropdown */
+
+.behar-notification-dropdown {
+  position: absolute;
+  top: calc(100% + 12px);
+  inset-inline-end: 0;
+  z-index: 100;
+  width: min(410px, calc(100vw - 32px));
+  background: white;
+  border: 1px solid var(--notification-border);
+  border-radius: 17px;
+  box-shadow: 0 18px 55px #14251b1c;
+  overflow: hidden;
+}
+
+.behar-notification-dropdown-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  border-bottom: 1px solid var(--notification-border);
+}
+
+.behar-notification-dropdown-header h3 {
+  margin: 0 0 4px;
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.behar-notification-dropdown-header span {
+  font-size: 11px;
+  color: var(--notification-muted);
+}
+
+.behar-notification-dropdown-header button {
+  width: 33px;
+  height: 33px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: 9px;
+  background: var(--notification-soft);
+  color: var(--notification-accent);
+}
+
+.behar-notification-dropdown-list {
+  max-height: 425px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.behar-notification-card.is-compact {
+  padding: 15px 18px;
+  gap: 12px;
+}
+
+.behar-notification-card.is-compact
+.behar-notification-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+}
+
+.behar-notification-card.is-compact
+.behar-notification-title-row h3 {
+  font-size: 12px;
+}
+
+.behar-notification-card.is-compact
+.behar-notification-content > p {
+  font-size: 11px;
+  line-height: 1.55;
+}
+
+.behar-notification-card.is-compact
+.behar-notification-actions {
+  margin-top: 9px;
+}
+
+.behar-notification-view-all {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 17px;
+  border: 0;
+  border-top: 1px solid var(--notification-border);
+  background: white;
+  color: var(--notification-accent);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.behar-notification-view-all:hover {
+  background: var(--notification-soft);
+}
+
+/* RTL */
+
+[dir="rtl"] .behar-notifications-page-header h1 {
+  letter-spacing: normal;
+}
+
+[dir="rtl"] .behar-notification-view-all svg,
+[dir="rtl"] .behar-notification-actions svg {
+  transform: scaleX(-1);
+}
+
+/* Responsive */
+
+@media (max-width: 768px) {
+  .behar-notifications-page {
+    padding: 24px 16px 48px;
+  }
+
+  .behar-notifications-page-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 20px;
+  }
+
+  .behar-notifications-header-actions {
+    justify-content: space-between;
+  }
+
+  .behar-notification-filters {
+    padding: 16px;
+  }
+
+  .behar-notification-card {
+    padding: 17px 16px;
+    gap: 12px;
+  }
+
+  .behar-notification-group-heading {
+    padding-inline: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .behar-notification-filters {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .behar-notification-tabs {
+    width: 100%;
+  }
+
+  .behar-notification-tabs button {
+    flex: 1;
+    padding-inline: 8px;
+  }
+
+  .behar-notification-filters select {
+    width: 100%;
+  }
+
+  .behar-notification-icon {
+    width: 37px;
+    height: 37px;
+  }
+
+  .behar-notification-dropdown {
+    position: fixed;
+    top: 70px;
+    inset-inline: 12px;
+    width: auto;
+    max-height: calc(100dvh - 85px);
+  }
+
+  .behar-notification-dropdown-list {
+    max-height: min(425px, calc(100dvh - 190px));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .behar-notifications-page *,
+  .behar-notification-bell * {
+    transition: none !important;
+    animation: none !important;
+  }
+}

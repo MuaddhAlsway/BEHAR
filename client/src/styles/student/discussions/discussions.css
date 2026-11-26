@@ -1,0 +1,772 @@
+
+/* ==========================================
+   BEHAR LMS
+   P14.11.3 — STUDENT DISCUSSIONS
+   Overview + Create Discussion Integration
+========================================== */
+
+.behar-discussions-page {
+  --discussions-green: #276b50;
+  --discussions-green-dark: #1e563f;
+  --discussions-ink: #24392c;
+  --discussions-muted: #75837a;
+  --discussions-border: #e3eae4;
+
+  width: 100%;
+  min-width: 0;
+  padding: 8px 0 60px;
+  color: var(--discussions-ink);
+}
+
+.behar-discussions-page *,
+.behar-discussions-page *::before,
+.behar-discussions-page *::after {
+  box-sizing: border-box;
+}
+
+/* ==========================================
+   01 — PAGE HEADER
+========================================== */
+
+.behar-discussions-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 30px;
+}
+
+.behar-discussions-eyebrow,
+.behar-discussions-section-label {
+  display: inline-block;
+  color: var(--discussions-green);
+  font-size: 10px;
+  font-weight: 750;
+  letter-spacing: 0.13em;
+}
+
+.behar-discussions-header h1 {
+  margin: 10px 0 9px;
+  font-size: clamp(28px, 3vw, 40px);
+  font-weight: 750;
+  letter-spacing: -0.035em;
+}
+
+.behar-discussions-header p {
+  max-width: 570px;
+  margin: 0;
+  color: var(--discussions-muted);
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+/* ==========================================
+   02 — CREATE DISCUSSION BUTTON
+========================================== */
+
+.behar-discussions-create {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  min-height: 45px;
+  flex-shrink: 0;
+  padding: 0 19px;
+
+  border: 1px solid var(--discussions-green);
+  border-radius: 10px;
+
+  background: var(--discussions-green);
+  color: #fff;
+
+  font: inherit;
+  font-size: 12px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    background 180ms ease,
+    border-color 180ms ease,
+    transform 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.behar-discussions-create:hover:not(:disabled) {
+  background: var(--discussions-green-dark);
+  border-color: var(--discussions-green-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 7px 18px rgba(39, 107, 80, 0.17);
+}
+
+.behar-discussions-create:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.behar-discussions-create:focus-visible {
+  outline: 3px solid #8ac4a1;
+  outline-offset: 3px;
+}
+
+.behar-discussions-create:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* ==========================================
+   03 — PUBLISH SUCCESS NOTIFICATION
+========================================== */
+
+.behar-discussions-success {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+
+  margin-bottom: 22px;
+  padding: 14px 17px;
+
+  border: 1px solid #c8e5d0;
+  border-radius: 10px;
+
+  background: #edf8ef;
+  color: var(--discussions-green);
+
+  font-size: 12px;
+  font-weight: 650;
+  line-height: 1.6;
+}
+
+.behar-discussions-success > span {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.behar-discussions-success button {
+  display: grid;
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+  place-items: center;
+
+  border: 0;
+  border-radius: 6px;
+
+  background: transparent;
+  color: inherit;
+
+  font: inherit;
+  font-size: 20px;
+  line-height: 1;
+
+  cursor: pointer;
+  transition: background 180ms ease;
+}
+
+.behar-discussions-success button:hover {
+  background: #d9eedf;
+}
+
+.behar-discussions-success button:focus-visible {
+  outline: 2px solid var(--discussions-green);
+  outline-offset: 2px;
+}
+
+/* ==========================================
+   04 — DISCUSSION STATISTICS
+========================================== */
+
+.behar-discussion-stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+  margin-bottom: 30px;
+}
+
+.behar-discussion-stat {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+
+  min-width: 0;
+  padding: 22px;
+
+  border: 1px solid var(--discussions-border);
+  border-radius: 15px;
+
+  background: #fff;
+}
+
+.behar-discussion-stat-icon {
+  display: grid;
+  width: 40px;
+  height: 40px;
+  place-items: center;
+
+  margin-bottom: 20px;
+
+  border-radius: 11px;
+  background: #edf5ee;
+  color: var(--discussions-green);
+}
+
+.behar-discussion-stat strong {
+  font-size: 29px;
+  font-weight: 750;
+  line-height: 1.2;
+  font-variant-numeric: tabular-nums;
+}
+
+.behar-discussion-stat > span {
+  margin-top: 6px;
+  color: var(--discussions-muted);
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+/* ==========================================
+   05 — DISCUSSION FEED
+========================================== */
+
+.behar-discussions-feed {
+  min-width: 0;
+}
+
+.behar-discussions-feed-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 19px;
+}
+
+.behar-discussions-feed-heading h2 {
+  margin: 8px 0 0;
+  font-size: 21px;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+}
+
+.behar-discussions-count {
+  color: var(--discussions-muted);
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ==========================================
+   06 — SEARCH & FILTERS
+========================================== */
+
+.behar-discussion-filters {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+
+  margin-bottom: 19px;
+  padding: 19px;
+
+  border: 1px solid var(--discussions-border);
+  border-radius: 14px;
+
+  background: #fff;
+}
+
+.behar-discussion-search {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+
+  min-height: 46px;
+  padding: 0 14px;
+
+  border: 1px solid #dfe7e0;
+  border-radius: 9px;
+
+  background: #fafbf9;
+  color: #859288;
+
+  transition:
+    border-color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.behar-discussion-search:focus-within {
+  border-color: var(--discussions-green);
+  box-shadow: 0 0 0 3px rgba(39, 107, 80, 0.08);
+}
+
+.behar-discussion-search input {
+  width: 100%;
+  min-width: 0;
+  height: 44px;
+
+  border: 0;
+  outline: 0;
+
+  background: transparent;
+  color: var(--discussions-ink);
+
+  font: inherit;
+  font-size: 12px;
+}
+
+.behar-discussion-search input::placeholder {
+  color: #98a39b;
+}
+
+.behar-discussion-filter-row {
+  display: grid;
+  grid-template-columns: auto repeat(3, minmax(0, 1fr));
+  align-items: end;
+  gap: 13px;
+}
+
+.behar-discussion-filter-symbol {
+  margin-bottom: 12px;
+  color: var(--discussions-green);
+}
+
+.behar-discussion-select {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  min-width: 0;
+}
+
+.behar-discussion-select > span {
+  color: #66776b;
+  font-size: 11px;
+  font-weight: 650;
+}
+
+.behar-discussion-select select {
+  width: 100%;
+  min-width: 0;
+  height: 42px;
+  padding: 0 11px;
+
+  border: 1px solid #dfe7e0;
+  border-radius: 8px;
+  outline: none;
+
+  background: #fff;
+  color: var(--discussions-ink);
+
+  font: inherit;
+  font-size: 11px;
+
+  cursor: pointer;
+}
+
+.behar-discussion-select select:focus-visible {
+  border-color: var(--discussions-green);
+  outline: 3px solid rgba(39, 107, 80, 0.13);
+}
+
+/* ==========================================
+   07 — DISCUSSION LIST
+========================================== */
+
+.behar-discussions-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* ==========================================
+   08 — DISCUSSION CARD
+========================================== */
+
+.behar-discussion-card {
+  min-width: 0;
+  padding: 23px;
+
+  border: 1px solid var(--discussions-border);
+  border-radius: 14px;
+
+  background: #fff;
+
+  transition:
+    border-color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.behar-discussion-card:hover {
+  border-color: #c9dbcd;
+  box-shadow: 0 9px 28px rgba(28, 62, 39, 0.06);
+}
+
+.behar-discussion-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.behar-discussion-course-label {
+  color: var(--discussions-green);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.behar-discussion-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  flex-shrink: 0;
+
+  padding: 6px 10px;
+  border-radius: 20px;
+
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.behar-discussion-status.is-solved {
+  background: #e8f5eb;
+  color: #276b50;
+}
+
+.behar-discussion-status.is-open {
+  background: #f1f3f0;
+  color: #667568;
+}
+
+.behar-discussion-card h3 {
+  margin: 14px 0 8px;
+  font-size: clamp(15px, 1.5vw, 18px);
+  font-weight: 700;
+  line-height: 1.45;
+}
+
+.behar-discussion-excerpt {
+  max-width: 760px;
+  margin: 0;
+  color: var(--discussions-muted);
+  font-size: 12px;
+  line-height: 1.8;
+  overflow-wrap: anywhere;
+}
+
+.behar-discussion-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 15px;
+}
+
+.behar-discussion-tags span {
+  padding: 6px 9px;
+
+  border: 1px solid #e7ece6;
+  border-radius: 6px;
+
+  background: #f8faf7;
+  color: #65766a;
+
+  font-size: 10px;
+  font-weight: 600;
+}
+
+/* ==========================================
+   09 — CARD FOOTER
+========================================== */
+
+.behar-discussion-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+
+  margin-top: 19px;
+  padding-top: 17px;
+
+  border-top: 1px solid #edf0eb;
+}
+
+.behar-discussion-author {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.behar-discussion-avatar {
+  display: grid;
+  width: 35px;
+  height: 35px;
+  flex-shrink: 0;
+  place-items: center;
+
+  border-radius: 50%;
+  background: #e8eee6;
+  color: var(--discussions-green);
+
+  font-size: 13px;
+  font-weight: 750;
+}
+
+.behar-discussion-author > div {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.behar-discussion-author strong {
+  font-size: 11px;
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+
+.behar-discussion-author div span {
+  color: #8a968c;
+  font-size: 10px;
+}
+
+.behar-discussion-card-metrics {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.behar-discussion-card-metrics > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+
+  color: #758278;
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+}
+
+.behar-discussion-card-metrics
+.behar-discussion-instructor {
+  color: var(--discussions-green);
+}
+
+.behar-discussion-card-metrics
+.behar-discussion-mine {
+  color: #98753c;
+  font-weight: 700;
+}
+
+/* ==========================================
+   10 — EMPTY STATE
+========================================== */
+
+.behar-discussions-empty {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  padding: 65px 20px;
+
+  border: 1px dashed #d4e1d5;
+  border-radius: 15px;
+
+  background: #fff;
+  text-align: center;
+}
+
+.behar-discussions-empty-icon {
+  display: grid;
+  width: 65px;
+  height: 65px;
+  place-items: center;
+
+  border-radius: 18px;
+  background: #edf5ee;
+  color: var(--discussions-green);
+}
+
+.behar-discussions-empty h3 {
+  margin: 19px 0 8px;
+  font-size: 18px;
+}
+
+.behar-discussions-empty p {
+  margin: 0;
+  color: var(--discussions-muted);
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.behar-discussions-empty button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  min-height: 42px;
+  margin-top: 20px;
+  padding: 0 15px;
+
+  border: 1px solid #cfe1d2;
+  border-radius: 9px;
+
+  background: #eff7f0;
+  color: var(--discussions-green);
+
+  font: inherit;
+  font-size: 12px;
+  font-weight: 700;
+
+  cursor: pointer;
+}
+
+.behar-discussions-empty button:hover {
+  background: #e1f0e4;
+}
+
+.behar-discussions-empty button:focus-visible {
+  outline: 3px solid #88c5a3;
+  outline-offset: 3px;
+}
+
+/* ==========================================
+   11 — RTL SUPPORT
+========================================== */
+
+[dir="rtl"] .behar-discussions-eyebrow,
+[dir="rtl"] .behar-discussions-section-label {
+  letter-spacing: normal;
+}
+
+/* ==========================================
+   12 — RESPONSIVE: TABLET
+========================================== */
+
+@media (max-width: 1000px) {
+  .behar-discussion-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* ==========================================
+   13 — RESPONSIVE: SMALL TABLET
+========================================== */
+
+@media (max-width: 700px) {
+  .behar-discussions-header {
+    flex-direction: column;
+  }
+
+  .behar-discussion-filter-row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .behar-discussion-filter-symbol {
+    display: none;
+  }
+}
+
+/* ==========================================
+   14 — RESPONSIVE: MOBILE
+========================================== */
+
+@media (max-width: 480px) {
+  .behar-discussions-page {
+    padding-bottom: 35px;
+  }
+
+  .behar-discussions-header {
+    gap: 18px;
+    margin-bottom: 24px;
+  }
+
+  .behar-discussions-create {
+    width: 100%;
+  }
+
+  .behar-discussion-stats {
+    gap: 9px;
+    margin-bottom: 25px;
+  }
+
+  .behar-discussion-stat {
+    padding: 15px;
+  }
+
+  .behar-discussion-stat-icon {
+    width: 36px;
+    height: 36px;
+    margin-bottom: 14px;
+  }
+
+  .behar-discussion-stat strong {
+    font-size: 25px;
+  }
+
+  .behar-discussion-filters,
+  .behar-discussion-card {
+    padding: 16px;
+  }
+
+  .behar-discussion-filter-row {
+    grid-template-columns: 1fr;
+  }
+
+  .behar-discussions-feed-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .behar-discussion-card-top {
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .behar-discussion-card-footer {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .behar-discussion-card-metrics {
+    width: 100%;
+  }
+
+  .behar-discussions-success {
+    padding: 12px 14px;
+  }
+}
+
+/* ==========================================
+   15 — REDUCED MOTION
+========================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .behar-discussion-card,
+  .behar-discussions-create,
+  .behar-discussions-success button,
+  .behar-discussion-search {
+    transition: none;
+  }
+
+  .behar-discussions-create:hover {
+    transform: none;
+  }
+}
+.behar-discussion-card-link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.behar-discussion-card-link:hover {
+  color: var(--discussions-green);
+}
+
+.behar-discussion-card-link:focus-visible {
+  outline: 3px solid #8ac4a1;
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+.behar-discussion-card > .behar-discussion-actions {
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid #edf0eb;
+}

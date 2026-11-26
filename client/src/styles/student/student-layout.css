@@ -243,6 +243,24 @@
   gap: 20px;
 }
 
+.behar-student-header__language {
+  min-height: 34px;
+  padding: 0 10px;
+  border: 1px solid var(--student-border, #e4ebe6);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--student-forest, #102c2b);
+  font: inherit;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+}
+
+.behar-student-header__language:hover {
+  background: var(--student-lime, #d9ef74);
+}
+
 .behar-student-header__breadcrumb {
   display: flex;
   align-items: center;

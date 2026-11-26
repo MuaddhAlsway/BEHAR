@@ -109,6 +109,7 @@ export const courseCurriculum = {
               "بناء مكتبة مكونات"
             ),
             type: "assignment",
+            assignmentId: "assignment-001",
             duration: 45,
             preview: false,
           },
@@ -162,6 +163,7 @@ export const courseCurriculum = {
               "تحدي الواجهات التفاعلية"
             ),
             type: "assignment",
+            assignmentId: "assignment-005",
             duration: 50,
             preview: false,
           },
@@ -258,6 +260,7 @@ export const courseCurriculum = {
               "تسليم المشروع النهائي"
             ),
             type: "assignment",
+            assignmentId: "assignment-006",
             duration: 90,
             preview: false,
           },
@@ -293,6 +296,8 @@ export function getCurriculumStats(chapters = []) {
     chapters: chapters.length,
     lessons: lessons.length,
     totalMinutes,
-    previews: lessons.filter((lesson) => lesson.preview).length,
+    previews: lessons.filter(
+      (lesson) => lesson.preview
+    ).length,
   };
 }

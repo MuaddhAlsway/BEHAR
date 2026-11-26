@@ -1,491 +1,465 @@
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { Link } from "react-router-dom";
 import {
+  Award,
   BookOpen,
-  CalendarDays,
   CheckCircle2,
+  ChevronRight,
   Clock3,
-  FileText,
-  Link2,
-  Send,
+  GraduationCap,
+  LockKeyhole,
+  Search,
+  Sparkles,
   Trophy,
-  UserRound,
-  X,
 } from "lucide-react";
 
-import '../../styles/student/assignments/assignment-details.css'
-import AssignmentSubmissionHistory from "../../components/student/assignments/AssignmentSubmissionHistory";
-import AssignmentFeedback from "../../components/student/assignments/AssignmentFeedback";
+import {
+  certificates,
+  getCertificateStats,
+  getCertificateText,
+} from "../../data/certificates";
+
+import "../../styles/student/certificates.css";
 
 const copy = {
   en: {
-    eyebrow: "ASSIGNMENT DETAILS",
-    course: "Course",
-    instructor: "Instructor",
-    deadline: "Deadline",
-    points: "Maximum points",
-    submission: "Your submission",
-    note: "Submission note",
-    link: "Project URL (optional)",
-    placeholder: "Describe your completed work...",
-    linkPlaceholder: "https://github.com/...",
-    submit: "Submit assignment",
-    submittedAt: "Submitted on",
-    close: "Close",
-    cancel: "Cancel",
-    required: "Please enter a submission note.",
-    invalidUrl: "Enter a valid HTTPS URL.",
-    late: "The deadline has passed.",
-    submissionLocked:
-      "This assignment has already been submitted. Resubmission is not available.",
-    gradedLocked:
-      "This assignment has been graded and cannot be changed.",
+    eyebrow: "YOUR LEARNING MILESTONES",
+    title: "Certificates & achievements",
+    description:
+      "A home for the skills you've built, the courses you've completed, and the milestones still ahead.",
+    total: "Total certificates",
+    earned: "Certificates earned",
+    progress: "In progress",
+    locked: "Locked",
+    gallery: "Your certificates",
+    galleryDescription:
+      "Explore your earned credentials and track what comes next.",
+    search: "Search certificates...",
+    all: "All",
+    earnedFilter: "Earned",
+    progressFilter: "In progress",
+    lockedFilter: "Locked",
+    issued: "Issued",
+    by: "By",
+    view: "View certificate",
+    continue: "Continue learning",
+    unavailable: "Course unavailable",
+    lockedLabel: "Not yet unlocked",
+    completed: "Completed",
+    emptyTitle: "No certificates found",
+    emptyDescription:
+      "Try another search or filter to explore your certificates.",
+    footerTitle: "Every lesson brings you closer.",
+    footerDescription:
+      "Keep learning, complete your course requirements, and unlock your next certificate.",
+    learning: "My learning",
+    demo: "Demo certificate",
   },
   ar: {
-    eyebrow: "تفاصيل الواجب",
-    course: "الدورة",
-    instructor: "المدرب",
-    deadline: "موعد التسليم",
-    points: "الدرجة القصوى",
-    submission: "تسليمك",
-    note: "ملاحظة التسليم",
-    link: "رابط المشروع (اختياري)",
-    placeholder: "اشرح العمل الذي أنجزته...",
-    linkPlaceholder: "https://github.com/...",
-    submit: "تسليم الواجب",
-    submittedAt: "تاريخ التسليم",
-    close: "إغلاق",
-    cancel: "إلغاء",
-    required: "يرجى كتابة ملاحظة التسليم.",
-    invalidUrl: "أدخل رابط HTTPS صالحاً.",
-    late: "انتهى موعد تسليم هذا الواجب.",
-    submissionLocked:
-      "تم تسليم هذا الواجب مسبقاً ولا يمكن إعادة التسليم.",
-    gradedLocked:
-      "تم تقييم هذا الواجب ولا يمكن تعديله.",
+    eyebrow: "إنجازاتك التعليمية",
+    title: "الشهادات والإنجازات",
+    description:
+      "مساحتك لاستعراض المهارات التي اكتسبتها والدورات التي أكملتها والإنجازات القادمة.",
+    total: "إجمالي الشهادات",
+    earned: "الشهادات المكتسبة",
+    progress: "قيد التقدم",
+    locked: "مقفلة",
+    gallery: "شهاداتك",
+    galleryDescription:
+      "استعرض شهاداتك وتابع تقدمك نحو الإنجازات القادمة.",
+    search: "ابحث عن شهادة...",
+    all: "الكل",
+    earnedFilter: "مكتسبة",
+    progressFilter: "قيد التقدم",
+    lockedFilter: "مقفلة",
+    issued: "تاريخ الإصدار",
+    by: "بواسطة",
+    view: "عرض الشهادة",
+    continue: "متابعة التعلم",
+    unavailable: "الدورة غير متاحة",
+    lockedLabel: "لم يتم فتحها بعد",
+    completed: "مكتملة",
+    emptyTitle: "لا توجد شهادات",
+    emptyDescription:
+      "جرّب البحث أو اختيار تصنيف آخر.",
+    footerTitle: "كل درس يقربك من هدفك.",
+    footerDescription:
+      "واصل التعلم وأكمل متطلبات الدورة للحصول على شهادتك القادمة.",
+    learning: "تعلمي",
+    demo: "شهادة تجريبية",
   },
 };
 
-function localized(value, locale) {
-  if (typeof value === "string") return value;
-  return value?.[locale] || value?.en || "";
-}
+const filters = [
+  { id: "all", label: "all" },
+  { id: "earned", label: "earnedFilter" },
+  { id: "in-progress", label: "progressFilter" },
+  { id: "locked", label: "lockedFilter" },
+];
 
-function formatDate(value, locale) {
-  if (!value) return "—";
+function useDocumentLanguage() {
+  const read = () =>
+    typeof document !== "undefined" &&
+    document.documentElement.lang.toLowerCase().startsWith("ar")
+      ? "ar"
+      : "en";
 
-  const date = /^\d{4}-\d{2}-\d{2}$/.test(value)
-    ? new Date(`${value}T12:00:00`)
-    : new Date(value);
-
-  if (Number.isNaN(date.getTime())) return "—";
-
-  return new Intl.DateTimeFormat(
-    locale === "ar" ? "ar-SA" : "en-US",
-    {
-      day: "numeric",
-      month: "short",
-      year: "numeric",
-    }
-  ).format(date);
-}
-
-function isValidHttpsUrl(value) {
-  if (!value.trim()) return true;
-
-  try {
-    const url = new URL(value.trim());
-
-    return (
-      url.protocol === "https:" &&
-      Boolean(url.hostname)
-    );
-  } catch {
-    return false;
-  }
-}
-
-function isPastDeadline(dueDate) {
-  if (!dueDate) return false;
-
-  if (/^\d{4}-\d{2}-\d{2}$/.test(dueDate)) {
-    const [year, month, day] = dueDate
-      .split("-")
-      .map(Number);
-
-    const deadline = new Date(
-      year,
-      month - 1,
-      day,
-      23,
-      59,
-      59,
-      999
-    );
-
-    return Date.now() > deadline.getTime();
-  }
-
-  const deadline = new Date(dueDate);
-
-  return (
-    !Number.isNaN(deadline.getTime()) &&
-    Date.now() > deadline.getTime()
-  );
-}
-
-export default function AssignmentDetails({
-  assignment,
-  course,
-  language = "en",
-  onClose,
-  onSubmit,
-}) {
-  const locale = language === "ar" ? "ar" : "en";
-  const t = copy[locale];
-
-  const dialogRef = useRef(null);
-  const closeRef = useRef(null);
-  const onCloseRef = useRef(onClose);
-
-  const [note, setNote] = useState("");
-  const [projectUrl, setProjectUrl] = useState("");
-  const [error, setError] = useState("");
+  const [language, setLanguage] = useState(read);
 
   useEffect(() => {
-    onCloseRef.current = onClose;
-  }, [onClose]);
-
-  const isGraded = assignment?.status === "graded";
-
-  const isSubmitted =
-    assignment?.status === "submitted" ||
-    assignment?.status === "under_review";
-
-  const isOverdue =
-    !isGraded &&
-    !isSubmitted &&
-    isPastDeadline(assignment?.dueDate);
-
-  const locked = isGraded || isSubmitted || isOverdue;
-
-  useEffect(() => {
-    if (!assignment) return;
-
-    setNote(
-      assignment.submission?.text ??
-        assignment.note ??
-        ""
-    );
-
-    setProjectUrl(
-      assignment.submission?.link ??
-        assignment.projectUrl ??
-        ""
-    );
-
-    setError("");
-  }, [assignment]);
-
-  useEffect(() => {
-    if (!assignment) return;
-
-    const previousFocus = document.activeElement;
-    const previousOverflow =
-      document.body.style.overflow;
-
-    document.body.style.overflow = "hidden";
-    closeRef.current?.focus();
-
-    function handleKeyDown(event) {
-      if (event.key === "Escape") {
-        event.preventDefault();
-        onCloseRef.current?.();
-        return;
-      }
-
-      if (event.key !== "Tab") return;
-
-      const focusable =
-        dialogRef.current?.querySelectorAll(
-          'button:not([disabled]), input:not([disabled]), textarea:not([disabled]), a[href]'
-        );
-
-      if (!focusable?.length) return;
-
-      const first = focusable[0];
-      const last = focusable[focusable.length - 1];
-
-      if (
-        event.shiftKey &&
-        document.activeElement === first
-      ) {
-        event.preventDefault();
-        last.focus();
-      } else if (
-        !event.shiftKey &&
-        document.activeElement === last
-      ) {
-        event.preventDefault();
-        first.focus();
-      }
-    }
-
-    document.addEventListener(
-      "keydown",
-      handleKeyDown
-    );
-
-    return () => {
-      document.removeEventListener(
-        "keydown",
-        handleKeyDown
-      );
-
-      document.body.style.overflow =
-        previousOverflow;
-
-      if (previousFocus?.isConnected) {
-        previousFocus.focus();
-      }
-    };
-  }, [assignment?.id]);
-
-  if (!assignment) return null;
-
-  const submittedAt =
-    assignment.submission?.submittedAt ??
-    assignment.submittedAt ??
-    null;
-
-  function handleSubmit(event) {
-    event.preventDefault();
-
-    if (locked) return;
-
-    if (!note.trim()) {
-      setError(t.required);
-      return;
-    }
-
-    if (!isValidHttpsUrl(projectUrl)) {
-      setError(t.invalidUrl);
-      return;
-    }
-
-    setError("");
-
-    onSubmit?.(assignment.id, {
-      text: note.trim(),
-      link: projectUrl.trim(),
-      submittedAt: new Date().toISOString(),
+    const observer = new MutationObserver(() => {
+      setLanguage(read());
     });
-  }
+
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["lang"],
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
+  return language;
+}
+
+function CertificateArtwork({ certificate, language }) {
+  const earned = certificate.status === "earned";
+  const locked = certificate.status === "locked";
 
   return (
     <div
-      className="behar-assignment-details"
-      dir={locale === "ar" ? "rtl" : "ltr"}
+      className={`behar-cert-artwork ${
+        earned ? "is-earned" : ""
+      } ${locked ? "is-locked" : ""}`}
     >
-      <button
-        type="button"
-        className="behar-assignment-details__backdrop"
-        aria-label={t.close}
-        onClick={onClose}
+      <div className="behar-cert-artwork-top">
+        <span>BEHAR</span>
+        <GraduationCap size={20} strokeWidth={1.5} />
+      </div>
+
+      <div className="behar-cert-artwork-center">
+        <div className="behar-cert-artwork-seal">
+          {locked ? (
+            <LockKeyhole size={25} strokeWidth={1.5} />
+          ) : (
+            <Award size={29} strokeWidth={1.4} />
+          )}
+        </div>
+
+        <span className="behar-cert-artwork-kicker">
+          {earned
+            ? "CERTIFICATE OF COMPLETION"
+            : "LEARNING MILESTONE"}
+        </span>
+
+        <h3>
+          {getCertificateText(certificate.title, language)}
+        </h3>
+
+        <div className="behar-cert-artwork-rule" />
+      </div>
+
+      <div className="behar-cert-artwork-bottom">
+        <span>
+          {getCertificateText(certificate.category, language)}
+        </span>
+        <span>BEHAR ACADEMY</span>
+      </div>
+    </div>
+  );
+}
+
+function CertificateCard({ certificate, language, t }) {
+  const earned = certificate.status === "earned";
+  const inProgress = certificate.status === "in-progress";
+  const locked = certificate.status === "locked";
+
+  const statusLabel = earned
+    ? t.earnedFilter
+    : inProgress
+      ? t.progressFilter
+      : t.lockedFilter;
+
+  const date =
+    certificate.issuedAt &&
+    new Intl.DateTimeFormat(
+      language === "ar" ? "ar-SA" : "en-US",
+      { year: "numeric", month: "short", day: "numeric" }
+    ).format(new Date(`${certificate.issuedAt}T12:00:00`));
+
+  return (
+    <article className="behar-cert-card">
+      <CertificateArtwork
+        certificate={certificate}
+        language={language}
       />
 
-      <section
-        ref={dialogRef}
-        className="behar-assignment-details__panel"
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="assignment-details-title"
-        aria-describedby="assignment-details-description"
-      >
-        <header className="behar-assignment-details__header">
-          <span className="behar-assignment-details__eyebrow">
-            <FileText size={15} />
-            {t.eyebrow}
-          </span>
+      <div className="behar-cert-card-body">
+        <div className="behar-cert-card-meta">
+          <span>{getCertificateText(certificate.category, language)}</span>
 
-          <button
-            ref={closeRef}
-            type="button"
-            className="behar-assignment-details__close"
-            aria-label={t.close}
-            onClick={onClose}
+          <span
+            className={`behar-cert-status status-${certificate.status}`}
           >
-            <X size={20} />
-          </button>
-        </header>
-
-        <div className="behar-assignment-details__content">
-          <h2 id="assignment-details-title">
-            {localized(assignment.title, locale)}
-          </h2>
-
-          <p
-            id="assignment-details-description"
-            className="behar-assignment-details__intro"
-          >
-            {localized(
-              assignment.description,
-              locale
+            {earned ? (
+              <CheckCircle2 size={13} />
+            ) : locked ? (
+              <LockKeyhole size={13} />
+            ) : (
+              <Clock3 size={13} />
             )}
-          </p>
+            {statusLabel}
+          </span>
+        </div>
 
-          <div className="behar-assignment-details__metadata">
-            <div>
-              <BookOpen size={18} />
-              <span>{t.course}</span>
-              <strong>
-                {localized(course?.title, locale)}
-              </strong>
+        <h3>{getCertificateText(certificate.title, language)}</h3>
+
+        <p className="behar-cert-instructor">
+          {t.by}{" "}
+          {getCertificateText(certificate.instructor, language)}
+        </p>
+
+        {inProgress && (
+          <div className="behar-cert-progress">
+            <div className="behar-cert-progress-label">
+              <span>{t.progressFilter}</span>
+              <strong>{certificate.progress}%</strong>
             </div>
-
-            <div>
-              <UserRound size={18} />
-              <span>{t.instructor}</span>
-              <strong>
-                {localized(
-                  assignment.instructor,
-                  locale
-                )}
-              </strong>
-            </div>
-
-            <div>
-              <CalendarDays size={18} />
-              <span>{t.deadline}</span>
-              <strong>
-                {formatDate(
-                  assignment.dueDate,
-                  locale
-                )}
-              </strong>
-            </div>
-
-            <div>
-              <Trophy size={18} />
-              <span>{t.points}</span>
-              <strong>{assignment.points}</strong>
+            <div
+              className="behar-cert-progress-track"
+              role="progressbar"
+              aria-valuenow={certificate.progress}
+              aria-valuemin={0}
+              aria-valuemax={100}
+              aria-label={t.progressFilter}
+            >
+              <span style={{ width: `${certificate.progress}%` }} />
             </div>
           </div>
+        )}
 
-          <div className="behar-assignment-details__divider" />
+        {earned && date && (
+          <p className="behar-cert-issued">
+            <CheckCircle2 size={14} />
+            {t.issued}: {date}
+            <span className="behar-cert-demo">{t.demo}</span>
+          </p>
+        )}
 
-          <section className="behar-assignment-details__submission">
-            <h3>{t.submission}</h3>
+        {locked && (
+          <p className="behar-cert-locked-message">
+            <LockKeyhole size={14} />
+            {t.lockedLabel}
+          </p>
+        )}
 
-            {isGraded && (
-              <div className="behar-assignment-details__notice is-graded">
-                <CheckCircle2 size={19} />
-                {t.gradedLocked}
-              </div>
-            )}
-
-            {isSubmitted && (
-              <div className="behar-assignment-details__notice is-submitted">
-                <CheckCircle2 size={19} />
-                {t.submissionLocked}
-              </div>
-            )}
-
-            {isOverdue && (
-              <div className="behar-assignment-details__notice is-overdue">
-                <Clock3 size={19} />
-                {t.late}
-              </div>
-            )}
-
-            <form onSubmit={handleSubmit}>
-              <label htmlFor="assignment-submission-note">
-                {t.note}
-              </label>
-
-              <textarea
-                id="assignment-submission-note"
-                rows={5}
-                maxLength={5000}
-                value={note}
-                onChange={(event) => {
-                  setNote(event.target.value);
-                  setError("");
-                }}
-                placeholder={t.placeholder}
-                disabled={locked}
-              />
-
-              <label htmlFor="assignment-project-url">
-                <Link2 size={15} />
-                {t.link}
-              </label>
-
-              <input
-                id="assignment-project-url"
-                type="url"
-                value={projectUrl}
-                onChange={(event) => {
-                  setProjectUrl(event.target.value);
-                  setError("");
-                }}
-                placeholder={t.linkPlaceholder}
-                disabled={locked}
-              />
-
-              {submittedAt && (
-                <p className="behar-assignment-details__submitted-at">
-                  <CheckCircle2 size={15} />
-                  {t.submittedAt}:{" "}
-                  {formatDate(
-                    submittedAt,
-                    locale
-                  )}
-                </p>
-              )}
-
-              {error && (
-                <p
-                  className="behar-assignment-details__error"
-                  role="alert"
-                >
-                  {error}
-                </p>
-              )}
-
-              <div className="behar-assignment-details__actions">
-                <button
-                  type="button"
-                  className="behar-assignment-details__cancel"
-                  onClick={onClose}
-                >
-                  {t.cancel}
-                </button>
-
-                {!locked && (
-                  <button
-                    type="submit"
-                    className="behar-assignment-details__submit"
-                  >
-                    {t.submit}
-                    <Send size={16} />
-                  </button>
-                )}
-              </div>
-            </form>
-          </section>
-
-          <AssignmentSubmissionHistory
-            assignment={assignment}
-            language={locale}
-          />
-
-          <AssignmentFeedback
-            assignment={assignment}
-            language={locale}
-          />
+        <div className="behar-cert-card-footer">
+          {earned ? (
+            <span className="behar-cert-action-disabled">
+              {t.view}
+              <ChevronRight size={16} />
+            </span>
+          ) : certificate.courseSlug ? (
+            <Link
+              to={`/courses/${certificate.courseSlug}`}
+              className="behar-cert-card-action"
+            >
+              {t.continue}
+              <ChevronRight size={16} />
+            </Link>
+          ) : (
+            <span className="behar-cert-action-disabled">
+              {t.unavailable}
+            </span>
+          )}
         </div>
+      </div>
+    </article>
+  );
+}
+
+export default function Certificates() {
+  const language = useDocumentLanguage();
+  const t = copy[language];
+
+  const [activeFilter, setActiveFilter] = useState("all");
+  const [search, setSearch] = useState("");
+
+  const stats = useMemo(
+    () => getCertificateStats(certificates),
+    []
+  );
+
+  const filtered = useMemo(() => {
+    const query = search.trim().toLocaleLowerCase();
+
+    return certificates.filter((certificate) => {
+      if (
+        activeFilter !== "all" &&
+        certificate.status !== activeFilter
+      ) {
+        return false;
+      }
+
+      const searchable = [
+        certificate.title.en,
+        certificate.title.ar,
+        certificate.instructor.en,
+        certificate.instructor.ar,
+        certificate.category.en,
+        certificate.category.ar,
+      ]
+        .join(" ")
+        .toLocaleLowerCase();
+
+      return searchable.includes(query);
+    });
+  }, [activeFilter, search]);
+
+  const statCards = [
+    {
+      id: "total",
+      label: t.total,
+      value: stats.total,
+      icon: GraduationCap,
+    },
+    {
+      id: "earned",
+      label: t.earned,
+      value: stats.earned,
+      icon: Award,
+    },
+    {
+      id: "progress",
+      label: t.progress,
+      value: stats.inProgress,
+      icon: BookOpen,
+    },
+    {
+      id: "locked",
+      label: t.locked,
+      value: stats.locked,
+      icon: LockKeyhole,
+    },
+  ];
+
+  return (
+    <main
+      className="behar-certificates-page"
+      dir={language === "ar" ? "rtl" : "ltr"}
+    >
+      <header className="behar-certificates-header">
+        <div>
+          <div className="behar-certificates-eyebrow">
+            <Sparkles size={15} />
+            <span>{t.eyebrow}</span>
+          </div>
+
+          <h1>{t.title}</h1>
+          <p>{t.description}</p>
+        </div>
+
+        <div className="behar-certificates-header-mark">
+          <Trophy size={38} strokeWidth={1.3} />
+        </div>
+      </header>
+
+      <section
+        className="behar-cert-stats"
+        aria-label={t.total}
+      >
+        {statCards.map(({ id, label, value, icon: Icon }) => (
+          <div key={id} className={`behar-cert-stat stat-${id}`}>
+            <div className="behar-cert-stat-icon">
+              <Icon size={20} strokeWidth={1.7} />
+            </div>
+            <strong>{String(value).padStart(2, "0")}</strong>
+            <span>{label}</span>
+          </div>
+        ))}
       </section>
-    </div>
+
+      <section className="behar-certificates-gallery">
+        <div className="behar-certificates-gallery-heading">
+          <div>
+            <h2>{t.gallery}</h2>
+            <p>{t.galleryDescription}</p>
+          </div>
+
+          <span className="behar-cert-gallery-count">
+            {filtered.length} / {certificates.length}
+          </span>
+        </div>
+
+        <div className="behar-certificates-toolbar">
+          <div
+            className="behar-certificates-filters"
+            role="group"
+            aria-label={t.gallery}
+          >
+            {filters.map((filter) => (
+              <button
+                key={filter.id}
+                type="button"
+                className={
+                  activeFilter === filter.id ? "active" : ""
+                }
+                aria-pressed={activeFilter === filter.id}
+                onClick={() => setActiveFilter(filter.id)}
+              >
+                {t[filter.label]}
+              </button>
+            ))}
+          </div>
+
+          <label className="behar-certificates-search">
+            <Search size={17} />
+            <input
+              type="search"
+              placeholder={t.search}
+              aria-label={t.search}
+              value={search}
+              onChange={(event) => setSearch(event.target.value)}
+            />
+          </label>
+        </div>
+
+        {filtered.length > 0 ? (
+          <div className="behar-certificates-grid">
+            {filtered.map((certificate) => (
+              <CertificateCard
+                key={certificate.id}
+                certificate={certificate}
+                language={language}
+                t={t}
+              />
+            ))}
+          </div>
+        ) : (
+          <div className="behar-certificates-empty">
+            <Search size={30} strokeWidth={1.5} />
+            <h3>{t.emptyTitle}</h3>
+            <p>{t.emptyDescription}</p>
+          </div>
+        )}
+      </section>
+
+      <section className="behar-certificates-bottom-banner">
+        <div className="behar-certificates-banner-icon">
+          <Trophy size={24} strokeWidth={1.6} />
+        </div>
+
+        <div>
+          <h2>{t.footerTitle}</h2>
+          <p>{t.footerDescription}</p>
+        </div>
+
+        <Link to="/student/my-learning">
+          {t.learning}
+          <ChevronRight size={17} />
+        </Link>
+      </section>
+    </main>
   );
 }

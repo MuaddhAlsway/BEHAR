@@ -1,0 +1,244 @@
+
+.behar-create-discussion-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(14, 31, 22, 0.62);
+  backdrop-filter: blur(7px);
+}
+
+.behar-create-discussion-modal {
+  width: min(100%, 650px);
+  max-height: min(90dvh, 900px);
+  overflow-y: auto;
+  border: 1px solid #e0e8df;
+  border-radius: 20px;
+  background: #fff;
+  color: #24392c;
+  box-shadow: 0 30px 90px rgba(0, 0, 0, .18);
+}
+
+.behar-create-discussion-modal *,
+.behar-create-discussion-modal *::before,
+.behar-create-discussion-modal *::after {
+  box-sizing: border-box;
+}
+
+.behar-create-discussion-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 29px 32px 24px;
+  border-bottom: 1px solid #edf0eb;
+}
+
+.behar-create-discussion-header > div > span {
+  color: #276b50;
+  font-size: 10px;
+  font-weight: 750;
+  letter-spacing: .12em;
+}
+
+.behar-create-discussion-header h2 {
+  margin: 10px 0 8px;
+  font-size: 26px;
+  font-weight: 750;
+  letter-spacing: -.035em;
+}
+
+.behar-create-discussion-header p {
+  max-width: 470px;
+  margin: 0;
+  color: #75837a;
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.behar-create-discussion-close {
+  display: grid;
+  width: 35px;
+  height: 35px;
+  flex-shrink: 0;
+  place-items: center;
+  border: 1px solid #e3eae4;
+  border-radius: 9px;
+  background: #fff;
+  color: #5b6d60;
+  cursor: pointer;
+}
+
+.behar-create-discussion-form {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  padding: 28px 32px 32px;
+}
+
+.behar-create-discussion-field {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  min-width: 0;
+}
+
+.behar-create-discussion-field label {
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.behar-create-discussion-field label span {
+  color: #c24e45;
+}
+
+.behar-create-discussion-field input,
+.behar-create-discussion-field select,
+.behar-create-discussion-field textarea {
+  width: 100%;
+  min-width: 0;
+  padding: 13px 14px;
+  border: 1px solid #dfe7e0;
+  border-radius: 9px;
+  outline: none;
+  background: #fafbf9;
+  color: #24392c;
+  font: inherit;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.behar-create-discussion-field select {
+  min-height: 46px;
+}
+
+.behar-create-discussion-field textarea {
+  min-height: 150px;
+  resize: vertical;
+}
+
+.behar-create-discussion-field input:focus,
+.behar-create-discussion-field select:focus,
+.behar-create-discussion-field textarea:focus {
+  border-color: #276b50;
+  box-shadow: 0 0 0 3px rgba(39, 107, 80, .1);
+}
+
+.behar-create-discussion-field
+[aria-invalid="true"] {
+  border-color: #c24e45;
+}
+
+.behar-create-discussion-field small {
+  color: #c24e45;
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.behar-create-discussion-field
+.behar-create-discussion-hint {
+  color: #819085;
+}
+
+.behar-create-discussion-field-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.behar-create-discussion-field-meta > span {
+  margin-inline-start: auto;
+  color: #89958b;
+  font-size: 10px;
+  font-variant-numeric: tabular-nums;
+}
+
+.behar-create-discussion-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 11px;
+  padding-top: 9px;
+  border-top: 1px solid #edf0eb;
+}
+
+.behar-create-discussion-actions button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 0 18px;
+  border-radius: 9px;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.behar-create-discussion-cancel {
+  border: 1px solid #dfe7e0;
+  background: #fff;
+  color: #506154;
+}
+
+.behar-create-discussion-publish {
+  border: 1px solid #276b50;
+  background: #276b50;
+  color: #fff;
+}
+
+.behar-create-discussion-publish:hover {
+  background: #1e563f;
+}
+
+.behar-create-discussion-modal button:focus-visible {
+  outline: 3px solid #8ac4a1;
+  outline-offset: 3px;
+}
+
+[dir="rtl"] .behar-create-discussion-header > div > span {
+  letter-spacing: normal;
+}
+
+@media (max-width: 600px) {
+  .behar-create-discussion-overlay {
+    align-items: flex-end;
+    padding: 0;
+  }
+
+  .behar-create-discussion-modal {
+    width: 100%;
+    max-height: 95dvh;
+    border-radius: 20px 20px 0 0;
+  }
+
+  .behar-create-discussion-header {
+    padding: 23px 20px 19px;
+  }
+
+  .behar-create-discussion-header h2 {
+    font-size: 22px;
+  }
+
+  .behar-create-discussion-form {
+    padding: 23px 20px 28px;
+  }
+
+  .behar-create-discussion-actions {
+    flex-wrap: wrap;
+  }
+
+  .behar-create-discussion-actions button {
+    flex: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .behar-create-discussion-modal {
+    scroll-behavior: auto;
+  }
+}

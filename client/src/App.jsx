@@ -8,35 +8,69 @@ import {
 } from "react-router-dom";
 import { ArrowUp } from "lucide-react";
 
-// Public navigation
+// ==========================================
+// PUBLIC NAVIGATION
+// ==========================================
+
 import Navbar from "./components/navigation/Navbar";
 import Footer from "./layouts/Footer";
 
-// Public pages
+// ==========================================
+// PUBLIC PAGES
+// ==========================================
+
 import Home from "./pages/public/Home";
 import Courses from "./pages/public/Courses";
 import CourseDetails from "./pages/public/CourseDetails";
 import NotFound from "./pages/public/NotFound";
+import VerifyCertificate from "./pages/public/VerifyCertificate";
 
-// Student layout
+// ==========================================
+// STUDENT LAYOUT
+// ==========================================
+
 import StudentLayout from "./layouts/StudentLayout";
 
-// Student pages
+// ==========================================
+// STUDENT PAGES
+// ==========================================
+
 import Dashboard from "./pages/student/Dashboard";
 import MyLearning from "./pages/student/MyLearning";
 import LearningPlayer from "./pages/student/LearningPlayer";
 import Assignments from "./pages/student/Assignments";
 import StudentProgress from "./pages/student/Progress";
+import Notifications from "./pages/student/Notifications";
+import Certificates from "./pages/student/Certificates";
+
+// P14.11 — Student Discussions
+import Discussions from "./pages/student/Discussions";
+
+// P14.11.4 — Discussion Details & Threaded Replies
+import DiscussionDetails from "./pages/student/DiscussionDetails";
 
 // P14.5.0.8 — Complete Achievements Dashboard
 import Achievements from "./components/student/achievements/Achievements";
+
+// ==========================================
+// APPLICATION CONTEXT PROVIDERS
+// ==========================================
 
 // P14.5.0.9 — Gamification Context
 import {
   GamificationProvider,
 } from "./context/GamificationContext";
 
-// P14.5.0.9 — Global Achievement Celebrations
+// P14.9 — Student Notifications Context
+import {
+  StudentNotificationsProvider,
+} from "./context/StudentNotificationsContext";
+import { DiscussionsProvider } from "./context/DiscussionsContext";
+
+// ==========================================
+// GLOBAL ACHIEVEMENT CELEBRATIONS
+// ==========================================
+
 import GamificationCelebrationHost from "./components/student/achievements/GamificationCelebrationHost";
 
 /* ==========================================
@@ -134,109 +168,187 @@ function PublicLayout({ children }) {
 function App() {
   return (
     <GamificationProvider>
-      {/* Route scroll reset */}
-      <RouteScrollReset />
-
-      <Routes>
+      <StudentNotificationsProvider>
+        <DiscussionsProvider>
         {/* ==================================
-            PUBLIC WEBSITE
+            ROUTE SCROLL RESET
         ================================== */}
 
-        <Route element={<PublicLayout />}>
-          {/* Home */}
-          <Route
-            index
-            element={<Home />}
-          />
+        <RouteScrollReset />
 
-          {/* Course catalog */}
-          <Route
-            path="courses"
-            element={<Courses />}
-          />
+        <Routes>
+          {/* ==================================
+              PUBLIC WEBSITE
+          ================================== */}
 
-          {/* Course details */}
-          <Route
-            path="courses/:slug"
-            element={<CourseDetails />}
-          />
-        </Route>
+          <Route element={<PublicLayout />}>
+            {/* P01 — Home */}
+            <Route
+              index
+              element={<Home />}
+            />
 
-        {/* ==================================
-            STUDENT DASHBOARD
-        ================================== */}
+            {/* P02 — Course Catalog */}
+            <Route
+              path="courses"
+              element={<Courses />}
+            />
 
-        <Route
-          path="/student"
-          element={<StudentLayout />}
-        >
-          {/* P14.1 — Dashboard Overview */}
-          <Route
-            index
-            element={<Dashboard />}
-          />
+            {/* P03 — Course Details */}
+            <Route
+              path="courses/:slug"
+              element={<CourseDetails />}
+            />
 
-          {/* P14.2 — My Learning */}
-          <Route
-            path="my-learning"
-            element={<MyLearning />}
-          />
+            {/* P14.10.6 — Certificate Verification */}
+            <Route
+              path="verify-certificate"
+              element={<VerifyCertificate />}
+            />
+          </Route>
+
+          {/* ==================================
+              STUDENT DASHBOARD
+          ================================== */}
 
           <Route
-            path="assignments"
-            element={<Assignments />}
+            path="/student"
+            element={<StudentLayout />}
+          >
+            {/* ==================================
+                P14.1 — DASHBOARD OVERVIEW
+            ================================== */}
+
+            <Route
+              index
+              element={<Dashboard />}
+            />
+
+            {/* ==================================
+                P14.2 — MY LEARNING
+            ================================== */}
+
+            <Route
+              path="my-learning"
+              element={<MyLearning />}
+            />
+
+            {/* ==================================
+                P14.4 — STUDENT PROGRESS
+            ================================== */}
+
+            <Route
+              path="progress"
+              element={<StudentProgress />}
+            />
+
+            {/* ==================================
+                P14.5 — ACHIEVEMENTS
+            ================================== */}
+
+            <Route
+              path="achievements"
+              element={
+                <Achievements language="en" />
+              }
+            />
+
+            {/* ==================================
+                P14.8 — ASSIGNMENTS
+            ================================== */}
+
+            <Route
+              path="assignments"
+              element={<Assignments />}
+            />
+
+            {/* ==================================
+                P14.9 — NOTIFICATIONS
+            ================================== */}
+
+            <Route
+              path="notifications"
+              element={<Notifications />}
+            />
+
+            {/* ==================================
+                P14.10 — CERTIFICATES
+            ================================== */}
+
+            <Route
+              path="certificates"
+              element={<Certificates />}
+            />
+
+            {/* ==================================
+                P14.11.1 — DISCUSSIONS OVERVIEW
+                P14.11.3 — CREATE DISCUSSION
+            ================================== */}
+
+            <Route
+              path="discussions"
+              element={<Discussions />}
+            />
+
+            {/* ==================================
+                P14.11.4 — DISCUSSION DETAILS
+                & THREADED REPLIES
+            ================================== */}
+
+            <Route
+              path="discussions/:discussionId"
+              element={<DiscussionDetails />}
+            />
+
+            {/* ==================================
+                INVALID STUDENT ROUTES
+            ================================== */}
+
+            <Route
+              path="*"
+              element={<NotFound />}
+            />
+          </Route>
+
+          {/* ==================================
+              P14.3 — STUDENT LEARNING PLAYER
+
+              Focused learning workspace
+              Without Student Dashboard sidebar
+          ================================== */}
+
+          <Route
+            path="/student/learn/:courseSlug"
+            element={<LearningPlayer />}
           />
 
           <Route
-            path="progress"
-            element={<StudentProgress />}
+            path="/student/learn/:courseSlug/lessons/:lessonId"
+            element={<LearningPlayer />}
           />
 
-          {/* P14.5.0.8 — Achievements Dashboard */}
-          <Route
-            path="achievements"
-            element={<Achievements language="en" />}
-          />
+          {/* ==================================
+              GLOBAL 404
+          ================================== */}
 
-          {/* Invalid student pages */}
           <Route
             path="*"
-            element={<NotFound />}
+            element={
+              <PublicLayout>
+                <NotFound />
+              </PublicLayout>
+            }
           />
-        </Route>
+        </Routes>
 
         {/* ==================================
-            P14.3 — STUDENT LEARNING PLAYER
-            Focused learning workspace
-            No dashboard sidebar
+            P14.5.0.9 — GLOBAL ACHIEVEMENT
+            CELEBRATION HOST
         ================================== */}
 
-        <Route
-          path="/student/learn/:courseSlug"
-          element={<LearningPlayer />}
-        />
-
-        <Route
-          path="/student/learn/:courseSlug/lessons/:lessonId"
-          element={<LearningPlayer />}
-        />
-
-        {/* ==================================
-            GLOBAL 404
-        ================================== */}
-
-        <Route
-          path="*"
-          element={
-            <PublicLayout>
-              <NotFound />
-            </PublicLayout>
-          }
-        />
-      </Routes>
-
-      {/* P14.5.0.9 — Global Achievement Celebration */}
-      <GamificationCelebrationHost language="en" />
+        <GamificationCelebrationHost language="en" />
+        </DiscussionsProvider>
+      </StudentNotificationsProvider>
     </GamificationProvider>
   );
 }

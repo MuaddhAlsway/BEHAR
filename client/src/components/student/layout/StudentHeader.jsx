@@ -3,16 +3,18 @@ import { Link, useLocation } from "react-router-dom";
 import {
   Menu,
   Search,
-  Bell,
   ChevronRight,
   UserRound,
 } from "lucide-react";
+import NotificationBell from "../notifications/NotificationBell";
+import { useStudentLanguage } from "../../../context/StudentLanguageContext";
 
 const pageTitles = {
   "/student": "Overview",
   "/student/my-learning": "My Learning",
   "/student/progress": "Progress",
   "/student/assignments": "Assignments",
+  "/student/notifications": "Notifications",
   "/student/certificates": "Certificates",
   "/student/discussions": "Discussions",
   "/student/messages": "Messages",
@@ -23,8 +25,25 @@ const pageTitles = {
   "/student/help": "Help & Support",
 };
 
+const arabicPageTitles = {
+  Overview: "نظرة عامة",
+  "My Learning": "تعلمي",
+  Progress: "التقدم",
+  Assignments: "الواجبات",
+  Notifications: "الإشعارات",
+  Certificates: "الشهادات",
+  Discussions: "النقاشات",
+  Messages: "الرسائل",
+  Calendar: "التقويم",
+  Wishlist: "المفضلة",
+  Payments: "المدفوعات",
+  Settings: "الإعدادات",
+  "Help & Support": "المساعدة والدعم",
+};
+
 export default function StudentHeader({ onMenuClick }) {
   const location = useLocation();
+  const { language, isArabic, toggleLanguage } = useStudentLanguage();
 
   const pageTitle =
     pageTitles[location.pathname] ||
@@ -34,6 +53,9 @@ export default function StudentHeader({ onMenuClick }) {
       .at(-1)
       ?.replaceAll("-", " ") ||
     "Overview";
+  const localizedPageTitle = isArabic
+    ? arabicPageTitles[pageTitle] ?? pageTitle
+    : pageTitle;
 
   return (
     <header className="behar-student-header">
@@ -48,13 +70,22 @@ export default function StudentHeader({ onMenuClick }) {
         </button>
 
         <div className="behar-student-header__breadcrumb">
-          <Link to="/student">Workspace</Link>
+          <Link to="/student">{isArabic ? "مساحة التعلم" : "Workspace"}</Link>
           <ChevronRight size={15} />
-          <span>{pageTitle}</span>
+          <span>{localizedPageTitle}</span>
         </div>
       </div>
 
       <div className="behar-student-header__actions">
+        <button
+          type="button"
+          className="behar-student-header__language"
+          onClick={toggleLanguage}
+          aria-label={isArabic ? "Switch to English" : "التبديل إلى العربية"}
+        >
+          {isArabic ? "ENGLISH" : "العربية"}
+        </button>
+
         <Link
           to="/courses"
           className="behar-student-header__action"
@@ -63,14 +94,7 @@ export default function StudentHeader({ onMenuClick }) {
           <Search size={20} strokeWidth={1.7} />
         </Link>
 
-        <Link
-          to="/student/notifications"
-          className="behar-student-header__action"
-          aria-label="Notifications"
-        >
-          <Bell size={20} strokeWidth={1.7} />
-          <span className="behar-student-header__notification-dot" />
-        </Link>
+        <NotificationBell language={language} />
 
         <Link
           to="/student/profile"

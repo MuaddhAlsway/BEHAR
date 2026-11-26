@@ -1,0 +1,800 @@
+
+/* ==========================================
+   BEHAR LMS — P14.10.1
+   Student Certificates & Achievements
+========================================== */
+
+.behar-certificates-page {
+  --cert-ink: #1f2b26;
+  --cert-muted: #77817b;
+  --cert-green: #276b50;
+  --cert-green-dark: #184a38;
+  --cert-border: #e6ebe7;
+  --cert-surface: #ffffff;
+  --cert-soft: #f6f8f5;
+
+  width: 100%;
+  max-width: 1200px;
+  margin-inline: auto;
+  padding: 32px 28px 80px;
+  color: var(--cert-ink);
+}
+
+.behar-certificates-page *,
+.behar-certificates-page *::before,
+.behar-certificates-page *::after {
+  box-sizing: border-box;
+}
+
+.behar-certificates-page button,
+.behar-certificates-page input {
+  font: inherit;
+}
+
+.behar-certificates-page button {
+  cursor: pointer;
+}
+
+.behar-certificates-page a {
+  text-decoration: none;
+}
+
+.behar-certificates-page :is(
+  button,
+  a,
+  input
+):focus-visible {
+  outline: 3px solid #88c5a3;
+  outline-offset: 3px;
+}
+
+/* Header */
+
+.behar-certificates-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 30px;
+}
+
+.behar-certificates-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  margin-bottom: 13px;
+  color: var(--cert-green);
+  font-size: 11px;
+  font-weight: 750;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+}
+
+.behar-certificates-header h1 {
+  margin: 0;
+  font-size: clamp(29px, 3.6vw, 43px);
+  font-weight: 650;
+  line-height: 1.16;
+  letter-spacing: -0.045em;
+}
+
+.behar-certificates-header p {
+  max-width: 600px;
+  margin: 12px 0 0;
+  color: var(--cert-muted);
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.behar-certificates-header-mark {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 76px;
+  height: 76px;
+  flex-shrink: 0;
+  border-radius: 22px;
+  background: #edf5ed;
+  color: var(--cert-green);
+}
+
+.behar-certificates-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-shrink: 0;
+}
+
+.behar-certificates-language-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 38px;
+  padding: 0 12px;
+  border: 1px solid var(--cert-border);
+  border-radius: 999px;
+  background: var(--cert-surface);
+  color: var(--cert-green);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.behar-certificates-language-button:hover {
+  border-color: #b6d4bd;
+  background: #edf5ed;
+}
+
+/* Stats */
+
+.behar-cert-stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  margin-bottom: 43px;
+}
+
+.behar-cert-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 0;
+  padding: 22px;
+  border: 1px solid var(--cert-border);
+  border-radius: 17px;
+  background: var(--cert-surface);
+}
+
+.behar-cert-stat-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 39px;
+  height: 39px;
+  margin-bottom: 21px;
+  border-radius: 11px;
+  background: #eaf4ed;
+  color: var(--cert-green);
+}
+
+.behar-cert-stat.stat-earned .behar-cert-stat-icon {
+  background: #fff3dd;
+  color: #a77b28;
+}
+
+.behar-cert-stat.stat-progress .behar-cert-stat-icon {
+  background: #eaf0fb;
+  color: #456eaf;
+}
+
+.behar-cert-stat.stat-locked .behar-cert-stat-icon {
+  background: #eef0ef;
+  color: #6e7973;
+}
+
+.behar-cert-stat strong {
+  font-size: 32px;
+  font-weight: 650;
+  line-height: 1;
+  letter-spacing: -0.05em;
+  font-variant-numeric: tabular-nums;
+}
+
+.behar-cert-stat > span {
+  margin-top: 9px;
+  color: var(--cert-muted);
+  font-size: 12px;
+  font-weight: 500;
+}
+
+/* Gallery */
+
+.behar-certificates-gallery-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 22px;
+}
+
+.behar-certificates-gallery-heading h2 {
+  margin: 0;
+  font-size: 23px;
+  font-weight: 650;
+  letter-spacing: -0.03em;
+}
+
+.behar-certificates-gallery-heading p {
+  margin: 8px 0 0;
+  font-size: 13px;
+  color: var(--cert-muted);
+  line-height: 1.7;
+}
+
+.behar-cert-gallery-count {
+  flex-shrink: 0;
+  font-size: 12px;
+  font-weight: 650;
+  color: var(--cert-muted);
+}
+
+.behar-certificates-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.behar-certificates-filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  padding: 4px;
+  border-radius: 11px;
+  background: #f0f3f0;
+}
+
+.behar-certificates-filters button {
+  padding: 9px 15px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--cert-muted);
+  font-size: 12px;
+  font-weight: 600;
+  transition: background 180ms ease, color 180ms ease;
+}
+
+.behar-certificates-filters button.active {
+  background: white;
+  color: var(--cert-ink);
+  box-shadow: 0 1px 4px #1b312012;
+}
+
+.behar-certificates-filters button:hover:not(.active) {
+  color: var(--cert-ink);
+}
+
+.behar-certificates-search {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: min(260px, 100%);
+  min-height: 42px;
+  padding: 0 13px;
+  border: 1px solid var(--cert-border);
+  border-radius: 10px;
+  background: white;
+  color: var(--cert-muted);
+}
+
+.behar-certificates-search input {
+  width: 100%;
+  min-width: 0;
+  border: 0;
+  outline: none;
+  background: transparent;
+  color: var(--cert-ink);
+  font-size: 12px;
+}
+
+.behar-certificates-search:focus-within {
+  border-color: var(--cert-green);
+}
+
+.behar-certificates-search input::placeholder {
+  color: #9ba49d;
+}
+
+/* Cards */
+
+.behar-certificates-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.behar-certificates-grid-item {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  gap: 10px;
+}
+
+.behar-cert-requirements-trigger {
+  align-self: flex-start;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #276b50;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  text-align: start;
+  cursor: pointer;
+}
+
+.behar-cert-requirements-trigger:hover {
+  color: #184a38;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.behar-cert-requirements-trigger:focus-visible {
+  outline: 3px solid #88c5a3;
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+.behar-certificates-requirements-section {
+  margin-top: 34px;
+  scroll-margin-top: 24px;
+}
+
+.behar-cert-card {
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid var(--cert-border);
+  border-radius: 17px;
+  background: white;
+  transition: border-color 180ms ease,
+    transform 180ms ease;
+}
+
+.behar-cert-card:hover {
+  border-color: #cbdacf;
+  transform: translateY(-2px);
+}
+
+/* Certificate artwork */
+
+.behar-cert-artwork {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 235px;
+  margin: 12px;
+  padding: 17px 21px;
+  border: 1px solid #d5ded6;
+  border-radius: 7px;
+  background:
+    radial-gradient(
+      circle at 50% 50%,
+      #ffffff 0%,
+      #f8faf6 75%
+    );
+  color: #3c5848;
+  position: relative;
+  overflow: hidden;
+}
+
+.behar-cert-artwork::after {
+  content: "";
+  position: absolute;
+  inset: 7px;
+  border: 1px solid #e1e7df;
+  pointer-events: none;
+}
+
+.behar-cert-artwork.is-earned {
+  background: #f9f7ef;
+  border-color: #dfd2b5;
+  color: #74603c;
+}
+
+.behar-cert-artwork.is-locked {
+  background: #f6f7f6;
+  color: #929a94;
+  border-color: #e0e4e0;
+}
+
+.behar-cert-artwork-top,
+.behar-cert-artwork-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  position: relative;
+  z-index: 1;
+}
+
+.behar-cert-artwork-top span {
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+}
+
+.behar-cert-artwork-bottom span {
+  font-size: 9px;
+  font-weight: 650;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.behar-cert-artwork-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 10px;
+  position: relative;
+  z-index: 1;
+}
+
+.behar-cert-artwork-seal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+}
+
+.behar-cert-artwork-kicker {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+}
+
+.behar-cert-artwork-center h3 {
+  max-width: 310px;
+  margin: 0;
+  font-size: clamp(15px, 2vw, 21px);
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.behar-cert-artwork-rule {
+  width: 65px;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.45;
+}
+
+/* Card content */
+
+.behar-cert-card-body {
+  padding: 10px 23px 22px;
+}
+
+.behar-cert-card-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.behar-cert-card-meta > span:first-child {
+  font-size: 11px;
+  font-weight: 650;
+  color: var(--cert-muted);
+}
+
+.behar-cert-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 9px;
+  border-radius: 20px;
+  font-size: 10px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.behar-cert-status.status-earned {
+  color: #8d6724;
+  background: #fff3db;
+}
+
+.behar-cert-status.status-in-progress {
+  color: #356f53;
+  background: #eaf5ed;
+}
+
+.behar-cert-status.status-locked {
+  color: #78817b;
+  background: #f0f2f0;
+}
+
+.behar-cert-card-body > h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 650;
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+}
+
+.behar-cert-instructor {
+  margin: 7px 0 0;
+  font-size: 12px;
+  color: var(--cert-muted);
+}
+
+.behar-cert-progress {
+  margin-top: 21px;
+}
+
+.behar-cert-progress-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 9px;
+  font-size: 11px;
+  color: var(--cert-muted);
+}
+
+.behar-cert-progress-label strong {
+  color: var(--cert-green);
+  font-size: 12px;
+}
+
+.behar-cert-progress-track {
+  height: 6px;
+  overflow: hidden;
+  border-radius: 20px;
+  background: #e9eee9;
+}
+
+.behar-cert-progress-track span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--cert-green);
+}
+
+.behar-cert-issued,
+.behar-cert-locked-message {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin: 18px 0 0;
+  font-size: 11px;
+  color: var(--cert-muted);
+}
+
+.behar-cert-issued svg {
+  color: var(--cert-green);
+}
+
+.behar-cert-demo {
+  color: #9a7634;
+  background: #fff4df;
+  padding: 3px 7px;
+  border-radius: 5px;
+}
+
+.behar-cert-card-footer {
+  margin-top: 22px;
+  padding-top: 15px;
+  border-top: 1px solid var(--cert-border);
+}
+
+.behar-cert-card-action,
+.behar-cert-action-disabled {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.behar-cert-card-action {
+  color: var(--cert-green);
+}
+
+.behar-cert-card-action:hover {
+  color: var(--cert-green-dark);
+}
+
+.behar-cert-action-disabled {
+  color: #929b94;
+  cursor: default;
+}
+
+/* Empty */
+
+.behar-certificates-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 290px;
+  padding: 40px;
+  border: 1px dashed var(--cert-border);
+  border-radius: 15px;
+  text-align: center;
+  color: var(--cert-muted);
+}
+
+.behar-certificates-empty h3 {
+  margin: 16px 0 7px;
+  color: var(--cert-ink);
+  font-size: 18px;
+}
+
+.behar-certificates-empty p {
+  max-width: 350px;
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+/* Bottom banner */
+
+.behar-certificates-bottom-banner {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-top: 36px;
+  padding: 25px 27px;
+  border: 1px solid #dce9de;
+  border-radius: 16px;
+  background: #f2f7f0;
+}
+
+.behar-certificates-banner-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 49px;
+  height: 49px;
+  flex-shrink: 0;
+  border-radius: 13px;
+  background: white;
+  color: var(--cert-green);
+}
+
+.behar-certificates-bottom-banner > div:nth-child(2) {
+  flex: 1;
+}
+
+.behar-certificates-bottom-banner h2 {
+  margin: 0 0 6px;
+  font-size: 17px;
+  font-weight: 650;
+}
+
+.behar-certificates-bottom-banner p {
+  margin: 0;
+  color: var(--cert-muted);
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.behar-certificates-bottom-banner > a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+  padding: 11px 15px;
+  border-radius: 9px;
+  background: var(--cert-green);
+  color: white;
+  font-size: 12px;
+  font-weight: 650;
+}
+
+.behar-certificates-bottom-banner > a:hover {
+  background: var(--cert-green-dark);
+}
+
+/* RTL */
+
+[dir="rtl"].behar-certificates-page
+.behar-certificates-header h1 {
+  letter-spacing: normal;
+}
+
+[dir="rtl"].behar-certificates-page
+.behar-certificates-eyebrow {
+  letter-spacing: normal;
+}
+
+[dir="rtl"].behar-certificates-page
+.behar-cert-card-action svg,
+[dir="rtl"].behar-certificates-page
+.behar-certificates-bottom-banner a svg {
+  transform: scaleX(-1);
+}
+
+/* Responsive */
+
+@media (max-width: 1024px) {
+  .behar-cert-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .behar-certificates-header-actions {
+    align-items: flex-end;
+    flex-direction: column-reverse;
+    gap: 10px;
+  }
+
+  .behar-certificates-language-button {
+    min-height: 34px;
+    padding-inline: 10px;
+  }
+
+  .behar-certificates-page {
+    padding: 24px 16px 55px;
+  }
+
+  .behar-certificates-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .behar-certificates-header-mark {
+    display: none;
+  }
+
+  .behar-certificates-toolbar {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .behar-certificates-search {
+    width: 100%;
+  }
+
+  .behar-certificates-bottom-banner {
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .behar-certificates-bottom-banner > a {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .behar-cert-stats {
+    gap: 10px;
+  }
+
+  .behar-cert-stat {
+    padding: 17px;
+  }
+
+  .behar-cert-stat strong {
+    font-size: 27px;
+  }
+
+  .behar-certificates-filters {
+    width: 100%;
+  }
+
+  .behar-certificates-filters button {
+    flex: 1;
+    padding: 9px 7px;
+    font-size: 11px;
+  }
+
+  .behar-cert-artwork {
+    min-height: 215px;
+    padding: 14px;
+  }
+
+  .behar-cert-card-body {
+    padding: 10px 17px 20px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .behar-certificates-page *,
+  .behar-certificates-page *::before,
+  .behar-certificates-page *::after {
+    transition: none !important;
+    animation: none !important;
+  }
+}

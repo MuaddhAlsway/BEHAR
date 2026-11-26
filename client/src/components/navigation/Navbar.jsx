@@ -231,6 +231,15 @@ export default function Navbar() {
               {searchOpen ? <X size={19} /> : <Search size={19} />}
             </button>
 
+            <button
+              type="button"
+              className="behar-language"
+              onClick={() => setLanguage((current) => current === "ar" ? "en" : "ar")}
+              aria-label={isArabic ? "Switch to English" : "التبديل إلى العربية"}
+            >
+              {t.language}
+            </button>
+
             <Link to="/login" className="behar-login">
               {t.login}
             </Link>
