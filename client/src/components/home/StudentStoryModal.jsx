@@ -187,7 +187,7 @@ export default function StudentStoryModal({
           </span>
 
           <h2 id="behar-story-modal-title">
-            {story.name}
+            {language === "ar" ? story.nameAr || story.name : story.name}
           </h2>
 
           <span className="behar-story-modal__field">

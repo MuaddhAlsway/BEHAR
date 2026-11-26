@@ -20,6 +20,7 @@ export default function FeaturedStory({
   const Arrow = isArabic ? ArrowUpLeft : ArrowUpRight;
   const Next = isArabic ? ArrowLeft : ArrowRight;
   const Previous = isArabic ? ArrowRight : ArrowLeft;
+  const storyName = isArabic ? story.nameAr || story.name : story.name;
 
   return (
     <article
@@ -57,7 +58,7 @@ export default function FeaturedStory({
           <div className="behar-stories__author">
             <span className="behar-stories__author-line" />
             <div>
-              <strong>{story.name}</strong>
+            <strong>{storyName}</strong>
               <span>{story.field[language]}</span>
             </div>
           </div>

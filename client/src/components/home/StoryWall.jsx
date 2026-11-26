@@ -18,6 +18,8 @@ export default function StoryWall({
   const isArabic = language === "ar";
   const Arrow = isArabic ? ArrowUpLeft : ArrowUpRight;
   const wallRef = useRef(null);
+  const getStoryName = (story) =>
+    isArabic ? story.nameAr || story.name : story.name;
 
   const selectAndScroll = (index) => {
     onSelect(index);
@@ -46,6 +48,7 @@ export default function StoryWall({
       <div ref={wallRef} className="behar-stories__wall" aria-label="Student stories">
         {stories.map((story, index) => {
         const active = index === activeIndex;
+          const storyName = getStoryName(story);
 
           return (
           <button
@@ -58,7 +61,7 @@ export default function StoryWall({
             onClick={() =>
               active ? onOpen(story) : selectAndScroll(index)
             }
-            aria-label={`${story.name}, ${story.field[language]}`}
+            aria-label={`${storyName}, ${story.field[language]}`}
             aria-pressed={active}
           >
             <span className="behar-stories__portrait-inner">
@@ -70,7 +73,7 @@ export default function StoryWall({
                 <span className="behar-stories__portrait-shade" />
 
                 <span className="behar-stories__portrait-caption">
-                  <strong>{story.name}</strong>
+                  <strong>{storyName}</strong>
                   <small>{story.field[language]}</small>
                 </span>
 
@@ -87,7 +90,7 @@ export default function StoryWall({
                   “{story.quote[language]}”
                 </span>
                 <span className="behar-stories__portrait-back-name">
-                  {story.name}
+                  {storyName}
                 </span>
               </span>
             </span>
@@ -103,7 +106,7 @@ export default function StoryWall({
             type="button"
             className={index === activeIndex ? "is-active" : ""}
             onClick={() => selectAndScroll(index)}
-            aria-label={story.name}
+            aria-label={getStoryName(story)}
             aria-current={index === activeIndex ? "true" : undefined}
           >
             <span />

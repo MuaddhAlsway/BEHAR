@@ -769,6 +769,11 @@
   line-height: 1.35;
 }
 
+.behar-featured[dir="rtl"] .behar-featured__heading-aside p {
+  word-spacing: 0.18em;
+  line-height: 2;
+}
+
 .behar-featured[dir="rtl"] .behar-featured__heading-title h2 em {
   font-family: "Noto Sans Arabic", sans-serif;
   font-style: normal;

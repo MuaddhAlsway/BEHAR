@@ -66,6 +66,9 @@ export default function InstructorProfileModal({
   const closeHandlerRef = useRef(() => {});
 
   const isArabic = language === "ar";
+  const instructorName = isArabic
+    ? instructor.nameAr || instructor.name
+    : instructor.name;
   const t = copy[language];
   const Arrow = isArabic ? ArrowUpLeft : ArrowUpRight;
 
@@ -237,7 +240,7 @@ export default function InstructorProfileModal({
 
           <div className="behar-faculty-modal__portrait-label">
             <span>{t.eyebrow}</span>
-            <strong>{instructor.name}</strong>
+            <strong>{instructorName}</strong>
           </div>
         </div>
 
@@ -252,7 +255,7 @@ export default function InstructorProfileModal({
           <div className="behar-faculty-modal__identity">
             <span>{instructor.specialty[language]}</span>
             <h2 id="behar-faculty-modal-title">
-              {instructor.name}
+              {instructorName}
             </h2>
             <p className="behar-faculty-modal__role">
               {instructor.role[language]}

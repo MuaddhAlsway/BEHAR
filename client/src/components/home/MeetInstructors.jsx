@@ -332,6 +332,9 @@ export default function MeetInstructors() {
           <div className="behar-faculty__gallery" ref={galleryRef}>
             {instructors.map((instructor, index) => {
               const active = index === activeIndex;
+              const instructorName = language === "ar"
+                ? instructor.nameAr || instructor.name
+                : instructor.name;
 
               return (
                 <button
@@ -345,7 +348,7 @@ export default function MeetInstructors() {
                     flexGrow: active ? 3.4 : 1,
                   }}
                   onClick={() => handleCardClick(index)}
-                  aria-label={`${instructor.name} — ${
+                  aria-label={`${instructorName} — ${
                     active ? t.view : instructor.specialty[language]
                   }`}
                 >
@@ -369,7 +372,7 @@ export default function MeetInstructors() {
 
                   <span className="behar-faculty__card-info">
                     <span className="behar-faculty__card-name">
-                      {instructor.name}
+                      {instructorName}
                     </span>
 
                     <span className="behar-faculty__card-role">
@@ -415,7 +418,7 @@ export default function MeetInstructors() {
                     index === activeIndex ? "is-active" : ""
                   }
                   onClick={() => changeInstructor(index)}
-                  aria-label={instructor.name}
+                  aria-label={language === "ar" ? instructor.nameAr || instructor.name : instructor.name}
                   aria-current={
                     index === activeIndex ? "true" : undefined
                   }

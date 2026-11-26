@@ -5,6 +5,7 @@ export const instructors = [
     id: "omar",
     slug: "omar-khalid",
     name: "Omar Khalid",
+    nameAr: "عمر خالد",
     category: "development",
     image:
       OmarKhalid,
@@ -63,6 +64,7 @@ export const instructors = [
     id: "nora",
     slug: "nora-alharbi",
     name: "Nora Alharbi",
+    nameAr: "نورة الحربي",
     category: "design",
     image:
      Nora,
@@ -103,6 +105,7 @@ export const instructors = [
     id: "youssef",
     slug: "youssef-salem",
     name: "Youssef Salem",
+    nameAr: "يوسف سالم",
     category: "technology",
     image:
       "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=1000&auto=format&fit=crop&q=85",
@@ -143,6 +146,7 @@ export const instructors = [
     id: "layla",
     slug: "layla-haddad",
     name: "Layla Haddad",
+    nameAr: "ليلى حداد",
     category: "business",
     image:
       "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=1000&auto=format&fit=crop&q=85",
@@ -183,6 +187,7 @@ export const instructors = [
     id: "rami",
     slug: "rami-fares",
     name: "Rami Fares",
+    nameAr: "رامي فارس",
     category: "creative",
     image:
       "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=1000&auto=format&fit=crop&q=85",

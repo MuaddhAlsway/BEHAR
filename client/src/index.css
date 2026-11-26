@@ -1,5 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Noto+Sans+Arabic:wght@400;500;600;700;800&display=swap');
 
+@font-face {
+  font-family: 'Lyon Arabic';
+  src: url('./assets/font/lyon-arabic-display-regular.otf') format('opentype');
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
 :root {
   font-family: 'Outfit', 'Noto Sans Arabic', sans-serif;
 }
@@ -10,7 +18,12 @@ body {
 }
 
 html[lang='ar'] body {
-  font-family: 'Noto Sans Arabic', 'Outfit', sans-serif;
+  font-family: 'Lyon Arabic', 'Noto Sans Arabic', 'Outfit', sans-serif;
+}
+
+[lang='ar'],
+[lang='ar'] * {
+  font-family: 'Lyon Arabic', 'Noto Sans Arabic', 'Outfit', sans-serif;
 }
 html {
   scroll-behavior: smooth;

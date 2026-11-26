@@ -3,6 +3,7 @@ export const studentStories = [
   {
     id: "s01",
     name: "Ahmed Mansour",
+    nameAr: "أحمد منصور",
     slug: "ahmed-mansour",
     field: {
       en: "Web Development",
@@ -38,6 +39,7 @@ export const studentStories = [
   {
     id: "s02",
     name: "Sara Alharbi",
+    nameAr: "سارة الحربي",
     slug: "sara-alharbi",
     field: {
       en: "Visual Design",
@@ -73,6 +75,7 @@ export const studentStories = [
   {
     id: "s03",
     name: "Youssef Nasser",
+    nameAr: "يوسف ناصر",
     slug: "youssef-nasser",
     field: {
       en: "Business Strategy",
@@ -108,6 +111,7 @@ export const studentStories = [
   {
     id: "s04",
     name: "Layla Haddad",
+    nameAr: "ليلى حداد",
     slug: "layla-haddad",
     field: {
       en: "Digital Marketing",
@@ -143,6 +147,7 @@ export const studentStories = [
   {
     id: "s05",
     name: "Omar Faris",
+    nameAr: "عمر فارس",
     slug: "omar-faris",
     field: {
       en: "Photography",
@@ -178,6 +183,7 @@ export const studentStories = [
   {
     id: "s06",
     name: "Maya Saleh",
+    nameAr: "مايا صالح",
     slug: "maya-saleh",
     field: {
       en: "Personal Growth",
