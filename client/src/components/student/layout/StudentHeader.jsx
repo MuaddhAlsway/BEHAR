@@ -1,5 +1,5 @@
 
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
   Menu,
   Search,
@@ -8,6 +8,7 @@ import {
 } from "lucide-react";
 import NotificationBell from "../notifications/NotificationBell";
 import { useStudentLanguage } from "../../../context/StudentLanguageContext";
+import { withLocale } from "../../../utils/localeRouting";
 
 const pageTitles = {
   "/student": "Overview",
@@ -43,6 +44,7 @@ const arabicPageTitles = {
 
 export default function StudentHeader({ onMenuClick }) {
   const location = useLocation();
+  const navigate = useNavigate();
   const { language, isArabic, toggleLanguage } = useStudentLanguage();
 
   const pageTitle =
@@ -56,6 +58,12 @@ export default function StudentHeader({ onMenuClick }) {
   const localizedPageTitle = isArabic
     ? arabicPageTitles[pageTitle] ?? pageTitle
     : pageTitle;
+
+  const handleLanguageToggle = () => {
+    const nextLanguage = isArabic ? "en" : "ar";
+    toggleLanguage();
+    navigate(withLocale(location.pathname, nextLanguage), { replace: true });
+  };
 
   return (
     <header className="behar-student-header">
@@ -80,7 +88,7 @@ export default function StudentHeader({ onMenuClick }) {
         <button
           type="button"
           className="behar-student-header__language"
-          onClick={toggleLanguage}
+          onClick={handleLanguageToggle}
           aria-label={isArabic ? "Switch to English" : "التبديل إلى العربية"}
         >
           {isArabic ? "ENGLISH" : "العربية"}

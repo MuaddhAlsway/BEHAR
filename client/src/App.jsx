@@ -5,6 +5,7 @@ import {
   Route,
   Outlet,
   useLocation,
+  useNavigate,
 } from "react-router-dom";
 import { ArrowUp } from "lucide-react";
 
@@ -73,6 +74,7 @@ import { DiscussionsProvider } from "./context/DiscussionsContext";
 // ==========================================
 
 import GamificationCelebrationHost from "./components/student/achievements/GamificationCelebrationHost";
+import { getLocaleFromPath, withLocale } from "./utils/localeRouting";
 
 /* ==========================================
    SCROLL TO TOP BUTTON
@@ -142,6 +144,27 @@ function RouteScrollReset() {
   return null;
 }
 
+function LocaleUrlSync() {
+  const { pathname } = useLocation();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const locale = getLocaleFromPath(pathname);
+
+    if (!locale) {
+      const stored = localStorage.getItem("behar-language") || "en";
+      navigate(withLocale(pathname, stored), { replace: true });
+      return;
+    }
+
+    document.documentElement.lang = locale;
+    document.documentElement.dir = locale === "ar" ? "rtl" : "ltr";
+    localStorage.setItem("behar-language", locale);
+  }, [navigate, pathname]);
+
+  return null;
+}
+
 /* ==========================================
    PUBLIC WEBSITE LAYOUT
 ========================================== */
@@ -176,13 +199,14 @@ function App() {
         ================================== */}
 
         <RouteScrollReset />
+        <LocaleUrlSync />
 
         <Routes>
           {/* ==================================
               PUBLIC WEBSITE
           ================================== */}
 
-          <Route element={<PublicLayout />}>
+          <Route path=":lang?" element={<PublicLayout />}>
             {/* P01 — Home */}
             <Route
               index
@@ -213,7 +237,7 @@ function App() {
           ================================== */}
 
           <Route
-            path="/student"
+            path=":lang?/student"
             element={<StudentLayout />}
           >
             {/* ==================================
@@ -321,12 +345,12 @@ function App() {
           ================================== */}
 
           <Route
-            path="/student/learn/:courseSlug"
+            path=":lang?/student/learn/:courseSlug"
             element={<LearningPlayer />}
           />
 
           <Route
-            path="/student/learn/:courseSlug/lessons/:lessonId"
+            path=":lang?/student/learn/:courseSlug/lessons/:lessonId"
             element={<LearningPlayer />}
           />
 
@@ -335,7 +359,7 @@ function App() {
           ================================== */}
 
           <Route
-            path="*"
+            path=":lang?/*"
             element={
               <PublicLayout>
                 <NotFound />

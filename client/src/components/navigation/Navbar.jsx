@@ -13,6 +13,7 @@ import {
   ArrowLeft,
 } from "lucide-react";
 import "../../styles/navbar.css";
+import { getLocaleFromPath, withLocale } from "../../utils/localeRouting";
 
 const translations = {
   en: {
@@ -74,9 +75,16 @@ export default function Navbar() {
   const mobilePanelRef = useRef(null);
   const location = useLocation();
   const navigate = useNavigate();
+  const routeLanguage = getLocaleFromPath(location.pathname);
 
   const isArabic = language === "ar";
   const t = translations[language];
+
+  useEffect(() => {
+    if (routeLanguage && routeLanguage !== language) {
+      setLanguage(routeLanguage);
+    }
+  }, [language, routeLanguage]);
 
   const links = [
     { label: t.explore, to: "/courses", number: "01" },
@@ -167,9 +175,15 @@ export default function Navbar() {
       return;
     }
 
-    navigate(`/courses?search=${encodeURIComponent(term)}`);
+    navigate(`/${language}/courses?search=${encodeURIComponent(term)}`);
     setSearchOpen(false);
     setMenuOpen(false);
+  };
+
+  const switchLanguage = () => {
+    const nextLanguage = language === "ar" ? "en" : "ar";
+    setLanguage(nextLanguage);
+    navigate(withLocale(location.pathname, nextLanguage), { replace: true });
   };
 
   const DiagonalArrow = isArabic ? ArrowUpLeft : ArrowUpRight;
@@ -234,7 +248,7 @@ export default function Navbar() {
             <button
               type="button"
               className="behar-language"
-              onClick={() => setLanguage((current) => current === "ar" ? "en" : "ar")}
+              onClick={switchLanguage}
               aria-label={isArabic ? "Switch to English" : "التبديل إلى العربية"}
             >
               {t.language}

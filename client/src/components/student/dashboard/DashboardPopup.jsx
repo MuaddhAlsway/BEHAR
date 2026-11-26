@@ -3,6 +3,7 @@ import { ArrowUpRight, X } from "lucide-react";
 import { Link } from "react-router-dom";
 
 import useFocusTrap from "../../../hooks/useFocusTrap";
+import { withLocale } from "../../../utils/localeRouting";
 import "../../../styles/student/dashboard-popup.css";
 
 const copy = {
@@ -28,13 +29,43 @@ const copy = {
   },
 };
 
+const uiText = {
+  en: { close: "Close dialog", empty: "No activity recorded yet." },
+  ar: { close: "إغلاق النافذة", empty: "لم يتم تسجيل أي نشاط بعد." },
+};
+
+const overviewDetails = {
+  en: [
+    "Learning progress and completed lessons",
+    "Current level, XP, streak, and weekly goal",
+    "Enrolled courses and continue-learning actions",
+    "Upcoming deadlines and weekly activity",
+    "Badges and achievement milestones",
+  ],
+  ar: [
+    "تقدم التعلم والدروس المكتملة",
+    "المستوى الحالي ونقاط الخبرة وسلسلة التعلم والهدف الأسبوعي",
+    "الدورات المسجلة وإجراءات متابعة التعلم",
+    "المواعيد القادمة والنشاط الأسبوعي",
+    "الشارات ومحطات الإنجاز",
+  ],
+};
+
 function valueFromData(type, data, locale) {
-  if (type === "overview") return data || [];
-  if (type === "achievements") return [`${data?.totalXP ?? 0} XP`, `Level ${data?.level ?? 1}`, `${data?.badges ?? 0} badges`];
-  if (type === "progress") return [`${data?.completedLessons ?? 0} lessons completed`, `${data?.completedCourses ?? 0} courses completed`, `${data?.percentage ?? 0}% overall completion`];
-  if (type === "assignments") return [`${data?.total ?? 0} total`, `${data?.pending ?? 0} pending`, `${data?.graded ?? 0} graded`];
-  if (type === "certificates") return [`${data?.earned ?? 0} issued`, data?.earned ? "Certificate available" : "No issued certificates yet"];
-  if (type === "deadlines") return (data || []).slice(0, 4).map((item) => `${item.title || item.assignment || "Assignment"} · ${item.dueDate || "Upcoming"}`);
+  if (type === "overview") return overviewDetails[locale];
+  if (type === "achievements") return locale === "ar"
+    ? [`${data?.totalXP ?? 0} نقطة خبرة`, `المستوى ${data?.level ?? 1}`, `${data?.badges ?? 0} شارات`]
+    : [`${data?.totalXP ?? 0} XP`, `Level ${data?.level ?? 1}`, `${data?.badges ?? 0} badges`];
+  if (type === "progress") return locale === "ar"
+    ? [`${data?.completedLessons ?? 0} درس مكتمل`, `${data?.completedCourses ?? 0} دورات مكتملة`, `${data?.percentage ?? 0}% نسبة الإكمال`]
+    : [`${data?.completedLessons ?? 0} lessons completed`, `${data?.completedCourses ?? 0} courses completed`, `${data?.percentage ?? 0}% overall completion`];
+  if (type === "assignments") return locale === "ar"
+    ? [`${data?.total ?? 0} إجمالي`, `${data?.pending ?? 0} قيد الانتظار`, `${data?.graded ?? 0} تم تقييمها`]
+    : [`${data?.total ?? 0} total`, `${data?.pending ?? 0} pending`, `${data?.graded ?? 0} graded`];
+  if (type === "certificates") return locale === "ar"
+    ? [`${data?.earned ?? 0} صادرة`, data?.earned ? "الشهادة متاحة" : "لا توجد شهادات صادرة بعد"]
+    : [`${data?.earned ?? 0} issued`, data?.earned ? "Certificate available" : "No issued certificates yet"];
+  if (type === "deadlines") return (data || []).slice(0, 4).map((item) => `${item.title || item.assignment || (locale === "ar" ? "واجب" : "Assignment")} · ${item.dueDate || (locale === "ar" ? "قادم" : "Upcoming")}`);
   if (type === "activity") return (data || []).slice(0, 4).map((item) => item.title || item.label || String(item));
   return (data || []).slice(0, 4).map((item) => typeof item === "string" ? item : item.title?.[locale] || item.title || item.name || "Course");
 }
@@ -45,6 +76,7 @@ export default function DashboardPopup({ type, data, language = "en", onClose })
   const locale = language === "ar" ? "ar" : "en";
   const content = copy[locale][type] || copy[locale].progress;
   const details = valueFromData(type, data, locale);
+  const text = uiText[locale];
 
   useEffect(() => {
     returnFocusRef.current = document.activeElement;
@@ -55,7 +87,7 @@ export default function DashboardPopup({ type, data, language = "en", onClose })
 
   useFocusTrap({ active: true, containerRef: dialogRef, onEscape: onClose, returnFocusRef });
 
-  return <div className="behar-dashboard-popup" dir={locale === "ar" ? "rtl" : "ltr"}><button className="behar-dashboard-popup__backdrop" type="button" aria-label="Close dialog" onClick={onClose} /><section ref={dialogRef} className="behar-dashboard-popup__dialog" role="dialog" aria-modal="true" aria-labelledby="dashboard-popup-title"><button className="behar-dashboard-popup__close" type="button" onClick={onClose} aria-label="Close dialog"><X size={20} /></button><span className="behar-dashboard-popup__label">{content.label}</span><h2 id="dashboard-popup-title">{content.title}</h2><p>{content.description}</p><div className="behar-dashboard-popup__details" aria-label={content.title}>{details.length ? details.map((item, index) => <div key={`${item}-${index}`}><span>{String(index + 1).padStart(2, "0")}</span><strong>{item}</strong></div>) : <span>No activity recorded yet.</span>}</div><Link className="behar-dashboard-popup__action" to={content.route} onClick={onClose}>{content.action}<ArrowUpRight size={17} /></Link></section></div>;
+  return <div className="behar-dashboard-popup" dir={locale === "ar" ? "rtl" : "ltr"}><button className="behar-dashboard-popup__backdrop" type="button" aria-label={text.close} onClick={onClose} /><section ref={dialogRef} className="behar-dashboard-popup__dialog" role="dialog" aria-modal="true" aria-labelledby="dashboard-popup-title"><button className="behar-dashboard-popup__close" type="button" onClick={onClose} aria-label={text.close}><X size={20} /></button><span className="behar-dashboard-popup__label">{content.label}</span><h2 id="dashboard-popup-title">{content.title}</h2><p>{content.description}</p><div className="behar-dashboard-popup__details" aria-label={content.title}>{details.length ? details.map((item, index) => <div key={`${item}-${index}`}><span>{String(index + 1).padStart(2, "0")}</span><strong>{item}</strong></div>) : <span>{text.empty}</span>}</div><Link className="behar-dashboard-popup__action" to={withLocale(content.route, locale)} onClick={onClose}>{content.action}<ArrowUpRight size={17} /></Link></section></div>;
 }
 
 export function DashboardPopupTrigger({ type, data, language = "en", onOpen, children }) {

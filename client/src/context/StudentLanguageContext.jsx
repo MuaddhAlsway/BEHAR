@@ -1,4 +1,6 @@
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
+import { useLocation } from "react-router-dom";
+import { getLocaleFromPath } from "../utils/localeRouting";
 
 const STORAGE_KEY = "behar-language";
 
@@ -12,7 +14,15 @@ function readInitialLanguage() {
 const StudentLanguageContext = createContext(null);
 
 export function StudentLanguageProvider({ children }) {
-  const [language, setLanguage] = useState(readInitialLanguage);
+  const location = useLocation();
+  const routeLanguage = getLocaleFromPath(location.pathname);
+  const [language, setLanguage] = useState(routeLanguage || readInitialLanguage);
+
+  useEffect(() => {
+    if (routeLanguage && routeLanguage !== language) {
+      setLanguage(routeLanguage);
+    }
+  }, [language, routeLanguage]);
 
   useEffect(() => {
     document.documentElement.lang = language;
