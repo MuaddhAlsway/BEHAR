@@ -40,6 +40,7 @@ import MyLearning from "./pages/student/MyLearning";
 import LearningPlayer from "./pages/student/LearningPlayer";
 import Assignments from "./pages/student/Assignments";
 import StudentProgress from "./pages/student/Progress";
+import Messages from "./pages/student/Messages";
 import Notifications from "./pages/student/Notifications";
 import Certificates from "./pages/student/Certificates";
 
@@ -241,6 +242,8 @@ function App() {
               path="progress"
               element={<StudentProgress />}
             />
+
+            <Route path="messages" element={<Messages />} />
 
             {/* ==================================
                 P14.5 — ACHIEVEMENTS
