@@ -86,8 +86,15 @@ function formatFileSize(bytes, language = "en") {
 }
 
 function getAttachmentCategory(attachment) {
-  const type = attachment.type || "";
-  const name = (attachment.name || "").toLowerCase();
+  const safeAttachment = attachment && typeof attachment === "object"
+    ? attachment
+    : {};
+  const type = typeof safeAttachment.type === "string"
+    ? safeAttachment.type
+    : "";
+  const name = typeof safeAttachment.name === "string"
+    ? safeAttachment.name.toLowerCase()
+    : "";
 
   if (
     type.startsWith("image/") ||
@@ -183,18 +190,21 @@ function AttachmentCard({
   language,
   variant,
 }) {
+  const safeAttachment = attachment && typeof attachment === "object"
+    ? attachment
+    : {};
   const [objectUrl, setObjectUrl] = useState(null);
   const [imageError, setImageError] = useState(false);
 
   const t = translations[language] || translations.en;
 
-  const category = getAttachmentCategory(attachment);
+  const category = getAttachmentCategory(safeAttachment);
   const Icon = getAttachmentIcon(category);
 
   const file =
     typeof File !== "undefined" &&
-    attachment.file instanceof File
-      ? attachment.file
+    safeAttachment.file instanceof File
+      ? safeAttachment.file
       : null;
 
   useEffect(() => {
@@ -211,7 +221,7 @@ function AttachmentCard({
     };
   }, [file]);
 
-  const url = objectUrl || getSafeUrl(attachment.url);
+  const url = objectUrl || getSafeUrl(safeAttachment.url);
 
   const canPreviewImage =
     category === "image" &&
@@ -234,7 +244,7 @@ function AttachmentCard({
         {canPreviewImage ? (
           <img
             src={url}
-            alt={`${t.imagePreview}: ${attachment.name}`}
+            alt={`${t.imagePreview}: ${safeAttachment.name || t.attachment}`}
             loading="lazy"
             onError={() => setImageError(true)}
             className="attachment-preview__image"
@@ -251,13 +261,13 @@ function AttachmentCard({
       <div className="attachment-preview__details">
         <span
           className="attachment-preview__name"
-          title={attachment.name}
+          title={safeAttachment.name || t.attachment}
         >
-          {attachment.name || t.attachment}
+          {safeAttachment.name || t.attachment}
         </span>
 
         <span className="attachment-preview__meta">
-          {formatFileSize(attachment.size, language)}
+          {formatFileSize(Number(safeAttachment.size), language)}
           {" · "}
           {category.toUpperCase()}
         </span>
@@ -268,8 +278,8 @@ function AttachmentCard({
           <button
             type="button"
             className="attachment-preview__action attachment-preview__action--remove"
-            onClick={() => onRemove(attachment.id)}
-            aria-label={`${t.remove}: ${attachment.name}`}
+            onClick={() => onRemove(safeAttachment.id)}
+            aria-label={`${t.remove}: ${safeAttachment.name || t.attachment}`}
             title={t.remove}
           >
             <X size={16} aria-hidden="true" />
@@ -283,7 +293,7 @@ function AttachmentCard({
               target="_blank"
               rel="noopener noreferrer"
               className="attachment-preview__action"
-              aria-label={`${t.open}: ${attachment.name}`}
+              aria-label={`${t.open}: ${safeAttachment.name || t.attachment}`}
               title={t.open}
             >
               <ExternalLink
@@ -294,9 +304,9 @@ function AttachmentCard({
 
             <a
               href={url}
-              download={attachment.name}
+              download={safeAttachment.name || "attachment"}
               className="attachment-preview__action"
-              aria-label={`${t.download}: ${attachment.name}`}
+              aria-label={`${t.download}: ${safeAttachment.name || t.attachment}`}
               title={t.download}
             >
               <Download
@@ -351,7 +361,7 @@ export default function AttachmentPreview({
       <div className="attachment-preview__list">
         {attachments.map((attachment, index) => (
           <AttachmentCard
-            key={attachment.id ?? index}
+            key={attachment?.id ?? `attachment-${index}`}
             attachment={attachment}
             onRemove={onRemove}
             language={currentLanguage}

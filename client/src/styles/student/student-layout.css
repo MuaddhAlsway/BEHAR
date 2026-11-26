@@ -243,6 +243,15 @@
   gap: 20px;
 }
 
+.behar-student-header__left {
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+.behar-student-header__actions {
+  flex: 0 0 auto;
+}
+
 .behar-student-header__language {
   min-height: 34px;
   padding: 0 10px;
@@ -265,6 +274,7 @@
   display: flex;
   align-items: center;
   gap: 12px;
+  min-width: 0;
   font-size: 12px;
 }
 
@@ -274,6 +284,10 @@
 }
 
 .behar-student-header__breadcrumb span {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   color: var(--student-forest);
   font-weight: 700;
 }
@@ -324,6 +338,7 @@
   place-items: center;
   width: 40px;
   height: 40px;
+  flex: 0 0 40px;
   border: 0;
   background: transparent;
   color: var(--student-forest);
@@ -442,12 +457,13 @@
 @media (max-width: 600px) {
   .behar-student-header {
     min-height: 70px;
-    padding: 12px 18px;
+    padding: 10px 14px;
+    gap: 8px;
   }
 
   .behar-student-header__left,
   .behar-student-header__actions {
-    gap: 10px;
+    gap: 7px;
   }
 
   .behar-student-header__breadcrumb {
@@ -464,6 +480,36 @@
     height: 36px;
   }
 
+  .behar-student-header__menu {
+    width: 40px;
+    height: 40px;
+    flex-basis: 40px;
+  }
+
+  .behar-student-header__language {
+    min-height: 36px;
+    padding-inline: 7px;
+    font-size: 9px;
+    white-space: nowrap;
+  }
+
+  .behar-notification-bell-button {
+    width: 36px;
+    height: 36px;
+  }
+
+  .behar-student-header__breadcrumb {
+    gap: 6px;
+    font-size: 10px;
+  }
+
+  .behar-student-header__breadcrumb a {
+    max-width: 72px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
   .behar-student-layout__main {
     padding: 30px 18px;
   }
@@ -471,6 +517,27 @@
   .behar-student-layout__footer {
     padding: 20px 18px;
     font-size: 9px;
+  }
+}
+
+@media (max-width: 380px) {
+  .behar-student-header {
+    padding-inline: 10px;
+  }
+
+  .behar-student-header__left,
+  .behar-student-header__actions {
+    gap: 4px;
+  }
+
+  .behar-student-header__breadcrumb a,
+  .behar-student-header__breadcrumb > svg {
+    display: none;
+  }
+
+  .behar-student-header__language {
+    padding-inline: 5px;
+    font-size: 8px;
   }
 }
 

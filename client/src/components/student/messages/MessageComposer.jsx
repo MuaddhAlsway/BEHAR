@@ -34,6 +34,7 @@ const translations = {
     send: "Send message",
     noConversation: "Select a conversation to send a message.",
     tooLarge: "Files must not exceed 10 MB each.",
+    empty: "Empty files cannot be attached.",
     tooMany: "You can attach up to 5 files.",
     unsupported: "This file format is not supported.",
     duplicate: "This file has already been selected.",
@@ -47,6 +48,7 @@ const translations = {
     send: "إرسال الرسالة",
     noConversation: "اختر محادثة لإرسال رسالة.",
     tooLarge: "يجب ألا يتجاوز حجم الملف 10 ميجابايت.",
+    empty: "لا يمكن إرفاق الملفات الفارغة.",
     tooMany: "يمكنك إرفاق 5 ملفات كحد أقصى.",
     unsupported: "صيغة الملف غير مدعومة.",
     duplicate: "تم اختيار هذا الملف مسبقًا.",
@@ -143,6 +145,11 @@ export default function MessageComposer({
 
       if (file.size > MAX_FILE_SIZE) {
         validationError ||= t.tooLarge;
+        continue;
+      }
+
+      if (file.size === 0) {
+        validationError ||= t.empty;
         continue;
       }
 

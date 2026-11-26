@@ -73,6 +73,8 @@ export default function ConversationHeader({
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const menuRef = useRef(null);
+  const menuButtonRef = useRef(null);
+  const menuItemsRef = useRef([]);
 
   const currentLanguage =
     language === "ar" ? "ar" : "en";
@@ -102,6 +104,9 @@ export default function ConversationHeader({
   useEffect(() => {
     if (!isMenuOpen) return;
 
+    const firstItem = menuItemsRef.current[0];
+    firstItem?.focus();
+
     function handleOutsideClick(event) {
       if (
         menuRef.current &&
@@ -113,7 +118,27 @@ export default function ConversationHeader({
 
     function handleEscape(event) {
       if (event.key === "Escape") {
+        event.preventDefault();
         setIsMenuOpen(false);
+        menuButtonRef.current?.focus();
+      }
+    }
+
+    function handleMenuKeyDown(event) {
+      const items = menuItemsRef.current.filter(Boolean);
+      if (!items.length) return;
+
+      const currentIndex = items.indexOf(document.activeElement);
+      let nextIndex = currentIndex;
+
+      if (event.key === "ArrowDown") nextIndex = (currentIndex + 1) % items.length;
+      if (event.key === "ArrowUp") nextIndex = (currentIndex - 1 + items.length) % items.length;
+      if (event.key === "Home") nextIndex = 0;
+      if (event.key === "End") nextIndex = items.length - 1;
+
+      if (nextIndex !== currentIndex) {
+        event.preventDefault();
+        items[nextIndex]?.focus();
       }
     }
 
@@ -126,6 +151,7 @@ export default function ConversationHeader({
       "keydown",
       handleEscape
     );
+    menuRef.current?.addEventListener("keydown", handleMenuKeyDown);
 
     return () => {
       document.removeEventListener(
@@ -137,6 +163,7 @@ export default function ConversationHeader({
         "keydown",
         handleEscape
       );
+      menuRef.current?.removeEventListener("keydown", handleMenuKeyDown);
     };
   }, [isMenuOpen]);
 
@@ -271,6 +298,7 @@ export default function ConversationHeader({
           <button
             type="button"
             className="conversation-header__action"
+            ref={menuButtonRef}
             onClick={() =>
               setIsMenuOpen((previous) => !previous)
             }
@@ -293,6 +321,7 @@ export default function ConversationHeader({
               <button
                 type="button"
                 role="menuitem"
+                ref={(element) => { menuItemsRef.current[0] = element; }}
                 onClick={handleOpenInfo}
               >
                 <Info size={16} aria-hidden="true" />
@@ -302,6 +331,7 @@ export default function ConversationHeader({
               <button
                 type="button"
                 role="menuitem"
+                ref={(element) => { menuItemsRef.current[1] = element; }}
                 onClick={handleArchiveToggle}
               >
                 {isArchived ? (
