@@ -943,6 +943,13 @@
 .message-bubble__attachments .attachment-preview__item { min-width:0; padding:8px; border-color:rgba(16,44,43,.12) !important; background:rgba(255,255,255,.72) !important; box-shadow:none; }
 .message-bubble__attachments .attachment-preview__thumbnail { flex-basis:38px; width:38px; height:38px; background:#eef4e9 !important; color:#276b50 !important; }
 .message-bubble__attachments .attachment-preview__actions { display:none; }
+.message-bubble--with-attachments { width:fit-content; max-width:min(72%,560px); }
+.message-bubble--with-attachments .message-bubble__body { max-width:100%; padding:8px 10px 5px; overflow:hidden; }
+.message-bubble--with-attachments .attachment-preview__list { width:100%; }
+.message-bubble--with-attachments .attachment-preview__item { width:100%; box-sizing:border-box; }
+.message-bubble--with-attachments .attachment-preview__details { min-width:0; }
+.message-bubble--with-attachments .attachment-preview__name { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.message-bubble--with-attachments .message-bubble__footer { padding:0 10px 7px; }
 .message-bubble__footer { display:flex; align-items:center; justify-content:flex-end; gap:5px; padding:0 12px 8px; }
 .message-bubble__time { color:#789086; font-size:10px; }
 .message-bubble--own .message-bubble__time { color:#54705a; }
@@ -951,6 +958,31 @@
 .message-timeline__bottom { min-height:12px; }
 @media (max-width:640px) {
   .message-timeline__content { padding:16px 10px; }
-  .message-bubble { max-width:88%; }
+  .message-bubble,.message-bubble--with-attachments { max-width:88%; }
+  .message-bubble--with-attachments .message-bubble__body { padding:6px 7px 4px; }
+  .message-bubble--with-attachments .attachment-preview__item { gap:7px; padding:6px; border-radius:8px; }
+  .message-bubble--with-attachments .attachment-preview__thumbnail { flex-basis:32px; width:32px; height:32px; }
+  .message-bubble--with-attachments .attachment-preview__name { max-width:calc(100vw - 150px); font-size:11px; }
+  .message-bubble--with-attachments .attachment-preview__meta { font-size:9px; }
   .message-bubble__attachments { min-width:0; }
+}
+
+/* Responsive message bubble sizing */
+.message-bubble { max-width:min(68%,620px); }
+.message-bubble__body { padding:9px 12px 5px; }
+.message-bubble__footer { padding:0 11px 6px; }
+@media (max-width:1024px) {
+  .message-bubble { max-width:min(76%,520px); }
+  .message-bubble__body { padding:8px 11px 5px; }
+}
+@media (max-width:768px) {
+  .message-bubble { max-width:82%; }
+  .message-bubble__body { padding:8px 10px 4px; }
+  .message-bubble__footer { padding-inline:9px; }
+}
+@media (max-width:480px) {
+  .message-bubble { max-width:90%; }
+  .message-bubble__body { padding:7px 8px 4px; }
+  .message-bubble__footer { padding:0 8px 5px; }
+  .message-bubble p { overflow-wrap:anywhere; font-size:12px; }
 }
