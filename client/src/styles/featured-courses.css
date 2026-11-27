@@ -81,7 +81,7 @@
 }
 
 .behar-featured__heading-aside {
-  width: 280px;
+  width: clamp(280px, 25vw, 360px);
   flex-shrink: 0;
   padding-bottom: 8px;
 }
@@ -96,10 +96,15 @@
 }
 
 .behar-featured__heading-aside p {
+  max-width: 35ch;
   margin: 0;
   color: #65766f;
-  font-size: 14px;
-  line-height: 1.9;
+  font-family: "Atyp Text", "Outfit", sans-serif;
+  font-size: clamp(14px, 1.05vw, 16px);
+  font-weight: 400;
+  letter-spacing: 0.005em;
+  line-height: 1.65;
+  text-wrap: pretty;
 }
 
 /* FILTER TOOLBAR */
@@ -770,6 +775,7 @@
 }
 
 .behar-featured[dir="rtl"] .behar-featured__heading-aside p {
+  max-width: 100%;
   word-spacing: 0.18em;
   line-height: 2;
 }

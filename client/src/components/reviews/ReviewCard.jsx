@@ -1,0 +1,2 @@
+import StarRating from "./StarRating";
+export default function ReviewCard({ review, language = "en" }) { const text = (value) => typeof value === "string" ? value : value?.[language] || value?.en || ""; return <article className="review-card"><header><strong>{review.studentName || review.student}</strong><StarRating value={review.rating} readOnly /></header><h3>{text(review.title)}</h3><p>{text(review.comment || review.content)}</p></article>; }

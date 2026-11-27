@@ -1,0 +1,386 @@
+
+/*
+ * BEHAR LMS — Student Calendar
+ * P14.14 / Component 14
+ *
+ * CalendarDayCell
+ * Pure CSS
+ */
+
+.behar-calendar-day-cell {
+  position: relative;
+  min-width: 0;
+  min-height: 116px;
+  padding: 9px 7px;
+  border-inline-end: 1px solid #edf0ed;
+  border-bottom: 1px solid #edf0ed;
+  background: #fff;
+  transition: background 160ms ease;
+}
+
+.behar-calendar-day-cell:hover {
+  background: #f9fbf9;
+}
+
+.behar-calendar-day-cell--outside {
+  background: #fafbfa;
+}
+
+.behar-calendar-day-cell--outside
+.behar-calendar-day-cell__number {
+  color: #b2bdb4;
+}
+
+.behar-calendar-day-cell--today {
+  background: #f5faf6;
+}
+
+.behar-calendar-day-cell--selected {
+  background: #f0f7f1;
+  box-shadow: inset 0 0 0 1px #b6d3bf;
+}
+
+/* ==========================================
+   DAY HEADING
+========================================== */
+
+.behar-calendar-day-cell__heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px;
+  margin-bottom: 7px;
+}
+
+.behar-calendar-day-cell__number {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border: 0;
+  border-radius: 9px;
+  background: transparent;
+  color: #415648;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 650;
+  cursor: pointer;
+}
+
+.behar-calendar-day-cell__number:hover {
+  background: #e7f0e9;
+}
+
+.behar-calendar-day-cell--today
+.behar-calendar-day-cell__number {
+  border-radius: 50%;
+  background: #285b3e;
+  color: #fff;
+}
+
+.behar-calendar-day-cell--today
+.behar-calendar-day-cell__number:hover {
+  background: #1d4930;
+}
+
+.behar-calendar-day-cell__add {
+  display: grid;
+  place-items: center;
+  width: 25px;
+  height: 25px;
+  padding: 0;
+  border: 0;
+  border-radius: 7px;
+  background: transparent;
+  color: #7c9884;
+  opacity: 0;
+  cursor: pointer;
+  transition:
+    opacity 150ms ease,
+    background 150ms ease;
+}
+
+.behar-calendar-day-cell:hover
+.behar-calendar-day-cell__add,
+.behar-calendar-day-cell__add:focus-visible {
+  opacity: 1;
+}
+
+.behar-calendar-day-cell__add:hover {
+  background: #e3efe6;
+  color: #285b3e;
+}
+
+/* ==========================================
+   EVENT LIST
+========================================== */
+
+.behar-calendar-day-cell__events {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.behar-calendar-day-cell__event {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  width: 100%;
+  min-width: 0;
+  min-height: 23px;
+  padding: 4px 6px;
+  border: 0;
+  border-radius: 5px;
+  background: #edf3ee;
+  color: #365a42;
+  text-align: start;
+  font: inherit;
+  font-size: 10px;
+  line-height: 1.25;
+  cursor: pointer;
+  transition: filter 150ms ease;
+}
+
+.behar-calendar-day-cell__event:hover {
+  filter: brightness(0.96);
+}
+
+.behar-calendar-day-cell__event-dot {
+  width: 6px;
+  height: 6px;
+  flex: 0 0 6px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.behar-calendar-day-cell__event-time {
+  flex-shrink: 0;
+  font-size: 9px;
+  font-weight: 700;
+}
+
+.behar-calendar-day-cell__event-title {
+  overflow: hidden;
+  min-width: 0;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-weight: 600;
+}
+
+/* ==========================================
+   EVENT COLORS
+========================================== */
+
+.behar-calendar-day-cell__event--live {
+  background: #e8f1ff;
+  color: #2c62a8;
+}
+
+.behar-calendar-day-cell__event--lesson {
+  background: #edf3ff;
+  color: #5666a7;
+}
+
+.behar-calendar-day-cell__event--assignment {
+  background: #fff3e5;
+  color: #a56c2c;
+}
+
+.behar-calendar-day-cell__event--assessment {
+  background: #f4eafa;
+  color: #8553a4;
+}
+
+.behar-calendar-day-cell__event--deadline {
+  background: #fff0ed;
+  color: #b65d4e;
+}
+
+.behar-calendar-day-cell__event--study {
+  background: #eaf5ed;
+  color: #34764b;
+}
+
+.behar-calendar-day-cell__event--reminder {
+  background: #fff8df;
+  color: #967b22;
+}
+
+.behar-calendar-day-cell__event--goal {
+  background: #e7f7f2;
+  color: #277d6b;
+}
+
+.behar-calendar-day-cell__event--task {
+  background: #f0f1f4;
+  color: #596477;
+}
+
+/* ==========================================
+   MULTI-DAY EVENTS
+========================================== */
+
+.behar-calendar-day-cell__event--start {
+  border-start-start-radius: 5px;
+  border-end-start-radius: 5px;
+  border-start-end-radius: 2px;
+  border-end-end-radius: 2px;
+}
+
+.behar-calendar-day-cell__event--middle {
+  border-radius: 2px;
+}
+
+.behar-calendar-day-cell__event--end {
+  border-start-start-radius: 2px;
+  border-end-start-radius: 2px;
+  border-start-end-radius: 5px;
+  border-end-end-radius: 5px;
+}
+
+/* ==========================================
+   MORE EVENTS
+========================================== */
+
+.behar-calendar-day-cell__more {
+  width: fit-content;
+  padding: 3px 5px;
+  border: 0;
+  border-radius: 4px;
+  background: transparent;
+  color: #547a60;
+  font: inherit;
+  font-size: 10px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.behar-calendar-day-cell__more:hover {
+  background: #edf4ef;
+}
+
+/* ==========================================
+   MOBILE INDICATORS
+========================================== */
+
+.behar-calendar-day-cell__dots {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  margin-top: 4px;
+}
+
+.behar-calendar-day-cell__dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #7e9886;
+}
+
+.behar-calendar-day-cell__dot--live {
+  background: #4c80ca;
+}
+
+.behar-calendar-day-cell__dot--lesson {
+  background: #7988c6;
+}
+
+.behar-calendar-day-cell__dot--assignment {
+  background: #d79b4b;
+}
+
+.behar-calendar-day-cell__dot--assessment {
+  background: #9b68b9;
+}
+
+.behar-calendar-day-cell__dot--deadline {
+  background: #d37767;
+}
+
+.behar-calendar-day-cell__dot--study {
+  background: #55a56d;
+}
+
+.behar-calendar-day-cell__dot--reminder {
+  background: #c7a83d;
+}
+
+.behar-calendar-day-cell__dot--goal {
+  background: #3aa68b;
+}
+
+.behar-calendar-day-cell__dot--task {
+  background: #8b94a4;
+}
+
+/* ==========================================
+   FOCUS & ACCESSIBILITY
+========================================== */
+
+.behar-calendar-day-cell button:focus-visible {
+  outline: 3px solid #87b79a;
+  outline-offset: 2px;
+  position: relative;
+  z-index: 2;
+}
+
+/* ==========================================
+   TABLET
+========================================== */
+
+@media (max-width: 1024px) {
+  .behar-calendar-day-cell {
+    min-height: 100px;
+  }
+
+  .behar-calendar-day-cell__event-time {
+    display: none;
+  }
+}
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media (max-width: 640px) {
+  .behar-calendar-day-cell {
+    min-height: 65px;
+    padding: 5px 2px;
+    text-align: center;
+  }
+
+  .behar-calendar-day-cell__heading {
+    justify-content: center;
+    margin-bottom: 2px;
+  }
+
+  .behar-calendar-day-cell__number {
+    width: 29px;
+    height: 29px;
+    font-size: 11px;
+  }
+
+  .behar-calendar-day-cell__add,
+  .behar-calendar-day-cell__events {
+    display: none;
+  }
+
+  .behar-calendar-day-cell__dots {
+    display: flex;
+  }
+}
+
+/* ==========================================
+   REDUCED MOTION
+========================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .behar-calendar-day-cell *,
+  .behar-calendar-day-cell *::before,
+  .behar-calendar-day-cell *::after {
+    transition: none !important;
+  }
+}

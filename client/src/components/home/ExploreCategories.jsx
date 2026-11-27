@@ -73,7 +73,7 @@ const translations = {
         micro: "SEE DIFFERENTLY",
       },
       {
-        id: "personal-development",
+        id: "personal-growth",
         number: "06",
         name: "Personal",
         second: "Development",
@@ -134,7 +134,7 @@ const translations = {
         micro: "رؤية مختلفة",
       },
       {
-        id: "personal-development",
+        id: "personal-growth",
         number: "06",
         name: "التطوير",
         second: "الذاتي",
@@ -151,7 +151,7 @@ const categoryIconMap = {
   business: ChartNoAxesCombined,
   marketing: Megaphone,
   photography: Camera,
-  "personal-development": Sprout,
+  "personal-growth": Sprout,
 };
 
 function getLanguage() {

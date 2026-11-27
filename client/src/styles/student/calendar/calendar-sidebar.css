@@ -1,0 +1,453 @@
+
+/*
+ * BEHAR LMS — Student Calendar
+ * P14.14 / Component 18
+ *
+ * CalendarSidebar
+ * Pure CSS
+ */
+
+.behar-calendar-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  width: 100%;
+  min-width: 0;
+}
+
+/* ==========================================
+   SHARED SECTIONS
+========================================== */
+
+.behar-calendar-sidebar__mini,
+.behar-calendar-sidebar__selected,
+.behar-calendar-sidebar__categories,
+.behar-calendar-sidebar__upcoming {
+  min-width: 0;
+  padding: 17px;
+  border: 1px solid #e4ebe5;
+  border-radius: 13px;
+  background: #fff;
+}
+
+.behar-calendar-sidebar__section-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.behar-calendar-sidebar__section-heading h3 {
+  margin: 0;
+  color: #2c4835;
+  font-size: 12px;
+  font-weight: 750;
+}
+
+.behar-calendar-sidebar__count {
+  display: grid;
+  place-items: center;
+  min-width: 23px;
+  height: 23px;
+  padding: 0 6px;
+  border-radius: 7px;
+  background: #edf4ee;
+  color: #50765c;
+  font-size: 11px;
+  font-weight: 750;
+}
+
+/* ==========================================
+   MINI CALENDAR HEADER
+========================================== */
+
+.behar-calendar-sidebar__mini-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.behar-calendar-sidebar__mini-header h3 {
+  margin: 0;
+  color: #294833;
+  font-size: 13px;
+  font-weight: 750;
+}
+
+.behar-calendar-sidebar__mini-actions {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.behar-calendar-sidebar__mini-actions button {
+  display: grid;
+  place-items: center;
+  width: 27px;
+  height: 27px;
+  padding: 0;
+  border: 0;
+  border-radius: 7px;
+  background: transparent;
+  color: #738a79;
+  cursor: pointer;
+}
+
+.behar-calendar-sidebar__mini-actions button:hover {
+  background: #edf4ef;
+  color: #285b3e;
+}
+
+.behar-calendar-sidebar__mini-actions
+.behar-calendar-sidebar__today {
+  width: auto;
+  padding: 0 7px;
+  font: inherit;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+/* ==========================================
+   MINI CALENDAR GRID
+========================================== */
+
+.behar-calendar-sidebar__mini-grid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 4px;
+}
+
+.behar-calendar-sidebar__weekday {
+  display: grid;
+  place-items: center;
+  min-height: 24px;
+  color: #9ba99e;
+  font-size: 9px;
+  font-weight: 750;
+  text-align: center;
+}
+
+.behar-calendar-sidebar__date {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  min-height: 33px;
+  padding: 4px 2px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: #536b59;
+  font: inherit;
+  font-size: 11px;
+  font-weight: 650;
+  cursor: pointer;
+}
+
+.behar-calendar-sidebar__date:hover {
+  background: #edf4ef;
+}
+
+.behar-calendar-sidebar__date--outside {
+  color: #b5c0b7;
+}
+
+.behar-calendar-sidebar__date--today {
+  background: #e6f2e9;
+  color: #285b3e;
+  font-weight: 800;
+}
+
+.behar-calendar-sidebar__date--selected {
+  background: #285b3e;
+  color: #fff;
+}
+
+.behar-calendar-sidebar__date--selected:hover {
+  background: #1d4930;
+}
+
+.behar-calendar-sidebar__date-dot {
+  position: absolute;
+  bottom: 3px;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #5a9a6c;
+}
+
+.behar-calendar-sidebar__date--selected
+.behar-calendar-sidebar__date-dot {
+  background: #d4f0db;
+}
+
+/* ==========================================
+   SELECTED DAY
+========================================== */
+
+.behar-calendar-sidebar__selected-date {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  color: #3c6048;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.behar-calendar-sidebar__selected-date svg {
+  flex-shrink: 0;
+}
+
+.behar-calendar-sidebar__selected-summary {
+  margin-top: 7px;
+  color: #87988a;
+  font-size: 11px;
+}
+
+.behar-calendar-sidebar__selected-events {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.behar-calendar-sidebar__no-events {
+  margin: 14px 0 0;
+  color: #96a399;
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+.behar-calendar-sidebar__selected-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 15px;
+}
+
+.behar-calendar-sidebar__view-day {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  flex: 1;
+  min-height: 35px;
+  padding: 8px 12px;
+  border: 1px solid #d9e7dd;
+  border-radius: 8px;
+  background: #f1f7f2;
+  color: #386c49;
+  font: inherit;
+  font-size: 11px;
+  font-weight: 750;
+  cursor: pointer;
+}
+
+.behar-calendar-sidebar__view-day:hover {
+  background: #e5f1e8;
+}
+
+.behar-calendar-sidebar__add-event {
+  display: grid;
+  place-items: center;
+  flex: 0 0 35px;
+  width: 35px;
+  height: 35px;
+  padding: 0;
+  border: 0;
+  border-radius: 8px;
+  background: #285b3e;
+  color: #fff;
+  cursor: pointer;
+}
+
+.behar-calendar-sidebar__add-event:hover {
+  background: #1d4930;
+}
+
+/* ==========================================
+   EVENT CATEGORIES
+========================================== */
+
+.behar-calendar-sidebar__source-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-bottom: 13px;
+  border-bottom: 1px solid #edf1ed;
+}
+
+.behar-calendar-sidebar__source {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  color: #526b58;
+  font-size: 11px;
+  font-weight: 650;
+}
+
+.behar-calendar-sidebar__source-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.behar-calendar-sidebar__source-label svg {
+  color: #6b9676;
+}
+
+.behar-calendar-sidebar__source > span:last-child {
+  color: #7f9183;
+  font-size: 11px;
+  font-weight: 750;
+}
+
+.behar-calendar-sidebar__category-list {
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+  margin-top: 15px;
+}
+
+.behar-calendar-sidebar__category {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  color: #667c6c;
+  font-size: 11px;
+}
+
+.behar-calendar-sidebar__category-label {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.behar-calendar-sidebar__category-dot {
+  flex: 0 0 7px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #7c9885;
+}
+
+.behar-calendar-sidebar__category-dot--live {
+  background: #5084c4;
+}
+
+.behar-calendar-sidebar__category-dot--lesson {
+  background: #7887c8;
+}
+
+.behar-calendar-sidebar__category-dot--assignment {
+  background: #d19b54;
+}
+
+.behar-calendar-sidebar__category-dot--assessment {
+  background: #a57ac0;
+}
+
+.behar-calendar-sidebar__category-dot--deadline {
+  background: #d27b6d;
+}
+
+.behar-calendar-sidebar__category-dot--study {
+  background: #64a776;
+}
+
+.behar-calendar-sidebar__category-dot--reminder {
+  background: #c4a43e;
+}
+
+.behar-calendar-sidebar__category-dot--goal {
+  background: #4eaa94;
+}
+
+.behar-calendar-sidebar__category-dot--task {
+  background: #8d97a7;
+}
+
+/* ==========================================
+   UPCOMING EVENTS
+========================================== */
+
+.behar-calendar-sidebar__view-all {
+  padding: 3px 0;
+  border: 0;
+  background: transparent;
+  color: #4b805b;
+  font: inherit;
+  font-size: 10px;
+  font-weight: 750;
+  cursor: pointer;
+}
+
+.behar-calendar-sidebar__view-all:hover {
+  text-decoration: underline;
+}
+
+.behar-calendar-sidebar__upcoming-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* ==========================================
+   FOCUS
+========================================== */
+
+.behar-calendar-sidebar button:focus-visible {
+  outline: 3px solid #87b79a;
+  outline-offset: 2px;
+}
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media (max-width: 1024px) {
+  .behar-calendar-sidebar {
+    display: grid;
+    grid-template-columns: repeat(
+      2,
+      minmax(0, 1fr)
+    );
+    align-items: start;
+  }
+}
+
+@media (max-width: 640px) {
+  .behar-calendar-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+  }
+
+  .behar-calendar-sidebar__mini,
+  .behar-calendar-sidebar__selected,
+  .behar-calendar-sidebar__categories,
+  .behar-calendar-sidebar__upcoming {
+    padding: 15px;
+  }
+
+  .behar-calendar-sidebar__date {
+    min-height: 38px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .behar-calendar-sidebar *,
+  .behar-calendar-sidebar *::before,
+  .behar-calendar-sidebar *::after {
+    transition: none !important;
+  }
+}

@@ -1,0 +1,117 @@
+
+/* =====================================================
+   BEHAR — WISHLIST TOAST NOTIFICATIONS
+   ===================================================== */
+
+.wishlist-toast {
+  position: fixed;
+  inset-block-end: 25px;
+  inset-inline-end: 25px;
+  z-index: 10001;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  width: min(390px, calc(100vw - 32px));
+  padding: 16px;
+  border: 1px solid #dce9dd;
+  border-radius: 13px;
+  background: #fff;
+  box-shadow: 0 15px 55px rgba(19, 45, 27, 0.14);
+  font-family: inherit;
+  animation: wishlist-toast-enter 220ms ease-out;
+}
+
+.wishlist-toast *,
+.wishlist-toast *::before,
+.wishlist-toast *::after {
+  box-sizing: border-box;
+}
+
+.wishlist-toast__icon {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 35px;
+  height: 35px;
+  border-radius: 9px;
+  background: #e9f5eb;
+  color: #3d8654;
+}
+
+.wishlist-toast--error {
+  border-color: #f0d9dc;
+}
+
+.wishlist-toast--error .wishlist-toast__icon {
+  background: #fff0f1;
+  color: #c15d6a;
+}
+
+.wishlist-toast__content {
+  flex: 1;
+  min-width: 0;
+  padding-top: 2px;
+}
+
+.wishlist-toast__content strong {
+  display: block;
+  color: #284232;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.wishlist-toast__content p {
+  margin: 5px 0 0;
+  color: #829086;
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+.wishlist-toast__close {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 26px;
+  height: 26px;
+  padding: 0;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: #9aa59d;
+  cursor: pointer;
+}
+
+.wishlist-toast__close:hover {
+  background: #f0f3ef;
+  color: #405e48;
+}
+
+.wishlist-toast button:focus-visible {
+  outline: 3px solid #78a58a;
+  outline-offset: 3px;
+}
+
+@keyframes wishlist-toast-enter {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 600px) {
+  .wishlist-toast {
+    inset-inline-end: 16px;
+    inset-block-end: 16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wishlist-toast {
+    animation: none;
+  }
+}

@@ -9,9 +9,15 @@ import {
   Clock3,
   GraduationCap,
   Play,
+  Pencil,
+  Trash2,
+  PenLine,
 } from "lucide-react";
 
 import "../../../styles/student/my-learning/enrolled-course-card.css";
+import { useReviews } from "../../../hooks/useReviews";
+import ReviewDeleteDialog from "../../reviews/ReviewDeleteDialog";
+import ReviewModal from "../../reviews/ReviewModal";
 
 const translations = {
   en: {
@@ -65,6 +71,9 @@ export default function EnrolledCourseCard({
   onOpenCourse,
 }) {
   const [imageFailed, setImageFailed] = useState(false);
+  const [reviewOpen, setReviewOpen] = useState(false);
+  const [deleteOpen, setDeleteOpen] = useState(false);
+  const { getStudentReview, addReview, updateReview, deleteReview, currentStudentId } = useReviews();
 
   if (!course) return null;
 
@@ -124,6 +133,15 @@ export default function EnrolledCourseCard({
 
   const hasLearningAction =
     typeof onOpenCourse === "function";
+  const courseId = course.courseId || course.id;
+  const studentReview = getStudentReview(courseId, currentStudentId);
+
+  const saveReview = (payload) => {
+    const result = studentReview
+      ? updateReview(studentReview.id, payload)
+      : addReview({ ...payload, courseId });
+    if (result.success) setReviewOpen(false);
+  };
 
   return (
     <article
@@ -301,6 +319,16 @@ export default function EnrolledCourseCard({
             />
           </Link>
         )}
+
+        <div className="behar-enrolled-card__review-tools">
+          <button type="button" onClick={(event) => { event.stopPropagation(); setReviewOpen((open) => !open); }}>
+            {studentReview ? <><Pencil size={14} /> Edit review</> : <><PenLine size={14} /> Write a review</>}
+          </button>
+          {studentReview && <button type="button" onClick={(event) => { event.stopPropagation(); setDeleteOpen(true); }}><Trash2 size={14} /> Delete review</button>}
+          {studentReview && <span aria-label={`Your rating: ${studentReview.rating} out of 5`}>{"★".repeat(studentReview.rating)}</span>}
+        </div>
+        <ReviewModal open={reviewOpen} course={course} review={studentReview} language={locale} onSubmit={saveReview} onClose={() => setReviewOpen(false)} />
+        <ReviewDeleteDialog open={deleteOpen} onCancel={() => setDeleteOpen(false)} onConfirm={() => { deleteReview(studentReview.id); setDeleteOpen(false); }} />
       </div>
     </article>
   );

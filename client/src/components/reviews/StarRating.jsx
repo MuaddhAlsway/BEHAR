@@ -1,0 +1,2 @@
+import { Star } from "lucide-react";
+export default function StarRating({ value = 0, onChange, readOnly = false }) { return <span className="reviews-star-rating" role={readOnly ? "img" : "radiogroup"} aria-label={`${value} out of 5 stars`}>{[1,2,3,4,5].map((star) => <button key={star} type="button" disabled={readOnly} aria-label={`${star} stars`} onClick={() => onChange?.(star)} className={star <= value ? "is-active" : ""}><Star size={18} fill={star <= value ? "currentColor" : "none"} /></button>)}</span>; }

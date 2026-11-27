@@ -225,10 +225,14 @@ const content = {
 function readLanguage() {
   if (typeof window === "undefined") return "en";
 
-  return document.documentElement.lang === "ar" ||
-    localStorage.getItem("behar-language") === "ar"
-    ? "ar"
-    : "en";
+  const documentLanguage = document.documentElement.lang?.toLowerCase();
+
+  // The URL-driven document language is authoritative. This prevents a
+  // previous Arabic preference from overriding an explicitly English route.
+  if (documentLanguage === "ar") return "ar";
+  if (documentLanguage === "en") return "en";
+
+  return localStorage.getItem("behar-language") === "ar" ? "ar" : "en";
 }
 
 function CourseMeta({ course, t }) {
@@ -481,6 +485,8 @@ export default function FeaturedCourses() {
       return undefined;
     }
 
+    let cleanupLayoutObservers = () => {};
+
     const context = gsap.context(() => {
       const spotlight = gallery.querySelector(".behar-spotlight");
       const spotlightImage = gallery.querySelector(".behar-spotlight__image img");
@@ -490,6 +496,7 @@ export default function FeaturedCourses() {
           trigger: gallery,
           start: "top 82%",
           end: "bottom 18%",
+          invalidateOnRefresh: true,
           toggleActions: "restart none restart none",
         },
       });
@@ -522,9 +529,33 @@ export default function FeaturedCourses() {
         { y: 0, autoAlpha: 1, rotate: 0, duration: 0.72, stagger: 0.1, ease: "power3.out" },
         0.2
       );
+
+      const refreshTriggers = () => ScrollTrigger.refresh();
+      const images = gallery.querySelectorAll("img");
+
+      images.forEach((image) => {
+        if (!image.complete) {
+          image.addEventListener("load", refreshTriggers, { once: true });
+        }
+      });
+
+      const resizeObserver = new ResizeObserver(refreshTriggers);
+      resizeObserver.observe(gallery);
+
+      requestAnimationFrame(refreshTriggers);
+
+      cleanupLayoutObservers = () => {
+        images.forEach((image) => {
+          image.removeEventListener("load", refreshTriggers);
+        });
+        resizeObserver.disconnect();
+      };
     }, gallery);
 
-    return () => context.revert();
+    return () => {
+      cleanupLayoutObservers();
+      context.revert();
+    };
   }, [activeCategory]);
 
   const t = content[language];

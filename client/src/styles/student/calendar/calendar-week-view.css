@@ -1,0 +1,724 @@
+
+/*
+ * BEHAR LMS — Student Calendar
+ * P14.14 / Component 15
+ *
+ * CalendarWeekView
+ * Pure CSS
+ */
+
+.behar-calendar-week {
+  width: 100%;
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid #e2e9e4;
+  border-radius: 14px;
+  background: #fff;
+}
+
+/* ==========================================
+   TOP HEADER
+========================================== */
+
+.behar-calendar-week__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 15px 18px;
+  border-bottom: 1px solid #e7ede8;
+}
+
+.behar-calendar-week__title {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  color: #294d37;
+  font-size: 13px;
+  font-weight: 750;
+}
+
+.behar-calendar-week__timezone {
+  color: #87978a;
+  font-size: 11px;
+}
+
+/* ==========================================
+   SCROLL CONTAINER
+========================================== */
+
+.behar-calendar-week__scroll {
+  width: 100%;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scrollbar-width: thin;
+}
+
+.behar-calendar-week__content {
+  min-width: 860px;
+}
+
+/* ==========================================
+   GRID COLUMNS
+========================================== */
+
+.behar-calendar-week__headings,
+.behar-calendar-week__all-day-row,
+.behar-calendar-week__schedule {
+  display: grid;
+  grid-template-columns:
+    76px repeat(7, minmax(0, 1fr));
+}
+
+/* ==========================================
+   DAY HEADINGS
+========================================== */
+
+.behar-calendar-week__headings {
+  border-bottom: 1px solid #e7ede8;
+  background: #fbfcfb;
+}
+
+.behar-calendar-week__time-heading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #8b9b8e;
+  font-size: 11px;
+  font-weight: 650;
+  border-inline-end: 1px solid #e7ede8;
+}
+
+.behar-calendar-week__day-heading {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 78px;
+  border-inline-end: 1px solid #edf0ed;
+}
+
+.behar-calendar-week__day-heading:last-child {
+  border-inline-end: 0;
+}
+
+.behar-calendar-week__day-heading--today {
+  background: #f1f8f3;
+}
+
+.behar-calendar-week__day-heading--selected {
+  box-shadow: inset 0 -2px #398253;
+}
+
+.behar-calendar-week__day-button {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  min-width: 46px;
+  padding: 8px;
+  border: 0;
+  border-radius: 10px;
+  background: transparent;
+  font: inherit;
+  cursor: pointer;
+}
+
+.behar-calendar-week__weekday {
+  color: #8a9a8d;
+  font-size: 10px;
+  font-weight: 650;
+  text-transform: uppercase;
+}
+
+.behar-calendar-week__day-number {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  color: #3b5744;
+  font-size: 14px;
+  font-weight: 750;
+}
+
+.behar-calendar-week__day-heading--today
+.behar-calendar-week__day-number {
+  background: #285b3e;
+  color: #fff;
+}
+
+.behar-calendar-week__day-add {
+  position: absolute;
+  inset-inline-end: 6px;
+  top: 6px;
+  display: grid;
+  place-items: center;
+  width: 23px;
+  height: 23px;
+  padding: 0;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: #779582;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.behar-calendar-week__day-heading:hover
+.behar-calendar-week__day-add,
+.behar-calendar-week__day-add:focus-visible {
+  opacity: 1;
+}
+
+.behar-calendar-week__day-add:hover {
+  background: #e3efe6;
+  color: #285b3e;
+}
+
+/* ==========================================
+   ALL-DAY EVENTS
+========================================== */
+
+.behar-calendar-week__all-day-row {
+  min-height: 52px;
+  border-bottom: 1px solid #e7ede8;
+}
+
+.behar-calendar-week__all-day-label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  color: #7e9083;
+  font-size: 10px;
+  font-weight: 700;
+  border-inline-end: 1px solid #e7ede8;
+}
+
+.behar-calendar-week__all-day-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+  padding: 6px 4px;
+  border-inline-end: 1px solid #edf0ed;
+}
+
+.behar-calendar-week__all-day-cell:last-child {
+  border-inline-end: 0;
+}
+
+.behar-calendar-week__all-day-event {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  width: 100%;
+  min-width: 0;
+  padding: 5px 6px;
+  border: 0;
+  border-radius: 5px;
+  text-align: start;
+  font: inherit;
+  font-size: 10px;
+  font-weight: 650;
+  cursor: pointer;
+}
+
+.behar-calendar-week__all-day-event span:last-child {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+/* ==========================================
+   HOURLY SCHEDULE
+========================================== */
+
+.behar-calendar-week__schedule {
+  position: relative;
+}
+
+.behar-calendar-week__time-column {
+  border-inline-end: 1px solid #e7ede8;
+}
+
+.behar-calendar-week__time-slot {
+  position: relative;
+  color: #87978a;
+  font-size: 10px;
+}
+
+.behar-calendar-week__time-slot span {
+  position: absolute;
+  inset-inline-end: 10px;
+  top: -7px;
+  white-space: nowrap;
+}
+
+.behar-calendar-week__time-slot:first-child span {
+  top: 5px;
+}
+
+.behar-calendar-week__day-column {
+  position: relative;
+  min-width: 0;
+  border-inline-end: 1px solid #edf0ed;
+}
+
+.behar-calendar-week__day-column:last-child {
+  border-inline-end: 0;
+}
+
+.behar-calendar-week__day-column--today {
+  background: #f8fcf9;
+}
+
+.behar-calendar-week__hour-cell {
+  border-bottom: 1px solid #edf0ed;
+}
+
+/* ==========================================
+   TIMED EVENTS
+========================================== */
+
+.behar-calendar-week__timed-event {
+  position: absolute;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  min-width: 0;
+  overflow: hidden;
+  padding: 7px;
+  border: 0;
+  border-inline-start: 3px solid currentColor;
+  border-radius: 6px;
+  text-align: start;
+  font: inherit;
+  cursor: pointer;
+  transition:
+    filter 150ms ease,
+    box-shadow 150ms ease;
+}
+
+.behar-calendar-week__timed-event:hover {
+  z-index: 3;
+  filter: brightness(0.97);
+  box-shadow: 0 3px 12px rgb(0 0 0 / 10%);
+}
+
+.behar-calendar-week__timed-event-title {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  color: inherit;
+  font-size: 10px;
+  font-weight: 750;
+  line-height: 1.3;
+}
+
+.behar-calendar-week__timed-event-time {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: inherit;
+  opacity: 0.85;
+  font-size: 9px;
+  line-height: 1.2;
+}
+
+/* ==========================================
+   EVENT COLORS
+========================================== */
+
+.behar-calendar-week__event-dot {
+  width: 6px;
+  height: 6px;
+  flex: 0 0 6px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.behar-calendar-week__event--live {
+  background: #e8f1ff;
+  color: #2c62a8;
+}
+
+.behar-calendar-week__event--lesson {
+  background: #edf3ff;
+  color: #5666a7;
+}
+
+.behar-calendar-week__event--assignment {
+  background: #fff3e5;
+  color: #a56c2c;
+}
+
+.behar-calendar-week__event--assessment {
+  background: #f4eafa;
+  color: #8553a4;
+}
+
+.behar-calendar-week__event--deadline {
+  background: #fff0ed;
+  color: #b65d4e;
+}
+
+.behar-calendar-week__event--study {
+  background: #eaf5ed;
+  color: #34764b;
+}
+
+.behar-calendar-week__event--reminder {
+  background: #fff8df;
+  color: #967b22;
+}
+
+.behar-calendar-week__event--goal {
+  background: #e7f7f2;
+  color: #277d6b;
+}
+
+.behar-calendar-week__event--task {
+  background: #f0f1f4;
+  color: #596477;
+}
+
+.behar-calendar-week__event--default {
+  background: #edf3ee;
+  color: #365a42;
+}
+
+/* ==========================================
+   EMPTY STATE
+========================================== */
+
+.behar-calendar-week__empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
+  min-height: 320px;
+  color: #85998a;
+}
+
+.behar-calendar-week__empty p {
+  margin: 0;
+  font-size: 13px;
+}
+
+/* ==========================================
+   ACCESSIBILITY
+========================================== */
+
+.behar-calendar-week button:focus-visible {
+  outline: 3px solid #87b79a;
+  outline-offset: 2px;
+  z-index: 5;
+}
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media (max-width: 1024px) {
+  .behar-calendar-week__content {
+    min-width: 780px;
+  }
+}
+
+@media (max-width: 640px) {
+  .behar-calendar-week__top {
+    padding: 13px 14px;
+  }
+
+  .behar-calendar-week__content {
+    min-width: 760px;
+  }
+
+  .behar-calendar-week__day-add {
+    opacity: 1;
+  }
+
+  .behar-calendar-week__timezone {
+    font-size: 10px;
+  }
+
+  .behar-calendar-week__timed-event {
+    padding: 5px;
+  }
+
+  .behar-calendar-week__timed-event-time {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .behar-calendar-week *,
+  .behar-calendar-week *::before,
+  .behar-calendar-week *::after {
+    transition: none !important;
+  }
+}
+
+/* Runtime class names used by the current WeekView JSX. */
+.behar-week {
+  min-width: 860px;
+  overflow: hidden;
+  border: 1px solid #e2e9e4;
+  border-radius: 16px;
+  background: #fff;
+  color: #173329;
+}
+
+.behar-week__topbar,
+.behar-week__header,
+.behar-week__all-day-row {
+  display: grid;
+  grid-template-columns: 76px repeat(7, minmax(104px, 1fr));
+}
+
+.behar-week__topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 18px;
+  border-bottom: 1px solid #e7ede8;
+}
+
+.behar-week__topbar-title,
+.behar-week__timezone {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #294d37;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.behar-week__navigation {
+  display: inline-flex;
+  gap: 4px;
+}
+
+.behar-week__navigation button,
+.behar-week__day-heading {
+  border: 1px solid #dfe8e1;
+  background: #fff;
+  color: #294d37;
+  cursor: pointer;
+}
+
+.behar-week__navigation button {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+}
+
+.behar-week__navigation button:hover,
+.behar-week__day-heading:hover {
+  background: #f1f7f1;
+  border-color: #b9d1bd;
+}
+
+.behar-week__header {
+  background: #f8fbf8;
+  border-bottom: 1px solid #e7ede8;
+}
+
+.behar-week__header-gutter,
+.behar-week__day-heading {
+  min-height: 58px;
+  padding: 8px;
+}
+
+.behar-week__header-gutter {
+  display: grid;
+  place-items: center;
+  color: #8a9a8f;
+}
+
+.behar-week__day-heading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  border-width: 0 0 0 1px;
+  border-radius: 0;
+}
+
+.behar-week__weekday,
+.behar-week__all-day-label {
+  color: #7a8d80;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.behar-week__day-number {
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.behar-week__day-heading--today {
+  background: #eaf4d0;
+  color: #102c2b;
+  box-shadow: inset 0 -3px #d9ef74;
+}
+
+.behar-week__all-day-row {
+  border-bottom: 1px solid #e7ede8;
+  background: #fcfdfc;
+}
+
+.behar-week__all-day-label,
+.behar-week__all-day-cell {
+  min-height: 42px;
+  padding: 12px 8px;
+  border-inline-start: 1px solid #edf1ed;
+}
+
+.behar-week__all-day-label {
+  border-inline-start: 0;
+  text-align: center;
+}
+
+.behar-week__timezone {
+  padding: 10px 16px;
+  color: #87978a;
+  font-size: 11px;
+  font-weight: 500;
+  border-bottom: 1px solid #e7ede8;
+}
+
+.behar-week__scroll {
+  overflow-x: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #b7cbbd transparent;
+}
+
+.behar-week__timeline {
+  position: relative;
+  display: grid;
+  grid-template-columns: 76px repeat(7, minmax(104px, 1fr));
+  min-width: 860px;
+  min-height: calc(var(--behar-hour-height) * 24);
+}
+
+.behar-week__time-column,
+.behar-week__day-column {
+  position: relative;
+  min-height: calc(var(--behar-hour-height) * 24);
+  border-inline-start: 1px solid #e7ede8;
+  background: repeating-linear-gradient(to bottom, transparent 0, transparent calc(var(--behar-hour-height) - 1px), #edf2ee calc(var(--behar-hour-height) - 1px), #edf2ee var(--behar-hour-height));
+}
+
+.behar-week__time-column {
+  border-inline-start: 0;
+  background: #fbfcfb;
+}
+
+.behar-week__time-label {
+  position: absolute;
+  right: 9px;
+  transform: translateY(-50%);
+  color: #8a9a8f;
+  font-size: 10px;
+}
+
+.behar-week__hour-slot {
+  position: absolute;
+  inset-inline: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.behar-week__hour-slot:hover {
+  background: rgba(217, 239, 116, .16);
+}
+
+.behar-week__hour-slot svg {
+  opacity: 0;
+  color: #5b805e;
+}
+
+.behar-week__hour-slot:hover svg,
+.behar-week__hour-slot:focus-visible svg {
+  opacity: 1;
+}
+
+.behar-week__event {
+  position: absolute;
+  overflow: hidden;
+  padding: 8px 9px;
+  border: 1px solid rgba(16, 44, 43, .12);
+  border-radius: 8px;
+  background: #d9ef74;
+  color: #102c2b;
+  text-align: start;
+  cursor: pointer;
+}
+
+.behar-week__event-title,
+.behar-week__event-time {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.behar-week__event-title { font-size: 11px; font-weight: 700; }
+.behar-week__event-time { margin-top: 4px; font-size: 10px; opacity: .75; }
+
+@media (max-width: 640px) {
+  .behar-week { border-radius: 12px; }
+  .behar-week__topbar { padding: 12px; }
+}
+
+/* Google Calendar-like desktop fit: show the complete week in the available
+   panel instead of forcing the user to pan horizontally. */
+@media (min-width: 901px) {
+  .behar-week,
+  .behar-week__timeline {
+    min-width: 0;
+  }
+
+  .behar-week__topbar,
+  .behar-week__header,
+  .behar-week__all-day-row {
+    grid-template-columns: 58px repeat(7, minmax(0, 1fr));
+  }
+
+  .behar-week__timeline {
+    grid-template-columns: 58px repeat(7, minmax(0, 1fr));
+  }
+
+  .behar-week__time-label {
+    right: 6px;
+    font-size: 9px;
+  }
+
+  .behar-week__event {
+    padding: 7px 6px;
+  }
+
+  .behar-week__event-title,
+  .behar-week__event-time {
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 900px) {
+  .behar-week__scroll {
+    overscroll-behavior-inline: contain;
+  }
+}

@@ -136,7 +136,7 @@ export default function EnrolledCoursesGrid({
         >
           {courses.map((course) => (
             <EnrolledCourseCard
-              key={course.id}
+              key={course.courseId || course.id}
               course={course}
               language={locale}
               onOpenCourse={onOpenCourse}

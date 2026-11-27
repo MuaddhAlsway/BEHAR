@@ -1,4 +1,4 @@
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 import { courses } from "../../data/courses";
@@ -10,9 +10,11 @@ import CourseReviews from "../../components/course-details/CourseReviews";
 import EnrollmentPanel from "../../components/course-details/EnrollmentPanel";
 import RelatedCourses from "../../components/course-details/RelatedCourses";
 import CoursePreviewModal from "../../components/courses/CoursePreviewModal";
+import { createDemoPaymentOrder } from "../../data/payments";
 
 export default function CourseDetails() {
   const { slug } = useParams();
+  const navigate = useNavigate();
   const [previewLesson, setPreviewLesson] = useState(null);
 
   const course = courses.find(
@@ -50,9 +52,11 @@ export default function CourseDetails() {
   }
 
   const handleEnroll = (selectedCourse) => {
-    // Frontend-only demo:
-    // Replace with checkout/enrollment flow later.
-    console.log("Enroll in course:", selectedCourse.slug);
+    const order = createDemoPaymentOrder(selectedCourse);
+
+    if (!order) return;
+
+    navigate("/student/orders");
   };
 
   const handlePreviewLesson = (lesson, selectedCourse = course) => {

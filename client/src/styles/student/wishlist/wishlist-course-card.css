@@ -1,0 +1,309 @@
+
+/* ======================================================
+   BEHAR — P14.15.04 WISHLIST COURSE CARD
+   ====================================================== */
+
+.wishlist-course-card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  height: 100%;
+  overflow: hidden;
+  border: 1px solid #e5eae5;
+  border-radius: 16px;
+  background: #fff;
+  transition:
+    transform 220ms ease,
+    border-color 220ms ease,
+    box-shadow 220ms ease;
+}
+
+.wishlist-course-card *,
+.wishlist-course-card *::before,
+.wishlist-course-card *::after {
+  box-sizing: border-box;
+}
+
+.wishlist-course-card:hover {
+  transform: translateY(-3px);
+  border-color: #c6d8c9;
+  box-shadow: 0 16px 36px rgba(29, 62, 42, 0.07);
+}
+
+.wishlist-course-card__media {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: #eaf1e8;
+}
+
+.wishlist-course-card__media > img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 400ms ease;
+}
+
+.wishlist-course-card:hover .wishlist-course-card__media > img {
+  transform: scale(1.045);
+}
+
+.wishlist-course-card__placeholder {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  background:
+    radial-gradient(
+      circle at 75% 20%,
+      rgba(255, 255, 255, 0.65),
+      transparent 45%
+    ),
+    linear-gradient(135deg, #e6eee4, #cfdfd0);
+  color: #6c9275;
+}
+
+.wishlist-course-card:nth-child(3n + 2)
+  .wishlist-course-card__placeholder {
+  background: linear-gradient(135deg, #f0e7d8, #e3d0b5);
+  color: #a18a6e;
+}
+
+.wishlist-course-card:nth-child(3n + 3)
+  .wishlist-course-card__placeholder {
+  background: linear-gradient(135deg, #e5e9f1, #cfd9e9);
+  color: #7189a7;
+}
+
+.wishlist-course-card__saved {
+  position: absolute;
+  inset-block-start: 13px;
+  inset-inline-end: 13px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 11px;
+  border-radius: 30px;
+  background: #fff;
+  color: var(--wishlist-accent, #315f50);
+  box-shadow: 0 5px 18px rgba(0, 0, 0, 0.05);
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.wishlist-course-card__level {
+  position: absolute;
+  inset-block-end: 13px;
+  inset-inline-start: 13px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 10px;
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  border-radius: 7px;
+  background: rgba(255, 255, 255, 0.93);
+  color: #3b6149;
+  font-size: 10px;
+  font-weight: 650;
+  backdrop-filter: blur(8px);
+}
+
+.wishlist-course-card__content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-width: 0;
+  padding: 19px;
+}
+
+.wishlist-course-card__date {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 10px;
+  color: #8a958c;
+  font-size: 11px;
+}
+
+.wishlist-course-card__title {
+  margin: 0;
+  color: #213b30;
+  font-size: 17px;
+  font-weight: 650;
+  line-height: 1.45;
+  letter-spacing: -0.025em;
+  overflow-wrap: anywhere;
+}
+
+.wishlist-course-card__instructor {
+  margin: 10px 0 0;
+  color: #839087;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.wishlist-course-card__instructor strong {
+  color: #536d5a;
+  font-weight: 600;
+}
+
+.wishlist-course-card__unavailable {
+  margin: 11px 0 0;
+  color: #8b928d;
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.wishlist-course-card__metadata {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 17px;
+  padding-top: 15px;
+  border-top: 1px solid #eef0ec;
+}
+
+.wishlist-course-card__rating {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: #566b59;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.wishlist-course-card__rating svg {
+  color: #e2a63d;
+}
+
+.wishlist-course-card__price {
+  color: #315f50;
+  font-size: 14px;
+  font-weight: 750;
+}
+
+.wishlist-course-card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: auto;
+  padding-top: 20px;
+}
+
+.wishlist-course-card__view {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 38px;
+  color: #315f50;
+  font-size: 12px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.wishlist-course-card__view:hover {
+  color: #244c3f;
+  text-decoration: underline;
+}
+
+.wishlist-course-card__disabled-link {
+  color: #9aa39c;
+  font-size: 11px;
+}
+
+.wishlist-course-card__remove {
+  position: relative;
+  display: grid;
+  place-items: center;
+  flex: 0 0 38px;
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  border: 1px solid #f2dce0;
+  border-radius: 50%;
+  background: #fff5f6;
+  color: var(--wishlist-accent, #315f50);
+  cursor: pointer;
+  transition:
+    background 180ms ease,
+    transform 180ms ease;
+}
+
+.wishlist-course-card__remove:hover:not(:disabled) {
+  transform: scale(1.06);
+  background: #ffe5e9;
+}
+
+.wishlist-course-card__remove:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.wishlist-course-card__remove-check {
+  position: absolute;
+  inset-block-end: -3px;
+  inset-inline-end: -3px;
+  padding: 2px;
+  border-radius: 50%;
+  background: #fff;
+}
+
+.wishlist-course-card--unresolved
+  .wishlist-course-card__media {
+  background: #f1f3f0;
+}
+
+.wishlist-course-card :is(a, button):focus-visible {
+  outline: 3px solid #78a58a;
+  outline-offset: 3px;
+}
+
+[dir="rtl"] .wishlist-course-card__title {
+  letter-spacing: 0;
+}
+
+@media (max-width: 680px) {
+  .wishlist-course-card__content {
+    padding: 17px;
+  }
+
+  .wishlist-course-card__title {
+    font-size: 16px;
+  }
+
+  .wishlist-course-card__media {
+    aspect-ratio: 16 / 9;
+  }
+}
+
+@media (hover: none) {
+  .wishlist-course-card:hover {
+    transform: none;
+    box-shadow: none;
+  }
+
+  .wishlist-course-card:hover
+    .wishlist-course-card__media > img {
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wishlist-course-card,
+  .wishlist-course-card__media > img,
+  .wishlist-course-card__remove {
+    transition: none;
+  }
+
+  .wishlist-course-card:hover,
+  .wishlist-course-card__remove:hover {
+    transform: none;
+  }
+}

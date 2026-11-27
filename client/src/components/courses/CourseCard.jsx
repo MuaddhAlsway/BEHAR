@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 
 import "../../styles/course-card.css";
+import { useWishlist } from "../../hooks/useWishlist";
 
 const copy = {
   en: {
@@ -51,6 +52,8 @@ export default function CourseCard({
   onToggleSave,
   fallbackImage,
 }) {
+  const { isWishlisted, toggleWishlist } = useWishlist();
+  const saved = isWishlisted(course.id);
   const t = copy[language];
   const isArabic = language === "ar";
   const Arrow = isArabic ? ArrowUpLeft : ArrowUpRight;
@@ -105,16 +108,20 @@ export default function CourseCard({
         <button
           type="button"
           className={`behar-course-card__wishlist ${
-            isSaved ? "is-saved" : ""
+            saved ? "is-saved" : ""
           }`}
-          onClick={() => onToggleSave?.(course.id)}
-          aria-label={isSaved ? t.unsave : t.save}
-          aria-pressed={isSaved}
+          onClick={(event) => {
+            event.preventDefault();
+            event.stopPropagation();
+            toggleWishlist(course.id);
+          }}
+          aria-label={saved ? t.unsave : t.save}
+          aria-pressed={saved}
         >
           <Heart
             size={19}
             strokeWidth={1.8}
-            fill={isSaved ? "currentColor" : "none"}
+            fill={saved ? "currentColor" : "none"}
           />
         </button>
       </div>

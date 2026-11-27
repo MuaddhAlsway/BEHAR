@@ -1,0 +1,266 @@
+
+/* ==========================================
+   BEHAR LMS — PAYMENT TOOLBAR
+   P14.16.03
+========================================== */
+
+.payment-toolbar {
+  width: 100%;
+  min-width: 0;
+  padding-bottom: 24px;
+  border-bottom: 1px solid #edf0ed;
+}
+
+/* Header */
+
+.payment-toolbar__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.payment-toolbar__heading h3 {
+  margin: 0;
+  color: #17251c;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+}
+
+.payment-toolbar__heading p {
+  margin: 6px 0 0;
+  color: #839087;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.payment-toolbar__count {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  padding: 7px 11px;
+  border: 1px solid #e0e9e1;
+  border-radius: 999px;
+  background: #f3f8f4;
+  color: #426d4e;
+  font-size: 11px;
+  font-weight: 650;
+  white-space: nowrap;
+}
+
+/* Controls */
+
+.payment-toolbar__controls {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 190px 190px;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Search */
+
+.payment-toolbar__search {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  height: 46px;
+  padding-inline: 14px;
+  gap: 10px;
+  border: 1px solid #e0e7e1;
+  border-radius: 11px;
+  background: #fff;
+  color: #839488;
+  transition:
+    border-color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.payment-toolbar__search:focus-within {
+  border-color: #5a9970;
+  box-shadow: 0 0 0 3px rgba(66, 137, 88, 0.1);
+}
+
+.payment-toolbar__search > svg {
+  flex-shrink: 0;
+}
+
+.payment-toolbar__search input {
+  width: 100%;
+  min-width: 0;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  outline: none;
+  background: transparent;
+  color: #21372a;
+  font: inherit;
+  font-size: 12px;
+}
+
+.payment-toolbar__search input::placeholder {
+  color: #a0aca3;
+}
+
+.payment-toolbar__search input::-webkit-search-cancel-button {
+  display: none;
+}
+
+.payment-toolbar__clear-search {
+  display: grid;
+  width: 26px;
+  height: 26px;
+  flex-shrink: 0;
+  place-items: center;
+  padding: 0;
+  border: 0;
+  border-radius: 7px;
+  background: #f0f4f1;
+  color: #75887b;
+  cursor: pointer;
+}
+
+.payment-toolbar__clear-search:hover {
+  background: #e4eee6;
+  color: #245d3d;
+}
+
+/* Select controls */
+
+.payment-toolbar__select {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  height: 46px;
+  padding-inline: 13px;
+  gap: 9px;
+  border: 1px solid #e0e7e1;
+  border-radius: 11px;
+  background: #fff;
+  color: #728578;
+  transition:
+    border-color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.payment-toolbar__select:focus-within {
+  border-color: #5a9970;
+  box-shadow: 0 0 0 3px rgba(66, 137, 88, 0.1);
+}
+
+.payment-toolbar__select > svg {
+  flex-shrink: 0;
+}
+
+.payment-toolbar__select select {
+  width: 100%;
+  min-width: 0;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  outline: none;
+  appearance: none;
+  background: transparent;
+  color: #294533;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 550;
+  cursor: pointer;
+}
+
+/* Reset footer */
+
+.payment-toolbar__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.payment-toolbar__footer > span {
+  color: #839087;
+  font-size: 11px;
+}
+
+.payment-toolbar__reset {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 0;
+  border: 0;
+  background: transparent;
+  color: #39734d;
+  font: inherit;
+  font-size: 11px;
+  font-weight: 650;
+  cursor: pointer;
+}
+
+.payment-toolbar__reset:hover {
+  color: #1d5030;
+  text-decoration: underline;
+}
+
+.payment-toolbar__reset:focus-visible,
+.payment-toolbar__clear-search:focus-visible {
+  outline: 2px solid #5a9970;
+  outline-offset: 3px;
+}
+
+/* Responsive */
+
+@media (max-width: 1050px) {
+  .payment-toolbar__controls {
+    grid-template-columns: minmax(0, 1fr) 170px 170px;
+  }
+}
+
+@media (max-width: 850px) {
+  .payment-toolbar__controls {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .payment-toolbar__search {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 480px) {
+  .payment-toolbar__header {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .payment-toolbar__controls {
+    gap: 9px;
+  }
+
+  .payment-toolbar__search,
+  .payment-toolbar__select {
+    height: 43px;
+  }
+
+  .payment-toolbar__select {
+    padding-inline: 9px;
+    gap: 6px;
+  }
+
+  .payment-toolbar__select select {
+    font-size: 11px;
+  }
+
+  .payment-toolbar__footer {
+    align-items: flex-start;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .payment-toolbar__search,
+  .payment-toolbar__select {
+    transition: none;
+  }
+}

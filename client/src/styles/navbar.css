@@ -27,7 +27,7 @@
   z-index: 100;
   width: 100%;
   background: var(--behar-canvas);
-  font-family: "DM Sans", "Noto Sans Arabic", sans-serif;
+  font-family: "Atyp Text", "Outfit", sans-serif;
 }
 
 .behar-header *,
@@ -116,7 +116,7 @@
 }
 
 .behar-brand__name {
-  font-family: "DM Sans", sans-serif;
+  font-family: "Atyp Display", "Atyp Text", sans-serif;
   color: var(--behar-forest);
   font-size: 23px;
   font-weight: 800;
@@ -232,6 +232,16 @@
   font-weight: 700;
   cursor: pointer;
   white-space: nowrap;
+}
+
+/* The toggle displays the destination language, so its label uses that
+   language's typeface rather than the current page direction. */
+.behar-language[data-language-label="en"] {
+  font-family: "Atyp Text", "Outfit", sans-serif;
+}
+
+.behar-language[data-language-label="ar"] {
+  font-family: "Lyon Arabic", "Noto Sans Arabic", sans-serif;
 }
 
 .behar-language:hover {
@@ -405,7 +415,33 @@
 /* Arabic adjustments */
 
 .behar-header[dir="rtl"] {
-  font-family: "Noto Sans Arabic", "DM Sans", sans-serif;
+  font-family: "Lyon Arabic", "Noto Sans Arabic", sans-serif;
+}
+
+.behar-header[dir="ltr"],
+.behar-header[dir="ltr"] button,
+.behar-header[dir="ltr"] input {
+  font-family: "Atyp Text", "Outfit", sans-serif;
+}
+
+.behar-header[dir="rtl"] button,
+.behar-header[dir="rtl"] input {
+  font-family: "Lyon Arabic", "Noto Sans Arabic", sans-serif;
+}
+
+.behar-header[dir="rtl"] .behar-brand__name {
+  font-family: "Atyp Display", "Atyp Text", sans-serif;
+}
+
+/* Keep the destination-language label independent from the header direction. */
+.behar-header[dir="ltr"] .behar-language[data-language-label="ar"],
+.behar-header[dir="rtl"] .behar-language[data-language-label="ar"] {
+  font-family: "Lyon Arabic", "Noto Sans Arabic", sans-serif;
+}
+
+.behar-header[dir="ltr"] .behar-language[data-language-label="en"],
+.behar-header[dir="rtl"] .behar-language[data-language-label="en"] {
+  font-family: "Atyp Text", "Outfit", sans-serif;
 }
 
 .behar-header[dir="rtl"] .behar-brand__identity,

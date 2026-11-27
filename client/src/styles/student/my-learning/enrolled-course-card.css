@@ -399,3 +399,27 @@
     transform: none;
   }
 }
+.behar-enrolled-card__review-tools {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+}
+
+.behar-enrolled-card__review-tools button {
+  border: 1px solid #cddbcf;
+  border-radius: 999px;
+  padding: 8px 11px;
+  background: #fff;
+  color: #315f50;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.behar-enrolled-card__review-tools span {
+  color: #315f50;
+  letter-spacing: 2px;
+}

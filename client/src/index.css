@@ -8,13 +8,61 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: 'Atyp Text';
+  src: url('./assets/font/atyp-font-family/AtypTextTRIAL-Regular-BF65727125ea126.otf') format('opentype');
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Atyp Text';
+  src: url('./assets/font/atyp-font-family/AtypTextTRIAL-Medium-BF65727125d9c4c.otf') format('opentype');
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Atyp Text';
+  src: url('./assets/font/atyp-font-family/AtypTextTRIAL-Semibold-BF65727125e65f1.otf') format('opentype');
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Atyp Text';
+  src: url('./assets/font/atyp-font-family/AtypTextTRIAL-Bold-BF65727125ceed1.otf') format('opentype');
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Atyp Display';
+  src: url('./assets/font/atyp-font-family/AtypDisplayTRIAL-Regular-BF65727125d566e.otf') format('opentype');
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
 :root {
-  font-family: 'Outfit', 'Noto Sans Arabic', sans-serif;
+  font-family: 'Atyp Text', 'Outfit', sans-serif;
 }
 
 body {
   margin: 0;
-  font-family: 'Outfit', 'Noto Sans Arabic', sans-serif;
+  font-family: 'Atyp Text', 'Outfit', sans-serif;
+}
+
+html[lang='en'] body,
+html[lang='en'] body button,
+html[lang='en'] body input,
+html[lang='en'] body textarea,
+html[lang='en'] body select {
+  font-family: 'Atyp Text', 'Outfit', sans-serif;
 }
 
 html[lang='ar'] body {
@@ -24,6 +72,24 @@ html[lang='ar'] body {
 [lang='ar'],
 [lang='ar'] * {
   font-family: 'Lyon Arabic', 'Noto Sans Arabic', 'Outfit', sans-serif;
+}
+
+/* Locale typography baseline. Keep this global so pages, portals, dialogs,
+   controls, and lazily loaded components use the same active language font. */
+html[lang='en'] body,
+html[lang='en'] body * {
+  font-family: 'Atyp Text', 'Outfit', sans-serif !important;
+}
+
+html[lang='ar'] body,
+html[lang='ar'] body * {
+  font-family: 'Lyon Arabic', 'Noto Sans Arabic', 'Outfit', sans-serif !important;
+}
+
+/* Preserve the Latin BEHAR wordmark while the surrounding UI is Arabic. */
+html[lang='ar'] .behar-brand__name,
+html[lang='ar'] .behar-header .behar-brand__name {
+  font-family: 'Atyp Display', 'Atyp Text', sans-serif !important;
 }
 html {
   scroll-behavior: smooth;

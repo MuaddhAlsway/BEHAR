@@ -1,0 +1,440 @@
+
+/*
+ * BEHAR LMS — Student Calendar
+ * P14.14 / Component 19
+ *
+ * UpcomingEvents
+ * Pure CSS
+ */
+
+/* ==========================================
+   ROOT
+========================================== */
+
+.behar-upcoming-events {
+  width: 100%;
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid #e3eae4;
+  border-radius: 15px;
+  background: #fff;
+}
+
+/* ==========================================
+   HEADER
+========================================== */
+
+.behar-upcoming-events__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 21px 23px;
+  border-bottom: 1px solid #e9eee9;
+}
+
+.behar-upcoming-events__heading {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.behar-upcoming-events__heading-icon {
+  display: grid;
+  place-items: center;
+  flex: 0 0 41px;
+  width: 41px;
+  height: 41px;
+  border-radius: 11px;
+  background: #eaf4ed;
+  color: #285b3e;
+}
+
+.behar-upcoming-events__heading h2 {
+  margin: 0 0 4px;
+  color: #254330;
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.behar-upcoming-events__heading p {
+  margin: 0;
+  color: #8a998d;
+  font-size: 11px;
+}
+
+.behar-upcoming-events__create {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  flex-shrink: 0;
+  min-height: 38px;
+  padding: 9px 13px;
+  border: 0;
+  border-radius: 9px;
+  background: #285b3e;
+  color: #fff;
+  font: inherit;
+  font-size: 11px;
+  font-weight: 750;
+  cursor: pointer;
+}
+
+.behar-upcoming-events__create:hover {
+  background: #1e4930;
+}
+
+/* ==========================================
+   SUMMARY
+========================================== */
+
+.behar-upcoming-events__summary {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  padding: 15px 23px;
+  border-bottom: 1px solid #e9eee9;
+  background: #fbfcfb;
+}
+
+.behar-upcoming-events__summary-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  color: #829285;
+  font-size: 11px;
+}
+
+.behar-upcoming-events__summary-item svg {
+  flex-shrink: 0;
+  color: #548462;
+}
+
+.behar-upcoming-events__summary-item strong {
+  color: #294c35;
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.behar-upcoming-events__summary-dot {
+  flex: 0 0 8px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.behar-upcoming-events__summary-dot--academic {
+  background: #5084c4;
+}
+
+.behar-upcoming-events__summary-dot--personal {
+  background: #5c9d72;
+}
+
+/* ==========================================
+   BODY
+========================================== */
+
+.behar-upcoming-events__body {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 22px 23px;
+}
+
+/* ==========================================
+   DATE GROUP
+========================================== */
+
+.behar-upcoming-events__group {
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+}
+
+.behar-upcoming-events__date-heading {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+}
+
+.behar-upcoming-events__date-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 2px;
+  flex: 0 0 45px;
+  width: 45px;
+  height: 48px;
+  border: 1px solid #e0e9e2;
+  border-radius: 9px;
+  background: #f5f8f5;
+}
+
+.behar-upcoming-events__date-badge--today {
+  border-color: #c9e2d0;
+  background: #eaf5ed;
+}
+
+.behar-upcoming-events__date-month {
+  color: #7b9181;
+  font-size: 9px;
+  font-weight: 750;
+  text-transform: uppercase;
+}
+
+.behar-upcoming-events__date-number {
+  color: #31563e;
+  font-size: 17px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.behar-upcoming-events__date-info h3 {
+  margin: 0 0 4px;
+  color: #304d39;
+  font-size: 12px;
+  font-weight: 750;
+}
+
+.behar-upcoming-events__date-info > span {
+  color: #94a196;
+  font-size: 10px;
+}
+
+.behar-upcoming-events__group-list {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  padding-inline-start: 56px;
+}
+
+/* ==========================================
+   PAGINATION
+========================================== */
+
+.behar-upcoming-events__pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding-top: 6px;
+}
+
+.behar-upcoming-events__pagination button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 35px;
+  padding: 8px 15px;
+  border: 1px solid #dce9df;
+  border-radius: 8px;
+  background: #f5f9f6;
+  color: #42724f;
+  font: inherit;
+  font-size: 11px;
+  font-weight: 750;
+  cursor: pointer;
+}
+
+.behar-upcoming-events__pagination button:hover {
+  background: #eaf4ed;
+}
+
+/* ==========================================
+   EMPTY STATE
+========================================== */
+
+.behar-upcoming-events__empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 55px 24px;
+  text-align: center;
+}
+
+.behar-upcoming-events__empty-illustration {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.behar-upcoming-events__empty-icon {
+  display: grid;
+  place-items: center;
+  width: 72px;
+  height: 72px;
+  border-radius: 22px;
+  background: #edf6ef;
+  color: #4b805b;
+}
+
+.behar-upcoming-events__empty-sparkle {
+  position: absolute;
+  top: -6px;
+  inset-inline-end: -8px;
+  color: #c4a14c;
+}
+
+.behar-upcoming-events__empty h3 {
+  margin: 0 0 9px;
+  color: #2e4d38;
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.behar-upcoming-events__empty p {
+  max-width: 370px;
+  margin: 0;
+  color: #87978b;
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.behar-upcoming-events__empty-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin-top: 23px;
+}
+
+.behar-upcoming-events__primary-button,
+.behar-upcoming-events__secondary-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 39px;
+  padding: 9px 14px;
+  border-radius: 9px;
+  font: inherit;
+  font-size: 11px;
+  font-weight: 750;
+  cursor: pointer;
+}
+
+.behar-upcoming-events__primary-button {
+  border: 0;
+  background: #285b3e;
+  color: #fff;
+}
+
+.behar-upcoming-events__primary-button:hover {
+  background: #1d4930;
+}
+
+.behar-upcoming-events__secondary-button {
+  border: 1px solid #dbe7de;
+  background: #f5f9f6;
+  color: #42724f;
+}
+
+.behar-upcoming-events__secondary-button:hover {
+  background: #eaf4ed;
+}
+
+/* ==========================================
+   FOOTER
+========================================== */
+
+.behar-upcoming-events__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 13px 23px;
+  border-top: 1px solid #e9eee9;
+  color: #91a094;
+  font-size: 10px;
+}
+
+/* ==========================================
+   ACCESSIBILITY
+========================================== */
+
+.behar-upcoming-events button:focus-visible {
+  outline: 3px solid #87b79a;
+  outline-offset: 2px;
+}
+
+/* ==========================================
+   TABLET
+========================================== */
+
+@media (max-width: 900px) {
+  .behar-upcoming-events__header {
+    padding: 18px;
+  }
+
+  .behar-upcoming-events__summary {
+    padding: 14px 18px;
+  }
+
+  .behar-upcoming-events__body {
+    padding: 19px 18px;
+  }
+}
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media (max-width: 640px) {
+  .behar-upcoming-events__header {
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 17px;
+  }
+
+  .behar-upcoming-events__create {
+    width: 100%;
+  }
+
+  .behar-upcoming-events__summary {
+    gap: 6px;
+    padding: 13px;
+  }
+
+  .behar-upcoming-events__summary-item {
+    flex-wrap: wrap;
+    gap: 5px;
+    font-size: 10px;
+  }
+
+  .behar-upcoming-events__summary-item strong {
+    font-size: 14px;
+  }
+
+  .behar-upcoming-events__body {
+    gap: 20px;
+    padding: 16px 13px;
+  }
+
+  .behar-upcoming-events__group-list {
+    padding-inline-start: 0;
+  }
+
+  .behar-upcoming-events__empty {
+    padding: 42px 18px;
+  }
+
+  .behar-upcoming-events__footer {
+    padding: 12px 15px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .behar-upcoming-events *,
+  .behar-upcoming-events *::before,
+  .behar-upcoming-events *::after {
+    transition: none !important;
+  }
+}

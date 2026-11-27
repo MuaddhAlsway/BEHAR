@@ -1,0 +1,138 @@
+.payments-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 32px;
+  padding: 32px;
+  border: 1px solid #e6eae5;
+  border-radius: 20px;
+  background: #ffffff;
+}
+
+.payments-header__content {
+  flex: 1;
+  min-width: 0;
+}
+
+.payments-header__eyebrow {
+  margin-bottom: 12px;
+  color: #66806b;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.payments-header h1 {
+  margin: 0;
+  color: #17251c;
+  font-size: clamp(26px, 3vw, 36px);
+  font-weight: 650;
+  letter-spacing: -0.04em;
+  line-height: 1.2;
+}
+
+.payments-header p {
+  max-width: 520px;
+  margin: 12px 0 0;
+  color: #728077;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.payments-header__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 24px;
+}
+
+.payments-header__actions button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  min-height: 42px;
+  padding: 0 17px;
+  border-radius: 10px;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background 180ms ease,
+    transform 180ms ease;
+}
+
+.payments-header__actions button:hover {
+  transform: translateY(-1px);
+}
+
+.payments-header__actions button:focus-visible {
+  outline: 3px solid #8bb99a;
+  outline-offset: 3px;
+}
+
+.payments-header__primary {
+  border: 1px solid #235c3e;
+  background: #235c3e;
+  color: #ffffff;
+}
+
+.payments-header__primary:hover {
+  background: #19492f;
+}
+
+.payments-header__secondary {
+  border: 1px solid #dce5dd;
+  background: #ffffff;
+  color: #294b35;
+}
+
+.payments-header__secondary:hover {
+  background: #f1f6f2;
+}
+
+.payments-header__visual {
+  display: grid;
+  width: 70px;
+  height: 70px;
+  flex-shrink: 0;
+  place-items: center;
+  border: 1px solid #dce9de;
+  border-radius: 18px;
+  background: #edf5ef;
+  color: #235c3e;
+}
+
+@media (max-width: 640px) {
+  .payments-header {
+    padding: 22px;
+    gap: 14px;
+  }
+
+  .payments-header__visual {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+  }
+
+  .payments-header__visual svg {
+    width: 23px;
+    height: 23px;
+  }
+
+  .payments-header__actions {
+    flex-direction: column;
+  }
+
+  .payments-header__actions button {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .payments-header__actions button {
+    transition: none;
+  }
+}

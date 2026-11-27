@@ -16,11 +16,11 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import CourseCard from "./CourseCard";
 import ForAll from "../../assets/ForAll.png";
 import "../../styles/course-catalog.css";
+import { useWishlist } from "../../hooks/useWishlist";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const PAGE_SIZE = 9;
-const WISHLIST_KEY = "behar-saved-courses";
 const VIEW_KEY = "behar-course-view";
 
 const FALLBACK_IMAGE = ForAll;
@@ -73,20 +73,6 @@ function getLanguage() {
   return document.documentElement.lang === "ar" ? "ar" : "en";
 }
 
-function readSavedCourses() {
-  try {
-    const parsed = JSON.parse(
-      localStorage.getItem(WISHLIST_KEY) || "[]"
-    );
-
-    return Array.isArray(parsed)
-      ? parsed.filter((id) => typeof id === "string")
-      : [];
-  } catch {
-    return [];
-  }
-}
-
 export default function CourseCatalog({
   courses = [],
   onResetFilters,
@@ -105,9 +91,7 @@ export default function CourseCatalog({
     }
   });
 
-  const [savedCourses, setSavedCourses] = useState(
-    readSavedCourses
-  );
+  const { isWishlisted } = useWishlist();
 
   const isArabic = language === "ar";
   const t = copy[language];
@@ -153,19 +137,6 @@ export default function CourseCatalog({
   }, []);
 
   useEffect(() => {
-    const handleStorage = (event) => {
-      if (event.key === WISHLIST_KEY) {
-        setSavedCourses(readSavedCourses());
-      }
-    };
-
-    window.addEventListener("storage", handleStorage);
-
-    return () =>
-      window.removeEventListener("storage", handleStorage);
-  }, []);
-
-  useEffect(() => {
     const section = sectionRef.current;
     if (!section) return;
 
@@ -206,25 +177,6 @@ export default function CourseCatalog({
     } catch {
       // Continue without persistence.
     }
-  };
-
-  const handleToggleSave = (courseId) => {
-    setSavedCourses((previous) => {
-      const next = previous.includes(courseId)
-        ? previous.filter((id) => id !== courseId)
-        : [...previous, courseId];
-
-      try {
-        localStorage.setItem(
-          WISHLIST_KEY,
-          JSON.stringify(next)
-        );
-      } catch {
-        // Wishlist still works in memory.
-      }
-
-      return next;
-    });
   };
 
   const changePage = (nextPage) => {
@@ -365,8 +317,7 @@ export default function CourseCatalog({
                 index={(page - 1) * PAGE_SIZE + index}
                 language={language}
                 view={view}
-                isSaved={savedCourses.includes(course.id)}
-                onToggleSave={handleToggleSave}
+                isSaved={isWishlisted(course.id)}
                 fallbackImage={FALLBACK_IMAGE}
               />
             ))}

@@ -19,9 +19,9 @@ import gsap from "gsap";
 
 import ForAll from "../../assets/ForAll.png";
 import "../../styles/course-details/course-details-hero.css";
+import { useWishlist } from "../../hooks/useWishlist";
 
 const FALLBACK_IMAGE = ForAll;
-const WISHLIST_KEY = "behar-saved-courses";
 
 const copy = {
   en: {
@@ -93,18 +93,6 @@ function getLanguage() {
   return document.documentElement.lang === "ar" ? "ar" : "en";
 }
 
-function readWishlist() {
-  try {
-    const saved = JSON.parse(
-      localStorage.getItem(WISHLIST_KEY) || "[]"
-    );
-
-    return Array.isArray(saved) ? saved : [];
-  } catch {
-    return [];
-  }
-}
-
 function getLocalizedValue(value, language) {
   if (typeof value === "string") return value;
   return value?.[language] || value?.en || "";
@@ -115,11 +103,10 @@ export default function CourseDetailsHero({
   onEnroll,
 }) {
   const rootRef = useRef(null);
+  const { isWishlisted, toggleWishlist } = useWishlist();
 
   const [language, setLanguage] = useState(getLanguage);
-  const [isSaved, setIsSaved] = useState(() =>
-    readWishlist().includes(course.id)
-  );
+  const isSaved = isWishlisted(course.id);
   const [imageSrc, setImageSrc] = useState(
     course.image || FALLBACK_IMAGE
   );
@@ -167,21 +154,7 @@ export default function CourseDetailsHero({
 
   useEffect(() => {
     setImageSrc(course.image || FALLBACK_IMAGE);
-    setIsSaved(readWishlist().includes(course.id));
   }, [course.id, course.image]);
-
-  useEffect(() => {
-    const syncSaved = (event) => {
-      if (event.key === WISHLIST_KEY) {
-        setIsSaved(readWishlist().includes(course.id));
-      }
-    };
-
-    window.addEventListener("storage", syncSaved);
-
-    return () =>
-      window.removeEventListener("storage", syncSaved);
-  }, [course.id]);
 
   useEffect(() => {
     if (
@@ -232,22 +205,7 @@ export default function CourseDetailsHero({
   }, [course.id, language]);
 
   const handleWishlist = () => {
-    const saved = readWishlist();
-
-    const next = saved.includes(course.id)
-      ? saved.filter((id) => id !== course.id)
-      : [...saved, course.id];
-
-    try {
-      localStorage.setItem(
-        WISHLIST_KEY,
-        JSON.stringify(next)
-      );
-    } catch {
-      // Continue with local component state.
-    }
-
-    setIsSaved(next.includes(course.id));
+    toggleWishlist(course.id);
   };
 
   const scrollToCurriculum = () => {

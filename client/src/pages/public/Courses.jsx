@@ -72,6 +72,10 @@ function sortCourses(items, sort) {
   }
 }
 
+const CATEGORY_ALIASES = {
+  "personal-development": "personal-growth",
+};
+
 /* ==========================================
    COURSES PAGE
 ========================================== */
@@ -87,10 +91,13 @@ export default function Courses() {
   const categoryParam =
     searchParams.get("category");
 
+  const normalizedCategory =
+    CATEGORY_ALIASES[categoryParam] || categoryParam;
+
   const selectedCategory =
-    categoryParam &&
-    isValidCourseCategory(categoryParam)
-      ? categoryParam
+    normalizedCategory &&
+    isValidCourseCategory(normalizedCategory)
+      ? normalizedCategory
       : "all";
 
   const search =

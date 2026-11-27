@@ -1,0 +1,339 @@
+
+.wishlist-header {
+  position: relative;
+  overflow: hidden;
+  padding: 26px 34px 34px;
+  border: 1px solid #e4eae3;
+  border-radius: 18px;
+  background:
+    radial-gradient(
+      ellipse at 85% 35%,
+      rgba(198, 221, 192, 0.42),
+      transparent 42%
+    ),
+    linear-gradient(120deg, #f7faf5, #edf4e9);
+}
+
+.wishlist-header__breadcrumb {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  color: #8b968d;
+  font-size: 11px;
+}
+
+.wishlist-header__breadcrumb a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.wishlist-header__breadcrumb a:hover {
+  color: #315f50;
+}
+
+.wishlist-header__breadcrumb span {
+  color: #3d5b4b;
+  font-weight: 650;
+}
+
+[dir="rtl"] .wishlist-header__breadcrumb svg {
+  transform: rotate(180deg);
+}
+
+.wishlist-header__layout {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 220px;
+  gap: 24px;
+}
+
+.wishlist-header__copy {
+  position: relative;
+  z-index: 2;
+  max-width: 590px;
+  padding-top: 25px;
+}
+
+.wishlist-header__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  margin-bottom: 16px;
+  color: #60856b;
+  font-size: 10px;
+  font-weight: 750;
+  letter-spacing: 0.15em;
+}
+
+.wishlist-header__eyebrow-line {
+  width: 21px;
+  height: 1px;
+  background: #60856b;
+}
+
+.wishlist-header__heading {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.wishlist-header__heading h1 {
+  margin: 0;
+  color: #213b30;
+  font-size: clamp(34px, 4vw, 55px);
+  font-weight: 650;
+  line-height: 1.12;
+  letter-spacing: -0.055em;
+}
+
+.wishlist-header__count {
+  display: inline-grid;
+  place-items: center;
+  min-width: 36px;
+  height: 36px;
+  padding: 0 9px;
+  border: 1px solid #c9d9c9;
+  border-radius: 10px;
+  background: #e2ede0;
+  color: #3b6950;
+  font-size: 14px;
+  font-weight: 750;
+}
+
+.wishlist-header__copy > p {
+  max-width: 450px;
+  margin: 16px 0 0;
+  color: #6d7d70;
+  font-size: 13px;
+  line-height: 1.9;
+}
+
+.wishlist-header__actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-top: 25px;
+}
+
+.wishlist-header__primary-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  min-height: 43px;
+  padding: 0 18px;
+  border-radius: 8px;
+  background: #315f50;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  text-decoration: none;
+  transition:
+    background 180ms ease,
+    transform 180ms ease;
+}
+
+.wishlist-header__primary-action:hover {
+  background: #254a3d;
+  transform: translateY(-2px);
+}
+
+.wishlist-header__saved-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: #7a8b7c;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.wishlist-header__saved-indicator svg {
+  color: var(--wishlist-accent, #315f50);
+  fill: var(--wishlist-accent, #315f50);
+  stroke: var(--wishlist-accent, #315f50);
+}
+
+.wishlist-header__art {
+  position: relative;
+  flex: 0 0 260px;
+  width: 260px;
+  height: 230px;
+}
+
+.wishlist-header__art-ring {
+  position: absolute;
+  border: 1px solid rgba(76, 122, 86, 0.14);
+  border-radius: 50%;
+}
+
+.wishlist-header__art-ring--outer {
+  inset: -40px -20px;
+}
+
+.wishlist-header__art-ring--inner {
+  inset: -7px 14px;
+}
+
+.wishlist-header__art-card {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  border: 1px solid rgba(70, 105, 76, 0.12);
+  border-radius: 15px;
+  box-shadow: 0 18px 35px rgba(44, 79, 50, 0.1);
+}
+
+.wishlist-header__art-card--back {
+  top: 31px;
+  left: 67px;
+  width: 155px;
+  height: 168px;
+  padding: 25px;
+  background: #c9ddc8;
+  transform: rotate(14deg);
+}
+
+.wishlist-header__art-card--back span {
+  width: 100%;
+  height: 7px;
+  margin-bottom: 12px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.42);
+}
+
+.wishlist-header__art-card--back span:nth-child(2) {
+  width: 70%;
+}
+
+.wishlist-header__art-card--back span:nth-child(3) {
+  width: 45%;
+}
+
+.wishlist-header__art-card--front {
+  top: 48px;
+  left: 27px;
+  width: 162px;
+  height: 175px;
+  padding: 25px;
+  background: #fff;
+  color: #47735a;
+  transform: rotate(-9deg);
+}
+
+.wishlist-header__art-card-line {
+  width: 100%;
+  height: 7px;
+  margin-top: 19px;
+  border-radius: 20px;
+  background: #e6eee5;
+}
+
+.wishlist-header__art-card-line--short {
+  width: 65%;
+  margin-top: 9px;
+}
+
+.wishlist-header__art-heart {
+  position: absolute;
+  top: 20px;
+  right: 13px;
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border: 5px solid #e9f2e7;
+  border-radius: 50%;
+  background: #fff;
+  color: #176e62;
+  box-shadow: 0 9px 22px rgba(45, 75, 48, 0.1);
+}
+
+.wishlist-header__art-dot {
+  position: absolute;
+  border-radius: 50%;
+  background: #a5c5a5;
+}
+
+.wishlist-header__art-dot--one {
+  top: 17px;
+  left: 12px;
+  width: 10px;
+  height: 10px;
+}
+
+.wishlist-header__art-dot--two {
+  right: 15px;
+  bottom: 7px;
+  width: 7px;
+  height: 7px;
+}
+
+[dir="rtl"] .wishlist-header__eyebrow {
+  letter-spacing: 0;
+}
+
+@media (max-width: 1050px) {
+  .wishlist-header__art {
+    flex-basis: 205px;
+    width: 205px;
+    transform: scale(0.85);
+    transform-origin: center;
+  }
+}
+
+@media (max-width: 760px) {
+  .wishlist-header {
+    padding: 24px;
+  }
+
+  .wishlist-header__layout {
+    min-height: auto;
+  }
+
+  .wishlist-header__art {
+    display: none;
+  }
+
+  .wishlist-header__copy {
+    padding-top: 30px;
+  }
+}
+
+@media (max-width: 480px) {
+  .wishlist-header {
+    padding: 21px 18px 25px;
+    border-radius: 14px;
+  }
+
+  .wishlist-header__heading h1 {
+    font-size: 34px;
+  }
+
+  .wishlist-header__copy > p {
+    font-size: 12px;
+  }
+
+  .wishlist-header__actions {
+    gap: 14px;
+  }
+
+  .wishlist-header__primary-action {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wishlist-header__primary-action {
+    transition: none;
+  }
+
+  .wishlist-header__primary-action:hover {
+    transform: none;
+  }
+}

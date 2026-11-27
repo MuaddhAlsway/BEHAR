@@ -1,0 +1,1 @@
+export default function ReviewActions({ onEdit, onDelete }) { return <div className="review-actions"><button type="button" onClick={onEdit}>Edit review</button><button type="button" onClick={onDelete}>Delete review</button></div>; }

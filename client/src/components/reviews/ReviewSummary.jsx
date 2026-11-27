@@ -1,0 +1,1 @@
+export default function ReviewSummary({ summary = {} }) { return <div className="reviews-summary"><strong>{Number(summary.average || 0).toFixed(1)}</strong><span>{summary.total || 0} reviews</span></div>; }

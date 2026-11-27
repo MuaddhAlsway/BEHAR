@@ -1,5 +1,6 @@
 
 import { useEffect, useState } from "react";
+
 import {
   Routes,
   Route,
@@ -7,6 +8,7 @@ import {
   useLocation,
   useNavigate,
 } from "react-router-dom";
+
 import { ArrowUp } from "lucide-react";
 
 // ==========================================
@@ -51,6 +53,15 @@ import Discussions from "./pages/student/Discussions";
 // P14.11.4 — Discussion Details & Threaded Replies
 import DiscussionDetails from "./pages/student/DiscussionDetails";
 
+// P14.14 — Student Calendar
+import Calendar from "./pages/student/Calendar";
+
+// P14.15 — Student Wishlist
+import Wishlist from "./pages/student/Wishlist";
+
+// P14.16 — Student Payments & Billing
+import Payments from "./pages/student/Payments";
+
 // P14.5.0.8 — Complete Achievements Dashboard
 import Achievements from "./components/student/achievements/Achievements";
 
@@ -67,18 +78,40 @@ import {
 import {
   StudentNotificationsProvider,
 } from "./context/StudentNotificationsContext";
-import { DiscussionsProvider } from "./context/DiscussionsContext";
+
+// P14.11 — Discussions Context
+import {
+  DiscussionsProvider,
+} from "./context/DiscussionsContext";
+
+// P14.15 — Wishlist Context
+import {
+  WishlistProvider,
+} from "./context/WishlistContext";
+
+// P14.17 — Reviews & Ratings Context
+import {
+  ReviewsProvider,
+} from "./context/ReviewsContext";
 
 // ==========================================
 // GLOBAL ACHIEVEMENT CELEBRATIONS
 // ==========================================
 
 import GamificationCelebrationHost from "./components/student/achievements/GamificationCelebrationHost";
-import { getLocaleFromPath, withLocale } from "./utils/localeRouting";
 
-/* ==========================================
-   SCROLL TO TOP BUTTON
-========================================== */
+// ==========================================
+// LOCALE ROUTING
+// ==========================================
+
+import {
+  getLocaleFromPath,
+  withLocale,
+} from "./utils/localeRouting";
+
+// ==========================================
+// SCROLL TO TOP BUTTON
+// ==========================================
 
 function ScrollToTop() {
   const [visible, setVisible] = useState(false);
@@ -127,9 +160,9 @@ function ScrollToTop() {
   );
 }
 
-/* ==========================================
-   ROUTE SCROLL RESET
-========================================== */
+// ==========================================
+// ROUTE SCROLL RESET
+// ==========================================
 
 function RouteScrollReset() {
   const { pathname } = useLocation();
@@ -144,6 +177,10 @@ function RouteScrollReset() {
   return null;
 }
 
+// ==========================================
+// LOCALE URL SYNCHRONIZATION
+// ==========================================
+
 function LocaleUrlSync() {
   const { pathname } = useLocation();
   const navigate = useNavigate();
@@ -152,22 +189,41 @@ function LocaleUrlSync() {
     const locale = getLocaleFromPath(pathname);
 
     if (!locale) {
-      const stored = localStorage.getItem("behar-language") || "en";
-      navigate(withLocale(pathname, stored), { replace: true });
+      let stored = "en";
+
+      try {
+        stored =
+          localStorage.getItem("behar-language") || "en";
+      } catch {
+        // Storage may be unavailable.
+      }
+
+      const safeLocale = stored === "ar" ? "ar" : "en";
+
+      navigate(withLocale(pathname, safeLocale), {
+        replace: true,
+      });
+
       return;
     }
 
     document.documentElement.lang = locale;
-    document.documentElement.dir = locale === "ar" ? "rtl" : "ltr";
-    localStorage.setItem("behar-language", locale);
+    document.documentElement.dir =
+      locale === "ar" ? "rtl" : "ltr";
+
+    try {
+      localStorage.setItem("behar-language", locale);
+    } catch {
+      // Language remains synchronized with the URL.
+    }
   }, [navigate, pathname]);
 
   return null;
 }
 
-/* ==========================================
-   PUBLIC WEBSITE LAYOUT
-========================================== */
+// ==========================================
+// PUBLIC WEBSITE LAYOUT
+// ==========================================
 
 function PublicLayout({ children }) {
   return (
@@ -185,195 +241,225 @@ function PublicLayout({ children }) {
   );
 }
 
-/* ==========================================
-   MAIN APPLICATION
-========================================== */
+// ==========================================
+// MAIN APPLICATION
+// ==========================================
 
 function App() {
   return (
     <GamificationProvider>
       <StudentNotificationsProvider>
         <DiscussionsProvider>
-        {/* ==================================
-            ROUTE SCROLL RESET
-        ================================== */}
+          <WishlistProvider>
+            <ReviewsProvider>
 
-        <RouteScrollReset />
-        <LocaleUrlSync />
+              {/* ==================================
+                  ROUTE SCROLL RESET
+              ================================== */}
 
-        <Routes>
-          {/* ==================================
-              PUBLIC WEBSITE
-          ================================== */}
+              <RouteScrollReset />
+              <LocaleUrlSync />
 
-          <Route path=":lang?" element={<PublicLayout />}>
-            {/* P01 — Home */}
-            <Route
-              index
-              element={<Home />}
-            />
+              <Routes>
 
-            {/* P02 — Course Catalog */}
-            <Route
-              path="courses"
-              element={<Courses />}
-            />
+                {/* ==================================
+                    PUBLIC WEBSITE
+                ================================== */}
 
-            {/* P03 — Course Details */}
-            <Route
-              path="courses/:slug"
-              element={<CourseDetails />}
-            />
+                <Route
+                  path=":lang?"
+                  element={<PublicLayout />}
+                >
 
-            {/* P14.10.6 — Certificate Verification */}
-            <Route
-              path="verify-certificate"
-              element={<VerifyCertificate />}
-            />
-          </Route>
+                  {/* P01 — Home */}
+                  <Route
+                    index
+                    element={<Home />}
+                  />
 
-          {/* ==================================
-              STUDENT DASHBOARD
-          ================================== */}
+                  {/* P02 — Course Catalog */}
+                  <Route
+                    path="courses"
+                    element={<Courses />}
+                  />
 
-          <Route
-            path=":lang?/student"
-            element={<StudentLayout />}
-          >
-            {/* ==================================
-                P14.1 — DASHBOARD OVERVIEW
-            ================================== */}
+                  {/* P03 — Course Details */}
+                  <Route
+                    path="courses/:slug"
+                    element={<CourseDetails />}
+                  />
 
-            <Route
-              index
-              element={<Dashboard />}
-            />
+                  {/* P14.10.6 — Certificate Verification */}
+                  <Route
+                    path="verify-certificate"
+                    element={<VerifyCertificate />}
+                  />
 
-            {/* ==================================
-                P14.2 — MY LEARNING
-            ================================== */}
+                </Route>
 
-            <Route
-              path="my-learning"
-              element={<MyLearning />}
-            />
+                {/* ==================================
+                    STUDENT DASHBOARD
+                ================================== */}
 
-            {/* ==================================
-                P14.4 — STUDENT PROGRESS
-            ================================== */}
+                <Route
+                  path=":lang?/student"
+                  element={<StudentLayout />}
+                >
 
-            <Route
-              path="progress"
-              element={<StudentProgress />}
-            />
+                  {/* P14.1 — Dashboard Overview */}
+                  <Route
+                    index
+                    element={<Dashboard />}
+                  />
 
-            <Route path="messages" element={<Messages />} />
+                  {/* P14.2 — My Learning */}
+                  <Route
+                    path="my-learning"
+                    element={<MyLearning />}
+                  />
 
-            {/* ==================================
-                P14.5 — ACHIEVEMENTS
-            ================================== */}
+                  {/* P14.4 — Student Progress */}
+                  <Route
+                    path="progress"
+                    element={<StudentProgress />}
+                  />
 
-            <Route
-              path="achievements"
-              element={
-                <Achievements language="en" />
-              }
-            />
+                  {/* Student Messages */}
+                  <Route
+                    path="messages"
+                    element={<Messages />}
+                  />
 
-            {/* ==================================
-                P14.8 — ASSIGNMENTS
-            ================================== */}
+                  {/* P14.5 — Achievements */}
+                  <Route
+                    path="achievements"
+                    element={
+                      <Achievements language="en" />
+                    }
+                  />
 
-            <Route
-              path="assignments"
-              element={<Assignments />}
-            />
+                  {/* P14.8 — Assignments */}
+                  <Route
+                    path="assignments"
+                    element={<Assignments />}
+                  />
 
-            {/* ==================================
-                P14.9 — NOTIFICATIONS
-            ================================== */}
+                  {/* P14.9 — Notifications */}
+                  <Route
+                    path="notifications"
+                    element={<Notifications />}
+                  />
 
-            <Route
-              path="notifications"
-              element={<Notifications />}
-            />
+                  {/* P14.10 — Certificates */}
+                  <Route
+                    path="certificates"
+                    element={<Certificates />}
+                  />
 
-            {/* ==================================
-                P14.10 — CERTIFICATES
-            ================================== */}
+                  {/* ==================================
+                      P14.11 — STUDENT DISCUSSIONS
+                  ================================== */}
 
-            <Route
-              path="certificates"
-              element={<Certificates />}
-            />
+                  <Route
+                    path="discussions"
+                    element={<Discussions />}
+                  />
 
-            {/* ==================================
-                P14.11.1 — DISCUSSIONS OVERVIEW
-                P14.11.3 — CREATE DISCUSSION
-            ================================== */}
+                  <Route
+                    path="discussions/:discussionId"
+                    element={<DiscussionDetails />}
+                  />
 
-            <Route
-              path="discussions"
-              element={<Discussions />}
-            />
+                  {/* ==================================
+                      P14.14 — STUDENT CALENDAR
+                  ================================== */}
 
-            {/* ==================================
-                P14.11.4 — DISCUSSION DETAILS
-                & THREADED REPLIES
-            ================================== */}
+                  <Route
+                    path="calendar"
+                    element={<Calendar />}
+                  />
 
-            <Route
-              path="discussions/:discussionId"
-              element={<DiscussionDetails />}
-            />
+                  {/* ==================================
+                      P14.15 — STUDENT WISHLIST
+                  ================================== */}
 
-            {/* ==================================
-                INVALID STUDENT ROUTES
-            ================================== */}
+                  <Route
+                    path="wishlist"
+                    element={<Wishlist />}
+                  />
 
-            <Route
-              path="*"
-              element={<NotFound />}
-            />
-          </Route>
+                  {/* ==================================
+                      P14.16 — STUDENT PAYMENTS
+                      & BILLING
 
-          {/* ==================================
-              P14.3 — STUDENT LEARNING PLAYER
+                      Features:
+                      - Payment overview
+                      - Total spent
+                      - Order statistics
+                      - Transaction history
+                      - Payment status
+                      - Receipts
+                      - Order details
+                      - Refund requests
+                      - Future payment gateway integration
+                  ================================== */}
 
-              Focused learning workspace
-              Without Student Dashboard sidebar
-          ================================== */}
+                  <Route
+                    path="orders"
+                    element={<Payments />}
+                  />
 
-          <Route
-            path=":lang?/student/learn/:courseSlug"
-            element={<LearningPlayer />}
-          />
+                  {/* ==================================
+                      INVALID STUDENT ROUTES
+                  ================================== */}
 
-          <Route
-            path=":lang?/student/learn/:courseSlug/lessons/:lessonId"
-            element={<LearningPlayer />}
-          />
+                  <Route
+                    path="*"
+                    element={<NotFound />}
+                  />
 
-          {/* ==================================
-              GLOBAL 404
-          ================================== */}
+                </Route>
 
-          <Route
-            path=":lang?/*"
-            element={
-              <PublicLayout>
-                <NotFound />
-              </PublicLayout>
-            }
-          />
-        </Routes>
+                {/* ==================================
+                    P14.3 — STUDENT LEARNING PLAYER
 
-        {/* ==================================
-            P14.5.0.9 — GLOBAL ACHIEVEMENT
-            CELEBRATION HOST
-        ================================== */}
+                    Focused learning workspace
+                    Without Student Dashboard sidebar
+                ================================== */}
 
-        <GamificationCelebrationHost language="en" />
+                <Route
+                  path=":lang?/student/learn/:courseSlug"
+                  element={<LearningPlayer />}
+                />
+
+                <Route
+                  path=":lang?/student/learn/:courseSlug/lessons/:lessonId"
+                  element={<LearningPlayer />}
+                />
+
+                {/* ==================================
+                    GLOBAL 404
+                ================================== */}
+
+                <Route
+                  path=":lang?/*"
+                  element={
+                    <PublicLayout>
+                      <NotFound />
+                    </PublicLayout>
+                  }
+                />
+
+              </Routes>
+
+              {/* ==================================
+                  GLOBAL ACHIEVEMENT CELEBRATIONS
+              ================================== */}
+
+              <GamificationCelebrationHost language="en" />
+
+            </ReviewsProvider>
+          </WishlistProvider>
         </DiscussionsProvider>
       </StudentNotificationsProvider>
     </GamificationProvider>

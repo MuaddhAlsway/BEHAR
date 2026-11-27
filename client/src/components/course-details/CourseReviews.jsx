@@ -17,8 +17,13 @@ import {
   getCourseReviews,
   getReviewStatistics,
 } from "../../data/courseReviews";
+import { useReviews } from "../../hooks/useReviews";
 
 import "../../styles/course-details/course-reviews.css";
+import "../../styles/reviews/reviews.css";
+import "../../styles/reviews/review-card.css";
+import "../../styles/reviews/review-form.css";
+import "../../styles/reviews/rating-distribution.css";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -94,6 +99,17 @@ function localize(value, language) {
 }
 
 function formatDate(value, language) {
+  const raw = String(value || "").trim();
+  const date = new Date(
+    /^\d{4}-\d{2}-\d{2}$/.test(raw)
+      ? `${raw}T00:00:00Z`
+      : raw
+  );
+
+  if (Number.isNaN(date.getTime())) {
+    return "";
+  }
+
   return new Intl.DateTimeFormat(
     language === "ar" ? "ar-SA" : "en-US",
     {
@@ -102,7 +118,7 @@ function formatDate(value, language) {
       day: "numeric",
       timeZone: "UTC",
     }
-  ).format(new Date(`${value}T00:00:00Z`));
+  ).format(date);
 }
 
 function RatingStars({ rating, size = 16 }) {
@@ -125,20 +141,21 @@ function RatingStars({ rating, size = 16 }) {
 
 export default function CourseReviews({ course }) {
   const rootRef = useRef(null);
+  const { getCourseReviews: getStoredCourseReviews, getCourseRatingSummary } = useReviews();
   const [language, setLanguage] = useState(getLanguage);
   const [ratingFilter, setRatingFilter] = useState(0);
   const [sort, setSort] = useState("newest");
   const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
 
-  const reviews = useMemo(
-    () => getCourseReviews(course.slug),
-    [course.slug]
-  );
+  const reviews = useMemo(() => {
+    const stored = getStoredCourseReviews(course.id || course.slug);
+    return stored.length ? stored : getCourseReviews(course.slug);
+  }, [course.slug, getStoredCourseReviews]);
 
-  const stats = useMemo(
-    () => getReviewStatistics(reviews),
-    [reviews]
-  );
+  const stats = useMemo(() => {
+    const summary = getCourseRatingSummary(course.id || course.slug);
+    return summary.total ? summary : getReviewStatistics(reviews);
+  }, [course.slug, reviews, getCourseRatingSummary]);
 
   const filteredReviews = useMemo(() => {
     const result = reviews.filter(

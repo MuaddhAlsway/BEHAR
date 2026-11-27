@@ -1,0 +1,633 @@
+
+/*
+ * BEHAR LMS — Student Calendar
+ * P14.14 / Component 20
+ *
+ * EventDetailsModal
+ * Pure CSS
+ */
+
+/* ==========================================
+   OVERLAY
+========================================== */
+
+.behar-event-details__overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  overflow-y: auto;
+  background: rgb(18 32 23 / 56%);
+  backdrop-filter: blur(5px);
+}
+
+/* ==========================================
+   DIALOG
+========================================== */
+
+.behar-event-details__dialog {
+  --event-color: #365a42;
+  --event-background: #edf3ee;
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: min(100%, 560px);
+  max-height: min(90vh, 820px);
+  overflow: hidden;
+  border: 1px solid #e2e9e4;
+  border-radius: 17px;
+  background: #fff;
+  box-shadow: 0 24px 80px rgb(0 0 0 / 18%);
+}
+
+.behar-event-details__dialog--live {
+  --event-color: #2c62a8;
+  --event-background: #e8f1ff;
+}
+
+.behar-event-details__dialog--lesson {
+  --event-color: #5666a7;
+  --event-background: #edf3ff;
+}
+
+.behar-event-details__dialog--assignment {
+  --event-color: #a56c2c;
+  --event-background: #fff3e5;
+}
+
+.behar-event-details__dialog--assessment {
+  --event-color: #8553a4;
+  --event-background: #f4eafa;
+}
+
+.behar-event-details__dialog--deadline {
+  --event-color: #b65d4e;
+  --event-background: #fff0ed;
+}
+
+.behar-event-details__dialog--study {
+  --event-color: #34764b;
+  --event-background: #eaf5ed;
+}
+
+.behar-event-details__dialog--reminder {
+  --event-color: #967b22;
+  --event-background: #fff8df;
+}
+
+.behar-event-details__dialog--goal {
+  --event-color: #277d6b;
+  --event-background: #e7f7f2;
+}
+
+.behar-event-details__dialog--task {
+  --event-color: #596477;
+  --event-background: #f0f1f4;
+}
+
+/* ==========================================
+   HEADER
+========================================== */
+
+.behar-event-details__header {
+  padding: 22px 25px 24px;
+  border-bottom: 1px solid #e9eee9;
+}
+
+.behar-event-details__header-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.behar-event-details__source {
+  display: inline-flex;
+  align-items: center;
+  min-height: 25px;
+  padding: 5px 9px;
+  border-radius: 6px;
+  font-size: 10px;
+  font-weight: 750;
+}
+
+.behar-event-details__source--academic {
+  background: #edf3ff;
+  color: #5573a6;
+}
+
+.behar-event-details__source--personal {
+  background: #eaf5ed;
+  color: #34764b;
+}
+
+.behar-event-details__close {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 0;
+  border-radius: 8px;
+  background: #f3f6f3;
+  color: #6c806f;
+  cursor: pointer;
+}
+
+.behar-event-details__close:hover {
+  background: #e8eee9;
+  color: #294a34;
+}
+
+.behar-event-details__identity {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.behar-event-details__event-icon {
+  display: grid;
+  place-items: center;
+  flex: 0 0 52px;
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: var(--event-background);
+  color: var(--event-color);
+}
+
+.behar-event-details__identity-content {
+  min-width: 0;
+}
+
+.behar-event-details__type {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--event-color);
+  font-size: 11px;
+  font-weight: 750;
+}
+
+.behar-event-details__identity h2 {
+  margin: 0;
+  color: #233d2c;
+  font-size: clamp(18px, 2vw, 22px);
+  font-weight: 800;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+
+/* ==========================================
+   BODY
+========================================== */
+
+.behar-event-details__body {
+  display: flex;
+  flex-direction: column;
+  gap: 21px;
+  padding: 23px 25px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+}
+
+/* ==========================================
+   METADATA
+========================================== */
+
+.behar-event-details__metadata {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.behar-event-details__metadata-item {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 9px 11px;
+  border: 1px solid #e8ede8;
+  border-radius: 8px;
+  background: #fbfcfb;
+}
+
+.behar-event-details__metadata-item > span:first-child {
+  color: #89988c;
+  font-size: 10px;
+}
+
+.behar-event-details__status,
+.behar-event-details__priority {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10px;
+  font-weight: 750;
+}
+
+.behar-event-details__status {
+  color: #5b8565;
+}
+
+.behar-event-details__status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.behar-event-details__status--completed {
+  color: #3e9160;
+}
+
+.behar-event-details__status--cancelled {
+  color: #9b9b9b;
+}
+
+.behar-event-details__status--overdue {
+  color: #c36b55;
+}
+
+.behar-event-details__status--ongoing {
+  color: #3978b4;
+}
+
+.behar-event-details__priority--low {
+  color: #688f71;
+}
+
+.behar-event-details__priority--medium {
+  color: #a48936;
+}
+
+.behar-event-details__priority--high {
+  color: #bb6251;
+}
+
+/* ==========================================
+   DETAIL ROWS
+========================================== */
+
+.behar-event-details__schedule,
+.behar-event-details__information {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.behar-event-details__row {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.behar-event-details__row-icon {
+  display: grid;
+  place-items: center;
+  flex: 0 0 35px;
+  width: 35px;
+  height: 35px;
+  border-radius: 9px;
+  background: #f0f5f1;
+  color: #60816a;
+}
+
+.behar-event-details__row-content {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  min-width: 0;
+  padding-top: 2px;
+}
+
+.behar-event-details__row-label {
+  color: #8b9a8e;
+  font-size: 10px;
+  font-weight: 650;
+}
+
+.behar-event-details__row-value {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  color: #344f3d;
+  font-size: 12px;
+  font-weight: 650;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+
+.behar-event-details__date-range {
+  color: #6b806f;
+}
+
+.behar-event-details__timezone,
+.behar-event-details__duration {
+  color: #91a094;
+  font-size: 10px;
+  font-weight: 500;
+}
+
+/* ==========================================
+   SECTIONS
+========================================== */
+
+.behar-event-details__section-heading {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #53715d;
+}
+
+.behar-event-details__section-heading h3 {
+  margin: 0;
+  color: #36503e;
+  font-size: 12px;
+  font-weight: 750;
+}
+
+.behar-event-details__description {
+  margin: 0;
+  color: #687d6e;
+  font-size: 12px;
+  line-height: 1.8;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+/* ==========================================
+   COURSE CARD
+========================================== */
+
+.behar-event-details__course {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.behar-event-details__course-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 13px;
+  border: 1px solid #e3ebe5;
+  border-radius: 10px;
+  background: #fafcfa;
+}
+
+.behar-event-details__course-icon {
+  display: grid;
+  place-items: center;
+  flex: 0 0 40px;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: #eaf2ec;
+  color: #4d7b59;
+}
+
+.behar-event-details__course-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.behar-event-details__course-content strong {
+  display: block;
+  color: #344f3c;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.behar-event-details__course-link {
+  display: grid;
+  place-items: center;
+  flex: 0 0 30px;
+  width: 30px;
+  height: 30px;
+  border: 0;
+  border-radius: 7px;
+  background: #eaf3ec;
+  color: #467653;
+  cursor: pointer;
+}
+
+.behar-event-details__course-link:hover {
+  background: #dcecdf;
+}
+
+/* ==========================================
+   EXTERNAL LINKS
+========================================== */
+
+.behar-event-details__external-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: #397a51;
+  font-size: 12px;
+  font-weight: 750;
+  text-decoration: none;
+}
+
+.behar-event-details__external-link:hover {
+  text-decoration: underline;
+}
+
+/* ==========================================
+   FOOTER
+========================================== */
+
+.behar-event-details__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 17px 25px;
+  border-top: 1px solid #e9eee9;
+  background: #fbfcfb;
+}
+
+.behar-event-details__footer-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.behar-event-details__view-day,
+.behar-event-details__edit,
+.behar-event-details__delete {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-height: 37px;
+  padding: 9px 12px;
+  border-radius: 8px;
+  font: inherit;
+  font-size: 11px;
+  font-weight: 750;
+  cursor: pointer;
+}
+
+.behar-event-details__view-day {
+  border: 0;
+  background: #285b3e;
+  color: #fff;
+}
+
+.behar-event-details__view-day:hover {
+  background: #1e4930;
+}
+
+.behar-event-details__edit {
+  border: 1px solid #dbe7de;
+  background: #fff;
+  color: #42724f;
+}
+
+.behar-event-details__edit:hover {
+  background: #edf5ef;
+}
+
+.behar-event-details__delete {
+  border: 1px solid #f0dcd8;
+  background: #fff7f5;
+  color: #b65d4e;
+}
+
+.behar-event-details__delete:hover {
+  background: #ffebe7;
+}
+
+/* ==========================================
+   UNAVAILABLE STATE
+========================================== */
+
+.behar-event-details__dialog--empty {
+  align-items: center;
+  justify-content: center;
+  gap: 13px;
+  min-height: 330px;
+  padding: 40px 28px;
+  text-align: center;
+}
+
+.behar-event-details__dialog--empty
+.behar-event-details__close {
+  position: absolute;
+  top: 17px;
+  inset-inline-end: 17px;
+}
+
+.behar-event-details__dialog--empty > svg {
+  color: #7e9c86;
+}
+
+.behar-event-details__dialog--empty h2 {
+  margin: 0;
+  color: #31513c;
+  font-size: 17px;
+}
+
+.behar-event-details__dialog--empty p {
+  max-width: 330px;
+  margin: 0;
+  color: #8a998e;
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.behar-event-details__primary-action {
+  margin-top: 8px;
+  padding: 10px 15px;
+  border: 0;
+  border-radius: 9px;
+  background: #285b3e;
+  color: #fff;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 750;
+  cursor: pointer;
+}
+
+/* ==========================================
+   ACCESSIBILITY
+========================================== */
+
+.behar-event-details__dialog button:focus-visible,
+.behar-event-details__dialog a:focus-visible {
+  outline: 3px solid #87b79a;
+  outline-offset: 2px;
+}
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media (max-width: 640px) {
+  .behar-event-details__overlay {
+    align-items: flex-end;
+    padding: 0;
+  }
+
+  .behar-event-details__dialog {
+    width: 100%;
+    max-height: 92dvh;
+    border-radius: 18px 18px 0 0;
+  }
+
+  .behar-event-details__header {
+    padding: 19px;
+  }
+
+  .behar-event-details__body {
+    gap: 19px;
+    padding: 19px;
+  }
+
+  .behar-event-details__footer {
+    padding: 15px 19px;
+  }
+
+  .behar-event-details__view-day {
+    flex: 1;
+  }
+
+  .behar-event-details__footer-actions {
+    flex: 1;
+    justify-content: flex-end;
+  }
+
+  .behar-event-details__identity h2 {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 390px) {
+  .behar-event-details__footer {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .behar-event-details__footer-actions {
+    width: 100%;
+  }
+
+  .behar-event-details__footer-actions button {
+    flex: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .behar-event-details__dialog *,
+  .behar-event-details__dialog *::before,
+  .behar-event-details__dialog *::after {
+    transition: none !important;
+  }
+}

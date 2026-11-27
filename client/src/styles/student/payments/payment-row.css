@@ -1,0 +1,366 @@
+
+/* ==========================================
+   BEHAR LMS — PAYMENT ROW
+   P14.16.05
+========================================== */
+
+/* Desktop transaction row */
+
+.payment-row {
+  transition: background 180ms ease;
+}
+
+.payment-row:hover {
+  background: #fafcfb;
+}
+
+.payment-row td {
+  padding: 18px;
+  border-bottom: 1px solid #edf1ed;
+  vertical-align: middle;
+}
+
+/* Transaction */
+
+.payment-row__transaction {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 200px;
+}
+
+.payment-row__icon {
+  display: grid;
+  width: 41px;
+  height: 41px;
+  flex-shrink: 0;
+  place-items: center;
+  border: 1px solid #dcebe0;
+  border-radius: 12px;
+  background: #eef7f0;
+  color: #39734d;
+}
+
+.payment-row__icon--refund {
+  border-color: #e2e8f4;
+  background: #f0f4fc;
+  color: #5478b5;
+}
+
+.payment-row__transaction-info {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  min-width: 0;
+}
+
+.payment-row__course {
+  display: block;
+  max-width: 260px;
+  overflow: hidden;
+  color: #21372a;
+  font-size: 12px;
+  font-weight: 650;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.payment-row__order-id {
+  color: #95a198;
+  font-size: 10px;
+}
+
+/* Date */
+
+.payment-row__date {
+  color: #627368;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+/* Amount */
+
+.payment-row__amount {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.payment-row__amount strong {
+  color: #203b2a;
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.payment-row__amount > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: #96a198;
+  font-size: 10px;
+}
+
+/* Status badges */
+
+.payment-row__status {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  width: max-content;
+  padding: 7px 10px;
+  border: 1px solid transparent;
+  border-radius: 100px;
+  font-size: 10px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.payment-row__status-dot {
+  width: 6px;
+  height: 6px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.payment-row__status--paid {
+  border-color: #d5ebda;
+  background: #edf8ef;
+  color: #2f8548;
+}
+
+.payment-row__status--pending {
+  border-color: #f2e4bc;
+  background: #fff9e9;
+  color: #a77918;
+}
+
+.payment-row__status--processing {
+  border-color: #d8e5fa;
+  background: #eff5ff;
+  color: #4c7fbe;
+}
+
+.payment-row__status--failed {
+  border-color: #f3d9d9;
+  background: #fff0f0;
+  color: #bb5252;
+}
+
+.payment-row__status--cancelled {
+  border-color: #e6e8e6;
+  background: #f5f6f5;
+  color: #7b847d;
+}
+
+.payment-row__status--refunded {
+  border-color: #dce5f5;
+  background: #f0f4fc;
+  color: #587bb5;
+}
+
+.payment-row__status--partially-refunded {
+  border-color: #eee1cf;
+  background: #faf3e9;
+  color: #a27845;
+}
+
+.payment-row__status--unknown {
+  border-color: #e6e8e6;
+  background: #f5f6f5;
+  color: #7b847d;
+}
+
+/* Desktop action */
+
+.payment-row__view {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-height: 35px;
+  padding: 0 12px;
+  border: 1px solid #e0e9e2;
+  border-radius: 9px;
+  background: #ffffff;
+  color: #356747;
+  font: inherit;
+  font-size: 11px;
+  font-weight: 650;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    background 180ms ease,
+    border-color 180ms ease;
+}
+
+.payment-row__view:hover:not(:disabled) {
+  border-color: #b8d4bf;
+  background: #eef7f0;
+}
+
+.payment-row__view:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ==========================================
+   MOBILE TRANSACTION CARD
+========================================== */
+
+.payment-row-mobile {
+  padding: 18px;
+  border: 1px solid #e5ebe6;
+  border-radius: 14px;
+  background: #ffffff;
+}
+
+.payment-row-mobile__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.payment-row-mobile__icon {
+  display: grid;
+  width: 39px;
+  height: 39px;
+  flex-shrink: 0;
+  place-items: center;
+  border: 1px solid #dcebe0;
+  border-radius: 11px;
+  background: #eef7f0;
+  color: #39734d;
+}
+
+.payment-row-mobile__content h3 {
+  margin: 0;
+  color: #21372a;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.payment-row-mobile__order-id {
+  margin: 6px 0 0;
+  color: #95a198;
+  font-size: 11px;
+}
+
+.payment-row-mobile__meta {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 19px;
+  padding: 16px 0;
+  border-top: 1px solid #edf1ed;
+  border-bottom: 1px solid #edf1ed;
+}
+
+.payment-row-mobile__meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+.payment-row-mobile__meta-item span {
+  color: #95a198;
+  font-size: 10px;
+}
+
+.payment-row-mobile__meta-item strong {
+  color: #294533;
+  font-size: 12px;
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+
+.payment-row-mobile__payment-method {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 15px;
+  color: #7b8980;
+  font-size: 11px;
+}
+
+.payment-row-mobile__payment-method svg {
+  color: #39734d;
+}
+
+.payment-row-mobile__action {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  margin-top: 17px;
+  padding: 14px 0 0;
+  border: 0;
+  border-top: 1px solid #edf1ed;
+  background: transparent;
+  color: #39734d;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 650;
+  text-align: start;
+  cursor: pointer;
+}
+
+.payment-row-mobile__action:hover:not(:disabled) {
+  color: #235c3e;
+}
+
+.payment-row-mobile__action:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ==========================================
+   RTL SUPPORT
+========================================== */
+
+[dir="rtl"] .payment-row__view svg,
+[dir="rtl"] .payment-row-mobile__action svg {
+  transform: scaleX(-1);
+}
+
+/* ==========================================
+   ACCESSIBILITY
+========================================== */
+
+.payment-row__view:focus-visible,
+.payment-row-mobile__action:focus-visible {
+  outline: 3px solid #9fc9aa;
+  outline-offset: 3px;
+}
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media (max-width: 480px) {
+  .payment-row-mobile {
+    padding: 16px;
+  }
+
+  .payment-row-mobile__meta {
+    gap: 12px;
+  }
+
+  .payment-row-mobile__meta-item strong {
+    font-size: 11px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .payment-row,
+  .payment-row__view {
+    transition: none;
+  }
+}

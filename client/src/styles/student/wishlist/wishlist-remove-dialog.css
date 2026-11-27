@@ -1,0 +1,210 @@
+
+/* =====================================================
+   BEHAR — WISHLIST REMOVE DIALOG
+   ===================================================== */
+
+.wishlist-remove-dialog__backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(13, 30, 22, 0.62);
+  backdrop-filter: blur(6px);
+  animation: wishlist-backdrop-in 180ms ease-out;
+}
+
+.wishlist-remove-dialog {
+  position: relative;
+  width: min(100%, 440px);
+  max-height: min(90vh, 700px);
+  overflow-y: auto;
+  padding: 36px;
+  border: 1px solid #e7ece5;
+  border-radius: 20px;
+  background: #fff;
+  box-shadow: 0 25px 90px rgba(0, 0, 0, 0.18);
+  font-family: inherit;
+  text-align: center;
+  animation: wishlist-dialog-in 220ms ease-out;
+}
+
+.wishlist-remove-dialog *,
+.wishlist-remove-dialog *::before,
+.wishlist-remove-dialog *::after {
+  box-sizing: border-box;
+}
+
+.wishlist-remove-dialog__close {
+  position: absolute;
+  inset-block-start: 17px;
+  inset-inline-end: 17px;
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  border: 0;
+  border-radius: 9px;
+  background: #f5f7f4;
+  color: #7d8b80;
+  cursor: pointer;
+}
+
+.wishlist-remove-dialog__close:hover {
+  background: #e9efea;
+  color: #315f50;
+}
+
+.wishlist-remove-dialog__icon {
+  display: grid;
+  place-items: center;
+  width: 66px;
+  height: 66px;
+  margin: 0 auto 23px;
+  border-radius: 19px;
+  background: #fff0f2;
+  color: #c46a76;
+}
+
+.wishlist-remove-dialog__eyebrow {
+  display: block;
+  margin-bottom: 9px;
+  color: #829185;
+  font-size: 10px;
+  font-weight: 750;
+  letter-spacing: 0.12em;
+}
+
+.wishlist-remove-dialog h2 {
+  margin: 0;
+  color: #203b2d;
+  font-size: clamp(23px, 3vw, 29px);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1.2;
+}
+
+.wishlist-remove-dialog__course {
+  margin: 14px 0 0;
+  color: #315f50;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.wishlist-remove-dialog__description {
+  margin: 15px 0 0;
+  color: #7a8a7d;
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+.wishlist-remove-dialog__notice {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  margin-top: 23px;
+  padding: 13px;
+  border: 1px solid #f0e9db;
+  border-radius: 10px;
+  background: #fffcf6;
+  color: #8d8067;
+  text-align: start;
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+.wishlist-remove-dialog__notice svg {
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.wishlist-remove-dialog__actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 25px;
+}
+
+.wishlist-remove-dialog__actions button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  flex: 1;
+  min-height: 45px;
+  padding: 10px;
+  border-radius: 9px;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.wishlist-remove-dialog__cancel {
+  border: 1px solid #e0e8df;
+  background: #fff;
+  color: #526b57;
+}
+
+.wishlist-remove-dialog__cancel:hover {
+  background: #f4f7f3;
+}
+
+.wishlist-remove-dialog__confirm {
+  border: 1px solid #bd5865;
+  background: #bd5865;
+  color: #fff;
+}
+
+.wishlist-remove-dialog__confirm:hover {
+  background: #a94855;
+}
+
+.wishlist-remove-dialog button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.wishlist-remove-dialog button:focus-visible {
+  outline: 3px solid #78a58a;
+  outline-offset: 3px;
+}
+
+@keyframes wishlist-backdrop-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes wishlist-dialog-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (max-width: 480px) {
+  .wishlist-remove-dialog {
+    padding: 29px 20px 22px;
+    border-radius: 16px;
+  }
+
+  .wishlist-remove-dialog__actions {
+    flex-direction: column-reverse;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wishlist-remove-dialog,
+  .wishlist-remove-dialog__backdrop {
+    animation: none;
+  }
+}

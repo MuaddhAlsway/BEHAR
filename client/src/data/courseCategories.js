@@ -4,6 +4,7 @@ import VisualIdentityFromIdeatoIconic from "../assets/VisualIdentityFromIdeatoIc
 import BusinessThinkingforaChangingWorld from "../assets/BusinessThinkingforaChangingWorld.png";
 import TheNewRulesofDigitalMarketing from "../assets/TheNewRulesofDigitalMarketing.png";
 import PhotographyBeyondtheOrdinary from "../assets/PhotographyBeyondtheOrdinary.png";
+import BuildBetterHabits from "../assets/BuildBetterHabits.png";
 import discoveryWorkspace from "../assets/ArtificialIntelligence.png";
 
 export const courseCategories = [
@@ -90,6 +91,20 @@ export const courseCategories = [
     },
     image: PhotographyBeyondtheOrdinary,
     accent: "#A5CFC2",
+  },
+  {
+    id: "personal-growth",
+    number: "07",
+    title: {
+      en: "Personal Growth",
+      ar: "التطوير الشخصي",
+    },
+    description: {
+      en: "Build habits that move you forward.",
+      ar: "ابنِ عادات تدفعك إلى الأمام.",
+    },
+    image: BuildBetterHabits,
+    accent: "#DCE4D0",
   },
 ];
 

@@ -248,6 +248,7 @@ export default function Navbar() {
             <button
               type="button"
               className="behar-language"
+              data-language-label={isArabic ? "en" : "ar"}
               onClick={switchLanguage}
               aria-label={isArabic ? "Switch to English" : "التبديل إلى العربية"}
             >

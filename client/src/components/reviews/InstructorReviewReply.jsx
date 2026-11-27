@@ -1,0 +1,1 @@
+export default function InstructorReviewReply({ reply }) { if (!reply) return null; return <aside className="instructor-review-reply"><strong>Instructor response</strong><p>{reply.text || reply.comment}</p></aside>; }

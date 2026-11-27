@@ -1,0 +1,222 @@
+/* Calendar workspace shell and page-level layout */
+.behar-calendar-page {
+  min-height: 100%;
+  padding: clamp(28px, 4vw, 64px) clamp(18px, 4vw, 64px) 72px;
+  background: var(--behar-canvas, #f4f1e9);
+  color: var(--behar-forest, #102c2b);
+}
+
+.behar-calendar-page__inner {
+  width: min(100%, 1440px);
+  margin-inline: auto;
+}
+
+.behar-calendar-page__heading {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  align-items: end;
+  margin-bottom: 30px;
+}
+
+.behar-calendar-page__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--behar-emerald, #176e62);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+.behar-calendar-page__title {
+  margin: 10px 0 0;
+  font-size: clamp(38px, 5vw, 72px);
+  line-height: .98;
+  letter-spacing: -.055em;
+}
+
+.behar-calendar-page__description {
+  max-width: 38ch;
+  margin: 0;
+  color: #65766f;
+  line-height: 1.7;
+}
+
+.behar-calendar-workspace {
+  border: 1px solid #dce4db;
+  border-radius: 22px;
+  background: rgba(255, 255, 255, .42);
+  overflow: visible;
+}
+
+.behar-calendar-workspace__header,
+.behar-calendar-workspace__toolbar,
+.behar-calendar-workspace__filters,
+.behar-calendar-workspace__main,
+.behar-calendar-workspace__sidebar {
+  min-width: 0;
+}
+
+.behar-calendar-workspace__header,
+.behar-calendar-workspace__toolbar,
+.behar-calendar-workspace__filters {
+  padding-inline: clamp(18px, 3vw, 34px);
+}
+
+.behar-calendar-workspace__body {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1px;
+  border-top: 1px solid #dce4db;
+  background: #dce4db;
+}
+
+.behar-calendar-workspace__main,
+.behar-calendar-workspace__sidebar {
+  background: rgba(255, 255, 255, .55);
+}
+
+.behar-calendar-workspace__main {
+  min-width: 0;
+  padding: clamp(18px, 3vw, 32px);
+  overflow: hidden;
+  border-radius: 0;
+}
+
+.behar-calendar-workspace__main-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.behar-calendar-workspace__main-heading {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  color: var(--behar-forest, #102c2b);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.behar-calendar-workspace__view {
+  min-width: 0;
+  overflow-x: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #b7cbbd transparent;
+}
+
+.behar-calendar-workspace__view::-webkit-scrollbar {
+  height: 6px;
+}
+
+.behar-calendar-workspace__view::-webkit-scrollbar-thumb {
+  border-radius: 99px;
+  background: #b7cbbd;
+}
+
+.behar-calendar-workspace__event-count,
+.behar-calendar-workspace__storage-status {
+  color: #65766f;
+  font-size: 12px;
+}
+
+.behar-calendar-workspace__sidebar {
+  padding: clamp(18px, 3vw, 26px);
+  order: 2;
+}
+
+.behar-calendar-workspace__main {
+  order: 1;
+}
+
+.behar-calendar-workspace__mobile-filters {
+  display: none;
+}
+
+.behar-calendar-workspace__sidebar-mobile-toggle,
+.behar-calendar-workspace__toggle {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  min-height: 48px;
+  padding: 12px 15px;
+  border: 1px solid #d7e2d9;
+  border-radius: 12px;
+  background: #fff;
+  color: #102c2b;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  text-align: start;
+  cursor: pointer;
+  transition: background 160ms ease, border-color 160ms ease, transform 160ms ease;
+}
+
+.behar-calendar-workspace__toggle-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.behar-calendar-workspace__toggle svg {
+  flex: 0 0 auto;
+  color: #176e62;
+}
+
+.behar-calendar-workspace__toggle:hover {
+  border-color: #a9c7af;
+  background: #f4f8f2;
+  transform: translateY(-1px);
+}
+
+.behar-calendar-workspace__toggle[aria-expanded="true"] {
+  border-color: #b9cf8b;
+  background: #edf5d9;
+}
+
+.behar-calendar-workspace__toggle:focus-visible {
+  outline: 3px solid rgba(217, 239, 116, .8);
+  outline-offset: 3px;
+}
+
+@media (max-width: 900px) {
+  .behar-calendar-page__heading {
+    display: block;
+  }
+
+  .behar-calendar-page__description {
+    margin-top: 14px;
+  }
+
+  .behar-calendar-workspace__main {
+    border-radius: 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .behar-calendar-page {
+    padding-inline: 14px;
+  }
+
+  .behar-calendar-workspace {
+    border-radius: 16px;
+  }
+
+  .behar-calendar-workspace__main-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .behar-calendar-workspace__mobile-filters {
+    display: block;
+    padding: 14px 18px;
+    border-top: 1px solid #dce4db;
+    border-bottom: 1px solid #dce4db;
+  }
+}

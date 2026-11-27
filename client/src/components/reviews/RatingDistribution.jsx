@@ -1,0 +1,1 @@
+export default function RatingDistribution({ distribution = [] }) { return <div className="reviews-distribution">{distribution.map((item) => <div className="reviews-distribution__row" key={item.stars}><span>{item.stars}</span><span><i style={{ width: `${item.percentage}%` }} /></span><strong>{item.count}</strong></div>)}</div>; }

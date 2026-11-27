@@ -13,7 +13,7 @@
   --dh-line: rgba(244, 241, 233, .18);
 
   position: relative;
-  overflow: hidden;
+  overflow: visible;
   padding: 110px 0 45px;
   background: var(--dh-forest);
   color: var(--dh-cream);
@@ -296,15 +296,15 @@
 
 .behar-detail-hero__ticket {
   position: absolute;
-  top: 50%;
+  top: 40px;
   inset-inline-end: 0;
   width: 350px;
   padding: 28px;
   background: var(--dh-cream);
   color: var(--dh-forest);
   box-shadow: 0 35px 80px rgba(0,0,0,.18);
-  transform: translateY(-50%);
-  z-index: 2;
+  transform: none;
+  z-index: 20;
 }
 
 .behar-detail-hero__ticket-top {

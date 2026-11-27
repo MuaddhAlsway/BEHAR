@@ -1,0 +1,365 @@
+
+/*
+ * BEHAR LMS — Student Calendar
+ * P14.14 / Component 22
+ *
+ * DeleteEventDialog
+ * Pure CSS
+ */
+
+/* ==========================================
+   OVERLAY
+========================================== */
+
+.behar-delete-event__overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1400;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  overflow-y: auto;
+  background: rgb(18 32 23 / 62%);
+  backdrop-filter: blur(5px);
+}
+
+/* ==========================================
+   DIALOG
+========================================== */
+
+.behar-delete-event__dialog {
+  position: relative;
+  width: min(100%, 445px);
+  padding: 28px;
+  border: 1px solid #e9e6e3;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 24px 75px rgb(0 0 0 / 20%);
+}
+
+/* ==========================================
+   CLOSE
+========================================== */
+
+.behar-delete-event__close {
+  position: absolute;
+  top: 15px;
+  inset-inline-end: 15px;
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border: 0;
+  border-radius: 8px;
+  background: #f4f5f4;
+  color: #849187;
+  cursor: pointer;
+}
+
+.behar-delete-event__close:hover {
+  background: #ebefeb;
+  color: #3d5543;
+}
+
+/* ==========================================
+   HEADER
+========================================== */
+
+.behar-delete-event__header {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+  padding: 9px 5px 21px;
+  text-align: center;
+}
+
+.behar-delete-event__warning-icon {
+  display: grid;
+  place-items: center;
+  width: 58px;
+  height: 58px;
+  margin-bottom: 5px;
+  border-radius: 17px;
+  background: #fff0eb;
+  color: #c16853;
+}
+
+.behar-delete-event__warning-icon--blocked {
+  background: #f0f4f1;
+  color: #64806b;
+}
+
+.behar-delete-event__header h2 {
+  margin: 0;
+  color: #304337;
+  font-size: 19px;
+  font-weight: 800;
+  line-height: 1.4;
+}
+
+.behar-delete-event__header p {
+  max-width: 320px;
+  margin: 0;
+  color: #8b978d;
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+/* ==========================================
+   EVENT PREVIEW
+========================================== */
+
+.behar-delete-event__preview {
+  padding: 14px;
+  border: 1px solid #e7ece8;
+  border-radius: 11px;
+  background: #fafbfa;
+}
+
+.behar-delete-event__preview-label {
+  margin-bottom: 11px;
+  color: #8a9a8e;
+  font-size: 10px;
+  font-weight: 750;
+}
+
+.behar-delete-event__preview-content {
+  display: flex;
+  align-items: flex-start;
+  gap: 11px;
+}
+
+.behar-delete-event__event-icon {
+  display: grid;
+  place-items: center;
+  flex: 0 0 38px;
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: #edf3ee;
+  color: #50715a;
+}
+
+.behar-delete-event__event-icon--study {
+  background: #eaf5ed;
+  color: #34764b;
+}
+
+.behar-delete-event__event-icon--reminder {
+  background: #fff8df;
+  color: #967b22;
+}
+
+.behar-delete-event__event-icon--goal {
+  background: #e7f7f2;
+  color: #277d6b;
+}
+
+.behar-delete-event__event-icon--task {
+  background: #f0f1f4;
+  color: #596477;
+}
+
+.behar-delete-event__event-content {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  min-width: 0;
+}
+
+.behar-delete-event__event-type {
+  color: #8a998d;
+  font-size: 10px;
+  font-weight: 650;
+}
+
+.behar-delete-event__event-title {
+  color: #304b39;
+  font-size: 12px;
+  font-weight: 750;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.behar-delete-event__event-schedule {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 13px;
+  margin-top: 3px;
+}
+
+.behar-delete-event__event-schedule span {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: #89998d;
+  font-size: 10px;
+}
+
+/* ==========================================
+   WARNING
+========================================== */
+
+.behar-delete-event__warning {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  margin-top: 15px;
+  padding: 11px 12px;
+  border: 1px solid #f2ded8;
+  border-radius: 9px;
+  background: #fff7f4;
+  color: #ae6452;
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+.behar-delete-event__warning svg {
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+/* ==========================================
+   ERROR
+========================================== */
+
+.behar-delete-event__error {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  margin-top: 12px;
+  padding: 12px;
+  border: 1px solid #f0d2cc;
+  border-radius: 9px;
+  background: #fff0ed;
+  color: #b75b4e;
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+.behar-delete-event__error svg {
+  flex-shrink: 0;
+}
+
+/* ==========================================
+   FOOTER
+========================================== */
+
+.behar-delete-event__footer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 21px;
+}
+
+.behar-delete-event__cancel,
+.behar-delete-event__confirm {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  flex: 1;
+  min-height: 41px;
+  padding: 10px 13px;
+  border-radius: 9px;
+  font: inherit;
+  font-size: 11px;
+  font-weight: 750;
+  cursor: pointer;
+}
+
+.behar-delete-event__cancel {
+  border: 1px solid #dfe8e1;
+  background: #fff;
+  color: #59715f;
+}
+
+.behar-delete-event__cancel:hover:not(:disabled) {
+  background: #f3f7f4;
+}
+
+.behar-delete-event__confirm {
+  border: 0;
+  background: #bd5b4d;
+  color: #fff;
+}
+
+.behar-delete-event__confirm:hover:not(:disabled) {
+  background: #a84b3e;
+}
+
+.behar-delete-event__confirm:disabled,
+.behar-delete-event__cancel:disabled,
+.behar-delete-event__close:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+/* ==========================================
+   SPINNER
+========================================== */
+
+.behar-delete-event__spinner {
+  animation: behar-delete-event-spin 750ms linear infinite;
+}
+
+@keyframes behar-delete-event-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ==========================================
+   ACCESSIBILITY
+========================================== */
+
+.behar-delete-event__dialog button:focus-visible {
+  outline: 3px solid #87b79a;
+  outline-offset: 3px;
+}
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media (max-width: 640px) {
+  .behar-delete-event__overlay {
+    align-items: flex-end;
+    padding: 0;
+  }
+
+  .behar-delete-event__dialog {
+    width: 100%;
+    padding: 25px 19px;
+    border-radius: 18px 18px 0 0;
+  }
+
+  .behar-delete-event__header h2 {
+    font-size: 17px;
+  }
+}
+
+@media (max-width: 360px) {
+  .behar-delete-event__footer {
+    flex-direction: column;
+  }
+
+  .behar-delete-event__footer button {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .behar-delete-event__spinner {
+    animation: none;
+  }
+
+  .behar-delete-event__dialog *,
+  .behar-delete-event__dialog *::before,
+  .behar-delete-event__dialog *::after {
+    transition: none !important;
+  }
+}
