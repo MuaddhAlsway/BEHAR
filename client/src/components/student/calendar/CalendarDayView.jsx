@@ -124,6 +124,17 @@ const EVENT_APPEARANCE = {
 // ------------------------------------------------------------
 
 function getDateLabel(date, language) {
+  const normalizedDate = date instanceof Date
+    ? new Date(date.getTime())
+    : new Date(date)
+
+  // Calendar state can briefly contain an empty or stale date while the
+  // view changes. Keep the header renderable instead of passing an invalid
+  // Date to Intl.DateTimeFormat.
+  const safeDate = Number.isFinite(normalizedDate.getTime())
+    ? normalizedDate
+    : new Date()
+
   return new Intl.DateTimeFormat(
     language === "ar"
       ? "ar-SA-u-ca-gregory"
@@ -135,7 +146,7 @@ function getDateLabel(date, language) {
       day: "numeric",
       year: "numeric",
     }
-  ).format(date);
+  ).format(safeDate);
 }
 
 function getTimeParts(value) {

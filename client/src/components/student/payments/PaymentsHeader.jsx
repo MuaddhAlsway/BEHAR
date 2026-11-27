@@ -1,22 +1,24 @@
 import { Download, CircleHelp, WalletCards } from 'lucide-react'
 import '../../../styles/student/payments/payments-header.css'
+import { getPaymentCopy } from '../../../utils/paymentCopy'
 
 export default function PaymentsHeader({
   onViewReceipts,
   onBillingSupport,
+  locale = 'en-SA',
 }) {
+  const copy = getPaymentCopy(locale)
   return (
     <header className="payments-header">
       <div className="payments-header__content">
         <div className="payments-header__eyebrow">
-          Student Dashboard / Billing
+          {copy.billing}
         </div>
 
-        <h1>Payments & Billing</h1>
+        <h1>{copy.title}</h1>
 
         <p>
-          Manage your course purchases, payment history,
-          and receipts in one place.
+          {copy.intro}
         </p>
 
         <div className="payments-header__actions">
@@ -26,7 +28,7 @@ export default function PaymentsHeader({
             onClick={onViewReceipts}
           >
             <Download size={16} />
-            View receipts
+            {copy.receipts}
           </button>
 
           <button
@@ -35,7 +37,7 @@ export default function PaymentsHeader({
             onClick={onBillingSupport}
           >
             <CircleHelp size={16} />
-            Billing support
+            {copy.support}
           </button>
         </div>
       </div>

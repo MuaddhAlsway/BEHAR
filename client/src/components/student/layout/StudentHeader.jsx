@@ -1,4 +1,5 @@
 
+import { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
   Menu,
@@ -42,10 +43,36 @@ const arabicPageTitles = {
   "Help & Support": "المساعدة والدعم",
 };
 
+const PROFILE_STORAGE_KEY = "behar-student-profile:dev-student-001";
+
+function readProfileAvatar() {
+  try {
+    const stored = window.localStorage.getItem(PROFILE_STORAGE_KEY);
+    const profile = stored ? JSON.parse(stored) : null;
+    return typeof profile?.avatar === "string" &&
+      profile.avatar.startsWith("data:image/")
+      ? profile.avatar
+      : "";
+  } catch {
+    return "";
+  }
+}
+
 export default function StudentHeader({ onMenuClick }) {
   const location = useLocation();
   const navigate = useNavigate();
   const { language, isArabic, toggleLanguage } = useStudentLanguage();
+  const [avatar, setAvatar] = useState(readProfileAvatar);
+
+  useEffect(() => {
+    const refreshAvatar = () => setAvatar(readProfileAvatar());
+    window.addEventListener("storage", refreshAvatar);
+    window.addEventListener("behar-profile-updated", refreshAvatar);
+    return () => {
+      window.removeEventListener("storage", refreshAvatar);
+      window.removeEventListener("behar-profile-updated", refreshAvatar);
+    };
+  }, []);
 
   const pageTitle =
     pageTitles[location.pathname] ||
@@ -109,7 +136,15 @@ export default function StudentHeader({ onMenuClick }) {
           className="behar-student-header__avatar"
           aria-label="Student profile"
         >
-          <UserRound size={20} strokeWidth={1.7} />
+          {avatar ? (
+            <img
+              src={avatar}
+              alt=""
+              className="behar-student-header__avatar-image"
+            />
+          ) : (
+            <UserRound size={20} strokeWidth={1.7} />
+          )}
         </Link>
       </div>
     </header>

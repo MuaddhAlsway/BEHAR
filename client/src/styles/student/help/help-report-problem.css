@@ -1,0 +1,665 @@
+
+/* ==========================================
+   BEHAR LMS — P14.18.06
+   Help Report Problem
+========================================== */
+
+.help-report-problem {
+  --hrp-primary: #173f2c;
+  --hrp-text: #24352a;
+  --hrp-muted: #78857b;
+  --hrp-border: #e3eae3;
+  --hrp-accent: #edf5ee;
+
+  width: 100%;
+  min-width: 0;
+  padding: 32px 0 80px;
+  color: var(--hrp-text);
+  font-family: "Outfit", sans-serif;
+  text-align: start;
+  scroll-margin-top: 24px;
+}
+
+.help-report-problem *,
+.help-report-problem *::before,
+.help-report-problem *::after {
+  box-sizing: border-box;
+}
+
+.help-report-problem__container {
+  width: 100%;
+  min-width: 0;
+}
+
+/* HEADER */
+
+.help-report-problem__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 24px;
+  margin-bottom: 30px;
+}
+
+.help-report-problem__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 13px;
+  color: #6e8b75;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+}
+
+.help-report-problem__eyebrow-line {
+  width: 22px;
+  height: 1px;
+  background: #8eae94;
+}
+
+.help-report-problem__title {
+  margin: 0;
+  color: var(--hrp-primary);
+  font-size: clamp(25px, 3vw, 36px);
+  font-weight: 600;
+  letter-spacing: -0.04em;
+}
+
+.help-report-problem__description {
+  max-width: 560px;
+  margin: 12px 0 0;
+  color: var(--hrp-muted);
+  font-size: 12px;
+  line-height: 1.85;
+}
+
+.help-report-problem__header-icon {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 54px;
+  height: 54px;
+  border: 1px solid #dce9de;
+  border-radius: 15px;
+  background: var(--hrp-accent);
+  color: var(--hrp-primary);
+}
+
+/* LAYOUT */
+
+.help-report-problem__layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 260px;
+  align-items: start;
+  gap: 18px;
+}
+
+.help-report-problem__main {
+  min-width: 0;
+  border: 1px solid var(--hrp-border);
+  border-radius: 15px;
+  background: #ffffff;
+  overflow: hidden;
+}
+
+/* FORM */
+
+.help-report-problem__form {
+  padding: 28px;
+}
+
+.help-report-problem__form-header {
+  margin-bottom: 27px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid #edf1ed;
+}
+
+.help-report-problem__step {
+  display: inline-flex;
+  margin-bottom: 12px;
+  color: #71947a;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+}
+
+.help-report-problem__form-header h3 {
+  margin: 0;
+  color: var(--hrp-primary);
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.help-report-problem__form-header p {
+  margin: 9px 0 0;
+  color: var(--hrp-muted);
+  font-size: 11px;
+  line-height: 1.8;
+}
+
+.help-report-problem__fields {
+  display: flex;
+  flex-direction: column;
+  gap: 23px;
+}
+
+.help-report-problem__field {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  min-width: 0;
+}
+
+.help-report-problem__field label,
+.help-report-problem__severity legend {
+  color: var(--hrp-primary);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.help-report-problem__field label > span:not(.help-report-problem__optional) {
+  margin-inline-start: 4px;
+  color: #bd6a59;
+}
+
+.help-report-problem__optional {
+  margin-inline-start: 9px;
+  color: #99a69c;
+  font-size: 10px;
+  font-weight: 400;
+}
+
+/* INPUTS */
+
+.help-report-problem__input-wrap,
+.help-report-problem__select-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  min-height: 47px;
+  padding: 0 14px;
+  border: 1px solid #dfe8e0;
+  border-radius: 9px;
+  background: #ffffff;
+  color: #829987;
+  transition:
+    border-color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.help-report-problem__input-wrap:focus-within,
+.help-report-problem__select-wrap:focus-within {
+  border-color: #6c9a78;
+  box-shadow: 0 0 0 3px rgba(51, 119, 73, 0.08);
+}
+
+.help-report-problem__input-wrap svg {
+  flex-shrink: 0;
+}
+
+.help-report-problem__input-wrap input,
+.help-report-problem__select-wrap select {
+  width: 100%;
+  min-width: 0;
+  min-height: 45px;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--hrp-text);
+  font: inherit;
+  font-size: 12px;
+}
+
+.help-report-problem__input-wrap input::placeholder {
+  color: #a0aca2;
+}
+
+.help-report-problem__select-wrap select {
+  appearance: none;
+  padding-inline-end: 22px;
+  cursor: pointer;
+}
+
+.help-report-problem__select-chevron {
+  position: absolute;
+  inset-inline-end: 14px;
+  pointer-events: none;
+}
+
+.help-report-problem__input-wrap:has([aria-invalid="true"]),
+.help-report-problem__select-wrap:has([aria-invalid="true"]) {
+  border-color: #d98a7c;
+}
+
+/* SEVERITY */
+
+.help-report-problem__severity {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.help-report-problem__hint {
+  margin: 8px 0 13px;
+  color: var(--hrp-muted);
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+.help-report-problem__severity-options {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 9px;
+}
+
+.help-report-problem__severity-option {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  min-height: 43px;
+  padding: 10px;
+  border: 1px solid #e1e9e2;
+  border-radius: 9px;
+  background: #fafcfa;
+  color: #748578;
+  font-size: 11px;
+  font-weight: 500;
+  cursor: pointer;
+  transition:
+    border-color 180ms ease,
+    background 180ms ease;
+}
+
+.help-report-problem__severity-option input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+.help-report-problem__severity-dot {
+  width: 8px;
+  height: 8px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: #aebdb1;
+}
+
+.help-report-problem__severity-option--active {
+  border-color: #9bc3a4;
+  background: #edf6ef;
+  color: var(--hrp-primary);
+}
+
+.help-report-problem__severity-option--active
+.help-report-problem__severity-dot {
+  background: #438b57;
+}
+
+.help-report-problem__severity-option:has(input:focus-visible) {
+  outline: 2px solid var(--hrp-primary);
+  outline-offset: 3px;
+}
+
+/* TEXTAREA */
+
+.help-report-problem__field textarea {
+  width: 100%;
+  min-height: 150px;
+  padding: 14px;
+  border: 1px solid #dfe8e0;
+  border-radius: 9px;
+  outline: none;
+  background: #ffffff;
+  color: var(--hrp-text);
+  font: inherit;
+  font-size: 12px;
+  line-height: 1.8;
+  resize: vertical;
+}
+
+.help-report-problem__field textarea::placeholder {
+  color: #a0aca2;
+}
+
+.help-report-problem__field textarea:focus {
+  border-color: #6c9a78;
+  box-shadow: 0 0 0 3px rgba(51, 119, 73, 0.08);
+}
+
+.help-report-problem__field textarea[aria-invalid="true"] {
+  border-color: #d98a7c;
+}
+
+.help-report-problem__textarea-footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  color: #93a096;
+  font-size: 10px;
+}
+
+/* ERRORS */
+
+.help-report-problem__error {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #b75c4d;
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+/* PRIVACY */
+
+.help-report-problem__privacy {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-top: 25px;
+  padding: 13px 15px;
+  border: 1px solid #e1e9e2;
+  border-radius: 9px;
+  background: #f8faf8;
+  color: #748578;
+  font-size: 11px;
+  line-height: 1.8;
+}
+
+.help-report-problem__privacy svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+  color: #71917a;
+}
+
+/* ACTIONS */
+
+.help-report-problem__actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 11px;
+  margin-top: 25px;
+}
+
+.help-report-problem__submit,
+.help-report-problem__reset {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 43px;
+  padding: 11px 17px;
+  border-radius: 9px;
+  font: inherit;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background 180ms ease,
+    border-color 180ms ease;
+}
+
+.help-report-problem__submit {
+  border: 1px solid var(--hrp-primary);
+  background: var(--hrp-primary);
+  color: #ffffff;
+}
+
+.help-report-problem__submit:hover {
+  background: #245b3d;
+}
+
+.help-report-problem__reset {
+  border: 1px solid #dce6de;
+  background: #ffffff;
+  color: var(--hrp-primary);
+}
+
+.help-report-problem__reset:hover {
+  background: #f0f6f1;
+}
+
+.help-report-problem__submit:focus-visible,
+.help-report-problem__reset:focus-visible {
+  outline: 2px solid var(--hrp-primary);
+  outline-offset: 3px;
+}
+
+/* PREVIEW */
+
+.help-report-problem__preview {
+  padding: 28px;
+}
+
+.help-report-problem__preview-heading {
+  padding-bottom: 23px;
+  border-bottom: 1px solid #e9efe9;
+}
+
+.help-report-problem__success-icon {
+  display: grid;
+  place-items: center;
+  width: 51px;
+  height: 51px;
+  margin-bottom: 17px;
+  border-radius: 13px;
+  background: #e8f4ea;
+  color: #34824a;
+}
+
+.help-report-problem__preview-heading h3 {
+  margin: 0;
+  color: var(--hrp-primary);
+  font-size: 21px;
+  font-weight: 600;
+}
+
+.help-report-problem__preview-heading p {
+  margin: 10px 0 0;
+  color: var(--hrp-muted);
+  font-size: 11px;
+  line-height: 1.8;
+}
+
+.help-report-problem__summary {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin: 20px 0 0;
+}
+
+.help-report-problem__summary > div {
+  display: grid;
+  grid-template-columns: 120px minmax(0, 1fr);
+  gap: 15px;
+  padding: 14px 0;
+  border-bottom: 1px solid #edf1ed;
+}
+
+.help-report-problem__summary dt {
+  color: #899a8d;
+  font-size: 11px;
+}
+
+.help-report-problem__summary dd {
+  min-width: 0;
+  margin: 0;
+  color: var(--hrp-primary);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.8;
+  overflow-wrap: anywhere;
+}
+
+.help-report-problem__summary-description dd {
+  white-space: pre-wrap;
+}
+
+.help-report-problem__copy-fallback {
+  display: block;
+  width: 100%;
+  min-height: 110px;
+  margin-top: 18px;
+  padding: 12px;
+  border: 1px solid #e0e9e2;
+  border-radius: 8px;
+  background: #f8faf8;
+  color: #617366;
+  font: inherit;
+  font-size: 10px;
+  line-height: 1.7;
+  resize: vertical;
+}
+
+/* ASIDE */
+
+.help-report-problem__aside {
+  min-width: 0;
+}
+
+.help-report-problem__aside-card {
+  padding: 24px;
+  border: 1px solid #dce8de;
+  border-radius: 14px;
+  background: #f3f8f4;
+}
+
+.help-report-problem__aside-icon {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  margin-bottom: 21px;
+  border-radius: 12px;
+  background: #e1efe4;
+  color: var(--hrp-primary);
+}
+
+.help-report-problem__aside-card h3 {
+  margin: 0;
+  color: var(--hrp-primary);
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.help-report-problem__aside-card > p {
+  margin: 12px 0 0;
+  color: #718675;
+  font-size: 11px;
+  line-height: 1.9;
+}
+
+.help-report-problem__aside-divider {
+  height: 1px;
+  margin: 23px 0;
+  background: #dce8de;
+}
+
+.help-report-problem__aside-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  color: #78907e;
+  font-size: 10px;
+  line-height: 1.8;
+}
+
+.help-report-problem__aside-note svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* RTL */
+
+.help-report-problem[dir="rtl"] {
+  direction: rtl;
+  text-align: right;
+}
+
+.help-report-problem[dir="rtl"]
+.help-report-problem__title,
+.help-report-problem[dir="rtl"]
+.help-report-problem__eyebrow {
+  letter-spacing: 0;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 1024px) {
+  .help-report-problem__layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .help-report-problem__aside-card {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    column-gap: 16px;
+    align-items: center;
+  }
+
+  .help-report-problem__aside-icon {
+    grid-row: span 2;
+    margin: 0;
+  }
+
+  .help-report-problem__aside-divider {
+    display: none;
+  }
+
+  .help-report-problem__aside-note {
+    grid-column: 1 / -1;
+    margin-top: 15px;
+  }
+}
+
+@media (max-width: 640px) {
+  .help-report-problem {
+    padding: 24px 0 55px;
+  }
+
+  .help-report-problem__form,
+  .help-report-problem__preview {
+    padding: 20px;
+  }
+
+  .help-report-problem__header-icon {
+    width: 43px;
+    height: 43px;
+  }
+
+  .help-report-problem__severity-options {
+    gap: 7px;
+  }
+
+  .help-report-problem__severity-option {
+    gap: 6px;
+    padding: 8px 5px;
+    font-size: 10px;
+  }
+
+  .help-report-problem__summary > div {
+    grid-template-columns: 1fr;
+    gap: 5px;
+  }
+
+  .help-report-problem__aside-card {
+    padding: 19px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .help-report-problem__input-wrap,
+  .help-report-problem__select-wrap,
+  .help-report-problem__severity-option,
+  .help-report-problem__submit,
+  .help-report-problem__reset {
+    transition: none;
+  }
+}

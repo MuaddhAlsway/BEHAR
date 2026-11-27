@@ -8,6 +8,8 @@ import {
 } from 'lucide-react'
 
 import '../../../styles/student/payments/payment-row.css'
+import { getPaymentCopy } from '../../../utils/paymentCopy'
+import { courses } from '../../../data/courses'
 
 const STATUS_CONFIG = {
   paid: {
@@ -86,7 +88,24 @@ function formatDate(value, locale) {
   }
 }
 
-function getCourseTitle(order) {
+function getCourseTitle(order, locale) {
+  const isArabic = locale.toLowerCase().startsWith('ar')
+  const catalogCourse = courses.find(
+    (course) =>
+      course.slug === order.courseSlug ||
+      course.id === order.courseId ||
+      course.id === order.items?.[0]?.courseId
+  )
+
+  if (isArabic) {
+    const arabicTitle =
+      order.courseTitleAr ||
+      order.items?.[0]?.courseTitleAr ||
+      catalogCourse?.title?.ar
+
+    if (arabicTitle) return arabicTitle
+  }
+
   if (order.courseTitle) return order.courseTitle
 
   if (Array.isArray(order.items) && order.items.length > 0) {
@@ -145,7 +164,7 @@ export default function PaymentRow({
     order.orderNumber || order.id || '—'
   )
 
-  const title = getCourseTitle(order)
+  const title = getCourseTitle(order, locale)
   const date = formatDate(order.createdAt, locale)
 
   const amount = formatCurrency(
@@ -157,10 +176,20 @@ export default function PaymentRow({
   const paymentMethod = getPaymentMethod(order)
 
   const status = normalizeStatus(order.status)
+  const copy = getPaymentCopy(locale)
 
   const statusConfig = STATUS_CONFIG[status] || {
-    label: 'Unknown',
+    label: locale.startsWith('ar') ? 'غير معروف' : 'Unknown',
     className: 'unknown',
+  }
+  const statusLabels = {
+    paid: copy.paid,
+    pending: copy.pending,
+    processing: copy.processing,
+    failed: copy.failed,
+    cancelled: copy.cancelled,
+    refunded: copy.refundedStatus,
+    partially_refunded: copy.partialRefunded,
   }
 
   const isRefund =
@@ -185,7 +214,7 @@ export default function PaymentRow({
         aria-hidden="true"
       />
 
-      {statusConfig.label}
+      {statusLabels[status] || statusConfig.label}
     </span>
   )
 
@@ -212,18 +241,18 @@ export default function PaymentRow({
           <h3>{title}</h3>
 
           <p className="payment-row-mobile__order-id">
-            Order #{orderId}
+            {copy.order} #{orderId}
           </p>
         </div>
 
         <div className="payment-row-mobile__meta">
           <div className="payment-row-mobile__meta-item">
-            <span>Purchase date</span>
+            <span>{copy.purchaseDate}</span>
             <strong>{date}</strong>
           </div>
 
           <div className="payment-row-mobile__meta-item">
-            <span>Amount</span>
+            <span>{copy.amount}</span>
             <strong>{amount}</strong>
           </div>
         </div>
@@ -244,7 +273,7 @@ export default function PaymentRow({
           onClick={handleViewDetails}
           disabled={!canViewDetails}
         >
-          View transaction details
+          {copy.details}
 
           <ArrowUpRight
             size={16}
@@ -292,7 +321,7 @@ export default function PaymentRow({
             </span>
 
             <span className="payment-row__order-id">
-              Order #{orderId}
+              {copy.order} #{orderId}
             </span>
           </div>
         </div>
@@ -327,7 +356,7 @@ export default function PaymentRow({
           className="payment-row__view"
           onClick={handleViewDetails}
           disabled={!canViewDetails}
-          aria-label={`View details for order ${orderId}`}
+          aria-label={`${copy.details} ${copy.order} ${orderId}`}
         >
           <Eye
             size={16}
@@ -335,7 +364,7 @@ export default function PaymentRow({
             aria-hidden="true"
           />
 
-          <span>Details</span>
+          <span>{copy.details}</span>
         </button>
       </td>
     </tr>

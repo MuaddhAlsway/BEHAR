@@ -1,0 +1,29 @@
+/* BEHAR Student Help page wrapper */
+.student-help-page {
+  width: 100%;
+  min-width: 0;
+  padding: 0 0 48px;
+  color: #24352a;
+  font-family: "Outfit", sans-serif;
+}
+
+.student-help-page,
+.student-help-page * {
+  box-sizing: border-box;
+}
+
+.student-help-page .help-hero {
+  width: 100%;
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+.student-help-page[dir="rtl"] {
+  text-align: right;
+}
+
+@media (max-width: 768px) {
+  .student-help-page {
+    padding-bottom: 32px;
+  }
+}

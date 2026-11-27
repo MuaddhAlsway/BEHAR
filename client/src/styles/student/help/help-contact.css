@@ -1,0 +1,451 @@
+
+/* ==========================================
+   BEHAR LMS — P14.18.05
+   Help Contact
+========================================== */
+
+/* 01 — ROOT */
+
+.help-contact {
+  --hct-primary: #173f2c;
+  --hct-primary-hover: #245b3d;
+  --hct-text: #24352a;
+  --hct-muted: #78857b;
+  --hct-border: #e3eae3;
+  --hct-surface: #ffffff;
+  --hct-accent: #edf5ee;
+
+  position: relative;
+  width: 100%;
+  min-width: 0;
+  padding: 32px 0 76px;
+  color: var(--hct-text);
+  font-family: "Outfit", sans-serif;
+  text-align: start;
+  scroll-margin-top: 24px;
+}
+
+.help-contact *,
+.help-contact *::before,
+.help-contact *::after {
+  box-sizing: border-box;
+}
+
+.help-contact__container {
+  width: 100%;
+  min-width: 0;
+}
+
+/* 02 — HEADER */
+
+.help-contact__header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 32px;
+  margin-bottom: 32px;
+}
+
+.help-contact__heading {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 0;
+}
+
+.help-contact__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  margin-bottom: 15px;
+  color: #6d8c75;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.help-contact__eyebrow svg {
+  color: #729e7d;
+}
+
+.help-contact__title {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 9px;
+  margin: 0;
+  color: var(--hct-primary);
+  font-size: clamp(27px, 3.5vw, 42px);
+  font-weight: 600;
+  line-height: 1.18;
+  letter-spacing: -0.045em;
+}
+
+.help-contact__title-accent {
+  color: #73977b;
+  font-style: italic;
+  font-weight: 400;
+}
+
+.help-contact__description {
+  max-width: 550px;
+  margin: 15px 0 0;
+  color: var(--hct-muted);
+  font-size: 12px;
+  line-height: 1.9;
+}
+
+/* 03 — AVAILABILITY */
+
+.help-contact__availability {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+  max-width: 290px;
+  padding: 14px 17px;
+  border: 1px solid #dce8de;
+  border-radius: 11px;
+  background: #f6faf6;
+}
+
+.help-contact__availability-icon {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 9px;
+  background: #e5f0e7;
+  color: var(--hct-primary);
+}
+
+.help-contact__availability-content {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  min-width: 0;
+}
+
+.help-contact__availability-content strong {
+  color: var(--hct-primary);
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.help-contact__availability-content span {
+  color: var(--hct-muted);
+  font-size: 10px;
+  line-height: 1.6;
+}
+
+/* 04 — CARD GRID */
+
+.help-contact__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 15px;
+}
+
+/* 05 — CARD */
+
+.help-contact__card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 300px;
+  padding: 24px;
+  border: 1px solid var(--hct-border);
+  border-radius: 14px;
+  background: var(--hct-surface);
+  overflow: hidden;
+  transition:
+    border-color 200ms ease,
+    box-shadow 200ms ease,
+    transform 200ms ease;
+}
+
+.help-contact__card:hover {
+  border-color: #bcd2c0;
+  box-shadow: 0 14px 36px rgba(20, 55, 35, 0.06);
+  transform: translateY(-3px);
+}
+
+.help-contact__card--contact {
+  background: var(--hct-primary);
+  border-color: var(--hct-primary);
+}
+
+.help-contact__card--contact:hover {
+  border-color: var(--hct-primary-hover);
+}
+
+/* 06 — CARD TOP */
+
+.help-contact__card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.help-contact__card-icon {
+  display: grid;
+  place-items: center;
+  width: 49px;
+  height: 49px;
+  flex-shrink: 0;
+  border: 1px solid #dce9df;
+  border-radius: 12px;
+  background: var(--hct-accent);
+  color: var(--hct-primary);
+}
+
+.help-contact__card--contact .help-contact__card-icon {
+  border-color: rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.11);
+  color: #ffffff;
+}
+
+.help-contact__card-number {
+  color: #a6b5a9;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+}
+
+.help-contact__card--contact .help-contact__card-number {
+  color: #a4bba9;
+}
+
+/* 07 — CARD BODY */
+
+.help-contact__card-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 0;
+}
+
+.help-contact__card-meta {
+  margin-bottom: 10px;
+  color: #78927f;
+  font-size: 10px;
+  font-weight: 500;
+}
+
+.help-contact__card-title {
+  margin: 0;
+  color: var(--hct-primary);
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: -0.025em;
+}
+
+.help-contact__card-description {
+  margin: 12px 0 0;
+  color: var(--hct-muted);
+  font-size: 11px;
+  line-height: 1.85;
+}
+
+.help-contact__card--contact .help-contact__card-meta {
+  color: #b7cdbb;
+}
+
+.help-contact__card--contact .help-contact__card-title {
+  color: #ffffff;
+}
+
+.help-contact__card--contact .help-contact__card-description {
+  color: #bed0c2;
+}
+
+/* 08 — CARD ACTION */
+
+.help-contact__card-action {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  min-height: 45px;
+  margin-top: 26px;
+  padding-top: 15px;
+  border-top: 1px solid #e9efe9;
+  color: var(--hct-primary);
+  font-size: 11px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.help-contact__card-action svg {
+  flex-shrink: 0;
+  transition: transform 200ms ease;
+}
+
+.help-contact__card-action:hover svg {
+  transform: translate(3px, -3px);
+}
+
+.help-contact__card-action:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
+  border-radius: 3px;
+}
+
+.help-contact__card--contact .help-contact__card-action {
+  border-top-color: rgba(255, 255, 255, 0.16);
+  color: #ffffff;
+}
+
+/* 09 — FOOTER */
+
+.help-contact__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 18px;
+  margin-top: 22px;
+  padding: 21px 24px;
+  border: 1px solid #dce8de;
+  border-radius: 12px;
+  background: #f5faf6;
+}
+
+.help-contact__footer-message {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  min-width: 0;
+}
+
+.help-contact__footer-icon {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 39px;
+  height: 39px;
+  border-radius: 10px;
+  background: #e2efe5;
+  color: var(--hct-primary);
+}
+
+.help-contact__footer-message strong {
+  display: block;
+  color: var(--hct-primary);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.help-contact__footer-message p {
+  margin: 5px 0 0;
+  color: var(--hct-muted);
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+.help-contact__demo-note {
+  max-width: 270px;
+  color: #829587;
+  font-size: 10px;
+  line-height: 1.7;
+}
+
+/* 10 — RTL */
+
+.help-contact[dir="rtl"] {
+  direction: rtl;
+  text-align: right;
+}
+
+.help-contact[dir="rtl"] .help-contact__eyebrow,
+.help-contact[dir="rtl"] .help-contact__title {
+  letter-spacing: 0;
+}
+
+.help-contact[dir="rtl"] .help-contact__card-action:hover svg {
+  transform: translate(-3px, -3px);
+}
+
+/* 11 — TABLET */
+
+@media (max-width: 1024px) {
+  .help-contact__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .help-contact__card {
+    min-height: 280px;
+  }
+
+  .help-contact__card:last-child {
+    grid-column: 1 / -1;
+    min-height: 240px;
+  }
+}
+
+/* 12 — MOBILE */
+
+@media (max-width: 640px) {
+  .help-contact {
+    padding: 24px 0 52px;
+  }
+
+  .help-contact__header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 22px;
+    margin-bottom: 25px;
+  }
+
+  .help-contact__availability {
+    width: 100%;
+    max-width: none;
+  }
+
+  .help-contact__grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .help-contact__card,
+  .help-contact__card:last-child {
+    grid-column: auto;
+    min-height: 240px;
+    padding: 21px;
+  }
+
+  .help-contact__card-top {
+    margin-bottom: 23px;
+  }
+
+  .help-contact__card-action {
+    margin-top: 20px;
+  }
+
+  .help-contact__footer {
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 18px;
+  }
+}
+
+/* 13 — REDUCED MOTION */
+
+@media (prefers-reduced-motion: reduce) {
+  .help-contact__card,
+  .help-contact__card-action svg {
+    transition: none;
+  }
+
+  .help-contact__card:hover,
+  .help-contact__card-action:hover svg {
+    transform: none;
+  }
+}

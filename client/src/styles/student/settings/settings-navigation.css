@@ -1,0 +1,370 @@
+
+/* ================================================
+   BEHAR LMS — STUDENT SETTINGS
+   P14.17.02 — Settings Navigation
+
+   Pure CSS / English LTR / Arabic RTL
+================================================ */
+
+.settings-navigation {
+  --settings-nav-green: #235c3e;
+  --settings-nav-ink: #17251c;
+  --settings-nav-muted: #7b8980;
+  --settings-nav-border: #e1eae3;
+  --settings-nav-surface: #f5f9f6;
+
+  width: 100%;
+  min-width: 0;
+  padding: 24px 14px 16px;
+
+  border: 1px solid var(--settings-nav-border);
+  border-radius: 18px;
+
+  background: #ffffff;
+  color: var(--settings-nav-ink);
+  font-family: "Outfit", sans-serif;
+
+  box-sizing: border-box;
+}
+
+.settings-navigation *,
+.settings-navigation *::before,
+.settings-navigation *::after {
+  box-sizing: border-box;
+}
+
+/* ================================================
+   01 — HEADING
+================================================ */
+
+.settings-navigation__heading {
+  padding: 0 13px 20px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid var(--settings-nav-border);
+}
+
+.settings-navigation__eyebrow {
+  display: block;
+
+  color: var(--settings-nav-green);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  line-height: 1.5;
+}
+
+.settings-navigation__description {
+  margin: 7px 0 0;
+
+  color: var(--settings-nav-muted);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+/* ================================================
+   02 — NAVIGATION LIST
+================================================ */
+
+.settings-navigation__list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* ================================================
+   03 — NAVIGATION ITEM
+================================================ */
+
+.settings-navigation__item {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  width: 100%;
+  min-height: 64px;
+  padding: 11px 12px;
+
+  border: 1px solid transparent;
+  border-radius: 12px;
+
+  background: transparent;
+  color: var(--settings-nav-ink);
+
+  font: inherit;
+  text-align: start;
+  cursor: pointer;
+
+  transition:
+    background-color 180ms ease,
+    border-color 180ms ease,
+    color 180ms ease;
+}
+
+.settings-navigation__item:hover {
+  background: var(--settings-nav-surface);
+}
+
+.settings-navigation__item:focus-visible {
+  outline: 2px solid var(--settings-nav-green);
+  outline-offset: 2px;
+}
+
+.settings-navigation__item-icon {
+  display: grid;
+  place-items: center;
+
+  width: 38px;
+  height: 38px;
+  flex-shrink: 0;
+
+  border: 1px solid #edf0ed;
+  border-radius: 10px;
+
+  background: #f8faf8;
+  color: #687c6f;
+
+  transition:
+    background-color 180ms ease,
+    border-color 180ms ease,
+    color 180ms ease;
+}
+
+.settings-navigation__item-content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.settings-navigation__item-label {
+  color: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+
+.settings-navigation__item-description {
+  color: var(--settings-nav-muted);
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+
+.settings-navigation__item-arrow {
+  flex-shrink: 0;
+  color: #a5b2a8;
+  opacity: 0;
+
+  transform: translateX(-4px);
+  transition:
+    opacity 180ms ease,
+    transform 180ms ease;
+}
+
+.settings-navigation__item:hover
+.settings-navigation__item-arrow {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ================================================
+   04 — ACTIVE STATE
+================================================ */
+
+.settings-navigation__item--active {
+  border-color: #d9e9de;
+  background: #edf6ef;
+  color: var(--settings-nav-green);
+}
+
+.settings-navigation__item--active:hover {
+  background: #e7f2ea;
+}
+
+.settings-navigation__item--active
+.settings-navigation__item-icon {
+  border-color: #d5e7da;
+  background: #ffffff;
+  color: var(--settings-nav-green);
+}
+
+.settings-navigation__item--active
+.settings-navigation__item-label {
+  font-weight: 600;
+}
+
+.settings-navigation__item--active
+.settings-navigation__item-description {
+  color: #648470;
+}
+
+.settings-navigation__item--active
+.settings-navigation__item-arrow {
+  opacity: 1;
+  transform: translateX(0);
+  color: var(--settings-nav-green);
+}
+
+/* ================================================
+   05 — ARABIC RTL
+================================================ */
+
+.settings-navigation[dir="rtl"] {
+  direction: rtl;
+  text-align: right;
+}
+
+.settings-navigation[dir="rtl"]
+.settings-navigation__eyebrow {
+  letter-spacing: 0;
+}
+
+.settings-navigation[dir="rtl"]
+.settings-navigation__item {
+  text-align: right;
+}
+
+.settings-navigation[dir="rtl"]
+.settings-navigation__item-arrow {
+  transform: rotate(180deg);
+}
+
+.settings-navigation[dir="rtl"]
+.settings-navigation__item:hover
+.settings-navigation__item-arrow,
+.settings-navigation[dir="rtl"]
+.settings-navigation__item--active
+.settings-navigation__item-arrow {
+  transform: rotate(180deg);
+  opacity: 1;
+}
+
+/* ================================================
+   06 — TABLET
+================================================ */
+
+@media (max-width: 1024px) {
+  .settings-navigation {
+    padding: 18px 10px 12px;
+  }
+
+  .settings-navigation__heading {
+    padding-inline: 10px;
+  }
+
+  .settings-navigation__item {
+    padding: 10px;
+    gap: 10px;
+  }
+}
+
+/* ================================================
+   07 — MOBILE
+================================================ */
+
+@media (max-width: 768px) {
+  .settings-navigation {
+    padding: 16px 12px;
+    border-radius: 15px;
+  }
+
+  .settings-navigation__heading {
+    padding: 0 6px 14px;
+    margin-bottom: 12px;
+  }
+
+  .settings-navigation__list {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x proximity;
+    scrollbar-width: none;
+
+    padding: 3px 2px 8px;
+  }
+
+  .settings-navigation__list::-webkit-scrollbar {
+    display: none;
+  }
+
+  .settings-navigation__item {
+    flex: 0 0 auto;
+    width: auto;
+    min-height: 43px;
+    padding: 8px 12px;
+    gap: 8px;
+
+    border-radius: 10px;
+    scroll-snap-align: start;
+  }
+
+  .settings-navigation__item-icon {
+    width: 27px;
+    height: 27px;
+    border-radius: 7px;
+  }
+
+  .settings-navigation__item-icon svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .settings-navigation__item-label {
+    font-size: 12px;
+    white-space: nowrap;
+  }
+
+  .settings-navigation__item-description,
+  .settings-navigation__item-arrow {
+    display: none;
+  }
+}
+
+/* ================================================
+   08 — SMALL MOBILE
+================================================ */
+
+@media (max-width: 480px) {
+  .settings-navigation {
+    padding: 14px 10px;
+    border-radius: 13px;
+  }
+
+  .settings-navigation__heading {
+    padding-inline: 5px;
+  }
+
+  .settings-navigation__item {
+    min-height: 40px;
+    padding: 7px 10px;
+  }
+
+  .settings-navigation__item-label {
+    font-size: 11px;
+  }
+}
+
+/* ================================================
+   09 — REDUCED MOTION
+================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .settings-navigation__item,
+  .settings-navigation__item-icon,
+  .settings-navigation__item-arrow {
+    transition: none;
+  }
+
+  .settings-navigation__list {
+    scroll-behavior: auto;
+  }
+}

@@ -323,14 +323,33 @@
 }
 
 .behar-student-header__avatar {
+  position: relative;
   display: grid;
   place-items: center;
+  flex: 0 0 43px;
   width: 43px;
   height: 43px;
+  overflow: hidden;
+  padding: 0;
+  border: 1px solid rgba(217, 239, 116, 0.35);
   border-radius: 50%;
   background: var(--student-forest);
   color: var(--student-lime);
   text-decoration: none;
+}
+
+.behar-student-header__avatar-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  border-radius: inherit;
+}
+
+.behar-student-header__avatar:focus-visible {
+  outline: 2px solid var(--student-lime);
+  outline-offset: 3px;
 }
 
 .behar-student-header__menu {
@@ -476,6 +495,7 @@
   }
 
   .behar-student-header__avatar {
+    flex-basis: 36px;
     width: 36px;
     height: 36px;
   }

@@ -9,6 +9,7 @@ import {
 
 import '../../../styles/student/payments/payment-history.css'
 import PaymentRow from './PaymentRow'
+import { getPaymentCopy } from '../../../utils/paymentCopy'
 
 const PAGE_SIZE = 5
 
@@ -20,6 +21,7 @@ export default function PaymentHistory({
   onResetFilters,
   hasActiveFilters = false,
 }) {
+  const copy = getPaymentCopy(locale)
   const [page, setPage] = useState(1)
 
   const totalPages = Math.max(
@@ -56,11 +58,10 @@ export default function PaymentHistory({
           <SearchX size={27} strokeWidth={1.5} />
         </div>
 
-        <h3>No matching transactions</h3>
+        <h3>{locale.startsWith('ar') ? 'لم يتم العثور على معاملات مطابقة' : 'No matching transactions'}</h3>
 
         <p>
-          We couldn't find any transactions matching your
-          search or filters. Try adjusting your criteria.
+          {locale.startsWith('ar') ? 'لم نتمكن من العثور على معاملات تطابق بحثك أو فلاترك. جرّب تعديل المعايير.' : "We couldn't find any transactions matching your search or filters. Try adjusting your criteria."}
         </p>
 
         {hasActiveFilters && (
@@ -69,7 +70,7 @@ export default function PaymentHistory({
             className="payment-history__reset"
             onClick={onResetFilters}
           >
-            Clear all filters
+            {copy.clear}
           </button>
         )}
       </div>
@@ -85,14 +86,16 @@ export default function PaymentHistory({
         <div className="payment-history__table-heading">
           <ReceiptText size={17} strokeWidth={1.8} />
 
-          <span>Payment records</span>
+          <span>{locale.startsWith('ar') ? 'سجلات الدفع' : 'Payment records'}</span>
         </div>
 
         <span className="payment-history__total">
           {orders.length}{' '}
-          {orders.length === 1
-            ? 'transaction'
-            : 'transactions'}
+          {locale.startsWith('ar')
+            ? 'معاملة'
+            : orders.length === 1
+              ? 'transaction'
+              : 'transactions'}
         </span>
       </div>
 
@@ -102,11 +105,11 @@ export default function PaymentHistory({
         <table className="payment-history__table">
           <thead>
             <tr>
-              <th scope="col">Transaction</th>
-              <th scope="col">Date</th>
-              <th scope="col">Amount</th>
-              <th scope="col">Status</th>
-              <th scope="col">Action</th>
+              <th scope="col">{locale.startsWith('ar') ? 'المعاملة' : 'Transaction'}</th>
+              <th scope="col">{locale.startsWith('ar') ? 'التاريخ' : 'Date'}</th>
+              <th scope="col">{copy.amount}</th>
+              <th scope="col">{locale.startsWith('ar') ? 'الحالة' : 'Status'}</th>
+              <th scope="col">{locale.startsWith('ar') ? 'الإجراء' : 'Action'}</th>
             </tr>
           </thead>
 
@@ -144,8 +147,8 @@ export default function PaymentHistory({
 
       <div className="payment-history__pagination">
         <p>
-          Showing <strong>{startItem}–{endItem}</strong> of{' '}
-          <strong>{orders.length}</strong> transactions
+          {locale.startsWith('ar') ? 'عرض' : 'Showing'} <strong>{startItem}–{endItem}</strong> {locale.startsWith('ar') ? 'من' : 'of'}{' '}
+          <strong>{orders.length}</strong> {locale.startsWith('ar') ? 'معاملات' : 'transactions'}
         </p>
 
         {totalPages > 1 && (

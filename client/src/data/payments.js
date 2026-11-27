@@ -41,6 +41,7 @@ export function createDemoPaymentOrder(course) {
       {
         courseId: course.id,
         courseTitle: title,
+        courseTitleAr: course.title?.ar || title,
         courseSlug: course.slug,
       },
     ],

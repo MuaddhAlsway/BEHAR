@@ -7,27 +7,7 @@ import {
 } from 'lucide-react'
 
 import '../../../styles/student/payments/payment-toolbar.css'
-
-const STATUS_OPTIONS = [
-  { value: 'all', label: 'All statuses' },
-  { value: 'paid', label: 'Paid' },
-  { value: 'pending', label: 'Pending' },
-  { value: 'processing', label: 'Processing' },
-  { value: 'failed', label: 'Failed' },
-  { value: 'cancelled', label: 'Cancelled' },
-  { value: 'refunded', label: 'Refunded' },
-  {
-    value: 'partially_refunded',
-    label: 'Partially refunded',
-  },
-]
-
-const SORT_OPTIONS = [
-  { value: 'newest', label: 'Newest first' },
-  { value: 'oldest', label: 'Oldest first' },
-  { value: 'highest', label: 'Highest amount' },
-  { value: 'lowest', label: 'Lowest amount' },
-]
+import { getPaymentCopy } from '../../../utils/paymentCopy'
 
 export default function PaymentToolbar({
   search = '',
@@ -39,7 +19,25 @@ export default function PaymentToolbar({
   onReset,
   totalCount = 0,
   resultCount = 0,
+  locale = 'en-SA',
 }) {
+  const copy = getPaymentCopy(locale)
+  const statusOptions = [
+    { value: 'all', label: copy.allStatuses },
+    { value: 'paid', label: copy.paid },
+    { value: 'pending', label: copy.pending },
+    { value: 'processing', label: copy.processing },
+    { value: 'failed', label: copy.failed },
+    { value: 'cancelled', label: copy.cancelled },
+    { value: 'refunded', label: copy.refundedStatus },
+    { value: 'partially_refunded', label: copy.partialRefunded },
+  ]
+  const sortOptions = [
+    { value: 'newest', label: copy.newest },
+    { value: 'oldest', label: copy.oldest },
+    { value: 'highest', label: copy.highest },
+    { value: 'lowest', label: copy.lowest },
+  ]
   const hasActiveFilters =
     search.trim() !== '' ||
     status !== 'all' ||
@@ -49,14 +47,12 @@ export default function PaymentToolbar({
     <div className="payment-toolbar">
       <div className="payment-toolbar__header">
         <div className="payment-toolbar__heading">
-          <h3>Manage transactions</h3>
-          <p>
-            Search, filter and organize your payments.
-          </p>
+          <h3>{copy.manage}</h3>
+          <p>{copy.manageDescription}</p>
         </div>
 
         <span className="payment-toolbar__count">
-          {resultCount} of {totalCount} orders
+          {resultCount} / {totalCount} {copy.orders}
         </span>
       </div>
 
@@ -76,8 +72,8 @@ export default function PaymentToolbar({
             onChange={(event) =>
               onSearchChange?.(event.target.value)
             }
-            placeholder="Search orders or courses..."
-            aria-label="Search payment transactions"
+            placeholder={copy.search}
+            aria-label={copy.searchLabel}
           />
 
           {search && (
@@ -106,9 +102,9 @@ export default function PaymentToolbar({
             onChange={(event) =>
               onStatusChange?.(event.target.value)
             }
-            aria-label="Filter by payment status"
+            aria-label={copy.filterLabel}
           >
-            {STATUS_OPTIONS.map((option) => (
+            {statusOptions.map((option) => (
               <option
                 key={option.value}
                 value={option.value}
@@ -133,9 +129,9 @@ export default function PaymentToolbar({
             onChange={(event) =>
               onSortChange?.(event.target.value)
             }
-            aria-label="Sort payment transactions"
+            aria-label={copy.sortLabel}
           >
-            {SORT_OPTIONS.map((option) => (
+            {sortOptions.map((option) => (
               <option
                 key={option.value}
                 value={option.value}
@@ -150,7 +146,7 @@ export default function PaymentToolbar({
       {hasActiveFilters && (
         <div className="payment-toolbar__footer">
           <span>
-            Showing {resultCount} matching transactions
+            {copy.matching}: {resultCount}
           </span>
 
           <button
@@ -159,7 +155,7 @@ export default function PaymentToolbar({
             onClick={onReset}
           >
             <X size={14} aria-hidden="true" />
-            Clear filters
+            {copy.clear}
           </button>
         </div>
       )}

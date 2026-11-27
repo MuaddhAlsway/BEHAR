@@ -253,6 +253,7 @@ export default function RefundHistory({
   locale = 'en-SA',
   onViewDetails,
 }) {
+  const isArabic = locale.toLowerCase().startsWith('ar')
   const [search, setSearch] = useState('')
   const [status, setStatus] = useState('all')
   const [sort, setSort] = useState('newest')
@@ -344,20 +345,27 @@ export default function RefundHistory({
         <div>
           <span className="refund-history__eyebrow">
             <FileClock size={14} />
-            Refund activity
+            {isArabic ? 'نشاط الاسترداد' : 'Refund activity'}
           </span>
 
-          <h2>Refund history</h2>
+          <h2>{isArabic ? 'سجل طلبات الاسترداد' : 'Refund history'}</h2>
 
           <p>
-            Track your refund requests and their review status.
+            {isArabic
+              ? 'تابع طلبات استرداد المبالغ وحالة مراجعتها.'
+              : 'Track your refund requests and their review status.'}
           </p>
         </div>
 
         <div className="refund-history__count">
           <RotateCcw size={16} />
           <span>
-            {refunds.length} {refunds.length === 1 ? 'request' : 'requests'}
+            {refunds.length}{' '}
+            {isArabic
+              ? 'طلبات'
+              : refunds.length === 1
+                ? 'request'
+                : 'requests'}
           </span>
         </div>
       </div>
@@ -370,11 +378,12 @@ export default function RefundHistory({
             <Clock3 size={25} strokeWidth={1.6} />
           </div>
 
-          <h3>No refund requests yet</h3>
+          <h3>{isArabic ? 'لا توجد طلبات استرداد بعد' : 'No refund requests yet'}</h3>
 
           <p>
-            Any refund requests you submit will appear here,
-            along with their current status.
+            {isArabic
+              ? 'ستظهر هنا أي طلبات استرداد تقدمها مع حالتها الحالية.'
+              : 'Any refund requests you submit will appear here, along with their current status.'}
           </p>
         </div>
       ) : (

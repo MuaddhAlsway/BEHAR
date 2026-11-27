@@ -7,6 +7,7 @@ import {
 } from 'react'
 
 import { useNavigate } from 'react-router-dom'
+import { useStudentLanguage } from '../../context/StudentLanguageContext'
 
 import {
   ArrowRight,
@@ -46,6 +47,7 @@ import { filterPayments } from '../../utils/filterPayments'
 // ==========================================
 
 import '../../styles/student/payments/payments.css'
+import { getPaymentCopy } from '../../utils/paymentCopy'
 
 // ==========================================
 // TEMPORARY FRONTEND DATA
@@ -62,6 +64,7 @@ const INITIAL_REFUNDS = []
 
 export default function Payments() {
   const navigate = useNavigate()
+  const { language } = useStudentLanguage()
   const historyRef = useRef(null)
 
   // ========================================
@@ -94,7 +97,8 @@ export default function Payments() {
   // ========================================
 
   const currency = 'SAR'
-  const locale = 'en-SA'
+  const locale = language === 'ar' ? 'ar-SA' : 'en-SA'
+  const copy = getPaymentCopy(locale)
 
   // ========================================
   // PAYMENT SUMMARY
@@ -259,6 +263,7 @@ export default function Payments() {
       <PaymentsHeader
         onViewReceipts={handleViewReceipts}
         onBillingSupport={handleBillingSupport}
+        locale={locale}
       />
 
       {/* ====================================
@@ -289,16 +294,17 @@ export default function Payments() {
           <div className="student-payments__section-heading">
 
             <span className="student-payments__eyebrow">
-              Your activity
+              {language === 'ar' ? 'نشاطك' : 'Your activity'}
             </span>
 
             <h2 id="payment-history-heading">
-              Transaction history
+              {language === 'ar' ? 'سجل المعاملات' : 'Transaction history'}
             </h2>
 
             <p>
-              Review your course purchases,
-              payment statuses, and available receipts.
+              {language === 'ar'
+                ? 'راجع مشتريات دوراتك وحالات الدفع والإيصالات المتاحة.'
+                : 'Review your course purchases, payment statuses, and available receipts.'}
             </p>
 
           </div>
@@ -306,9 +312,11 @@ export default function Payments() {
           {paymentSummary.hasOrders && (
             <span className="student-payments__order-count">
               {paymentSummary.totalOrders}{' '}
-              {paymentSummary.totalOrders === 1
-                ? 'order'
-                : 'orders'}
+              {language === 'ar'
+                ? 'طلبات'
+                : paymentSummary.totalOrders === 1
+                  ? 'order'
+                  : 'orders'}
             </span>
           )}
         </div>
@@ -333,6 +341,7 @@ export default function Payments() {
               onReset={resetFilters}
               totalCount={orders.length}
               resultCount={filteredOrders.length}
+              locale={locale}
             />
 
             <PaymentHistory
@@ -383,18 +392,15 @@ export default function Payments() {
             <div className="student-payments__empty-content">
 
               <span className="student-payments__empty-label">
-                No transactions yet
+              {copy.noTransactions}
               </span>
 
               <h3>
-                Your learning journey starts here
+                {copy.journey}
               </h3>
 
               <p>
-                Once you purchase a course,
-                your payment history, order details,
-                and available receipts will appear
-                in this space.
+                {copy.noTransactionsText}
               </p>
 
               <button
@@ -402,7 +408,7 @@ export default function Payments() {
                 className="student-payments__explore"
                 onClick={handleExploreCourses}
               >
-                Explore courses
+                {copy.explore}
 
                 <ArrowRight
                   size={16}
@@ -435,7 +441,7 @@ export default function Payments() {
 
       <section
         className="student-payments__info"
-        aria-label="Payment information"
+        aria-label={language === 'ar' ? 'معلومات الدفع' : 'Payment information'}
       >
 
         <div className="student-payments__info-icon">
@@ -448,14 +454,13 @@ export default function Payments() {
         <div className="student-payments__info-content">
 
           <h3>
-            Payment information
+            {copy.paymentInfo}
           </h3>
 
           <p>
-            This page displays your recorded course
-            purchases and billing activity.
-            Payment processing and sensitive card
-            details are handled separately.
+            {language === 'ar'
+              ? 'تعرض هذه الصفحة مشتريات دوراتك ونشاط الفوترة المسجل. تتم معالجة المدفوعات وتفاصيل البطاقات الحساسة بشكل منفصل.'
+              : 'This page displays your recorded course purchases and billing activity. Payment processing and sensitive card details are handled separately.'}
           </p>
 
         </div>

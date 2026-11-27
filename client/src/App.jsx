@@ -33,6 +33,7 @@ import VerifyCertificate from "./pages/public/VerifyCertificate";
 // ==========================================
 
 import StudentLayout from "./layouts/StudentLayout";
+import Help from "./pages/student/Help";
 
 // ==========================================
 // STUDENT PAGES
@@ -61,6 +62,9 @@ import Wishlist from "./pages/student/Wishlist";
 
 // P14.16 — Student Payments & Billing
 import Payments from "./pages/student/Payments";
+
+// P14.17 — Student Settings
+import Settings from "./pages/student/Settings";
 
 // P14.5.0.8 — Complete Achievements Dashboard
 import Achievements from "./components/student/achievements/Achievements";
@@ -407,6 +411,33 @@ function App() {
                   <Route
                     path="orders"
                     element={<Payments />}
+                  />
+
+                  {/* ==================================
+                      P14.17 — STUDENT SETTINGS
+
+                      Features:
+                      - Profile settings
+                      - Account preferences
+                      - Security settings
+                      - Notification preferences
+                      - Learning preferences
+                      - Language and appearance
+                      - Account management
+                      - Help and support
+
+                      Frontend-only implementation.
+                      Backend integration deferred.
+                  ================================== */}
+
+                  <Route
+                    path="settings"
+                    element={<Settings />}
+                  />
+
+                  <Route
+                    path="help"
+                    element={<Help />}
                   />
 
                   {/* ==================================

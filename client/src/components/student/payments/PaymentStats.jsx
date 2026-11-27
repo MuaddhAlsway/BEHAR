@@ -7,6 +7,7 @@ import {
 } from 'lucide-react'
 
 import '../../../styles/student/payments/payment-stats.css'
+import { getPaymentCopy } from '../../../utils/paymentCopy'
 
 const COMPLETED_STATUSES = new Set([
   'paid',
@@ -85,38 +86,39 @@ export default function PaymentStats({
   currency = 'SAR',
   locale = 'en-SA',
 }) {
+  const copy = getPaymentCopy(locale)
   const stats = calculatePaymentStats(orders, refunds)
 
   const cards = [
     {
       id: 'total-spent',
-      label: 'Total spent',
+      label: copy.totalSpent,
       value: formatCurrency(stats.totalSpent, currency, locale),
-      description: 'Net completed purchases',
+      description: copy.netPurchases,
       icon: Wallet,
       tone: 'primary',
     },
     {
       id: 'total-orders',
-      label: 'Total orders',
+      label: copy.totalOrders,
       value: String(stats.totalOrders).padStart(2, '0'),
-      description: 'All purchase orders',
+      description: copy.allOrders,
       icon: ShoppingBag,
       tone: 'neutral',
     },
     {
       id: 'successful-payments',
-      label: 'Successful payments',
+      label: copy.successful,
       value: String(stats.successfulPayments).padStart(2, '0'),
-      description: 'Paid and partially refunded',
+      description: copy.paidPartial,
       icon: CircleCheck,
       tone: 'success',
     },
     {
       id: 'refunded-amount',
-      label: 'Refunded amount',
+      label: copy.refunded,
       value: formatCurrency(stats.refundedAmount, currency, locale),
-      description: 'Completed refunds',
+      description: copy.completedRefunds,
       icon: RotateCcw,
       tone: 'neutral',
     },
@@ -129,11 +131,11 @@ export default function PaymentStats({
     >
       <div className="payment-stats__heading">
         <h2 id="payment-stats-heading">
-          Payment overview
+          {copy.overview}
         </h2>
 
         <span className="payment-stats__period">
-          All-time summary
+          {copy.allTime}
         </span>
       </div>
 
